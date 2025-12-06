@@ -1,0 +1,46 @@
+jurisdiction: US-MN
+parent: US
+version: 1.0.0
+updatedTimestamp: '2025-12-05T12:46:28Z'
+abbreviations:
+  mndot: minnesota department of transportation
+  mde: minnesota department of education
+  mdh: minnesota department of health
+  dnr: department of natural resources
+  dps: department of public safety
+  deed: department of employment and economic development
+  mmb: minnesota management and budget
+  mdva: minnesota department of veterans affairs
+  mdhr: minnesota department of human rights
+  mpca: minnesota pollution control agency
+  mhfa: minnesota housing finance agency
+  ohe: minnesota office of higher education
+  metc: metropolitan council
+  metro: metropolitan council
+  metrotransit: metro transit
+  metro transit: metro transit
+  mps: minneapolis public schools
+  spps: saint paul public schools
+  sppsd: saint paul public schools
+  hennepin co: hennepin county
+  ramsey co: ramsey county
+  dakota co: dakota county
+  anoka co: anoka county
+  washington co: washington county
+  scott co: scott county
+  carver co: carver county
+agency_names:
+  state of minnesota: state of minnesota
+  minnesota state: state of minnesota
+  mn state: state of minnesota
+  mn: state of minnesota
+  city of minneapolis: city of minneapolis
+  minneapolis: city of minneapolis
+  city of st paul: city of saint paul
+  city of saint paul: city of saint paul
+  st paul: city of saint paul
+  saint paul: city of saint paul
+entity_types: {}
+rules: []
+stop_words: []
+configHash: d9fa55fa3ec81d7aff041bf886d7bbcb85a9a7d93eb3681a20f7bad05ea1b5f1

@@ -1,0 +1,42 @@
+jurisdiction: US-CA
+parent: US
+abbreviations:
+  # State Agencies & Departments
+  calhhs: california health and human services agency
+  dof: department of finance
+  djc: department of justice and california attorney general
+  cdph: california department of public health
+  dss: department of social services
+  dpr: department of parks and recreation
+  cslb: contractors state license board
+  cdfa: california department of food and agriculture
+  calosha: california occupational safety and health administration
+  ftb: franchise tax board
+  # Courts
+  sc: supreme court of california
+  ca_coa: california court of appeal
+  # Regional/Municipal Agencies
+  mwd: metropolitan water district of southern california
+  scvwd: santa clara valley water district
+  ocwd: orange county water district
+  scctc: santa clara county transportation agency
+  samtrans: san mateo county transit district
+  ac transit: alameda-contra costa transit district
+  # County Aliases (beyond the original one)
+  sd county: san diego county
+  orange co: orange county
+  sc county: santa clara county
+  alameda co: alameda county
+agency_names:
+  port of la: port of los angeles
+  port of long beach: port of long beach
+  la county: los angeles county
+  sf city: city and county of san francisco
+  sacramento city: city of sacramento
+  san jose city: city of san jose
+entity_types: {}
+rules: []
+stop_words: []
+version: 1.0.1
+updatedTimestamp: '2025-12-05T09:35:24Z'
+configHash:

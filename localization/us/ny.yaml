@@ -1,0 +1,59 @@
+jurisdiction: US-NY
+parent: US
+abbreviations:
+  mta: metropolitan transportation authority
+  nycha: new york city housing authority
+  nypd: new york police department
+  fdny: fire department of the city of new york
+  doe: new york city department of education
+  nycdot: new york city department of transportation
+  dep: department of environmental protection
+  dsny: department of sanitation of new york
+  hpd: department of housing preservation and development
+  dob: department of buildings
+  ddc: department of design and construction
+  dcp: department of city planning
+  doh: department of health and mental hygiene
+  dcas: department of citywide administrative services
+  dpr: department of parks and recreation
+  suny: state university of new york
+  cuny: city university of new york
+  nysed: new york state education department
+  sed: state education department
+  nysdot: new york state department of transportation
+  dot: department of transportation
+  dec: department of environmental conservation
+  dmv: department of motor vehicles
+  dfs: department of financial services
+  dol: department of labor
+  doccs: department of corrections and community supervision
+  dhs: department of homeland security and emergency services
+  doa: division of the budget
+  lirr: long island rail road
+  mnr: metro north railroad
+  path: port authority trans hudson
+  nypa: new york power authority
+  dasny: dormitory authority of the state of new york
+  esdc: empire state development corporation
+  nyserda: new york state energy research and development authority
+  nycdda: new york city housing development corporation
+  kda: kings county district attorney
+  qnsda: queens county district attorney
+  bxda: bronx county district attorney
+  rcda: richmond county district attorney
+  nycda: new york county district attorney
+agency_names:
+  port authority: port authority of new york and new jersey
+  thruway: new york state thruway authority
+  triborough: triborough bridge and tunnel authority
+  nyc: city of new york
+  city of new york: city of new york
+  state of new york: state of new york
+  new york state: state of new york
+  new york city: city of new york
+entity_types: {}
+rules: []
+stop_words: []
+version: 0.0.1
+updatedTimestamp: '2025-12-05T12:46:28Z'
+configHash: 3399687b11f52204458c4c15b3fcfd922c84f54fa973e50f909562ac93668871

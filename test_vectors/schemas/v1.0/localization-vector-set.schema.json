@@ -1,0 +1,105 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/test_vectors/schemas/v1.0/localization-vector-set.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Localization Test Vector Set",
+  "description": "Schema for a file containing a set of localization test vectors.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri",
+      "description": "The JSON Schema URL this document adheres to."
+    },
+    "vectorSetId": {
+      "type": "string",
+      "description": "A unique identifier for this set of test vectors (e.g., snfei-localization-us)."
+    },
+    "specVersion": {
+      "type": "string",
+      "description": "The version of the specification the vectors are testing."
+    },
+    "vectorVersion": {
+      "type": "string",
+      "description": "The version of the test vector set itself."
+    },
+    "description": {
+      "type": "string",
+      "description": "A brief description of the purpose of this test vector set."
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the test vector file was generated (YYYY-MM-DD)."
+    },
+    "vectors": {
+      "type": "array",
+      "description": "An array of individual localization test cases.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "description",
+          "function",
+          "input",
+          "expected"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the specific test case (e.g., loc_us_001)."
+          },
+          "description": {
+            "type": "string",
+            "description": "A descriptive name for the test case."
+          },
+          "function": {
+            "type": "string",
+            "description": "The name of the localization function being tested (always 'apply_localization')."
+          },
+          "input": {
+            "type": "object",
+            "description": "The input data for the localization function.",
+            "required": ["name", "jurisdiction"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name or acronym to be localized."
+              },
+              "jurisdiction": {
+                "type": "string",
+                "description": "The jurisdiction context (e.g., US, us/ca, ca/on)."
+              }
+            },
+            "additionalProperties": false
+          },
+          "expected": {
+            "type": "object",
+            "description": "The expected output from the localization function.",
+            "required": ["localized"],
+            "properties": {
+              "localized": {
+                "type": "string",
+                "description": "The expected localized value."
+              }
+            },
+            "additionalProperties": false
+          },
+          "notes": {
+            "type": "string",
+            "description": "Optional notes or rationale for the test case."
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "$schema",
+    "vectorSetId",
+    "specVersion",
+    "vectorVersion",
+    "description",
+    "generatedAt",
+    "vectors"
+  ],
+  "additionalProperties": false
+}

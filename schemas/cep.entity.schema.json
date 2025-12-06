@@ -1,0 +1,51 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CEP Entity Record",
+  "description": "Record describing an entity (organization, person, district, etc.) in CEP.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.record-envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "recordKind": {
+          "const": "entity"
+        },
+        "jurisdictionIso": {
+          "type": "string",
+          "description": "ISO-style jurisdiction code (e.g. US-IL)."
+        },
+        "legalName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "shortName": {
+          "type": "string"
+        },
+        "identifiers": {
+          "type": "object",
+          "description": "Namespaced identifiers for the entity.",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "inceptionDate": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "dissolutionDate": {
+          "type": ["string", "null"],
+          "format": "date"
+        }
+      },
+      "required": ["jurisdictionIso", "legalName"],
+      "additionalProperties": true
+    }
+  ]
+}

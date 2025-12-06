@@ -1,0 +1,82 @@
+jurisdiction: US
+parent: BASE
+abbreviations:
+  doj: department of justice
+  dod: department of defense
+  hhs: department of health and human services
+  hud: department of housing and urban development
+  doe: department of energy
+  ed: department of education
+  dot: department of transportation
+  dhs: department of homeland security
+  usda: united states department of agriculture
+  doi: department of the interior
+  doc: department of commerce
+  dol: department of labor
+  dos: department of state
+  treasury: department of the treasury
+  va: department of veterans affairs
+  epa: environmental protection agency
+  fda: food and drug administration
+  fcc: federal communications commission
+  ftc: federal trade commission
+  sec: securities and exchange commission
+  irs: internal revenue service
+  ssa: social security administration
+  nasa: national aeronautics and space administration
+  fbi: federal bureau of investigation
+  cia: central intelligence agency
+  nsa: national security agency
+  fema: federal emergency management agency
+  gsa: general services administration
+  opm: office of personnel management
+  sba: small business administration
+  usps: united states postal service
+  fdic: federal deposit insurance corporation
+  cfpb: consumer financial protection bureau
+  ncua: national credit union administration
+  occ: office of the comptroller of the currency
+  cms: centers for medicare and medicaid services
+  cdc: centers for disease control and prevention
+  nih: national institutes of health
+  nsf: national science foundation
+  noaa: national oceanic and atmospheric administration
+  usgs: united states geological survey
+  atf: bureau of alcohol tobacco firearms and explosives
+  blm: bureau of land management
+  bop: federal bureau of prisons
+  cisa: cybersecurity and infrastructure security agency
+  cpsc: consumer product safety commission
+  dea: drug enforcement administration
+  eeoc: equal employment opportunity commission
+  faa: federal aviation administration
+  ferc: federal energy regulatory commission
+  gao: government accountability office
+  nara: national archives and records administration
+  nps: national park service
+  nrlb: national labor relations board
+  tsa: transportation security administration
+  uscis: u s citizenship and immigration services
+agency_names: {}
+entity_types:
+  501c3: five oh one c three
+  501(c)(3): five oh one c three
+  501c4: five oh one c four
+  501(c)(4): five oh one c four
+  k-12: kindergarten through twelfth grade
+  k12: kindergarten through twelfth grade
+  non-profit: non profit organization
+  nonprofit: non profit organization
+  ngo: non governmental organization
+  llc: limited liability company
+  corp: corporation
+  inc: incorporated
+  city: municipal government
+  county: county government
+  state: state government
+  federal: federal government
+rules: []
+stop_words: []
+version: 0.0.2
+updatedTimestamp: '2025-12-05T09:28:57Z'
+configHash:

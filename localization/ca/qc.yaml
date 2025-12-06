@@ -1,0 +1,72 @@
+jurisdiction: CA/QC
+parent: QC
+abbreviations:
+  stm: societe de transport de montreal
+  rtc: reseau de transport de la capitale
+  stl: societe de transport de laval
+  exo: exo reseau de transport metropolitain
+  sq: surete du quebec
+  ramq: regie de assurance maladie du quebec
+  saq: societe des alcools du quebec
+  saaq: societe de assurance automobile du quebec
+  revenu quebec: revenu quebec
+  hydro-quebec: hydro quebec
+  hq: hydro quebec
+  cdpq: caisse de depot et placement du quebec
+  investissement quebec: investissement quebec
+  cegep: college enseignement general et professionnel
+  uqam: universite du quebec a montreal
+  ulaval: universite laval
+  mcgill: mcgill university
+  concordia: concordia university
+  shq: societe habitation du quebec
+agency_names:
+  ville de montreal: city of montreal
+  ville de quebec: city of quebec
+entity_types:
+  "limit\xE9e": limitee
+  "incorpor\xE9e": incorporated
+  "soci\xE9t\xE9": societe
+  compagnie: company
+  "enregistr\xE9e": enregistree
+rules:
+- pattern: "\xE9"
+  replacement: e
+  is_regex: false
+- pattern: "\xE8"
+  replacement: e
+  is_regex: false
+- pattern: "\xEA"
+  replacement: e
+  is_regex: false
+- pattern: "\xEB"
+  replacement: e
+  is_regex: false
+- pattern: "\xE0"
+  replacement: a
+  is_regex: false
+- pattern: "\xE2"
+  replacement: a
+  is_regex: false
+- pattern: "\xF4"
+  replacement: o
+  is_regex: false
+- pattern: "\xEE"
+  replacement: i
+  is_regex: false
+- pattern: "\xEF"
+  replacement: i
+  is_regex: false
+- pattern: "\xFB"
+  replacement: u
+  is_regex: false
+- pattern: "\xF9"
+  replacement: u
+  is_regex: false
+- pattern: "\xE7"
+  replacement: c
+  is_regex: false
+stop_words: []
+version: 0.0.1
+updatedTimestamp: '2025-12-05T12:46:28Z'
+configHash: 1f9c51659e7d288bf5bb460d025f950886bb0953ec88c0717a12c886614f9799

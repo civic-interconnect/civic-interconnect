@@ -1,0 +1,10 @@
+jurisdiction: BASE
+parent: null
+abbreviations: {}
+agency_names: {}
+entity_types: {}
+rules: []
+stop_words: []
+version: 0.0.1
+updatedTimestamp: '2025-12-05T12:46:28Z'
+configHash: d7f8cafa0af5848ea7f558d3b73ef356bc3c1ac939c8c7de317bc2ba1d1e7c96
