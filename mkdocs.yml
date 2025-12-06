@@ -51,6 +51,7 @@ theme:
 
 plugins:
   - search
+  - include-markdown
   - mike:
       version_selector: true
       css_dir: css
@@ -102,6 +103,7 @@ markdown_extensions:
 nav:
   - Home: en/index.md
   - Quick Start: en/quick-start.md
+  - Schemas: en/schemas.md
 
   - Concepts:
       - Category Theory Foundation: en/concepts/category-theory-foundation.md

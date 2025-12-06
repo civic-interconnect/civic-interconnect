@@ -104,6 +104,7 @@ cargo build -p cep-core
 cargo build
 
 # run tests
+cargo test -p cep-core entity
 cargo test -p cep-core -q
 cargo test -- --nocapture -q
 
@@ -121,7 +122,6 @@ cd ../../
 
 ```shell
 uv build
-uv run python tools/sync_schemas_for_docs.py
 uv run mkdocs build --strict
 uv run mkdocs serve
 ```

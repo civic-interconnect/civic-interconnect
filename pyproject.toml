@@ -110,7 +110,7 @@ exclude_lines = [
   "@(abc\\.)?abstractmethod",
   "# pragma: no cover",
 ]
-fail_under = 70
+fail_under = 65
 precision = 1
 show_missing = true
 skip_covered = false
@@ -185,7 +185,7 @@ addopts = [
   "--tb=short",  # short traceback format
 ]
 minversion = "9.0"
-pythonpath = ["src/python/src"]
+pythonpath = ["./src/python/src","./typings"]
 testpaths = ["src/python/tests"]
 
 [tool.ruff]

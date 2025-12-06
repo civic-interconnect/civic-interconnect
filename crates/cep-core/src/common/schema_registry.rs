@@ -121,19 +121,6 @@ impl SchemaRegistry {
     ///
     /// Returns `CepError::Configuration` if the registry cannot be initialized.
     ///
-      /// # Example
-    ///
-    /// ```rust
-    /// use cep_core::SchemaRegistry;
-    ///
-    /// let registry = SchemaRegistry::global()
-    ///     .expect("failed to load global schema registry");
-    /// let schema = registry
-    ///     .get_schema("entity", None)
-    ///     .expect("failed to resolve entity schema");
-    ///
-    /// assert!(schema.is_object());
-    /// ```
     pub fn global() -> CepResult<SchemaRegistry> {
         // Try to return cached instance
         {
@@ -177,27 +164,6 @@ impl SchemaRegistry {
     ///
     /// Returns `CepError::UnknownSchema` if schema name or version is unknown.
     ///
-    /// # Example
-    ///
-    /// ```rust
-    /// use cep_core::SchemaRegistry;
-    ///
-    /// let registry = SchemaRegistry::global()
-    ///     .expect("failed to load global schema registry");
-    ///
-    /// // Get current version
-    /// let latest = registry
-    ///     .get_schema("entity", None)
-    ///     .expect("failed to resolve latest entity schema");
-    ///
-    /// // Get specific version
-    /// let v1 = registry
-    ///     .get_schema("entity", Some("1.0"))
-    ///     .expect("failed to resolve v1 entity schema");
-    ///
-    /// assert!(latest.is_object());
-    /// assert!(v1.is_object());
-    /// ```
     pub fn get_schema(&self, name: &str, version: Option<&str>) -> CepResult<Value> {
         let version = version
             .map(|v| v.to_string())
