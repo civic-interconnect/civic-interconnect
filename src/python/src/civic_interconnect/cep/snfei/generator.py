@@ -1,6 +1,6 @@
 """SNFEI Hash Generation.
 
-This module computes the final SNFEI (Sub-National Federated Entity Identifier)
+This module computes the final SNFEI (Sub-National Fixed Entity Identifier)
 from normalized entity attributes.
 
 The SNFEI formula:
@@ -12,15 +12,38 @@ The SNFEI formula:
     ])
 
 All inputs must pass through the Normalizing Functor before hashing.
+
+When available, this module prefers the Rust implementation exposed via
+the `cep_py` extension, and falls back to the pure Python implementation
+as a spec mirror / test oracle.
+
+File: src/python/src/civic_interconnect/cep/snfei/generator.py
 """
 
 from dataclasses import dataclass
 import hashlib
+from typing import Any
 
-from .normalizer import (
+from civic_interconnect.cep.snfei.normalizer import (
     CanonicalInput,
     build_canonical_input,
 )
+
+USE_NATIVE_SNFEI: bool = False  # TEMP: force Python path
+
+
+# Try to import the native Rust backend (via cep_py).
+try:
+    # Python signature:
+    #     generate_snfei(legal_name, country_code, address=None, registration_date=None) -> str
+    from cep_py import (  # type: ignore[attr-defined, import]
+        generate_snfei as _generate_snfei_native,
+    )
+
+    HAS_NATIVE_BACKEND: bool = True
+except Exception:  # pragma: no cover - environment dependent
+    _generate_snfei_native = None  # type: ignore[assignment]
+    HAS_NATIVE_BACKEND = False
 
 
 @dataclass(frozen=True)
@@ -61,9 +84,9 @@ class SnfeiResult:
     canonical: CanonicalInput
     confidence_score: float  # 0.0 to 1.0
     tier: int  # 1, 2, or 3
-    fields_used: list  # Which fields contributed
+    fields_used: list[str]  # Which fields contributed
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, Any]:
         """Convert result to dictionary for serialization."""
         return {
             "snfei": self.snfei.value,
@@ -79,18 +102,70 @@ class SnfeiResult:
         }
 
 
+# =============================================================================
+# PURE PYTHON HASH PIPELINE (SPEC MIRROR)
+# =============================================================================
+
+
 def compute_snfei(canonical: CanonicalInput) -> Snfei:
-    """Compute SNFEI from canonical input.
+    """Compute SNFEI from canonical input using the Python implementation.
 
-    Args:
-        canonical: Normalized input structure.
-
-    Returns:
-        Computed SNFEI.
+    This is the pure Python reference implementation. Production callers
+    should generally go through `generate_snfei` / `generate_snfei_with_confidence`,
+    which will prefer the Rust core when available.
     """
     hash_input = canonical.to_hash_string()
     hash_bytes = hashlib.sha256(hash_input.encode("utf-8")).hexdigest().lower()
     return Snfei(hash_bytes)
+
+
+# =============================================================================
+# HIGH-LEVEL ENTRY POINTS (PREFER RUST BACKEND)
+# =============================================================================
+
+
+def _compute_snfei_prefer_native(
+    legal_name: str,
+    country_code: str,
+    address: str | None,
+    registration_date: str | None,
+    canonical: CanonicalInput,
+) -> Snfei:
+    """Compute SNFEI, preferring the Rust backend when available.
+
+    - If the cep_py native extension is not available, fall back to the
+      pure Python implementation.
+    - If the native backend *is* available but returns an invalid value
+      (or otherwise fails), raise a ValueError instead of silently
+      falling back. Native failures are treated as bugs, not soft errors.
+    """
+    # Case 1: no native backend at all → pure Python
+    # if not HAS_NATIVE_BACKEND or _generate_snfei_native is None:
+    if not USE_NATIVE_SNFEI or not HAS_NATIVE_BACKEND or _generate_snfei_native is None:
+        return compute_snfei(canonical)
+
+    # Case 2: native backend present → use it, but fail loudly if it misbehaves
+    try:
+        snfei_value = _generate_snfei_native(
+            legal_name,
+            country_code,
+            address,
+            registration_date,
+        )
+    except Exception as exc:
+        # This is a hard failure: cep_py is present but returned an error.
+        # Include full context to debug resolver/FFI issues.
+        msg = (
+            "Native SNFEI backend (cep_py.generate_snfei) failed for "
+            f"legal_name={legal_name!r}, country_code={country_code!r}, "
+            f"address={address!r}, registration_date={registration_date!r}: {exc}"
+        )
+        raise ValueError(msg) from exc
+
+    # Now validate returned value with the Python Snfei guard.
+    # If Rust returned a non-hex or prefixed value, this will raise,
+    # helpful during development.
+    return Snfei(snfei_value)
 
 
 def generate_snfei(
@@ -104,6 +179,9 @@ def generate_snfei(
     This is the main entry point for SNFEI generation. It applies the
     Normalizing Functor to all inputs before hashing.
 
+    When the cep_py native extension is present, the hash is computed
+    by the Rust core; otherwise, the pure Python implementation is used.
+
     Args:
         legal_name: Raw legal name from source system.
         country_code: ISO 3166-1 alpha-2 country code (e.g., "US", "CA").
@@ -114,15 +192,15 @@ def generate_snfei(
         SnfeiResult for verification.
 
     Example:
-        >>> snfei, inputs = generate_snfei(
+        >>> result = generate_snfei(
         ...     legal_name="Springfield Unified Sch. Dist., Inc.",
         ...     country_code="US",
         ...     address="123 Main St., Suite 100",
         ...     registration_date="01/15/1985",
         ... )
-        >>> print(snfei)
+        >>> print(result.snfei)
         a1b2c3d4...
-        >>> print(inputs.legal_name_normalized)
+        >>> print(result.canonical.legal_name_normalized)
         springfield unified school district incorporated
     """
     canonical = build_canonical_input(
@@ -131,16 +209,23 @@ def generate_snfei(
         address=address,
         registration_date=registration_date,
     )
-    snfei = compute_snfei(canonical)
 
-    # Determine fields used from what's present in canonical
-    fields_used = ["legal_name", "country_code"]
+    snfei = _compute_snfei_prefer_native(
+        legal_name=legal_name,
+        country_code=country_code,
+        address=address,
+        registration_date=registration_date,
+        canonical=canonical,
+    )
+
+    # Determine fields used from what is present in canonical.
+    fields_used: list[str] = ["legal_name", "country_code"]
     if canonical.address_normalized:
         fields_used.append("address")
     if canonical.registration_date:
         fields_used.append("registration_date")
 
-    # Basic confidence: Tier 3, score based on fields
+    # Basic confidence: Tier 3, score based on fields.
     confidence = 0.5
     if canonical.address_normalized:
         confidence += 0.2
@@ -177,7 +262,11 @@ def generate_snfei_simple(
     Returns:
         64-character lowercase hex SNFEI string.
     """
-    result = generate_snfei(legal_name, country_code, address)
+    result = generate_snfei(
+        legal_name=legal_name,
+        country_code=country_code,
+        address=address,
+    )
     return result.snfei.value
 
 
@@ -218,13 +307,23 @@ def generate_snfei_with_confidence(
     Returns:
         SnfeiResult with SNFEI, confidence score, and metadata.
     """
-    fields_used = ["legal_name", "country_code"]
+    fields_used: list[str] = ["legal_name", "country_code"]
 
     # Tier 1: LEI available
     if lei and len(lei) == 20:
-        canonical = build_canonical_input(legal_name, country_code, address, registration_date)
-        # For Tier 1, we still compute SNFEI but confidence is 1.0
-        snfei = compute_snfei(canonical)
+        canonical = build_canonical_input(
+            legal_name=legal_name,
+            country_code=country_code,
+            address=address,
+            registration_date=registration_date,
+        )
+        snfei = _compute_snfei_prefer_native(
+            legal_name=legal_name,
+            country_code=country_code,
+            address=address,
+            registration_date=registration_date,
+            canonical=canonical,
+        )
         return SnfeiResult(
             snfei=snfei,
             canonical=canonical,
@@ -235,8 +334,19 @@ def generate_snfei_with_confidence(
 
     # Tier 2: SAM UEI available
     if sam_uei and len(sam_uei) == 12:
-        canonical = build_canonical_input(legal_name, country_code, address, registration_date)
-        snfei = compute_snfei(canonical)
+        canonical = build_canonical_input(
+            legal_name=legal_name,
+            country_code=country_code,
+            address=address,
+            registration_date=registration_date,
+        )
+        snfei = _compute_snfei_prefer_native(
+            legal_name=legal_name,
+            country_code=country_code,
+            address=address,
+            registration_date=registration_date,
+            canonical=canonical,
+        )
         return SnfeiResult(
             snfei=snfei,
             canonical=canonical,
@@ -246,8 +356,19 @@ def generate_snfei_with_confidence(
         )
 
     # Tier 3: Compute SNFEI from attributes
-    canonical = build_canonical_input(legal_name, country_code, address, registration_date)
-    snfei = compute_snfei(canonical)
+    canonical = build_canonical_input(
+        legal_name=legal_name,
+        country_code=country_code,
+        address=address,
+        registration_date=registration_date,
+    )
+    snfei = _compute_snfei_prefer_native(
+        legal_name=legal_name,
+        country_code=country_code,
+        address=address,
+        registration_date=registration_date,
+        canonical=canonical,
+    )
 
     # Calculate confidence score
     confidence = 0.5  # Base score

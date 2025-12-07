@@ -1,0 +1,13 @@
+{
+  "committee_name": "Citizens for Good Government PAC",
+  "fec_id": "C12345678",
+  "state": "NY",
+  "country": "US",
+  "address": "75 Liberty Ave",
+  "source_system": "fec-filing",
+  "notes": "Example PAC raw record",
+  "entityType": "PAC",
+  "jurisdiction": "US-FED",
+  "fecCommitteeId": "C12345678",
+  "registrationDate": "2020-02-01"
+}

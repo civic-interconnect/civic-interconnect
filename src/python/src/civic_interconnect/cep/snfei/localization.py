@@ -22,6 +22,8 @@ Directory Structure:
             base.yaml       # Canada-wide rules
             on.yaml         # Ontario-specific
             qc.yaml         # Quebec-specific
+
+File: src/python/src/civic_interconnect/cep/snfei/localization.py
 """
 
 from dataclasses import dataclass, field

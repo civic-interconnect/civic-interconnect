@@ -5,6 +5,12 @@ This module provides functions to:
 - Map JSON Schema types to Rust types
 - Generate serde-compatible field attributes
 - Handle nullable and optional fields
+
+File: src/python/src/civic_interconnect/cep/codegen/rust_generated.py
+
+uv run cx codegen-rust
+
+uv run python src/python/src/civic_interconnect/cep/codegen/rust_generated.py
 """
 
 import json
@@ -524,17 +530,26 @@ def generate_rust_struct(schema_path: Path, struct_name: str) -> str:
         lines.append(envelope_items)
 
     # Typed identifiers map alias if the schema uses "identifiers".
-    identifiers_alias = ""
+    identifiers_items = ""
     if "identifiers" in properties:
-        identifiers_alias = (
-            "pub type Identifiers = "
-            "std::collections::HashMap<String, std::collections::HashMap<String, String>>;\n\n"
+        identifiers_items = (
+            "#[derive(Debug, Clone, Serialize, Deserialize)]\n"
+            '#[serde(rename_all = "camelCase")]\n'
+            "pub struct Identifier {\n"
+            '    #[serde(rename = "schemeUri")]\n'
+            "    pub scheme_uri: String,\n"
+            "    pub identifier: String,\n"
+            '    #[serde(rename = "sourceReference", skip_serializing_if = "Option::is_none")]\n'
+            "    pub source_reference: Option<String>,\n"
+            "}\n"
+            "\n"
+            "pub type Identifiers = Vec<Identifier>;\n"
+            "\n"
         )
         special_types["identifiers"] = "Identifiers"
 
-    if identifiers_alias:
-        lines.append(identifiers_alias)
-
+    if identifiers_items:
+        lines.append(identifiers_items)
     # Emit the main record struct.
     if description:
         lines.append("/// " + description + "\n")

@@ -1,17 +1,10 @@
 // crates/cep-core/src/exchange/manual.rs
+use crate::common::errors::CepResult;
 use serde::{Deserialize, Serialize};
-use crate::common::errors::{CepResult};
 
 pub use super::generated::{
-    ExchangeRecord,
-    RecordKind,
-    StatusEnvelope,
-    StatusCode,
-    Timestamps,
-    Attestation,
+    Attestation, ExchangeRecord, RecordKind, StatusCode, StatusEnvelope, Timestamps,
 };
-
-
 
 // Add ergonomic helpers
 impl ExchangeRecord {
@@ -24,10 +17,6 @@ impl ExchangeRecord {
 pub fn build_exchange_from_normalized_json(input_json: &str) -> CepResult<String> {
     Ok(input_json.to_string())
 }
-
-
-
-
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

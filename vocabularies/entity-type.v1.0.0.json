@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json",
-  "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json",
+  "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json",
   "version": "1.0.0",
   "title": "CEP Entity Type Vocabulary",
   "description": "Controlled vocabulary describing major categories of civic, governmental, nonprofit, educational, and commercial entities. Used by CEP Entity Records via entityTypeUri.",
@@ -10,7 +10,7 @@
 
   "terms": [
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#federal-agency",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#federal-agency",
       "code": "federal-agency",
       "label": "Federal Agency",
       "definition": "An agency, department, commission, or bureau of a national or federal-level government.",
@@ -20,37 +20,37 @@
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#state-agency",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#state-agency",
       "code": "state-agency",
       "label": "State Agency",
       "definition": "A department, commission, board, or authority belonging to a state or provincial government.",
-      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#government-entity",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#government-entity",
       "seeAlso": [],
       "status": "active",
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#local-government",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#local-government",
       "code": "local-government",
       "label": "Local Government",
       "definition": "A city, county, township, school district, special district, or other sub-state governmental body.",
-      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#government-entity",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#government-entity",
       "seeAlso": [],
       "status": "active",
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#nonprofit-501c3",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#nonprofit-501c3",
       "code": "nonprofit-501c3",
       "label": "Nonprofit (501(c)(3))",
       "definition": "A U.S. tax-exempt charitable organization under IRS 501(c)(3), including public charities and private foundations.",
-      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#nonprofit",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#nonprofit",
       "seeAlso": ["https://www.irs.gov/charities-non-profits"],
       "status": "active",
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#nonprofit",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#nonprofit",
       "code": "nonprofit",
       "label": "Nonprofit Organization",
       "definition": "An organization operated for public or mutual benefit, not for generating profit for owners or investors.",
@@ -60,7 +60,7 @@
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#for-profit-corporation",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#for-profit-corporation",
       "code": "for-profit-corporation",
       "label": "For-Profit Corporation",
       "definition": "A corporate entity registered under commercial law for profit-generating activities.",
@@ -70,7 +70,7 @@
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#educational-institution",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#educational-institution",
       "code": "educational-institution",
       "label": "Educational Institution",
       "definition": "A school, college, university, or educational district legally recognized by a governmental body.",

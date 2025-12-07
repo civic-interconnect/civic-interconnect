@@ -29,7 +29,7 @@
         "recordTypeUri": {
           "type": "string",
           "format": "uri",
-          "description": "URI referencing the relationship type in the CEP Relationship Type Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/relationship-type.json#prime-contract', '#grant-award', '#board-membership'). Relationship type terms are mapped to external vocabularies such as Popolo (Membership), Open Contracting Data Standard (Award, Contract), Schema.org (MonetaryGrant, subOrganization), HSDS, and FIBO through the vocabulary.mappings mechanism."
+          "description": "URI referencing the relationship type in the CEP Relationship Type Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/relationship-type.json#prime-contract', '#grant-award', '#board-membership'). Relationship type terms are mapped to external vocabularies such as Popolo (Membership), Open Contracting Data Standard (Award, Contract), Schema.org (MonetaryGrant, subOrganization), HSDS, and FIBO through the vocabulary.mappings mechanism."
         },
 
         "bilateralParties": {
@@ -47,7 +47,7 @@
                 "roleUri": {
                   "type": "string",
                   "format": "uri",
-                  "description": "URI specifying Party A's role in this relationship. Implementations SHOULD use a termUri from the CEP Party Role Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/party-role.json#grantor', '#buyer', '#employer', '#regulator')."
+                  "description": "URI specifying Party A's role in this relationship. Implementations SHOULD use a termUri from the CEP Party Role Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/party-role.json#grantor', '#buyer', '#employer', '#regulator')."
                 }
               },
               "required": ["entityId", "roleUri"],
@@ -64,7 +64,7 @@
                 "roleUri": {
                   "type": "string",
                   "format": "uri",
-                  "description": "URI specifying Party B's role in this relationship. Implementations SHOULD use a termUri from the CEP Party Role Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/party-role.json#grantee', '#supplier', '#employee', '#regulated-entity')."
+                  "description": "URI specifying Party B's role in this relationship. Implementations SHOULD use a termUri from the CEP Party Role Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/party-role.json#grantee', '#supplier', '#employee', '#regulated-entity')."
                 }
               },
               "required": ["entityId", "roleUri"],

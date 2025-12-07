@@ -22,7 +22,6 @@
 ///    The canonical string is a simple key:value concatenation.
 ///
 /// 6. **Encoding**: The canonical string MUST be UTF-8 encoded.
-
 use crate::common::hash::CanonicalHash;
 use std::collections::BTreeMap;
 

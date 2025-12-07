@@ -1,5 +1,5 @@
 {
-  "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/identifier-scheme.json",
+  "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json",
   "version": "1.0.0",
   "title": "CEP Identifier Scheme Vocabulary",
   "description": "Controlled vocabulary of identifier schemes that should be used in CEP Entity.identifiers.additionalSchemes[].schemeUri. These scheme URIs provide a stable, interoperable way to attach external identifiers (Open Civic Data, Popolo, OCDS, HSDS, national registries, etc.) without changing the CEP core schema.",
@@ -99,7 +99,7 @@
     },
 
     {
-      "termUri": "https://specs.civic-interconnect.org/schemes/lei",
+  "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#lei",
       "code": "lei",
       "label": "Legal Entity Identifier Scheme",
       "definition": "Identifier scheme for the Legal Entity Identifier (LEI) per ISO 17442, a 20-character global identifier for parties to financial transactions. This corresponds to the CEP Entity.identifiers.lei field when present.",
@@ -112,7 +112,7 @@
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://specs.civic-interconnect.org/schemes/sam-uei",
+  "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#sam-uei",
       "code": "sam-uei",
       "label": "SAM Unique Entity Identifier Scheme",
       "definition": "Identifier scheme for the U.S. federal SAM.gov Unique Entity Identifier (UEI), a 12-character ID assigned to entities that receive federal assistance or contracts. This corresponds to the CEP Entity.identifiers.samUei field when present.",
@@ -125,10 +125,10 @@
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://specs.civic-interconnect.org/schemes/snfei",
+  "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei",
       "code": "snfei",
-      "label": "Sub-National Federated Entity Identifier Scheme",
-      "definition": "Identifier scheme for the Sub-National Federated Entity Identifier (SNFEI), defined as a SHA-256 hash of normalized name + jurisdiction, providing an open, recomputable bridging identifier for entities lacking UEI or LEI coverage.",
+      "label": "Sub-National Fixed Entity Identifier Scheme",
+      "definition": "Identifier scheme for the Sub-National Fixed Entity Identifier (SNFEI), defined as a SHA-256 hash of normalized name + jurisdiction, providing an open, recomputable bridging identifier for entities lacking UEI or LEI coverage.",
       "parentTermUri": null,
       "seeAlso": [],
       "status": "active",
@@ -136,7 +136,7 @@
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://specs.civic-interconnect.org/schemes/canadian-bn",
+  "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#canadian-bn",
       "code": "canadian-bn",
       "label": "Canadian Business Number Scheme",
       "definition": "Identifier scheme for the Canadian Business Number (BN) with program account (for example, 123456789RC0001). This corresponds to the CEP Entity.identifiers.canadianBn field when present.",
@@ -147,7 +147,7 @@
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://specs.civic-interconnect.org/schemes/uk-companies-house",
+  "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#uk-companies-house",
       "code": "uk-companies-house",
       "label": "UK Companies House Scheme",
       "definition": "Identifier scheme for UK Companies House company numbers, providing a bridge between CEP Entity records and the official UK corporate registry.",

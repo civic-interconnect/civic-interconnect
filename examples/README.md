@@ -33,7 +33,7 @@ Each subfolder contains multiple minimal, schema-valid examples.
 
 ---
 
-## Sub-National Federated Entity Identifier (SNFEI) Test Corpus
+## Sub-National Fixed Entity Identifier (SNFEI) Test Corpus
 
 The SNFEI test vectors include:
 - **inputs.jsonl** containing messy real-world inputs  

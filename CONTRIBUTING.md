@@ -1,7 +1,7 @@
 # Contributing
 
-This document describes the recommended workflow for developing in the Civic Interconnect monorepo.  
-It applies equally to schemas, Rust crates, Python packages, adapters, and tools.
+This document describes the recommended workflow for developing in this Civic Interconnect repository.  
+It applies to our schemas, Rust crates, Python packages, adapters, and tools.
 
 ---
 
@@ -27,7 +27,7 @@ Install the following.
 - tamasfe.even-better-toml – TOML editing (pyproject, config)
 - usernamehw.errorlens – Inline diagnostics (optional, but helpful)
 
-You can see installed extensions by running: `code.cmd --list-extensions`
+You can see your installed extensions by running: `code.cmd --list-extensions`
 
 ### Optional (if building wrappers)
 
@@ -79,6 +79,14 @@ Before committing, pull code, run Python checks, run Rust checks.
 ```shell
 git pull origin main
 
+# after changing schemas, regenerate rust 
+uv run python tools/codegen_rust.py
+uv run cx codegen-python-constants
+cargo fmt
+cargo build
+cargo test -p cep-core
+uv run maturin develop --release
+
 uvx ruff check . --fix
 uvx ruff format .
 uvx deptry .
@@ -114,6 +122,9 @@ cd crates/cep-py
 cargo build
 uv run maturin develop --release
 cd ../../
+
+uv run cx generate-example examples/entity --overwrite
+
 ```
 
 ---

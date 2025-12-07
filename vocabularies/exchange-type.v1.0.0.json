@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json",
-  "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json",
+  "vocabularyUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json",
   "version": "1.0.0",
   "title": "CEP Exchange Type Vocabulary",
   "description": "Controlled vocabulary defining types of exchanges (financial, in-kind, service-based, or informational) recorded in CEP Exchange Records.",
@@ -10,7 +10,7 @@
 
   "terms": [
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json#grant-disbursement",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json#grant-disbursement",
       "code": "grant-disbursement",
       "label": "Grant Disbursement",
       "definition": "A financial payment from a grantor to a grantee under a grant or subgrant agreement.",
@@ -20,7 +20,7 @@
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json#contract-payment",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json#contract-payment",
       "code": "contract-payment",
       "label": "Contract Payment",
       "definition": "A financial payment made under a procurement contract for goods or services, including prime and subcontractor levels.",
@@ -30,7 +30,7 @@
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json#loan-disbursement",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json#loan-disbursement",
       "code": "loan-disbursement",
       "label": "Loan Disbursement",
       "definition": "Funds disbursed to a borrower under a loan agreement.",
@@ -40,17 +40,17 @@
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json#loan-repayment",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json#loan-repayment",
       "code": "loan-repayment",
       "label": "Loan Repayment",
       "definition": "A payment from borrower to lender repaying principal or interest owed under a loan agreement.",
-      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json#loan-disbursement",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json#loan-disbursement",
       "seeAlso": [],
       "status": "active",
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json#in-kind-contribution",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json#in-kind-contribution",
       "code": "in-kind-contribution",
       "label": "In-Kind Contribution",
       "definition": "A non-monetary transfer of goods, supplies, equipment, or other tangible items.",
@@ -60,7 +60,7 @@
       "addedInVersion": "1.0.0"
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json#service-hours",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json#service-hours",
       "code": "service-hours",
       "label": "Service Hours",
       "definition": "A non-monetary transfer of time or labor (e.g., volunteer hours, consulting hours, pro bono services).",
@@ -73,13 +73,13 @@
 
   "mappings": [
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json#grant-disbursement",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json#grant-disbursement",
       "externalUri": "https://www.usaspending.gov/glossary#grant",
       "mappingType": "relatedMatch",
       "externalStandard": "USAspending"
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json#contract-payment",
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json#contract-payment",
       "externalUri": "https://www.usaspending.gov/glossary#contract",
       "mappingType": "relatedMatch",
       "externalStandard": "USAspending"

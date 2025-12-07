@@ -16,19 +16,19 @@ pub struct ValueType {
 impl ValueType {
     pub fn monetary() -> Self {
         Self {
-            type_uri: "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/value-type.json#monetary".to_string(),
+            type_uri: "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/value-type.json#monetary".to_string(),
         }
     }
 
     pub fn in_kind() -> Self {
         Self {
-            type_uri: "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/value-type.json#in-kind".to_string(),
+            type_uri: "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/value-type.json#in-kind".to_string(),
         }
     }
 
     pub fn service_hours() -> Self {
         Self {
-            type_uri: "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/value-type.json#service-hours".to_string(),
+            type_uri: "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/value-type.json#service-hours".to_string(),
         }
     }
 }
@@ -59,7 +59,7 @@ fn default_currency() -> String {
 }
 
 fn default_value_type() -> String {
-    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/value-type.json#monetary".to_string()
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/value-type.json#monetary".to_string()
 }
 
 impl ExchangeValue {

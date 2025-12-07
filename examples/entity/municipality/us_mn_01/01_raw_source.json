@@ -1,0 +1,9 @@
+{
+  "official_name": "City of Minneapolis",
+  "state": "MN",
+  "country": "US",
+  "address": "Hennepin County Government Center, 300 South 6th Street, Minneapolis, MN 55487",
+  "jurisdiction": "US-MN",
+  "source_system": "state-municipal-registry",
+  "notes": "Example raw municipality record"
+}

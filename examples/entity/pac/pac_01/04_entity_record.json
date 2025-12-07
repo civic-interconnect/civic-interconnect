@@ -1,0 +1,45 @@
+{
+  "attestations": [
+    {
+      "attestationTimestamp": "1900-01-01T00:00:00.000000Z",
+      "attestorId": "cep-entity:example:ingest",
+      "proofPurpose": "assertionMethod",
+      "proofType": "ManualAttestation",
+      "proofValue": null,
+      "sourceReference": null,
+      "sourceSystem": null,
+      "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest"
+    }
+  ],
+  "dissolutionDate": null,
+  "identifiers": [
+    {
+      "identifier": "40aed40459ca830ea1ae8acaa6ce9874f376f1246d6140279cab82af9fb140e0",
+      "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei"
+    }
+  ],
+  "inceptionDate": null,
+  "jurisdictionIso": "US-FED",
+  "legalName": "Citizens for Good Government PAC",
+  "legalNameNormalized": "citizens good government pac",
+  "recordKind": "entity",
+  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json",
+  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#PAC",
+  "revisionNumber": 1,
+  "schemaVersion": "1.0.0",
+  "shortName": null,
+  "status": {
+    "statusCode": "ACTIVE",
+    "statusEffectiveDate": "1900-01-01",
+    "statusReason": null
+  },
+  "statusTerminationDate": null,
+  "successorEntityId": null,
+  "timestamps": {
+    "firstSeenAt": "1900-01-01T00:00:00.000000Z",
+    "lastUpdatedAt": "1900-01-01T00:00:00.000000Z",
+    "validFrom": "1900-01-01T00:00:00.000000Z",
+    "validTo": null
+  },
+  "verifiableId": "cep-entity:snfei:40aed40459ca830ea1ae8acaa6ce9874f376f1246d6140279cab82af9fb140e0"
+}

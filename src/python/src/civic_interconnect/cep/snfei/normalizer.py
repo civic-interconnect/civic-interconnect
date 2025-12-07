@@ -30,6 +30,8 @@ Mathematical Foundation:
 
     Where N preserves identity (same entity always maps to same canonical form)
     and composition (N(L(x)) = N ∘ L(x) where L is the localization functor).
+
+File: src/python/src/civic_interconnect/cep/snfei/normalizer.py
 """
 
 from dataclasses import dataclass

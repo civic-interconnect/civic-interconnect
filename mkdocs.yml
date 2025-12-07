@@ -68,19 +68,19 @@ plugins:
             show_root_toc_entry: true # Include module in TOC
             docstring_style: google # Professional docstring format
             show_signature_annotations: true
-            separate_signature: true    # Makes function signatures easier to read
+            separate_signature: true # Makes function signatures easier to read
   - i18n:
       languages:
-      - locale: en
-        name: English
-        default: true
-        build: true
-      - locale: fr
-        name: Français
-        build: false
-      - locale: el
-        name: Ελληνικά
-        build: false
+        - locale: en
+          name: English
+          default: true
+          build: true
+        - locale: fr
+          name: Français
+          build: false
+        - locale: el
+          name: Ελληνικά
+          build: false
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/ajv-formats/3.0.1/ajv-formats.min.js
@@ -106,6 +106,7 @@ nav:
   - Schemas: en/schemas.md
 
   - Concepts:
+      - Normalization: en/concepts/normalization.md
       - Category Theory Foundation: en/concepts/category-theory-foundation.md
       - Related Domains: en/concepts/related-domains.md
       - Interoperability: en/concepts/interoperability.md
@@ -119,12 +120,24 @@ nav:
   - Implementation:
       - Guide: en/implementation/implementation-guide.md
       - Validator: en/implementation/validator.md
-      - CEP–P3Tags Binding: en/implementation/cep-p3tags-binding.md
-      - Compatibility Matrix: en/reference/compatibility-matrix.md
+      - CEP-P3Tags Binding: en/implementation/cep-p3tags-binding.md
+      - Casing: en/implementation/casing.md
+      - New Connector: en/implementation/new-connector.md
+      - Record Envelopes: en/implementation/record-envelopes.md
+
+  - Examples:
+      - Entity with SNFEI: en/examples/entity-with-snfei.md
 
   - Reference:
+      - Entity: en/reference/entity.md
+      - Exchange: en/reference/exchange.md
+      - Relationship: en/reference/relationship.md
+      - P3Tags: en/reference/p3tags.md
+      - SNFEI: en/reference/snfei.md
+      - Compatibility Matrix: en/reference/compatibility-matrix.md
       - Reference Standards: en/reference/reference-standards.md
       - Reference Projects: en/reference/reference-projects.md
+      - W3CProv: en/reference/w3c-prov.md
 
   - API Reference: en/api.md
   - CLI Reference: en/cli.md

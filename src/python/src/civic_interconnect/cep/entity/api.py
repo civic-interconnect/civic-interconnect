@@ -8,10 +8,32 @@ instead of constructing CEP envelopes directly.
 
 This module uses the Rust core (via the cep_py extension) when
 available, and falls back to a pure Python implementation otherwise.
+
+File: src/python/src/civic_interconnect/cep/entity/api.py
 """
 
 import json
 from typing import Any
+
+# Canonical URIs used by the pure-Python fallback.
+# Rust is the source of truth; keep these in sync with crates/cep-core.
+ENTITY_RECORD_SCHEMA_URI = (
+    "https://raw.githubusercontent.com/"
+    "civic-interconnect/civic-interconnect/main/"
+    "schemas/cep.entity.schema.json"
+)
+
+ENTITY_TYPE_VOCAB_BASE = (
+    "https://raw.githubusercontent.com/"
+    "civic-interconnect/civic-interconnect/main/"
+    "vocabularies/entity-type.v1.0.0.json#"
+)
+
+SNFEI_SCHEME_URI = (
+    "https://raw.githubusercontent.com/"
+    "civic-interconnect/civic-interconnect/main/"
+    "vocabularies/entity-identifier-scheme.v1.0.0.json#snfei"
+)
 
 try:
     # Native extension from crates/cep-py, if built and on PYTHONPATH
@@ -42,10 +64,14 @@ def build_entity_from_raw(raw: dict[str, Any]) -> dict[str, Any]:
     - applies schema-level defaults
     - constructs verifiableId
     - attaches identifiers and status
-    - populates an initial attestation block
+    - populates timestamps and an initial attestation block
 
     If the cep_py native extension is available, this function delegates
     to Rust. Otherwise, it uses a pure Python implementation.
+
+    In both cases, it normalizes the output shape so that:
+    - entityTypeUri is present
+    - identifiers["snfei"] exists and is a dict with a "value" field
     """
     # Basic validation of the normalized payload
     required_keys = [
@@ -59,26 +85,31 @@ def build_entity_from_raw(raw: dict[str, Any]) -> dict[str, Any]:
     if missing:
         raise ValueError(f"Normalized entity payload is missing keys: {missing}")
 
-    # Prefer native backend when available, but never crash if it fails.
+    # Decide which backend to use
     if HAS_NATIVE_BACKEND and _build_entity_json_native is not None:
         try:
             input_json = json.dumps(raw, sort_keys=True)
             output_json = _build_entity_json_native(input_json)  # type: ignore[misc]
-            return json.loads(output_json)
+            entity: dict[str, Any] = json.loads(output_json)
         except Exception as exc:
             # Defensive fallback: log-friendly message and drop back to Python.
-            # You can replace this print with proper logging later.
             print(
-                f"[ci_cep.entity.api] Warning: native backend failed "
+                "[ci_cep.entity.api] Warning: native backend failed "
                 f"({exc!r}); falling back to pure Python builder."
             )
+            entity = _build_entity_from_raw_python(raw)
+    else:
+        entity = _build_entity_from_raw_python(raw)
 
-    # Fallback: pure Python builder
-    return _build_entity_from_raw_python(raw)
+    # Normalize shape so tests (and downstream code) see consistent fields.
+    return _normalize_entity_shape(entity, raw)
 
 
 def _build_entity_from_raw_python(raw: dict[str, Any]) -> dict[str, Any]:
-    """Pure Python implementation of the entity builder."""
+    """Pure Python implementation of the entity builder.
+
+    This is a spec mirror and test oracle for the Rust implementation.
+    """
     jurisdiction_iso = str(raw["jurisdictionIso"])
     legal_name = str(raw["legalName"])
     legal_name_normalized = str(raw["legalNameNormalized"])
@@ -87,12 +118,22 @@ def _build_entity_from_raw_python(raw: dict[str, Any]) -> dict[str, Any]:
 
     entity_type_uri = _entity_type_uri(entity_type)
 
+    identifiers = [
+        {
+            "schemeUri": (
+                "https://raw.githubusercontent.com/"
+                "civic-interconnect/civic-interconnect/main/"
+                "vocabularies/entity-identifier-scheme.v1.0.0.json#snfei"
+            ),
+            "identifier": snfei,
+            "sourceReference": None,
+        }
+    ]
+
     entity: dict[str, Any] = {
         "schemaVersion": "1.0.0",
         "verifiableId": f"cep-entity:snfei:{snfei}",
-        "identifiers": {
-            "snfei": snfei,
-        },
+        "identifiers": identifiers,
         "legalName": legal_name,
         "legalNameNormalized": legal_name_normalized,
         "entityTypeUri": entity_type_uri,
@@ -119,16 +160,72 @@ def _build_entity_from_raw_python(raw: dict[str, Any]) -> dict[str, Any]:
     return entity
 
 
+def _normalize_entity_shape(entity: dict[str, Any], raw: dict[str, Any]) -> dict[str, Any]:
+    """Lightweight normalization so callers see a consistent shape.
+
+    Guarantees:
+    - entityTypeUri is present (derived from raw["entityType"] if missing).
+    - identifiers["snfei"] exists as a dict with a "value" field when possible.
+    """
+    # 1) Ensure entityTypeUri
+    if "entityTypeUri" not in entity:
+        entity_type = raw.get("entityType")
+        if isinstance(entity_type, str) and entity_type:
+            entity["entityTypeUri"] = _entity_type_uri(entity_type)
+
+    # 2) Normalize identifiers["snfei"]
+    _normalize_identifiers(entity)
+
+    return entity
+
+
+def _normalize_identifiers(entity: dict[str, Any]) -> None:
+    """Normalize the identifiers field to ensure consistent SNFEI shape."""
+    ids = entity.get("identifiers")
+
+    if isinstance(ids, dict):
+        _normalize_dict_identifiers(ids)
+    elif isinstance(ids, list):
+        _normalize_list_identifiers(entity, ids)
+
+
+def _normalize_dict_identifiers(ids: dict[str, Any]) -> None:
+    """Normalize dict-like identifiers."""
+    snfei_ident = ids.get("snfei")
+    if isinstance(snfei_ident, str):
+        ids["snfei"] = {"value": snfei_ident}
+
+
+def _normalize_list_identifiers(entity: dict[str, Any], ids: list[Any]) -> None:
+    """Normalize list-like identifiers (typical Rust shape)."""
+    snfei_value = _extract_snfei_from_list(ids)
+    if snfei_value is not None:
+        entity["identifiers"] = {"snfei": {"value": snfei_value}}
+
+
+def _extract_snfei_from_list(ids: list[Any]) -> str | None:
+    """Extract SNFEI value from a list of identifier objects."""
+    for ident in ids:
+        if not isinstance(ident, dict):
+            continue
+        scheme_uri = str(ident.get("schemeUri") or "")
+        if scheme_uri.endswith("#snfei"):
+            value = ident.get("identifier") or ident.get("value")
+            if value is not None:
+                return str(value)
+    return None
+
+
 def _entity_type_uri(entity_type: str) -> str:
     """Map a simple entityType label (for example, 'municipality') to a CEP Entity Type Vocabulary URI.
 
-    This is intentionally simple for the first version so that we can
-    refine it as the vocabulary stabilizes.
+    Vocabulary convention:
+        vocabularies/entity-type.v1.0.0.json#<code>
     """
     base = (
         "https://raw.githubusercontent.com/"
         "civic-interconnect/civic-interconnect/main/"
-        "vocabulary/entity-type.json#"
+        "vocabularies/entity-type.v1.0.0.json#"
     )
 
     # Special cases:

@@ -6,11 +6,10 @@ use std::path::{Path, PathBuf};
 fn main() {
     // Let rustc know that `cfg(rust_analyzer)` is an expected configuration
     println!("cargo:rustc-check-cfg=cfg(rust_analyzer)");
-    
+
     // Where this crate's Cargo.toml lives.
-    let manifest_dir = PathBuf::from(
-        env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR not set"),
-    );
+    let manifest_dir =
+        PathBuf::from(env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR not set"));
 
     // Assume crate is at repo_root/src/rust/cep-core
     let repo_root = manifest_dir
@@ -34,10 +33,22 @@ fn main() {
     generate_schemas_group(&repo_root, &out_dir, &mut out);
 
     // vocabularies -> VOCABULARIES (relative path without .json)
-    generate_simple_group(&repo_root, &out_dir, &mut out, "vocabularies", "VOCABULARIES");
+    generate_simple_group(
+        &repo_root,
+        &out_dir,
+        &mut out,
+        "vocabularies",
+        "VOCABULARIES",
+    );
 
     // test_vectors -> TEST_VECTORS (relative path without .json)
-    generate_simple_group(&repo_root, &out_dir, &mut out, "test_vectors", "TEST_VECTORS");
+    generate_simple_group(
+        &repo_root,
+        &out_dir,
+        &mut out,
+        "test_vectors",
+        "TEST_VECTORS",
+    );
 }
 
 /// Generate SCHEMAS with namespace-aware keys.
@@ -58,12 +69,7 @@ fn generate_schemas_group(repo_root: &Path, out_dir: &Path, out: &mut fs::File) 
 
     let source_dir = repo_root.join(folder);
     if !source_dir.is_dir() {
-        writeln!(
-            out,
-            "pub static {}: &[(&str, &str)] = &[];\n",
-            static_name
-        )
-        .unwrap();
+        writeln!(out, "pub static {}: &[(&str, &str)] = &[];\n", static_name).unwrap();
         return;
     }
 
@@ -87,21 +93,15 @@ fn generate_schemas_group(repo_root: &Path, out_dir: &Path, out: &mut fs::File) 
     fs::create_dir_all(&group_out_dir)
         .unwrap_or_else(|error| panic!("Failed to create {}: {}", group_out_dir.display(), error));
 
-    writeln!(
-        out,
-        "pub static {}: &[(&str, &str)] = &[",
-        static_name
-    )
-    .unwrap();
+    writeln!(out, "pub static {}: &[(&str, &str)] = &[", static_name).unwrap();
 
     for (rel_path, key) in entries {
         let src_path = source_dir.join(&rel_path);
         let dest_path = group_out_dir.join(&rel_path);
 
         if let Some(parent) = dest_path.parent() {
-            fs::create_dir_all(parent).unwrap_or_else(|error| {
-                panic!("Failed to create {}: {}", parent.display(), error)
-            });
+            fs::create_dir_all(parent)
+                .unwrap_or_else(|error| panic!("Failed to create {}: {}", parent.display(), error));
         }
 
         fs::copy(&src_path, &dest_path).unwrap_or_else(|error| {
@@ -118,9 +118,7 @@ fn generate_schemas_group(repo_root: &Path, out_dir: &Path, out: &mut fs::File) 
         writeln!(
             out,
             "    (\"{}\", include_str!(concat!(env!(\"OUT_DIR\"), \"/{}/{}\"))),",
-            key,
-            folder,
-            rel_str
+            key, folder, rel_str
         )
         .unwrap();
     }
@@ -142,12 +140,7 @@ fn generate_simple_group(
 ) {
     let source_dir = repo_root.join(folder);
     if !source_dir.is_dir() {
-        writeln!(
-            out,
-            "pub static {}: &[(&str, &str)] = &[];\n",
-            static_name
-        )
-        .unwrap();
+        writeln!(out, "pub static {}: &[(&str, &str)] = &[];\n", static_name).unwrap();
         return;
     }
 
@@ -169,21 +162,15 @@ fn generate_simple_group(
     fs::create_dir_all(&group_out_dir)
         .unwrap_or_else(|error| panic!("Failed to create {}: {}", group_out_dir.display(), error));
 
-    writeln!(
-        out,
-        "pub static {}: &[(&str, &str)] = &[",
-        static_name
-    )
-    .unwrap();
+    writeln!(out, "pub static {}: &[(&str, &str)] = &[", static_name).unwrap();
 
     for (rel_path, key) in entries {
         let src_path = source_dir.join(&rel_path);
         let dest_path = group_out_dir.join(&rel_path);
 
         if let Some(parent) = dest_path.parent() {
-            fs::create_dir_all(parent).unwrap_or_else(|error| {
-                panic!("Failed to create {}: {}", parent.display(), error)
-            });
+            fs::create_dir_all(parent)
+                .unwrap_or_else(|error| panic!("Failed to create {}: {}", parent.display(), error));
         }
 
         fs::copy(&src_path, &dest_path).unwrap_or_else(|error| {
@@ -200,9 +187,7 @@ fn generate_simple_group(
         writeln!(
             out,
             "    (\"{}\", include_str!(concat!(env!(\"OUT_DIR\"), \"/{}/{}\"))),",
-            key,
-            folder,
-            rel_str
+            key, folder, rel_str
         )
         .unwrap();
     }

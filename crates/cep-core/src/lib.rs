@@ -20,9 +20,9 @@
 
 pub mod common;
 pub mod entity;
-pub mod relationship;
 pub mod exchange;
 pub mod p3tag;
+pub mod relationship;
 
 // The Foreign Function Interface layer
 pub mod ffi;

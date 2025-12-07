@@ -17,7 +17,7 @@ mod generated {
 }
 
 // Re-export raw tables in case advanced callers want them.
-pub use generated::{SCHEMAS, VOCABULARIES, TEST_VECTORS};
+pub use generated::{SCHEMAS, TEST_VECTORS, VOCABULARIES};
 
 /// Get a JSON Schema by key.
 ///
@@ -32,10 +32,7 @@ pub use generated::{SCHEMAS, VOCABULARIES, TEST_VECTORS};
 /// without `.json`. Examples:
 /// - `schemas/entity/examples/minimal.json` -> "entity/examples/minimal"
 pub fn get_schema(key: &str) -> Option<&'static str> {
-    SCHEMAS
-        .iter()
-        .find(|(k, _)| *k == key)
-        .map(|(_, v)| *v)
+    SCHEMAS.iter().find(|(k, _)| *k == key).map(|(_, v)| *v)
 }
 
 /// Get a vocabulary JSON document by key.

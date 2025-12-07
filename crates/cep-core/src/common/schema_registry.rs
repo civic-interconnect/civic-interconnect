@@ -3,7 +3,6 @@
 /// Provides schema lookup and validation registry for all CEP record types.
 /// Schema files are loaded from the repository root relative to the crate.
 ///
-
 use once_cell::sync::Lazy;
 use serde_json::Value;
 use std::collections::HashMap;

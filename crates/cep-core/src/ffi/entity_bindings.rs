@@ -1,3 +1,7 @@
+// FFI Bindings for Entity Module
+
+// File: crates/cep-core/src/ffi/entity_bindings.rs
+
 use crate::entity::manual::build_entity_from_normalized_json;
 use std::ffi::{CStr, CString};
 use std::os::raw::c_char; // Import the main builder function

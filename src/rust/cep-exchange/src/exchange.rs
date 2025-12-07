@@ -232,10 +232,10 @@ mod tests {
 
     fn test_exchange() -> ExchangeRecord {
         let source = ExchangeParty::new("cep-entity:sam-uei:AGENCY12345A".to_string())
-            .with_role("https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-role.json#disbursing-agency".to_string());
+            .with_role("https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-role.json#disbursing-agency".to_string());
 
         let recipient = ExchangeParty::new("cep-entity:sam-uei:SCHOOL67890B".to_string())
-            .with_role("https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-role.json#grantee".to_string());
+            .with_role("https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-role.json#grantee".to_string());
 
         let value = ExchangeValue::usd(50000.00);
 
@@ -247,7 +247,7 @@ mod tests {
         ExchangeRecord::new(
             "cep-exchange:treasury:PAY_2025_001234".to_string(),
             "cep-relationship:usaspending:GRANT_84010_2025".to_string(),
-            "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json#grant-disbursement".to_string(),
+            "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json#grant-disbursement".to_string(),
             source,
             recipient,
             value,

@@ -1,0 +1,8 @@
+{
+  "official_name": "City of Springfield",
+  "state": "IL",
+  "country": "US",
+  "address": "123 Lincoln Ave",
+  "source_system": "state-municipal-registry",
+  "notes": "Example raw municipality record"
+}

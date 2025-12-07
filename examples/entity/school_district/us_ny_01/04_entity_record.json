@@ -1,0 +1,45 @@
+{
+  "attestations": [
+    {
+      "attestationTimestamp": "1900-01-01T00:00:00.000000Z",
+      "attestorId": "cep-entity:example:ingest",
+      "proofPurpose": "assertionMethod",
+      "proofType": "ManualAttestation",
+      "proofValue": null,
+      "sourceReference": null,
+      "sourceSystem": null,
+      "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest"
+    }
+  ],
+  "dissolutionDate": null,
+  "identifiers": [
+    {
+      "identifier": "949b8ccc2515a3079a552d54f6c163cb9ab76516226ae9622501f58f2416b2d7",
+      "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei"
+    }
+  ],
+  "inceptionDate": null,
+  "jurisdictionIso": "US-NY",
+  "legalName": "New York School District 01",
+  "legalNameNormalized": "new york school district 01",
+  "recordKind": "entity",
+  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json",
+  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#school_district",
+  "revisionNumber": 1,
+  "schemaVersion": "1.0.0",
+  "shortName": null,
+  "status": {
+    "statusCode": "ACTIVE",
+    "statusEffectiveDate": "1900-01-01",
+    "statusReason": null
+  },
+  "statusTerminationDate": null,
+  "successorEntityId": null,
+  "timestamps": {
+    "firstSeenAt": "1900-01-01T00:00:00.000000Z",
+    "lastUpdatedAt": "1900-01-01T00:00:00.000000Z",
+    "validFrom": "1900-01-01T00:00:00.000000Z",
+    "validTo": null
+  },
+  "verifiableId": "cep-entity:snfei:949b8ccc2515a3079a552d54f6c163cb9ab76516226ae9622501f58f2416b2d7"
+}

@@ -6,7 +6,7 @@
     "snfei": "d41d8cd98f00b204e9800998ecf8427ed41d8cd98f00b204e9800998ecf8427e",
     "additionalSchemes": [
       {
-        "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/identifier-scheme.json#us-mn-district-id",
+        "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/identifier-scheme.json#us-mn-district-id",
         "value": "ISD-0123"
       },
       {
@@ -17,7 +17,7 @@
   },
   "legalName": "Springfield Public School District 123",
   "legalNameNormalized": "springfield public school district 123",
-  "entityTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#school-district",
+  "entityTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#school-district",
   "jurisdictionIso": "US-MN",
   "status": {
     "statusCode": "ACTIVE",
@@ -28,7 +28,7 @@
   "naicsCode": null,
   "resolutionConfidence": {
     "score": 1.0,
-    "methodUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/resolution-method.json#authoritative-sam-sync",
+    "methodUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/resolution-method.json#authoritative-sam-sync",
     "sourceRecordCount": 1
   },
   "attestation": {

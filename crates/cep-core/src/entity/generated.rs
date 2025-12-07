@@ -97,7 +97,17 @@ pub struct Attestation {
     pub source_reference: Option<String>,
 }
 
-pub type Identifiers = std::collections::HashMap<String, std::collections::HashMap<String, String>>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Identifier {
+    #[serde(rename = "schemeUri")]
+    pub scheme_uri: String,
+    pub identifier: String,
+    #[serde(rename = "sourceReference", skip_serializing_if = "Option::is_none")]
+    pub source_reference: Option<String>,
+}
+
+pub type Identifiers = Vec<Identifier>;
 
 
 /// Record describing an entity (organization, person, district, etc.) in CEP.
@@ -136,6 +146,9 @@ pub struct EntityRecord {
     #[serde(rename = "legalName")]
     pub legal_name: String,
 
+    #[serde(rename = "legalNameNormalized")]
+    pub legal_name_normalized: Option<String>,
+
     #[serde(rename = "shortName")]
     pub short_name: Option<String>,
 
@@ -146,4 +159,10 @@ pub struct EntityRecord {
 
     #[serde(rename = "dissolutionDate")]
     pub dissolution_date: Option<String>,
+
+    #[serde(rename = "statusTerminationDate")]
+    pub status_termination_date: Option<String>,
+
+    #[serde(rename = "successorEntityId")]
+    pub successor_entity_id: Option<String>,
 }

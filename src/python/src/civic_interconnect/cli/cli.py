@@ -5,15 +5,39 @@ This module provides CLI commands for:
 - version: Display the package version
 - validate-json: Validate JSON files against CEP schemas
 - codegen-rust: Generate Rust types from CEP JSON Schemas
+- generate-example: Generate example data files from raw sources.
+
+For example:
+
+uv run cx codegen-rust
+uv run cx codegen-python-constants
+uv run cx generate-example examples/entity
+uv run cx generate-example examples/entity --overwrite
 """
 
 from importlib.metadata import PackageNotFoundError, version
+import json
 from pathlib import Path
+from typing import Annotated, Any
 
 import typer
 
+from civic_interconnect.cep.adapters.demo_entities import (
+    extract_example_entity_inputs,
+    find_example_slices,
+    load_raw_source,
+)
+from civic_interconnect.cep.codegen.python_constants import (
+    DEFAULT_ENTITY_CONSTANTS_OUT,
+    write_entity_constants,
+)
+from civic_interconnect.cep.codegen.python_constants import (
+    DEFAULT_ENTITY_SCHEMA as DEFAULT_ENTITY_SCHEMA_FOR_CONSTANTS,
+)
 from civic_interconnect.cep.codegen.rust_generated import write_generated_rust
-from civic_interconnect.cep.snfei.generator import generate_snfei_with_confidence
+from civic_interconnect.cep.entity.api import build_entity_from_raw
+from civic_interconnect.cep.snfei.generator import generate_snfei, generate_snfei_with_confidence
+from civic_interconnect.cep.snfei.normalizer import build_canonical_input
 from civic_interconnect.cep.validation.json_validator import (
     ValidationSummary,
     validate_json_path,
@@ -28,6 +52,26 @@ DEFAULT_EXCHANGE_SCHEMA = Path("schemas/cep.exchange.schema.json")
 DEFAULT_ENTITY_OUT = Path("crates/cep-core/src/entity/generated.rs")
 DEFAULT_RELATIONSHIP_OUT = Path("crates/cep-core/src/relationship/generated.rs")
 DEFAULT_EXCHANGE_OUT = Path("crates/cep-core/src/exchange/generated.rs")
+
+
+@app.command("codegen-python-constants")
+def codegen_python_constants(
+    entity_schema: Path | None = None,
+    entity_out: Path | None = None,
+) -> None:
+    """Generate Python field-name constants from CEP JSON Schemas.
+
+    Currently generates:
+
+    - civic_interconnect.cep.constants.entity_fields
+    """
+    if entity_schema is None:
+        entity_schema = DEFAULT_ENTITY_SCHEMA_FOR_CONSTANTS
+    if entity_out is None:
+        entity_out = DEFAULT_ENTITY_CONSTANTS_OUT
+
+    write_entity_constants(entity_schema, entity_out)
+    typer.echo(f"Wrote {entity_out}")
 
 
 @app.command("codegen-rust")
@@ -53,7 +97,7 @@ def codegen_rust(
     if exchange_out is None:
         exchange_out = DEFAULT_EXCHANGE_OUT
 
-    # Adjust struct names here if your Rust crates use different ones.
+    # Adjust struct names here as needed
     write_generated_rust(entity_schema, "EntityRecord", entity_out)
     write_generated_rust(relationship_schema, "RelationshipRecord", relationship_out)
     write_generated_rust(exchange_schema, "ExchangeRecord", exchange_out)
@@ -141,3 +185,116 @@ def validate_json(
 
     typer.echo("All files validated successfully.")
     raise typer.Exit(code=0)
+
+
+def _write_json(path: Path, data: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, sort_keys=True)
+        f.write("\n")
+
+
+@app.command("generate-example")
+def generate_example(
+    path: Annotated[
+        Path,
+        typer.Argument(
+            help=(
+                "Path to an example slice or a directory containing slices "
+                "(e.g. examples/entity or examples/entity/municipality/us_il_01)"
+            ),
+        ),
+    ],
+    overwrite: Annotated[
+        bool,
+        typer.Option(
+            "--overwrite",
+            help="Overwrite existing 02/03/04 files instead of skipping them.",
+        ),
+    ] = False,
+) -> None:
+    """Generate 02_normalized, 03_canonical, and 04_entity_record JSON files.
+
+    This walks any examples under `path` that contain 01_raw_source.json and
+    runs the full pipeline:
+
+        raw -> normalized -> canonical -> EntityRecord
+    """
+    slices = find_example_slices(path)
+    if not slices:
+        typer.echo(f"No example slices found under {path}")
+        raise typer.Exit(code=1)
+
+    typer.echo(f"Found {len(slices)} example slice(s) under {path}")
+    for slice_dir in slices:
+        typer.echo(f"\n[example] {slice_dir}")
+
+        f02 = slice_dir / "02_normalized.json"
+        f03 = slice_dir / "03_canonical.json"
+        f04 = slice_dir / "04_entity_record.json"
+
+        if not overwrite and f02.exists() and f03.exists() and f04.exists():
+            typer.echo("  - 02/03/04 already exist, skipping (use --overwrite to regenerate)")
+            continue
+
+        # Load raw
+        try:
+            raw = load_raw_source(slice_dir)
+        except (FileNotFoundError, ValueError) as exc:
+            typer.echo(f"  ! {exc}, skipping slice")
+            continue
+
+        # Map messy raw shapes into the normalized fields we need
+        try:
+            inputs = extract_example_entity_inputs(raw, slice_dir)
+        except KeyError as exc:
+            typer.echo(f"  ! missing required raw field(s): {exc!r}, skipping slice")
+            continue
+
+        jurisdiction_iso = inputs.jurisdiction_iso
+        legal_name = inputs.legal_name
+        country_code = inputs.country_code
+        entity_type = inputs.entity_type
+        address = inputs.address
+        registration_date = inputs.registration_date
+
+        # 1) Canonical input (normalizing functor) + SNFEI
+        canonical = build_canonical_input(
+            legal_name=legal_name,
+            country_code=country_code,
+            address=address,
+            registration_date=registration_date,
+        )
+        snfei_result = generate_snfei(
+            legal_name=legal_name,
+            country_code=country_code,
+            address=address,
+            registration_date=registration_date,
+        )
+        snfei_value = snfei_result.snfei.value
+
+        # 2) NormalizedEntityInput (02_normalized.json)
+        normalized: dict[str, Any] = {
+            "jurisdictionIso": jurisdiction_iso,
+            "legalName": legal_name,
+            "legalNameNormalized": canonical.legal_name_normalized,
+            "snfei": snfei_value,
+            "entityType": entity_type,
+        }
+        _write_json(f02, normalized)
+        typer.echo(f"  - wrote {f02.name}")
+
+        # 3) Canonical snapshot (03_canonical.json)
+        canonical_json: dict[str, Any] = {
+            "legalNameNormalized": canonical.legal_name_normalized,
+            "addressNormalized": canonical.address_normalized,
+            "countryCode": canonical.country_code,
+            "registrationDate": canonical.registration_date,
+        }
+        _write_json(f03, canonical_json)
+        typer.echo(f"  - wrote {f03.name}")
+
+        # 4) Final EntityRecord via builder (04_entity_record.json)
+        entity_record = build_entity_from_raw(normalized)
+        _write_json(f04, entity_record)
+        typer.echo(f"  - wrote {f04.name}")

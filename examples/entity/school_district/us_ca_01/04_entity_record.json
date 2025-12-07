@@ -1,0 +1,45 @@
+{
+  "attestations": [
+    {
+      "attestationTimestamp": "1900-01-01T00:00:00.000000Z",
+      "attestorId": "cep-entity:example:ingest",
+      "proofPurpose": "assertionMethod",
+      "proofType": "ManualAttestation",
+      "proofValue": null,
+      "sourceReference": null,
+      "sourceSystem": null,
+      "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest"
+    }
+  ],
+  "dissolutionDate": null,
+  "identifiers": [
+    {
+      "identifier": "2ce37abefa4cfd91eac2c613fbfb87c38a6e6c54493eac61eb80250a1e3bcc55",
+      "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei"
+    }
+  ],
+  "inceptionDate": null,
+  "jurisdictionIso": "US-CA",
+  "legalName": "Springfield Unified School District",
+  "legalNameNormalized": "springfield unified school district",
+  "recordKind": "entity",
+  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json",
+  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#school_district",
+  "revisionNumber": 1,
+  "schemaVersion": "1.0.0",
+  "shortName": null,
+  "status": {
+    "statusCode": "ACTIVE",
+    "statusEffectiveDate": "1900-01-01",
+    "statusReason": null
+  },
+  "statusTerminationDate": null,
+  "successorEntityId": null,
+  "timestamps": {
+    "firstSeenAt": "1900-01-01T00:00:00.000000Z",
+    "lastUpdatedAt": "1900-01-01T00:00:00.000000Z",
+    "validFrom": "1900-01-01T00:00:00.000000Z",
+    "validTo": null
+  },
+  "verifiableId": "cep-entity:snfei:2ce37abefa4cfd91eac2c613fbfb87c38a6e6c54493eac61eb80250a1e3bcc55"
+}

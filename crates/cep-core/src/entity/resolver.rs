@@ -1,6 +1,7 @@
-// crates/cep-core/src/entity/hasher.rs
+// Module for computing and validating SNFEI
+// (Sub-National Fixed Entity Identifier)
 
-use sha2::{Sha256, Digest};
+use sha2::{Digest, Sha256};
 
 // Import structs and functions from the sibling normalizer module
 use super::normalizer::{CanonicalInput, build_canonical_input};
@@ -22,10 +23,16 @@ impl Snfei {
     /// Private constructor that performs validation.
     fn new(value: String) -> Result<Self, ValueError> {
         if value.len() != 64 {
-            return Err(ValueError(format!("SNFEI must be 64 characters, got {}", value.len())));
+            return Err(ValueError(format!(
+                "SNFEI must be 64 characters, got {}",
+                value.len()
+            )));
         }
-        
-        if !value.chars().all(|c| c.is_ascii_hexdigit() && c.is_lowercase()) {
+
+        if !value
+            .chars()
+            .all(|c| c.is_ascii_hexdigit() && c.is_lowercase())
+        {
             return Err(ValueError("SNFEI must be lowercase hex".to_string()));
         }
 
@@ -64,8 +71,8 @@ impl std::error::Error for ValueError {}
 pub struct SnfeiResult {
     pub snfei: Snfei,
     pub canonical: CanonicalInput,
-    pub confidence_score: f32, 
-    pub tier: u8,              
+    pub confidence_score: f32,
+    pub tier: u8,
     pub fields_used: Vec<String>,
 }
 
@@ -87,7 +94,7 @@ pub fn compute_snfei(canonical: &CanonicalInput) -> Result<Snfei, ValueError> {
     let result = hasher.finalize();
 
     // 4. Convert the hash result to a 64-character lowercase hex string
-    let hex_digest = format!("{:x}", result); 
+    let hex_digest = format!("{:x}", result);
 
     // 5. Validate and return Snfei struct
     Snfei::new(hex_digest)
@@ -108,15 +115,9 @@ pub fn generate_snfei_with_confidence(
     lei: Option<&str>,
     sam_uei: Option<&str>,
 ) -> Result<SnfeiResult, ValueError> {
-    
     // 1. Apply Normalizing Functor to all inputs
-    let canonical = build_canonical_input(
-        legal_name,
-        country_code,
-        address,
-        registration_date,
-    );
-    
+    let canonical = build_canonical_input(legal_name, country_code, address, registration_date);
+
     let mut fields_used: Vec<String> = vec!["legal_name".to_string(), "country_code".to_string()];
     let mut confidence: f32 = 0.5;
     let mut _tier: u8 = 3;
@@ -155,7 +156,7 @@ pub fn generate_snfei_with_confidence(
 
     // --- Tier 3: Compute SNFEI from attributes (Confidence Varies) ---
     let snfei = compute_snfei(&canonical)?;
-    
+
     if canonical.address_normalized.is_some() {
         fields_used.push("address".to_string());
         confidence += 0.2;
@@ -183,13 +184,35 @@ pub fn generate_snfei_with_confidence(
     })
 }
 
-
 /// Convenience function to generate SNFEI as a simple hex string.
 pub fn generate_snfei_simple(
     legal_name: &str,
     country_code: &str,
     address: Option<&str>,
 ) -> Result<String, ValueError> {
-    let result = generate_snfei_with_confidence(legal_name, country_code, address, None, None, None)?;
+    let result =
+        generate_snfei_with_confidence(legal_name, country_code, address, None, None, None)?;
     Ok(result.snfei.value)
+}
+
+
+/// Convenience helper for FFI (Python / other bindings).
+///
+/// Returns the SNFEI as a bare 64-character lowercase hex string.
+/// All normalization + tier logic is handled here; errors are propagated.
+pub fn generate_snfei_for_ffi(
+    legal_name: &str,
+    country_code: &str,
+    address: Option<&str>,
+    registration_date: Option<&str>,
+) -> Result<String, ValueError> {
+    let result = generate_snfei_with_confidence(
+        legal_name,
+        country_code,
+        address,
+        registration_date,
+        None,  // lei
+        None,  // sam_uei
+    )?;
+    Ok(result.snfei.as_str().to_string())
 }

@@ -9,7 +9,7 @@
     "vocabularyUri": {
       "type": "string",
       "format": "uri",
-      "description": "The canonical URI for this vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/relationship-type.json'). This URI forms the base for all termUri values (usually vocabularyUri#code)."
+      "description": "The canonical URI for this vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/relationship-type.json'). This URI forms the base for all termUri values (usually vocabularyUri#code)."
     },
 
     "version": {
@@ -56,7 +56,7 @@
           "termUri": {
             "type": "string",
             "format": "uri",
-            "description": "Full URI for this term (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/relationship-type.json#prime-contract'). Typically composed as vocabularyUri + '#' + code."
+            "description": "Full URI for this term (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/relationship-type.json#prime-contract'). Typically composed as vocabularyUri + '#' + code."
           },
           "code": {
             "type": "string",

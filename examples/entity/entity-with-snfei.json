@@ -1,0 +1,42 @@
+{
+  "recordKind": "entity",
+  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json",
+  "schemaVersion": "1.0.0",
+  "revisionNumber": 1,
+
+  "verifiableId": "cep-entity:snfei:34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3",
+
+  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#educational-institution",
+
+  "status": {
+    "statusCode": "ACTIVE",
+    "statusEffectiveDate": "1900-01-01"
+  },
+
+  "timestamps": {
+    "firstSeenAt": "1900-01-01T00:00:00.000000Z",
+    "lastUpdatedAt": "1900-01-01T00:00:00.000000Z",
+    "validFrom": "1900-01-01T00:00:00.000000Z"
+  },
+
+  "attestations": [
+    {
+      "attestationTimestamp": "1900-01-01T00:00:00.000000Z",
+      "attestorId": "cep-entity:example:ingest",
+      "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest",
+      "proofType": "ManualAttestation",
+      "proofPurpose": "assertionMethod"
+    }
+  ],
+
+  "jurisdictionIso": "US-MN",
+  "legalName": "Example School District 123",
+  "legalNameNormalized": "example school district 123",
+
+  "identifiers": [
+    {
+      "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei",
+      "identifier": "34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3"
+    }
+  ]
+}

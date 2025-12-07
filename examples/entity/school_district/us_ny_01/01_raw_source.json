@@ -1,0 +1,8 @@
+{
+  "district_name": "New York School District 01",
+  "state": "NY",
+  "country": "US",
+  "address": "200 Learning St",
+  "source_system": "new-york-education-dept",
+  "notes": "Example raw school district record for New York"
+}

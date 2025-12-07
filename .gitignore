@@ -159,3 +159,12 @@ obj/
 # ----------------------------------------
 *.tsbuildinfo
 .lsp/
+
+
+
+# -------------------------------------------------
+# Examples: KEEP canonical and entity records
+# Exclude only scratch files or notebooks
+# -------------------------------------------------
+# Only ignore ephemeral scratch files or notebooks
+*.ipynb_checkpoints/

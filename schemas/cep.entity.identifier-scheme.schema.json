@@ -12,10 +12,10 @@
     "https://standard.open-contracting.org/party-id",
     "https://openreferral.org/hsds/organization-id",
     "https://openreferral.org/hsds/service-id",
-    "https://specs.civic-interconnect.org/schemes/lei",
-    "https://specs.civic-interconnect.org/schemes/sam-uei",
-    "https://specs.civic-interconnect.org/schemes/snfei",
-    "https://specs.civic-interconnect.org/schemes/canadian-bn",
-    "https://specs.civic-interconnect.org/schemes/uk-companies-house"
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#lei",
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#sam-uei",
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei",
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#canadian-bn",
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#uk-companies-house"
   ]
 }

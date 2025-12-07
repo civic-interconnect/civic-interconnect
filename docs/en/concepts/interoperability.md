@@ -36,7 +36,7 @@ Legislation, VoteAction and enables interoperability with Google datasets, machi
 | Entity (person)       | `identifiers.additionalSchemes`  | `cep.entity.schema.json`  | OCD    | `ocd-person/...`    | exactMatch   | People in OCD-compatible civic graphs. |
 | Entity (financial)    | `identifiers.lei` | `cep.entity.schema.json`  | LEI    | ISO 17442 Legal Entity Identifier    | exactMatch   | Global financial identity for entities in financial transactions.       |
 | Entity (federal)      | `identifiers.samUei`  | `cep.entity.schema.json`  | UEI    | SAM.gov Unique Entity Identifier     | exactMatch   | U.S. federal financial identity for entities.     |
-| Entity (SNFEI)  | `identifiers.snfei`   | `cep.entity.schema.json`  | (none, new)  | Hash-based Sub-National Federated Entity Identifier | newConcept   | Bridges UEI/LEI to local civic entities; open-source identifier.  |
+| Entity (SNFEI)  | `identifiers.snfei`   | `cep.entity.schema.json`  | (none, new)  | Hash-based Sub-National Fixed Entity Identifier | newConcept   | Bridges UEI/LEI to local civic entities; open-source identifier.  |
 | Relationship (contract)    | `relationshipTypeUri = #prime-contract`      | `relationship-type.json`  | OCDS   | `Contract`    | exactMatch   | Prime contract between government and supplier.   |
 | Relationship (contract)    | `relationshipTypeUri = #prime-contract`      | `relationship-type.json`  | USAspending  | `contract` (glossary)    | exactMatch   | Alignment with USASpending contract awards.       |
 | Relationship (subcontract) | `relationshipTypeUri = #subcontract`    | `relationship-type.json`  | OCDS   | `Contract` linked via `relatedProcesses` | broadMatch   | Subcontracts under a prime contract.   |

@@ -16,3 +16,11 @@ These schemas are the source of truth for CEP:
 | [cep.vocabulary.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json) | Vocabulary definition meta-schema |
 | [cep.p3tag.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.p3tag.schema.json) | Per-post tagging model |
 | [README.md](https://github.com/civic-interconnect/civic-interconnect/blob/main/schemas/README.md) | Schema overview and documentation |
+
+## Schema and Vocabulary Versions
+
+Schemas are expected to change less often than vocabularies and the versioning is handled differently.
+
+- Schema URIs are found from the file names `schemas/cep.entity.schema.json`, etc. Schemas are unversioned at the path, and the `schemaVersion` field provides the version.
+
+- Vocabulary URIs are found in `vocabularies/<name>.v1.0.0.json#<code>`.

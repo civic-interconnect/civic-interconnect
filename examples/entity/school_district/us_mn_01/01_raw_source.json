@@ -1,0 +1,8 @@
+{
+  "district_name": "Minnesota School District 01",
+  "state": "MN",
+  "country": "US",
+  "address": "200 Learning St",
+  "source_system": "minnesota-education-dept",
+  "notes": "Example raw school district record for Minnesota"
+}

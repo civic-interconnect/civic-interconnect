@@ -24,7 +24,7 @@
         "exchangeTypeUri": {
           "type": "string",
           "format": "uri",
-          "description": "URI referencing the exchange type in the CEP Exchange Type Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json#grant-disbursement'). Exchange types are mapped to external vocabularies such as Schema.org (MonetaryGrant, Payment), OCDS transaction categories, and FIBO financial instruments through the vocabulary.mappings mechanism."
+          "description": "URI referencing the exchange type in the CEP Exchange Type Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json#grant-disbursement'). Exchange types are mapped to external vocabularies such as Schema.org (MonetaryGrant, Payment), OCDS transaction categories, and FIBO financial instruments through the vocabulary.mappings mechanism."
         },
 
         "sourceEntity": {
@@ -38,7 +38,7 @@
             "roleUri": {
               "type": "string",
               "format": "uri",
-              "description": "URI specifying the source's role in this exchange. Implementations SHOULD use a termUri from the CEP Exchange Role Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-role.json#disbursing-agency', '#pass-through-entity', '#prime-contractor', '#donor')."
+              "description": "URI specifying the source's role in this exchange. Implementations SHOULD use a termUri from the CEP Exchange Role Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-role.json#disbursing-agency', '#pass-through-entity', '#prime-contractor', '#donor')."
             },
             "accountIdentifier": {
               "type": ["string", "null"],
@@ -60,7 +60,7 @@
             "roleUri": {
               "type": "string",
               "format": "uri",
-              "description": "URI specifying the recipient's role in this exchange. Implementations SHOULD use a termUri from the CEP Exchange Role Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-role.json#grantee', '#subrecipient', '#prime-contractor', '#payee-of-record')."
+              "description": "URI specifying the recipient's role in this exchange. Implementations SHOULD use a termUri from the CEP Exchange Role Vocabulary (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-role.json#grantee', '#subrecipient', '#prime-contractor', '#payee-of-record')."
             },
             "accountIdentifier": {
               "type": ["string", "null"],
@@ -88,7 +88,7 @@
             "valueTypeUri": {
               "type": "string",
               "format": "uri",
-              "default": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/value-type.json#monetary",
+              "default": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/value-type.json#monetary",
               "description": "URI indicating the nature of value (for example, monetary, in-kind, service-hours, volunteer-time, carbon-credits). Value types are mapped to external vocabularies in the CEP Value Type Vocabulary."
             },
             "inKindDescription": {
@@ -209,7 +209,7 @@
               "sourceSystemUri": {
                 "type": "string",
                 "format": "uri",
-                "description": "URI identifying the source system or specification (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/source-system.json#usaspending', 'https://standard.open-contracting.org', 'https://opencivicdata.org/spec/event', 'https://github.com/openreferral/specification')."
+                "description": "URI identifying the source system or specification (for example, 'https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/source-system.json#usaspending', 'https://standard.open-contracting.org', 'https://opencivicdata.org/spec/event', 'https://github.com/openreferral/specification')."
               },
               "sourceRecordId": {
                 "type": "string",

@@ -10,7 +10,7 @@ pub enum CepError {
     #[error("builder logic error: {0}")]
     BuilderError(String),
 
-       /// Invalid timestamp format.
+    /// Invalid timestamp format.
     #[error("invalid timestamp: {0}")]
     InvalidTimestamp(String),
 

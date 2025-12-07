@@ -341,11 +341,11 @@ mod tests {
         let parties = BilateralParties::new(
             Party::new(
                 "cep-entity:sam-uei:AGENCY12345A".to_string(),
-                "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/party-role.json#grantor".to_string(),
+                "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/party-role.json#grantor".to_string(),
             ),
             Party::new(
                 "cep-entity:sam-uei:VENDOR67890B".to_string(),
-                "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/party-role.json#grantee".to_string(),
+                "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/party-role.json#grantee".to_string(),
             ),
         );
 
@@ -356,7 +356,7 @@ mod tests {
 
         RelationshipRecord::new_bilateral(
             "cep-relationship:usaspending:CONT_AWD_12345".to_string(),
-            "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/relationship-type.json#prime-contract".to_string(),
+            "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/relationship-type.json#prime-contract".to_string(),
             parties,
             "2025-01-01T00:00:00.000000Z".parse().unwrap(),
             status,

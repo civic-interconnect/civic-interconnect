@@ -1,10 +1,10 @@
 // crates/cep-core/src/entity/tests.rs
-// run with 
+// run with
 // cargo test -p cep-core entity
 
+use super::normalizer::{build_canonical_input, normalize_legal_name};
 use super::*;
 use serde_json;
-use super::normalizer::{normalize_legal_name,  build_canonical_input};
 
 /// Basic sanity check: normalized input -> EntityRecord with our defaults.
 #[test]
@@ -17,11 +17,10 @@ fn build_entity_from_normalized_json_produces_entity_record() {
         "entityType": "educational-institution"
     }"#;
 
-    let out_json = build_entity_from_normalized_json(input_json)
-        .expect("builder should succeed");
+    let out_json = build_entity_from_normalized_json(input_json).expect("builder should succeed");
 
-    let record: EntityRecord = serde_json::from_str(&out_json)
-        .expect("output should be valid EntityRecord JSON");
+    let record: EntityRecord =
+        serde_json::from_str(&out_json).expect("output should be valid EntityRecord JSON");
 
     // Envelope-level checks
     assert!(record.is_active());
@@ -44,29 +43,29 @@ schemas/cep.entity.schema.json"
         record.record_type_uri,
         "https://raw.githubusercontent.com/\
 civic-interconnect/civic-interconnect/main/\
-vocabulary/entity-type.json#educational-institution"
+vocabularies/entity-type.json#educational-institution"
     );
 
     // Domain fields
     assert_eq!(record.jurisdiction_iso, "US-MN");
     assert_eq!(record.legal_name, "Example School District 123");
 
-    // identifiers.snfei.value = snfei
+    // identifiers must contain an SNFEI entry with the expected value.
     let ids = record
         .identifiers
         .as_ref()
         .expect("identifiers should be present");
 
-    let snfei_map = ids
-        .get("snfei")
+    let snfei_identifier = ids
+        .iter()
+        .find(|id| {
+            id.scheme_uri
+                == "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei"
+        })
         .expect("snfei identifier should exist");
 
-    let snfei_value = snfei_map
-        .get("value")
-        .expect("snfei.value should exist");
-
     assert_eq!(
-        snfei_value,
+        snfei_identifier.identifier,
         "34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3"
     );
 }
@@ -82,11 +81,10 @@ fn build_entity_sets_basic_envelope_defaults() {
         "entityType": "federal-agency"
     }"#;
 
-    let out_json = build_entity_from_normalized_json(input_json)
-        .expect("builder should succeed");
+    let out_json = build_entity_from_normalized_json(input_json).expect("builder should succeed");
 
-    let record: EntityRecord = serde_json::from_str(&out_json)
-        .expect("output should be valid EntityRecord JSON");
+    let record: EntityRecord =
+        serde_json::from_str(&out_json).expect("output should be valid EntityRecord JSON");
 
     // Status defaults
     assert!(matches!(record.status.status_code, StatusCode::Active));
@@ -100,9 +98,6 @@ fn build_entity_sets_basic_envelope_defaults() {
     // Attestations: at least one default attestation
     assert!(!record.attestations.is_empty());
 }
-
-
-
 
 #[test]
 fn normalize_french_name_societe_generale() {

@@ -67,7 +67,7 @@ mod tests {
     fn test_party_canonical() {
         let party = Party::new(
             "cep-entity:sam-uei:J6H4FB3N5YK7".to_string(),
-            "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/party-role.json#grantor".to_string(),
+            "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/party-role.json#grantor".to_string(),
         );
 
         let canonical = party.to_canonical_string();

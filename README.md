@@ -116,6 +116,24 @@ crates/           # Rust crates (core logic and bindings)
 src/python/       # Python packages (ci-cep, ci-p3tag, adapters)
 ```
 
+## Schemas
+
+Official schemas live under **/schemas** and are published with stable URLs such as:
+
+```text
+https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json
+```
+
+Documentation includes a browser-embedded validator using Ajv.
+
+Schemas are used to:
+- Generate Rust starting structs from *.schema.json.
+- Generate Python dataclasses and pydantic models.
+- A basic validation function that enforces required/optional fields, types, and enums.
+- Builders that sit on top of generated types.
+
+## Rust Core
+
 The Rust core is organized by domain:
 
 - entity/  

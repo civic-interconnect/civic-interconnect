@@ -1,14 +1,9 @@
 // crates/cep-core/src/relationship/manual.rs
 
-use crate::common::errors::{ CepResult};
+use crate::common::errors::CepResult;
 
 pub use super::generated::{
-    RelationshipRecord,
-    RecordKind,
-    StatusEnvelope,
-    StatusCode,
-    Timestamps,
-    Attestation,
+    Attestation, RecordKind, RelationshipRecord, StatusCode, StatusEnvelope, Timestamps,
 };
 
 /// Temporary stub builder for relationships.

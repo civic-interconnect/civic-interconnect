@@ -6,7 +6,6 @@
 /// - Microsecond precision (exactly 6 decimal places)
 ///
 /// Example: `2025-11-28T14:30:00.000000Z`
-
 use chrono::{DateTime, Utc};
 use std::fmt;
 use std::str::FromStr;

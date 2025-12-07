@@ -1,0 +1,8 @@
+{
+  "district_name": "Springfield Unified School District",
+  "state": "CA",
+  "country": "US",
+  "address": "500 Education Blvd",
+  "source_system": "california-education-dept",
+  "notes": "Example raw school district record"
+}

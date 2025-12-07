@@ -1,0 +1,45 @@
+{
+  "attestations": [
+    {
+      "attestationTimestamp": "1900-01-01T00:00:00.000000Z",
+      "attestorId": "cep-entity:example:ingest",
+      "proofPurpose": "assertionMethod",
+      "proofType": "ManualAttestation",
+      "proofValue": null,
+      "sourceReference": null,
+      "sourceSystem": null,
+      "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest"
+    }
+  ],
+  "dissolutionDate": null,
+  "identifiers": [
+    {
+      "identifier": "5dababc102e57910284849d9f63b6ac7b34b018c32b17fbf3d00c53cb53725da",
+      "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei"
+    }
+  ],
+  "inceptionDate": null,
+  "jurisdictionIso": "US-MN",
+  "legalName": "Minnesota School District 01",
+  "legalNameNormalized": "minnesota school district 01",
+  "recordKind": "entity",
+  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json",
+  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#school_district",
+  "revisionNumber": 1,
+  "schemaVersion": "1.0.0",
+  "shortName": null,
+  "status": {
+    "statusCode": "ACTIVE",
+    "statusEffectiveDate": "1900-01-01",
+    "statusReason": null
+  },
+  "statusTerminationDate": null,
+  "successorEntityId": null,
+  "timestamps": {
+    "firstSeenAt": "1900-01-01T00:00:00.000000Z",
+    "lastUpdatedAt": "1900-01-01T00:00:00.000000Z",
+    "validFrom": "1900-01-01T00:00:00.000000Z",
+    "validTo": null
+  },
+  "verifiableId": "cep-entity:snfei:5dababc102e57910284849d9f63b6ac7b34b018c32b17fbf3d00c53cb53725da"
+}
