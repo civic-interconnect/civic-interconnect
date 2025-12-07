@@ -2,110 +2,206 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/api/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/api/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/cli/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/cli/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/quick-start/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/quick-start/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/schemas/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/schemas/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/concepts/category-theory-foundation/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/concepts/category-theory-foundation/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/concepts/interoperability/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/concepts/interoperability/"/>
     </url>
     <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/concepts/normalization/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/concepts/normalization/"/>
+    </url>
+    <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/concepts/positioning-paper/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/concepts/positioning-paper/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/concepts/related-domains/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/concepts/related-domains/"/>
     </url>
     <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/examples/entity-with-snfei/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/examples/entity-with-snfei/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/examples/entities/municipality/us_il_01/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/examples/entities/municipality/us_il_01/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/examples/entities/municipality/us_mn_01/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/examples/entities/municipality/us_mn_01/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/examples/entities/nonprofit/us_ma_01/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/examples/entities/nonprofit/us_ma_01/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/examples/entities/pac/pac_01/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/examples/entities/pac/pac_01/"/>
+    </url>
+    <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/governance/evolution-policy-and-versioning/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/governance/evolution-policy-and-versioning/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/governance/objectives-and-vision/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/governance/objectives-and-vision/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/governance/vocabulary-process/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/governance/vocabulary-process/"/>
     </url>
     <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/casing/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/casing/"/>
+    </url>
+    <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/cep-p3tags-binding/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/cep-p3tags-binding/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/implementation-guide/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/implementation-guide/"/>
     </url>
     <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/new-connector/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/new-connector/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/record-envelopes/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/record-envelopes/"/>
+    </url>
+    <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/validator/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/validator/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/compatibility-matrix/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/compatibility-matrix/"/>
     </url>
     <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/entity/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/entity/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/exchange/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/exchange/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/identifier-schemes/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/identifier-schemes/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/p3tags/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/p3tags/"/>
+    </url>
+    <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/reference-projects/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/reference-projects/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/reference-standards/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2025-12-07</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/reference-standards/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/relationship/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/relationship/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/snfei/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/snfei/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/w3c-prov/</loc>
+        <lastmod>2025-12-07</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/w3c-prov/"/>
     </url>
 </urlset>

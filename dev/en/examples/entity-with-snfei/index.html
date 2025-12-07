@@ -12,13 +12,13 @@
         <meta name="author" content="civic-interconnect">
       
       
-        <link rel="canonical" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/reference-projects/">
+        <link rel="canonical" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/examples/entity-with-snfei/">
       
       
-        <link rel="prev" href="../reference-standards/">
+        <link rel="prev" href="../../implementation/record-envelopes/">
       
       
-        <link rel="next" href="../w3c-prov/">
+        <link rel="next" href="../entities/municipality/us_il_01/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Reference Projects - civic-interconnect</title>
+        <title>Entity with SNFEI - civic-interconnect</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#reference-projects-github-data-standards" class="md-skip">
+        <a href="#example-cep-entityrecord-with-snfei" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Reference Projects
+              Entity with SNFEI
             
           </span>
         </div>
@@ -923,8 +923,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -935,13 +937,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
@@ -962,7 +962,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -977,10 +977,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../examples/entity-with-snfei/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entity with SNFEI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -996,6 +1023,109 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#input-normalized-entity-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input (Normalized Entity Payload)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-cep-entityrecord" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (CEP EntityRecord)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Points
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deterministic-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deterministic ID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vocabulary-backed-identifier-scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vocabulary-backed Identifier Scheme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimal-but-complete-envelope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal but Complete Envelope
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-snfei" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use SNFEI
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1059,7 +1189,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/entities/municipality/us_il_01/" class="md-nav__link">
+      <a href="../entities/municipality/us_il_01/" class="md-nav__link">
         
   
   
@@ -1087,7 +1217,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/entities/municipality/us_mn_01/" class="md-nav__link">
+      <a href="../entities/municipality/us_mn_01/" class="md-nav__link">
         
   
   
@@ -1174,7 +1304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/entities/nonprofit/us_ma_01/" class="md-nav__link">
+      <a href="../entities/nonprofit/us_ma_01/" class="md-nav__link">
         
   
   
@@ -1261,7 +1391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/entities/pac/pac_01/" class="md-nav__link">
+      <a href="../entities/pac/pac_01/" class="md-nav__link">
         
   
   
@@ -1301,8 +1431,6 @@
       
   
   
-    
-  
   
   
     
@@ -1315,11 +1443,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
@@ -1340,7 +1470,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1358,7 +1488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../entity/" class="md-nav__link">
+      <a href="../../reference/entity/" class="md-nav__link">
         
   
   
@@ -1386,7 +1516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../exchange/" class="md-nav__link">
+      <a href="../../reference/exchange/" class="md-nav__link">
         
   
   
@@ -1414,7 +1544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../relationship/" class="md-nav__link">
+      <a href="../../reference/relationship/" class="md-nav__link">
         
   
   
@@ -1442,7 +1572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p3tags/" class="md-nav__link">
+      <a href="../../reference/p3tags/" class="md-nav__link">
         
   
   
@@ -1470,7 +1600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../identifier-schemes/" class="md-nav__link">
+      <a href="../../reference/identifier-schemes/" class="md-nav__link">
         
   
   
@@ -1498,7 +1628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../snfei/" class="md-nav__link">
+      <a href="../../reference/snfei/" class="md-nav__link">
         
   
   
@@ -1526,7 +1656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../compatibility-matrix/" class="md-nav__link">
+      <a href="../../reference/compatibility-matrix/" class="md-nav__link">
         
   
   
@@ -1554,7 +1684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference-standards/" class="md-nav__link">
+      <a href="../../reference/reference-standards/" class="md-nav__link">
         
   
   
@@ -1579,37 +1709,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Reference Projects
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../reference/reference-projects/" class="md-nav__link">
         
   
   
@@ -1625,132 +1728,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-interoperability-event-specifications-cross-platform" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Interoperability &amp; Event Specifications (Cross-Platform)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. Interoperability &amp; Event Specifications (Cross-Platform)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cloudevents-specification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CloudEvents Specification
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cdevents-specification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CDEvents Specification
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-provenance-and-data-tracking-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Provenance and Data Tracking Standards
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Provenance and Data Tracking Standards">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prov-cpl-core-provenance-library" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PROV-CPL (Core Provenance Library)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-general-data-schemas-and-monorepo-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. General Data Schemas and Monorepo Structure
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. General Data Schemas and Monorepo Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#json-schema-specification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        JSON Schema Specification
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#consumer-data-standards-australian-dsb-schemas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consumer Data Standards (Australian DSB Schemas)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1763,7 +1740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../w3c-prov/" class="md-nav__link">
+      <a href="../../reference/w3c-prov/" class="md-nav__link">
         
   
   
@@ -1872,22 +1849,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-interoperability-event-specifications-cross-platform" class="md-nav__link">
+  <a href="#input-normalized-entity-payload" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Interoperability &amp; Event Specifications (Cross-Platform)
+        Input (Normalized Entity Payload)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Interoperability &amp; Event Specifications (Cross-Platform)">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-cep-entityrecord" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output (CEP EntityRecord)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Points
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Points">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#cloudevents-specification" class="md-nav__link">
+  <a href="#deterministic-id" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CloudEvents Specification
+        Deterministic ID
       
     </span>
   </a>
@@ -1895,10 +1894,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cdevents-specification" class="md-nav__link">
+  <a href="#vocabulary-backed-identifier-scheme" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CDEvents Specification
+        Vocabulary-backed Identifier Scheme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimal-but-complete-envelope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal but Complete Envelope
       
     </span>
   </a>
@@ -1911,69 +1921,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-provenance-and-data-tracking-standards" class="md-nav__link">
+  <a href="#when-to-use-snfei" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Provenance and Data Tracking Standards
+        When to Use SNFEI
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="2. Provenance and Data Tracking Standards">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prov-cpl-core-provenance-library" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PROV-CPL (Core Provenance Library)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-general-data-schemas-and-monorepo-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. General Data Schemas and Monorepo Structure
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. General Data Schemas and Monorepo Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#json-schema-specification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        JSON Schema Specification
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#consumer-data-standards-australian-dsb-schemas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consumer Data Standards (Australian DSB Schemas)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1997,39 +1951,98 @@
   
 
 
-<h1 id="reference-projects-github-data-standards">Reference Projects: GitHub Data Standards<a class="headerlink" href="#reference-projects-github-data-standards" title="Permanent link">&para;</a></h1>
-<p>There are categories of open-source projects on GitHub that offer great examples, particularly concerning common data schemas, multi-language support, and provenance tracking.</p>
-<h2 id="1-interoperability-event-specifications-cross-platform">1. Interoperability &amp; Event Specifications (Cross-Platform)<a class="headerlink" href="#1-interoperability-event-specifications-cross-platform" title="Permanent link">&para;</a></h2>
-<p>These standards focus on defining a common data format to ensure different systems and languages can communicate seamlessly.
-They typically define schemas and transport rules.</p>
-<h3 id="cloudevents-specification">CloudEvents Specification<a class="headerlink" href="#cloudevents-specification" title="Permanent link">&para;</a></h3>
-<p>This specification describes event data in a common way.
-It is designed to simplify event declaration and delivery across services, platforms, and languages (e.g., Go, Java, Python, C#).</p>
-<p>It's a good example of a cross-platform specification managed openly on GitHub.
-It defines a mandatory set of attributes (like a base entity identifier) that must be present in every data payload.</p>
-<p>Link: <a href="https://github.com/cloudevents/spec">https://github.com/cloudevents/spec</a></p>
-<h3 id="cdevents-specification">CDEvents Specification<a class="headerlink" href="#cdevents-specification" title="Permanent link">&para;</a></h3>
-<p>This is a popular specification for Continuous Delivery events, extending CloudEvents by introducing purpose and semantics to the event data.</p>
-<p>It shows how a standard is built on top of another standard (CloudEvents), specializing the common metadata for a specific domain (CI/CD provenance and flow).</p>
-<p>Link: <a href="https://github.com/cdevents/spec">https://github.com/cdevents/spec</a></p>
-<h2 id="2-provenance-and-data-tracking-standards">2. Provenance and Data Tracking Standards<a class="headerlink" href="#2-provenance-and-data-tracking-standards" title="Permanent link">&para;</a></h2>
-<p>These projects relate to provenance aspects, focusing on tracking the history, inputs, and derivation of data.</p>
-<h3 id="prov-cpl-core-provenance-library">PROV-CPL (Core Provenance Library)<a class="headerlink" href="#prov-cpl-core-provenance-library" title="Permanent link">&para;</a></h3>
-<p>This is the Core Provenance Library for collecting data provenance with multiple language bindings (C/C++, Java, Python, R).
-It uses the <a href="https://www.w3.org/TR/prov-overview/">W3C PROV</a> standard as its foundation.</p>
-<p>It demonstrates a multi-language implementation of a provenance standard, providing APIs to record who/what/when/where data was created, which is central to provenance.</p>
-<p>Link: <a href="https://github.com/ProvTools/prov-cpl">https://github.com/ProvTools/prov-cpl</a></p>
-<h2 id="3-general-data-schemas-and-monorepo-structure">3. General Data Schemas and Monorepo Structure<a class="headerlink" href="#3-general-data-schemas-and-monorepo-structure" title="Permanent link">&para;</a></h2>
-<p>These focus on using JSON Schema to define strict data structures and managing them in a versioned repository.</p>
-<h3 id="json-schema-specification">JSON Schema Specification<a class="headerlink" href="#json-schema-specification" title="Permanent link">&para;</a></h3>
-<p>This is the official specification for JSON Schema, a declarative language used to annotate and validate JSON documents.</p>
-<p>This foundational tool is by many standards (including CloudEvents) to define specific fields and types.
-This repo illustrates how a core schema standard is defined and versioned.</p>
-<p>Link: <a href="https://github.com/json-schema-org/json-schema-spec">https://github.com/json-schema-org/json-schema-spec</a></p>
-<h3 id="consumer-data-standards-australian-dsb-schemas">Consumer Data Standards (Australian DSB Schemas)<a class="headerlink" href="#consumer-data-standards-australian-dsb-schemas" title="Permanent link">&para;</a></h3>
-<p>This repository holds a collection of JSON schema files derived from the Australian Consumer Data Standards, used for robust schema validation in banking and energy sectors.</p>
-<p>This offers a practical example of a large-scale data standard implementation in a monorepo (single repository), organized by release version, providing strict, enforceable JSON schemas for real-world data exchange.</p>
-<p>Link: <a href="https://github.com/ConsumerDataStandardsAustralia/dsb-schema-tools">https://github.com/ConsumerDataStandardsAustralia/dsb-schema-tools</a></p>
+<h1 id="example-cep-entityrecord-with-snfei">Example: CEP EntityRecord with SNFEI<a class="headerlink" href="#example-cep-entityrecord-with-snfei" title="Permanent link">&para;</a></h1>
+<p>This example demonstrates how a CEP <code>EntityRecord</code> includes a <strong>Sub-National Fixed Entity Identifier (SNFEI)</strong> when an entity does not have a national or global registry ID (such as LEI or SAM-UEI).<br />
+SNFEI provides a deterministic, recomputable identifier for joining datasets across civic, nonprofit, educational, and local-government domains.</p>
+<hr />
+<h2 id="input-normalized-entity-payload">Input (Normalized Entity Payload)<a class="headerlink" href="#input-normalized-entity-payload" title="Permanent link">&para;</a></h2>
+<p>This is the minimal normalized payload an adapter or ETL process would emit:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;jurisdictionIso&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;US-MN&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Example School District 123&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;legalNameNormalized&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example school district 123&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;snfei&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;entityType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;educational-institution&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The SNFEI here is the SHA-256 hash of:</p>
+<div class="highlight"><pre><span></span><code>normalized legal name + jurisdiction
+example school district 123 + us-mn
+</code></pre></div>
+<hr />
+<h2 id="output-cep-entityrecord">Output (CEP EntityRecord)<a class="headerlink" href="#output-cep-entityrecord" title="Permanent link">&para;</a></h2>
+<p>After running this normalized input through the CEP builder, the resulting <code>EntityRecord</code> looks like this:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;recordKind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;entity&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;recordSchemaUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;schemaVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;revisionNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;verifiableId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cep-entity:snfei:34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;recordTypeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#educational-institution&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;statusCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACTIVE&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;statusEffectiveDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1900-01-01&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nt">&quot;timestamps&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;firstSeenAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1900-01-01T00:00:00.000000Z&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;lastUpdatedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1900-01-01T00:00:00.000000Z&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;validFrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1900-01-01T00:00:00.000000Z&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+
+<span class="w">    </span><span class="nt">&quot;attestations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;attestationTimestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1900-01-01T00:00:00.000000Z&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;attestorId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cep-entity:example:ingest&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;verificationMethodUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urn:cep:attestor:cep-entity:example:ingest&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;proofType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ManualAttestation&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;proofPurpose&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assertionMethod&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+
+<span class="w">    </span><span class="nt">&quot;jurisdictionIso&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;US-MN&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Example School District 123&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;legalNameNormalized&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example school district 123&quot;</span><span class="p">,</span>
+
+<span class="w">    </span><span class="nt">&quot;identifiers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;schemeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="key-points">Key Points<a class="headerlink" href="#key-points" title="Permanent link">&para;</a></h2>
+<h3 id="deterministic-id">Deterministic ID<a class="headerlink" href="#deterministic-id" title="Permanent link">&para;</a></h3>
+<p>The <code>verifiableId</code> incorporates the SNFEI value to create a stable, recomputable entity identifier:</p>
+<div class="highlight"><pre><span></span><code>cep-entity:snfei:&lt;hash&gt;
+</code></pre></div>
+<h3 id="vocabulary-backed-identifier-scheme">Vocabulary-backed Identifier Scheme<a class="headerlink" href="#vocabulary-backed-identifier-scheme" title="Permanent link">&para;</a></h3>
+<p>The SNFEI entry references the official vocabulary term:</p>
+<div class="highlight"><pre><span></span><code>https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei
+</code></pre></div>
+<p>This ensures consistent identifier semantics across systems.</p>
+<h3 id="minimal-but-complete-envelope">Minimal but Complete Envelope<a class="headerlink" href="#minimal-but-complete-envelope" title="Permanent link">&para;</a></h3>
+<p>Even in a minimal example, CEP includes:</p>
+<ul>
+<li>envelope metadata (<code>recordKind</code>, <code>schemaVersion</code>)</li>
+<li>timestamps</li>
+<li>a default attestation block</li>
+<li>status envelope</li>
+</ul>
+<hr />
+<h2 id="when-to-use-snfei">When to Use SNFEI<a class="headerlink" href="#when-to-use-snfei" title="Permanent link">&para;</a></h2>
+<p>Use SNFEI when:</p>
+<ul>
+<li>an entity lacks LEI, SAM-UEI, or other authoritative identifiers,</li>
+<li>datasets need a stable join key,</li>
+<li>building civic registries,</li>
+<li>integrating multiple heterogeneous data sources.</li>
+</ul>
+<p>SNFEI is a deterministic, transparent identifier that enables <strong>cross-dataset linkage without a central registry</strong>.</p>
 
 
 

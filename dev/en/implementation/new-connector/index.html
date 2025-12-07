@@ -12,13 +12,13 @@
         <meta name="author" content="civic-interconnect">
       
       
-        <link rel="canonical" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/reference/reference-projects/">
+        <link rel="canonical" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/new-connector/">
       
       
-        <link rel="prev" href="../reference-standards/">
+        <link rel="prev" href="../casing/">
       
       
-        <link rel="next" href="../w3c-prov/">
+        <link rel="next" href="../record-envelopes/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Reference Projects - civic-interconnect</title>
+        <title>New Connector - civic-interconnect</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#reference-projects-github-data-standards" class="md-skip">
+        <a href="#building-a-new-connector" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Reference Projects
+              New Connector
             
           </span>
         </div>
@@ -694,8 +694,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -706,13 +708,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
@@ -733,7 +733,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -751,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../implementation/implementation-guide/" class="md-nav__link">
+      <a href="../implementation-guide/" class="md-nav__link">
         
   
   
@@ -779,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../implementation/validator/" class="md-nav__link">
+      <a href="../validator/" class="md-nav__link">
         
   
   
@@ -807,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../implementation/cep-p3tags-binding/" class="md-nav__link">
+      <a href="../cep-p3tags-binding/" class="md-nav__link">
         
   
   
@@ -835,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../implementation/casing/" class="md-nav__link">
+      <a href="../casing/" class="md-nav__link">
         
   
   
@@ -860,10 +860,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../implementation/new-connector/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Connector
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -879,6 +906,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logical-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical Development
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1-walk-skeleton-for-entity-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Walk skeleton for entity path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-add-implementation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Add Implementation Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-strengthen-reliability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Strengthen reliability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -891,7 +1004,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../implementation/record-envelopes/" class="md-nav__link">
+      <a href="../record-envelopes/" class="md-nav__link">
         
   
   
@@ -1301,8 +1414,6 @@
       
   
   
-    
-  
   
   
     
@@ -1315,11 +1426,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
@@ -1340,7 +1453,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1358,7 +1471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../entity/" class="md-nav__link">
+      <a href="../../reference/entity/" class="md-nav__link">
         
   
   
@@ -1386,7 +1499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../exchange/" class="md-nav__link">
+      <a href="../../reference/exchange/" class="md-nav__link">
         
   
   
@@ -1414,7 +1527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../relationship/" class="md-nav__link">
+      <a href="../../reference/relationship/" class="md-nav__link">
         
   
   
@@ -1442,7 +1555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../p3tags/" class="md-nav__link">
+      <a href="../../reference/p3tags/" class="md-nav__link">
         
   
   
@@ -1470,7 +1583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../identifier-schemes/" class="md-nav__link">
+      <a href="../../reference/identifier-schemes/" class="md-nav__link">
         
   
   
@@ -1498,7 +1611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../snfei/" class="md-nav__link">
+      <a href="../../reference/snfei/" class="md-nav__link">
         
   
   
@@ -1526,7 +1639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../compatibility-matrix/" class="md-nav__link">
+      <a href="../../reference/compatibility-matrix/" class="md-nav__link">
         
   
   
@@ -1554,7 +1667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference-standards/" class="md-nav__link">
+      <a href="../../reference/reference-standards/" class="md-nav__link">
         
   
   
@@ -1579,37 +1692,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Reference Projects
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../reference/reference-projects/" class="md-nav__link">
         
   
   
@@ -1625,132 +1711,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-interoperability-event-specifications-cross-platform" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Interoperability &amp; Event Specifications (Cross-Platform)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. Interoperability &amp; Event Specifications (Cross-Platform)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cloudevents-specification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CloudEvents Specification
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cdevents-specification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CDEvents Specification
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-provenance-and-data-tracking-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Provenance and Data Tracking Standards
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Provenance and Data Tracking Standards">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prov-cpl-core-provenance-library" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PROV-CPL (Core Provenance Library)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-general-data-schemas-and-monorepo-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. General Data Schemas and Monorepo Structure
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. General Data Schemas and Monorepo Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#json-schema-specification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        JSON Schema Specification
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#consumer-data-standards-australian-dsb-schemas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Consumer Data Standards (Australian DSB Schemas)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1763,7 +1723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../w3c-prov/" class="md-nav__link">
+      <a href="../../reference/w3c-prov/" class="md-nav__link">
         
   
   
@@ -1872,108 +1832,68 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-interoperability-event-specifications-cross-platform" class="md-nav__link">
+  <a href="#logical-development" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Interoperability &amp; Event Specifications (Cross-Platform)
+        Logical Development
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="1. Interoperability &amp; Event Specifications (Cross-Platform)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cloudevents-specification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CloudEvents Specification
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cdevents-specification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CDEvents Specification
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-provenance-and-data-tracking-standards" class="md-nav__link">
+  <a href="#implementation-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Provenance and Data Tracking Standards
+        Implementation Notes
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="2. Provenance and Data Tracking Standards">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prov-cpl-core-provenance-library" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PROV-CPL (Core Provenance Library)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-general-data-schemas-and-monorepo-structure" class="md-nav__link">
+  <a href="#phase-1-walk-skeleton-for-entity-path" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. General Data Schemas and Monorepo Structure
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. General Data Schemas and Monorepo Structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#json-schema-specification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        JSON Schema Specification
+        Phase 1: Walk skeleton for entity path
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#consumer-data-standards-australian-dsb-schemas" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-add-implementation-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Consumer Data Standards (Australian DSB Schemas)
+        Phase 2: Add Implementation Notes
       
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-strengthen-reliability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Strengthen reliability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Workflow
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1997,39 +1917,83 @@
   
 
 
-<h1 id="reference-projects-github-data-standards">Reference Projects: GitHub Data Standards<a class="headerlink" href="#reference-projects-github-data-standards" title="Permanent link">&para;</a></h1>
-<p>There are categories of open-source projects on GitHub that offer great examples, particularly concerning common data schemas, multi-language support, and provenance tracking.</p>
-<h2 id="1-interoperability-event-specifications-cross-platform">1. Interoperability &amp; Event Specifications (Cross-Platform)<a class="headerlink" href="#1-interoperability-event-specifications-cross-platform" title="Permanent link">&para;</a></h2>
-<p>These standards focus on defining a common data format to ensure different systems and languages can communicate seamlessly.
-They typically define schemas and transport rules.</p>
-<h3 id="cloudevents-specification">CloudEvents Specification<a class="headerlink" href="#cloudevents-specification" title="Permanent link">&para;</a></h3>
-<p>This specification describes event data in a common way.
-It is designed to simplify event declaration and delivery across services, platforms, and languages (e.g., Go, Java, Python, C#).</p>
-<p>It's a good example of a cross-platform specification managed openly on GitHub.
-It defines a mandatory set of attributes (like a base entity identifier) that must be present in every data payload.</p>
-<p>Link: <a href="https://github.com/cloudevents/spec">https://github.com/cloudevents/spec</a></p>
-<h3 id="cdevents-specification">CDEvents Specification<a class="headerlink" href="#cdevents-specification" title="Permanent link">&para;</a></h3>
-<p>This is a popular specification for Continuous Delivery events, extending CloudEvents by introducing purpose and semantics to the event data.</p>
-<p>It shows how a standard is built on top of another standard (CloudEvents), specializing the common metadata for a specific domain (CI/CD provenance and flow).</p>
-<p>Link: <a href="https://github.com/cdevents/spec">https://github.com/cdevents/spec</a></p>
-<h2 id="2-provenance-and-data-tracking-standards">2. Provenance and Data Tracking Standards<a class="headerlink" href="#2-provenance-and-data-tracking-standards" title="Permanent link">&para;</a></h2>
-<p>These projects relate to provenance aspects, focusing on tracking the history, inputs, and derivation of data.</p>
-<h3 id="prov-cpl-core-provenance-library">PROV-CPL (Core Provenance Library)<a class="headerlink" href="#prov-cpl-core-provenance-library" title="Permanent link">&para;</a></h3>
-<p>This is the Core Provenance Library for collecting data provenance with multiple language bindings (C/C++, Java, Python, R).
-It uses the <a href="https://www.w3.org/TR/prov-overview/">W3C PROV</a> standard as its foundation.</p>
-<p>It demonstrates a multi-language implementation of a provenance standard, providing APIs to record who/what/when/where data was created, which is central to provenance.</p>
-<p>Link: <a href="https://github.com/ProvTools/prov-cpl">https://github.com/ProvTools/prov-cpl</a></p>
-<h2 id="3-general-data-schemas-and-monorepo-structure">3. General Data Schemas and Monorepo Structure<a class="headerlink" href="#3-general-data-schemas-and-monorepo-structure" title="Permanent link">&para;</a></h2>
-<p>These focus on using JSON Schema to define strict data structures and managing them in a versioned repository.</p>
-<h3 id="json-schema-specification">JSON Schema Specification<a class="headerlink" href="#json-schema-specification" title="Permanent link">&para;</a></h3>
-<p>This is the official specification for JSON Schema, a declarative language used to annotate and validate JSON documents.</p>
-<p>This foundational tool is by many standards (including CloudEvents) to define specific fields and types.
-This repo illustrates how a core schema standard is defined and versioned.</p>
-<p>Link: <a href="https://github.com/json-schema-org/json-schema-spec">https://github.com/json-schema-org/json-schema-spec</a></p>
-<h3 id="consumer-data-standards-australian-dsb-schemas">Consumer Data Standards (Australian DSB Schemas)<a class="headerlink" href="#consumer-data-standards-australian-dsb-schemas" title="Permanent link">&para;</a></h3>
-<p>This repository holds a collection of JSON schema files derived from the Australian Consumer Data Standards, used for robust schema validation in banking and energy sectors.</p>
-<p>This offers a practical example of a large-scale data standard implementation in a monorepo (single repository), organized by release version, providing strict, enforceable JSON schemas for real-world data exchange.</p>
-<p>Link: <a href="https://github.com/ConsumerDataStandardsAustralia/dsb-schema-tools">https://github.com/ConsumerDataStandardsAustralia/dsb-schema-tools</a></p>
+<h1 id="building-a-new-connector">Building a New Connector<a class="headerlink" href="#building-a-new-connector" title="Permanent link">&para;</a></h1>
+<p>All connectors involve:</p>
+<ul>
+<li>Vocab &amp; schemas</li>
+<li>Core types / builders</li>
+<li>Validators</li>
+<li>Adapters</li>
+<li>Output, tests</li>
+</ul>
+<p>Rust handles:</p>
+<ul>
+<li>all canonical types,</li>
+<li>ID rules,</li>
+<li>validation rules,</li>
+<li>end-to-end build and validate pipeline.</li>
+</ul>
+<h2 id="logical-development">Logical Development<a class="headerlink" href="#logical-development" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Define mapping from source → CEP core: How do we get: legalName, jurisdiction, entityType, local IDs, etc.?</p>
+</li>
+<li>
+<p>ID logic: How do we detect "we've seen this entity before"? How do we generate or look up verifiableId?</p>
+</li>
+<li>
+<p>Fact completeness rules: What can be missing at first ingest (e.g., inceptionDate)? When is a record considered "provisional" vs "solid"?</p>
+</li>
+<li>
+<p>Validation: What must be true before we can emit a CEP-compliant entity?</p>
+</li>
+<li>
+<p>Attestation: How do we record "who said this, based on what, and when"?</p>
+</li>
+</ol>
+<h2 id="implementation-notes">Implementation Notes<a class="headerlink" href="#implementation-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>ID must not depend on entity enception date as it is very often not included in the raw data.</li>
+</ul>
+<h2 id="phase-1-walk-skeleton-for-entity-path">Phase 1: Walk skeleton for entity path<a class="headerlink" href="#phase-1-walk-skeleton-for-entity-path" title="Permanent link">&para;</a></h2>
+<p>Write a test where an example (e.g. a School District) goes all the way through the process.</p>
+<p>Example tasks:</p>
+<ul>
+<li>Define EntityId, first_seen_date, and minimal Entity struct in core/entity.rs.</li>
+<li>Implement EntityBuilder with required fields and optional inception_date.</li>
+<li>Implement simple EntityValidator (e.g., legal_name not empty, jurisdiction present).</li>
+</ul>
+<p>Write an end-to-end test:</p>
+<ul>
+<li>Input JSON with a raw entity name, e.g. US-MN School District x</li>
+<li>Run through the builder and validator</li>
+<li>Assert it gets a stable ID, no panic, and inception_date is None.</li>
+</ul>
+<p>At the end of Phase 1, a complete vertical slice that works.</p>
+<h2 id="phase-2-add-implementation-notes">Phase 2: Add Implementation Notes<a class="headerlink" href="#phase-2-add-implementation-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Note implementation details in docs.</li>
+</ul>
+<h2 id="phase-3-strengthen-reliability">Phase 3: Strengthen reliability<a class="headerlink" href="#phase-3-strengthen-reliability" title="Permanent link">&para;</a></h2>
+<p>Add more tests:</p>
+<ul>
+<li>Invalid input (missing legalName)</li>
+<li>Duplicate entity</li>
+<li>Updates when new facts arrive (e.g., add inceptionDate later).</li>
+</ul>
+<p>Add CI:</p>
+<ul>
+<li>Run tests on push/PR.</li>
+</ul>
+<p>Add a couple of property tests or fuzz tests for deserialization.</p>
+<h2 id="common-workflow">Common Workflow<a class="headerlink" href="#common-workflow" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Update the schema in <code>schemas</code>.</li>
+<li>Run <code>uv run python tools/codegen_rust.py</code> to regen rust types.</li>
+<li>Update <code>build_identifiers_snfei</code> (or associated build function) in associatied manual.rs.</li>
+<li>Update the Python fallback builder in the Python <code>api.py</code>.</li>
+<li>Update all references to associated .json files and tests.</li>
+</ol>
 
 
 
