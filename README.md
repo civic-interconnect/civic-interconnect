@@ -1,5 +1,6 @@
 # Civic Interconnect
 
+[![PyPI](https://img.shields.io/pypi/v/civic-interconnect.svg)](https://pypi.org/project/civic-interconnect/)
 [![Python versions](https://img.shields.io/pypi/pyversions/civic-interconnect.svg)](https://pypi.org/project/civic-interconnect/)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![CI Status](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/ci-python.yml/badge.svg)](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/ci-python.yml)
