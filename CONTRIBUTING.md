@@ -116,7 +116,7 @@ cargo test -p cep-core entity
 cargo test -p cep-core -q
 cargo test -- --nocapture -q
 
-# build
+# build and install cep_py
 cargo build
 cd crates/cep-py
 cargo build

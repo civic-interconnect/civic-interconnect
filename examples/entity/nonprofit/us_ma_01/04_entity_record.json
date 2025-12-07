@@ -12,12 +12,12 @@
     }
   ],
   "dissolutionDate": null,
-  "identifiers": [
-    {
-      "identifier": "3ceb3f8c7e64586a385c8ddb0ff0cda8180e92759216b63986354f40ec968dde",
-      "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei"
+  "entityTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.v1.0.0.json#NONPROFIT_501C3",
+  "identifiers": {
+    "snfei": {
+      "value": "3ceb3f8c7e64586a385c8ddb0ff0cda8180e92759216b63986354f40ec968dde"
     }
-  ],
+  },
   "inceptionDate": null,
   "jurisdictionIso": "US-MA",
   "legalName": "Boston Community Foundation, Inc.",

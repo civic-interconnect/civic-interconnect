@@ -12,12 +12,12 @@
     }
   ],
   "dissolutionDate": null,
-  "identifiers": [
-    {
-      "identifier": "5dababc102e57910284849d9f63b6ac7b34b018c32b17fbf3d00c53cb53725da",
-      "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei"
+  "entityTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.v1.0.0.json#school-district",
+  "identifiers": {
+    "snfei": {
+      "value": "5dababc102e57910284849d9f63b6ac7b34b018c32b17fbf3d00c53cb53725da"
     }
-  ],
+  },
   "inceptionDate": null,
   "jurisdictionIso": "US-MN",
   "legalName": "Minnesota School District 01",

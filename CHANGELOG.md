@@ -20,10 +20,24 @@ and this project adheres to **[Semantic Versioning](https://semver.org/spec/v2.0
 ## [0.0.2] – 2025-12-07
 
 ### Added
+- End-to-end **example slice generation pipeline**:
+  - `cx generate-example` produces `02_normalized.json`, `03_canonical.json`, and `04_entity_record.json`.
+  - Example documentation pages under `docs/en/examples/...`.
+- **Entity shape normalizer** in Python:
+  - Guarantees presence of `entityTypeUri`.
+  - Normalizes `identifiers` so `identifiers["snfei"]` is always a dict with `{"value": ...}`.
+- Improved error messages in SNFEI pipeline.
 
 ### Changed
-
-### Deleted
+- **Rust SNFEI validator**:  
+  Corrected lowercase-hex predicate so digits (`0–9`) are accepted and only uppercase hex is rejected.  
+- Python SNFEI generator:
+  - Uses native Rust backend when available.
+  - Falls back to Python implementation with clear warnings.
+- Updated Rust `entityType` vocabulary URI:
+  - Ensured alignment between Rust builder output and Python expectations.
+- Python Entity builder normalized output shape so downstream clients and tests are stable across native/Python paths.
+- Simplified adapter mapping and fatal-error handling in `cx generate-example`.
 
 ---
 

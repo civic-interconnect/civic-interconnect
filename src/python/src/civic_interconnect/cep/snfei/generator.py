@@ -29,9 +29,6 @@ from civic_interconnect.cep.snfei.normalizer import (
     build_canonical_input,
 )
 
-USE_NATIVE_SNFEI: bool = False  # TEMP: force Python path
-
-
 # Try to import the native Rust backend (via cep_py).
 try:
     # Python signature:
@@ -133,38 +130,27 @@ def _compute_snfei_prefer_native(
 ) -> Snfei:
     """Compute SNFEI, preferring the Rust backend when available.
 
-    - If the cep_py native extension is not available, fall back to the
-      pure Python implementation.
-    - If the native backend *is* available but returns an invalid value
-      (or otherwise fails), raise a ValueError instead of silently
-      falling back. Native failures are treated as bugs, not soft errors.
+    - If the cep_py native extension is available, delegate to
+      `cep_py.generate_snfei`, which uses the Rust Normalizing Functor
+      and resolver.
+    - Otherwise, fall back to the Python `compute_snfei` implementation.
+
+    We still compute `canonical` in Python so that the returned SnfeiResult
+    carries useful inspection metadata, even when the hash itself comes from Rust.
     """
-    # Case 1: no native backend at all → pure Python
-    # if not HAS_NATIVE_BACKEND or _generate_snfei_native is None:
-    if not USE_NATIVE_SNFEI or not HAS_NATIVE_BACKEND or _generate_snfei_native is None:
+    # Case 1: no native backend at all then pure Python
+    if not HAS_NATIVE_BACKEND or _generate_snfei_native is None:
         return compute_snfei(canonical)
 
-    # Case 2: native backend present → use it, but fail loudly if it misbehaves
-    try:
-        snfei_value = _generate_snfei_native(
-            legal_name,
-            country_code,
-            address,
-            registration_date,
-        )
-    except Exception as exc:
-        # This is a hard failure: cep_py is present but returned an error.
-        # Include full context to debug resolver/FFI issues.
-        msg = (
-            "Native SNFEI backend (cep_py.generate_snfei) failed for "
-            f"legal_name={legal_name!r}, country_code={country_code!r}, "
-            f"address={address!r}, registration_date={registration_date!r}: {exc}"
-        )
-        raise ValueError(msg) from exc
+    # Case 2: native backend present -> use it
+    snfei_value = _generate_snfei_native(
+        legal_name,
+        country_code,
+        address,
+        registration_date,
+    )
 
-    # Now validate returned value with the Python Snfei guard.
-    # If Rust returned a non-hex or prefixed value, this will raise,
-    # helpful during development.
+    # Validate returned value with the Python Snfei guard.
     return Snfei(snfei_value)
 
 

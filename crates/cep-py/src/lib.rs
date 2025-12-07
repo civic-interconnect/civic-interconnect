@@ -85,7 +85,7 @@ fn generate_snfei(
         None,
     ) {
         Ok(result) => {
-            // Return just the 64-character lowercase hex value.
+            // `result.snfei` is a Snfei struct; expose its value as lowercase hex.
             Ok(result.snfei.as_str().to_string())
         }
         Err(e) => {

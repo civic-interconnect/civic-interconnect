@@ -171,3 +171,4 @@ fn canonical_input_hash_string_international_example() {
         "societe generale s|10 boulevard haussmann paris|FR|2010-05-01"
     );
 }
+

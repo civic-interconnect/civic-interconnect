@@ -12,12 +12,12 @@
     }
   ],
   "dissolutionDate": null,
-  "identifiers": [
-    {
-      "identifier": "40aed40459ca830ea1ae8acaa6ce9874f376f1246d6140279cab82af9fb140e0",
-      "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei"
+  "entityTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.v1.0.0.json#PAC",
+  "identifiers": {
+    "snfei": {
+      "value": "40aed40459ca830ea1ae8acaa6ce9874f376f1246d6140279cab82af9fb140e0"
     }
-  ],
+  },
   "inceptionDate": null,
   "jurisdictionIso": "US-FED",
   "legalName": "Citizens for Good Government PAC",
