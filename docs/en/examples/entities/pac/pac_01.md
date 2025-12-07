@@ -131,8 +131,8 @@ build_entity_json(normalized_json)
 
 Links to the files in GitHub:
 
-- [`01_raw_source.json`](../../../../../examples/entity/pac/pac_01/01_raw_source.json)
-- [`02_normalized.json`](../../../../../examples/entity/pac/pac_01/02_normalized.json)
-- [`03_canonical.json`](../../../../../examples/entity/pac/pac_01/03_canonical.json)
-- [`04_entity_record.json`](../../../../../examples/entity/pac/pac_01/04_entity_record.json)
+- [`01_raw_source.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/pac/pac_01/01_raw_source.json)
+- [`02_normalized.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/pac/pac_01/02_normalized.json)
+- [`03_canonical.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/pac/pac_01/03_canonical.json)
+- [`04_entity_record.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/pac/pac_01/04_entity_record.json)
 

@@ -127,12 +127,20 @@ nav:
 
   - Examples:
       - Entity with SNFEI: en/examples/entity-with-snfei.md
+      - Municipalities:
+          - US-IL Example: en/examples/entities/municipality/us_il_01.md
+          - US-MN Example: en/examples/entities/municipality/us_mn_01.md
+      - Nonprofit:
+          - US-MA Example: en/examples/entities/nonprofit/us_ma_01.md
+      - PAC:
+          - PAC Example: en/examples/entities/pac/pac_01.md
 
   - Reference:
       - Entity: en/reference/entity.md
       - Exchange: en/reference/exchange.md
       - Relationship: en/reference/relationship.md
       - P3Tags: en/reference/p3tags.md
+      - Identifiers: en/reference/identifier-schemes.md
       - SNFEI: en/reference/snfei.md
       - Compatibility Matrix: en/reference/compatibility-matrix.md
       - Reference Standards: en/reference/reference-standards.md
