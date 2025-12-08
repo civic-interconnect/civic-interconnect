@@ -1,86 +1,75 @@
-"""CEP Core Linker: Entity Resolution and SNFEI Generation.
+# src/python/src/civic_interconnect/cep/snfei/__init__.py
 
-This package implements the Normalizing Functor architecture for generating
-deterministic entity identifiers (SNFEIs) from heterogeneous source data.
 
-Architecture:
-    ┌──────────────┐     ┌────────────────┐     ┌─────────────┐
-    │  Raw Entity  │     │  Intermediate  │     │  Canonical  │
-    │    Data      │───> │    Canonical   │───> │   Entity    │
-    │              │  L  │                │  N  │             │
-    └──────────────┘     └────────────────┘     └─────────────┘
-                                                        │
-                                                        │ SHA-256
-                                                        V
-                                                ┌──────────────┐
-                                                │    SNFEI     │
-                                                │  (64-char)   │
-                                                └──────────────┘
+import json
+from typing import Any
 
-    L = Localization Functor (jurisdiction-specific transforms)
-    N = Normalizing Functor (universal normalization)
+import cep_py as _core
 
-Usage:
-    from civic_exchange_protocol.core_linker import (
-        generate_snfei,
-        normalize_legal_name,
-        apply_localization,
+
+def generate_snfei(
+    legal_name: str,
+    country_code: str,
+    address: str | None = None,
+    registration_date: str | None = None,
+) -> str:
+    """Return SNFEI as a 64-char hex string via the Rust core."""
+    return _core.generate_snfei(
+        legal_name,
+        country_code,
+        address,
+        registration_date,
     )
 
-    # Simple SNFEI generation
-    snfei, inputs = generate_snfei(
-        legal_name="Springfield USD #12",
-        country_code="US",
-        address="123 Main St",
+
+def generate_snfei_detailed(
+    legal_name: str,
+    country_code: str,
+    address: str | None = None,
+    registration_date: str | None = None,
+    lei: str | None = None,
+    sam_uei: str | None = None,
+) -> dict[str, Any]:
+    """Return a structured dict with SNFEI plus canonical input and metadata.
+
+    `lei` and `sam_uei` are accepted for future compatibility but are not yet
+    forwarded into the Rust implementation.
+    """
+    raw = _core.generate_snfei_detailed(
+        legal_name,
+        country_code,
+        address,
+        registration_date,
     )
 
-    # With jurisdiction-specific localization
-    from civic_exchange_protocol.core_linker import apply_localization
-    localized = apply_localization("MTA", "us/ny")
-    # -> "metropolitan transportation authority"
-"""
+    # Rust FFI currently returns a JSON string; normalize to dict.
+    if isinstance(raw, str):
+        return json.loads(raw)
 
-from .generator import (
-    Snfei,
-    SnfeiResult,
-    compute_snfei,
-    generate_snfei,
-    generate_snfei_simple,
-    generate_snfei_with_confidence,
-)
-from .localization import (
-    LocalizationConfig,
-    LocalizationRegistry,
-    LocalizationRule,
-    apply_localization,
-    get_localization_config,
-)
-from .normalizer import (
-    CanonicalInput,
-    build_canonical_input,
-    normalize_address,
-    normalize_legal_name,
-    normalize_registration_date,
-)
+    # If we ever change the Rust side to return a mapping directly,
+    # this still works.
+    return raw
+
+
+def normalize_legal_name(value: str) -> str:
+    """Normalize a legal name using the Rust core."""
+    return _core.normalize_legal_name_py(value)
+
+
+def normalize_address(value: str) -> str:
+    """Normalize an address using the Rust core."""
+    return _core.normalize_address_py(value)
+
+
+def normalize_registration_date(value: str) -> str | None:
+    """Normalize a registration/formation date, or return None."""
+    return _core.normalize_registration_date_py(value)
+
 
 __all__ = [
-    # SNFEI Generation
-    "Snfei",
-    "SnfeiResult",
     "generate_snfei",
-    "generate_snfei_simple",
-    "generate_snfei_with_confidence",
-    "compute_snfei",
-    # Normalization
+    "generate_snfei_detailed",
     "normalize_legal_name",
     "normalize_address",
     "normalize_registration_date",
-    "CanonicalInput",
-    "build_canonical_input",
-    # Localization
-    "apply_localization",
-    "get_localization_config",
-    "LocalizationConfig",
-    "LocalizationRegistry",
-    "LocalizationRule",
 ]

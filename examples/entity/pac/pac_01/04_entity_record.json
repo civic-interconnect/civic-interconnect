@@ -11,6 +11,7 @@
       "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest"
     }
   ],
+  "ctags": null,
   "dissolutionDate": null,
   "entityTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.v1.0.0.json#PAC",
   "identifiers": {

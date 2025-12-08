@@ -82,3 +82,14 @@ CEP is explicitly designed to:
 - Provide a secure, verifiable, and interoperable foundation for multi-sector data exchange.
 
 The vision is an **interoperable civic identity and provenance network**, offering incremental integration and compatibility with existing systems.
+
+## 5. Stewardship and Sustainability
+
+Sustainability of the ecosystem emphasizes:
+
+- **Open governance** via the Interconnect Standards Board  
+- **Versioning discipline** to protect downstream adopters  
+- **Long-term archival guarantees** through schema versioning and stable URIs  
+- **Transparency and accountability** in vocabulary evolution, attestation practices, and protocol changes  
+
+CEP is designed to be maintainable, publicly governed, and aligned with global interoperability principles.

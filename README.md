@@ -11,7 +11,7 @@
 > Interoperable data standards for describing entities, relationships, and value exchanges across civic systems.
 
 Civic Interconnect is a shared schema, vocabulary, and implementation platform for interoperable civic data.
-It includes the Civic Exchange Protocol (CEP), which defines a set of reusable record types (Entity, Relationship, Exchange, and P3Tag), plus domain modules and adapters that connect existing public data standards and systems.
+It includes the Civic Exchange Protocol (CEP), which defines a set of reusable record types (Entity, Relationship, Exchange, and Context Tag), plus domain modules and adapters that connect existing public data standards and systems.
 
 This repository is a monorepo that contains:
 
@@ -86,7 +86,7 @@ Civic Interconnect is built around four primary record families:
 - **Entity**: Describes people, organizations, districts, facilities, and other civic actors or units.
 - **Relationship**: Describes how entities are connected (affiliation, control, governance, containment, membership, etc.).  
 - **Exchange**: Describes flows between entities (funds, services, messages, events).
-- **P3Tag**: Per-post or per-record tags that describe provenance, risk, narratives, or other interpretive signals attached to a subject.  
+- **Context Tag**: Provide appending annotation entries attached to a subject.  
 
 All four record families share a common envelope that owns IDs, attestation, status, and revisioning:
 
@@ -114,7 +114,7 @@ schemas/          # JSON Schemas (source of truth)
 vocabularies/     # Controlled vocabularies
 tools/            # Codegen and helper tools
 crates/           # Rust crates (core logic and bindings)
-src/python/       # Python packages (ci-cep, ci-p3tag, adapters)
+src/python/       # Python packages (ci-cep, ci-ctag, adapters)
 ```
 
 ## Schemas
@@ -140,7 +140,7 @@ The Rust core is organized by domain:
 - entity/  
 - relationship/  
 - exchange/  
-- p3tag/  
+- ctag/  
 
 Each domain has generated code (from schemas) plus manual code for business rules.
 

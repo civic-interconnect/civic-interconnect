@@ -1,6 +1,6 @@
 # Civic Interconnect Positioning Paper
 
-> CEP and P3Tags as Interoperability Layer for Civic Data Ecosystems
+> CEP and CTags as Interoperability Layer for Civic Data Ecosystems
 
 ## 1. Introduction
 Modern civic systems rely on multiple established standards: Open Civic Data (OCD) for political geography, Popolo for people and organizations, the Open Contracting Data Standard (OCDS) for procurement, and numerous state or federal schemas for grants, budgets, elections, disclosures, and public records.
@@ -12,7 +12,7 @@ Each standard addresses its own domain well.
 The Civic Interconnect framework fills this gap by providing two complementary tools:
 
 - **Civic Exchange Protocol (CEP)** - a lightweight model for representing *entities*, *relationships*, and *exchanges* across civic workflows.
-- **P3Tags (Per-Post Provenance Tags)** - a simple, deployable metadata format that attaches provenance to individual documents, posts, filings, attachments, and AI-derived content.
+- **CTags (Context Tags)** - a simple, deployable context tag format that attaches annotations to records.
 
 Civic Interconnect does not replace existing standards.  
 It enables them to interoperate.
@@ -33,8 +33,8 @@ Its value is structural consistency and cross-domain interoperability.
 
 ---
 
-## 3. Role of P3Tags
-P3Tags provide per-artifact provenance:
+## 3. Role of CTags
+CTags provide per-artifact context:
 
 - what the content is  
 - who created or modified it  
@@ -42,16 +42,16 @@ P3Tags provide per-artifact provenance:
 - which policies applied  
 - what source(s) it derived from
 
-Where CEP handles structured civic records, P3Tags handle the *documents and messages* that move through civic processes.
+Where CEP handles structured civic records, CTags handle the *documents and messages* that move through civic processes.
 
-In an AI-rich environment, P3Tags help establish:
+In an AI-rich environment, CTags help establish:
 
 - chain of custody  
 - reproducibility  
 - auditability  
 - trustworthiness
 
-P3Tags can be used independently but become dramatically more powerful when linked to CEP entities and exchanges.
+CTags can be used independently but become dramatically more powerful when linked to CEP entities and exchanges.
 
 ---
 
@@ -61,10 +61,10 @@ Civic Interconnect is intentionally **non-competitive** with existing civic stan
 - CEP entities may reference **OCD Division IDs** for jurisdictions.  
 - CEP relationships may align with **Popolo** people/organization structures.  
 - CEP exchanges may wrap **OCDS** contracting lifecycle documents.  
-- P3Tags may map to **W3C PROV** concepts for semantic-web compatibility.
+- CTags may map to **W3C PROV** concepts for semantic-web compatibility.
 
 Each standard continues doing what it does best.  
-CEP and P3Tags provide the missing glue.
+CEP and CTags provide the missing glue.
 
 ---
 
@@ -75,7 +75,7 @@ The civic ecosystem is facing three converging pressures:
 2. **Fragmented vendor landscapes** - public records, procurement, grants, meetings, and reporting systems rarely interoperate.  
 3. **Transparency expectations** - journalists, auditors, and the public need sourceable, auditable, machine-readable records.
 
-CEP and P3Tags offer a minimal, intuitive, and extensible way to satisfy these pressures without imposing heavy ontologies or requiring system rewrites.
+CEP and CTags offer a minimal, intuitive, and extensible way to satisfy these pressures without imposing heavy ontologies or requiring system rewrites.
 
 ---
 
@@ -83,7 +83,7 @@ CEP and P3Tags offer a minimal, intuitive, and extensible way to satisfy these p
 The Civic Interconnect framework is a small set of primitives designed to connect everything else:
 
 - CEP: the cross-domain record structure  
-- P3Tags: the provenance header  
+- CTags: the provenance header  
 - Existing standards: the authoritative domain models  
 
 This positioning enables the civic community to build interoperable, transparent, AI-ready systems that scale from small rural governments to national datasets - without displacing established standards or workflows.

@@ -46,6 +46,13 @@
         "$ref": "#/$defs/attestation"
       },
       "description": "Attestations supporting the facts in this record."
+    },
+    "ctags": {
+      "type": "array",
+      "description": "Optional Context Tags (CTags) attached to this record. CTags express interpretive, analytic, or contextual facts about the record without changing its canonical identity or payload.",
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.ctag.schema.json"
+      }
     }
   },
   "required": [

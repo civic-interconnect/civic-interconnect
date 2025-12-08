@@ -36,8 +36,7 @@ from civic_interconnect.cep.codegen.python_constants import (
 )
 from civic_interconnect.cep.codegen.rust_generated import write_generated_rust
 from civic_interconnect.cep.entity.api import build_entity_from_raw
-from civic_interconnect.cep.snfei.generator import generate_snfei, generate_snfei_with_confidence
-from civic_interconnect.cep.snfei.normalizer import build_canonical_input
+from civic_interconnect.cep.snfei import generate_snfei_detailed
 from civic_interconnect.cep.validation.json_validator import (
     ValidationSummary,
     validate_json_path,
@@ -113,12 +112,20 @@ def snfei(
     country_code: str = typer.Option("US", "--country-code", "-c", help="ISO country code"),
 ) -> None:
     """Generate an SNFEI for an entity name and country."""
-    result = generate_snfei_with_confidence(
+    result = generate_snfei_detailed(
         legal_name=legal_name,
         country_code=country_code,
+        address=None,
+        registration_date=None,
+        lei=None,
+        sam_uei=None,
     )
-    typer.echo(f"SNFEI: {result.snfei.value}")
-    typer.echo(f"Tier: {result.tier}, confidence: {result.confidence_score}")
+    snfei_value = result["snfei"]
+    tier = result["tier"]
+    confidence = result["confidenceScore"]
+
+    typer.echo(f"SNFEI: {snfei_value}")
+    typer.echo(f"Tier: {tier}, confidence: {confidence}")
 
 
 @app.command()
@@ -259,25 +266,49 @@ def generate_example(
         registration_date = inputs.registration_date
 
         # 1) Canonical input (normalizing functor) + SNFEI
-        canonical = build_canonical_input(
+        snfei_result = generate_snfei_detailed(
             legal_name=legal_name,
             country_code=country_code,
             address=address,
             registration_date=registration_date,
+            lei=None,
+            sam_uei=None,
         )
-        snfei_result = generate_snfei(
-            legal_name=legal_name,
-            country_code=country_code,
-            address=address,
-            registration_date=registration_date,
+        # Rust returns:
+        # {
+        #   "snfei": {"value": "..."},
+        #   "canonical": {
+        #       "legalNameNormalized": "...",
+        #       "addressNormalized": "...",
+        #       "countryCode": "...",
+        #       "registrationDate": "..." | null
+        #   },
+        #   ...
+        # }
+
+        snfei_value = snfei_result["snfei"]["value"]
+        canonical_raw = snfei_result.get("canonical", {})
+        # Be tolerant to either camelCase or snake_case field names
+        legal_name_normalized = (
+            canonical_raw.get("legalNameNormalized")
+            or canonical_raw.get("legal_name_normalized")
+            or ""
         )
-        snfei_value = snfei_result.snfei.value
+        address_normalized = canonical_raw.get("addressNormalized") or canonical_raw.get(
+            "address_normalized"
+        )
+        country_code_canonical = (
+            canonical_raw.get("countryCode") or canonical_raw.get("country_code") or country_code
+        )
+        registration_date_canonical = canonical_raw.get("registrationDate") or canonical_raw.get(
+            "registration_date"
+        )
 
         # 2) NormalizedEntityInput (02_normalized.json)
         normalized: dict[str, Any] = {
             "jurisdictionIso": jurisdiction_iso,
             "legalName": legal_name,
-            "legalNameNormalized": canonical.legal_name_normalized,
+            "legalNameNormalized": legal_name_normalized,
             "snfei": snfei_value,
             "entityType": entity_type,
         }
@@ -286,10 +317,10 @@ def generate_example(
 
         # 3) Canonical snapshot (03_canonical.json)
         canonical_json: dict[str, Any] = {
-            "legalNameNormalized": canonical.legal_name_normalized,
-            "addressNormalized": canonical.address_normalized,
-            "countryCode": canonical.country_code,
-            "registrationDate": canonical.registration_date,
+            "legalNameNormalized": legal_name_normalized,
+            "addressNormalized": address_normalized,
+            "countryCode": country_code_canonical,
+            "registrationDate": registration_date_canonical,
         }
         _write_json(f03, canonical_json)
         typer.echo(f"  - wrote {f03.name}")

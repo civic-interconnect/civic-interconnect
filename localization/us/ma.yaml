@@ -1,0 +1,50 @@
+# Massachusetts Localization Rules
+# Jurisdiction: US/MA
+# Parent: US
+
+parent: "US"
+abbreviations:
+  "dot": "department of transportation"
+  "dcr": "department of conservation and recreation"
+  "dmr": "division of marine fisheries"
+  "dea": "department of elder affairs"
+  "dph": "department of public health"
+  "mrc": "massachusetts rehabilitation commission"
+  "mcb": "massachusetts commission for the blind"
+  "ps": "public schools"
+  "hs": "high school"
+
+agency_names:
+  "mbta": "massachusetts bay transportation authority"
+  "mwra": "massachusetts water resources authority"
+  "masstech": "massachusetts technology collaborative"
+  "massport": "massachusetts port authority"
+  "massdot": "massachusetts department of transportation"
+  "bpd": "boston police department"
+  "bfd": "boston fire department"
+  "bps": "boston public schools"
+entity_types:
+  "housing authority": "housing authority"
+  "school district": "school district"
+  "water district": "water district"
+  "fire district": "fire district"
+rules:
+  - pattern: ","
+    replacement: ""
+    is_regex: false
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\bdept\\b"
+    replacement: "department"
+    is_regex: true
+
+stop_words:
+  - "the"
+  - "of"
+  - "and"
+  - "town"
+  - "city"
+  - "village"

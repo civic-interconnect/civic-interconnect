@@ -30,9 +30,10 @@ impl Snfei {
         }
 
         // Allow digits 0–9 and lowercase a–f.
-        if !value.chars().all(|c| {
-            c.is_ascii_hexdigit() && !c.is_ascii_uppercase()
-        }) {
+        if !value
+            .chars()
+            .all(|c| c.is_ascii_hexdigit() && !c.is_ascii_uppercase())
+        {
             return Err(ValueError("SNFEI must be lowercase hex".to_string()));
         }
 
@@ -195,7 +196,6 @@ pub fn generate_snfei_simple(
     Ok(result.snfei.value)
 }
 
-
 /// Convenience helper for FFI (Python / other bindings).
 ///
 /// Returns the SNFEI as a bare 64-character lowercase hex string.
@@ -211,12 +211,11 @@ pub fn generate_snfei_for_ffi(
         country_code,
         address,
         registration_date,
-        None,  // lei
-        None,  // sam_uei
+        None, // lei
+        None, // sam_uei
     )?;
     Ok(result.snfei.as_str().to_string())
 }
-
 
 #[test]
 fn snfei_allows_digits_and_lowercase_hex() {
@@ -224,4 +223,3 @@ fn snfei_allows_digits_and_lowercase_hex() {
     let sn = Snfei::new(s.to_string()).expect("should be valid lowercase hex");
     assert_eq!(sn.as_str(), s);
 }
-

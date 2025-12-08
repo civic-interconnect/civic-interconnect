@@ -1,94 +1,88 @@
-# CEP Entity Example: Municipality (us_mn_01)
+# Example: Municipality Entity (US-MN 01)
 
-This page provides a documentation view of the example located at:
+This example demonstrates a basic CEP EntityRecord for a municipality in Minnesota.  
+It follows the standard four-stage CEP example pipeline described in  
+[**How CEP Examples Work**](../../README.md).
 
-```
+Directory:
+
+```text
 examples/entity/municipality/us_mn_01/
 ```
 
-That directory contains a **vertical slice** of the CEP Entity pipeline:
+Files:
 
-```
-01_raw_source.json   = raw input from the upstream system
-02_normalized.json   = adapter-normalized form (NormalizedEntityInput)
-03_canonical.json    = canonicalized input (Normalizing Functor)
-04_entity_record.json= final EntityRecord produced by the Rust builder
+```text
+01_raw_source.json
+02_normalized.json
+03_canonical.json
+04_entity_record.json
 ```
 
 ---
 
-## What This Example Shows
+## Highlights of This Example
 
-This example illustrates:
+This example illustrates Minnesota-specific details:
 
-- How the **Normalizing Functor** transforms inconsistent source data  
-- How the **SNFEI** is computed and used as the entity’s `verifiableId`
-- How the **Identifier Scheme Vocabulary** applies (`schemeUri` → SNFEI term)
-- How the **EntityRecord envelope** (status, timestamps, attestation) is produced
-- How minimal but valid inputs produce a fully structured CEP record
+- Shows a *minimal viable municipality* using SNFEI as the identifier input.
+- Demonstrates normalization of a Minnesota municipal name.
+- Applies the standard `municipality` entityTypeUri.
+- Contains a single revision with no prior history.
+- Follows the canonical CEP entity pipeline with no special adapter rules.
+
+See the master documentation for details of normalization, canonicalization, SNFEI construction, and the Rust builder:  
+[How CEP Examples Work](../../README.md).
 
 ---
 
-## Pipeline Summary
+## Pipeline Notes (Specific to This Example)
 
-### 1. Raw Source → Normalized Input  
-The adapter extracts:
+### Normalization (02)
 
-- `jurisdictionIso`
+The adapter extracts common core fields:
+
+- `jurisdictionIso: "US-MN"`
 - `legalName`
 - `legalNameNormalized`
-- `entityType`
-- `snfei` (via Rust SNFEI generator)
+- `entityType: municipality`
+- SNFEI preimage components
 
-### 2. Normalized Input → Canonical Input  
-The Canonical Input stage applies:
+Minnesota municipalities typically have clean name formatting, so no special tokenization or alias handling was required.
 
-- Unicode normalization  
-- whitespace & punctuation cleanup  
-- deterministic hashing-preimage formation
+### Canonicalization (03)
 
-### 3. Canonical Input → SNFEI  
-SNFEI is computed as:
+The canonical form contains:
 
-```
-SNFEI = SHA256( canonical.to_hash_string() )
-```
+- normalized name  
+- Minnesota jurisdiction code  
+- entity type  
+- deterministically ordered fields  
 
-### 4. SNFEI + Normalized Input → EntityRecord  
-Using:
+The input canonicalizes without additional preprocessing.
 
-```
-cep_py.build_entity_json(normalized_json)
-```
+### Verifiable ID (SNFEI)
 
-The resulting EntityRecord includes:
+SNFEI is calculated as:
 
-- `verifiableId = "cep-entity:snfei:<hash>"`
-- `identifiers[]` with the official SNFEI `schemeUri`
-- Envelope metadata (status, timestamps, attestation)
-- Domain fields (legalName, jurisdictionIso, entityTypeUri)
-
----
-
-## Quick Preview
-
-**SNFEI used:**
-
-```
-<insert-short-hash>…
+```text
+SHA256( canonical.to_hash_string() )
 ```
 
-**Record Type URI:**
+This value:
 
-```
-https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#<entity-type>
-```
+- populates the `verifiableId`, and  
+- appears in the `identifiers[]` array using the SNFEI identifier scheme.
 
-**Identifier Scheme:**
+### Final EntityRecord (04)
 
-```
-https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei
-```
+The Rust builder (`build_entity_json`) produces:
+
+- a complete CEP EntityRecord  
+- default `status` and `statusEffectiveDate`  
+- revision metadata (`revisionNumber`, `recordHash`)  
+- a cryptographic attestation  
+- canonical URIs for identifier scheme and entity type  
 
 ---
 
@@ -100,39 +94,26 @@ From the repository root:
 uv run cx generate-example --path examples/entity/municipality/us_mn_01/
 ```
 
-Or run each step manually:
-
-1. Normalize the raw source  
-2. Canonicalize  
-3. Compute SNFEI  
-4. Build final entity record via Rust:
+Or run the steps manually:
 
 ```python
 from cep_py import build_entity_json
-build_entity_json(normalized_json)
+entity_record = build_entity_json(normalized_json)
 ```
 
 ---
 
 ## Related Documentation
 
-- **Identifier Schemes**  
-  `docs/en/reference/identifier-schemes.md`
-
-- **Entity Specification**  
-  `docs/en/reference/entity.md`
-
-- **Normalization and SNFEI**  
-  `docs/en/concepts/normalization.md`
+- [Identifier Schemes](../../../reference/identifier-schemes.md)  
+- [Entity Specification](../../../reference/entity.md)  
+- [Normalization & SNFEI](../../../concepts/normalization.md)
 
 ---
 
-## Files for This Example
-
-Links to the files in GitHub:
+## Example Files
 
 - [`01_raw_source.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/municipality/us_mn_01/01_raw_source.json)
 - [`02_normalized.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/municipality/us_mn_01/02_normalized.json)
 - [`03_canonical.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/municipality/us_mn_01/03_canonical.json)
 - [`04_entity_record.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/municipality/us_mn_01/04_entity_record.json)
-

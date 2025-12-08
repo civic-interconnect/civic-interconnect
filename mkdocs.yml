@@ -110,22 +110,25 @@ nav:
       - Category Theory Foundation: en/concepts/category-theory-foundation.md
       - Related Domains: en/concepts/related-domains.md
       - Interoperability: en/concepts/interoperability.md
-      - Positioning Paper (CEP + P3Tags): en/concepts/positioning-paper.md
+      - Research and Adoption: en/concepts/research-adoption.md
+      - Positioning Paper (CEP + CTags): en/concepts/positioning-paper.md
 
   - Governance:
       - Evolution Policy and Versioning: en/governance/evolution-policy-and-versioning.md
       - Vocabulary Governance Process: en/governance/vocabulary-process.md
-      - Objectives and Mandates: en/governance/objectives-and-vision.md
-
+      - Objectives and Vision: en/governance/objectives-and-vision.md
+      
   - Implementation:
       - Guide: en/implementation/implementation-guide.md
       - Validator: en/implementation/validator.md
-      - CEP-P3Tags Binding: en/implementation/cep-p3tags-binding.md
+      - CTag Integration: en/implementation/ctag-integration.md
       - Casing: en/implementation/casing.md
       - New Connector: en/implementation/new-connector.md
       - Record Envelopes: en/implementation/record-envelopes.md
+      - Profiles: en/implementation/profiles.md
 
   - Examples:
+      - README: en/examples/README.md
       - Entity with SNFEI: en/examples/entity-with-snfei.md
       - Municipalities:
           - US-IL Example: en/examples/entities/municipality/us_il_01.md
@@ -139,8 +142,9 @@ nav:
       - Entity: en/reference/entity.md
       - Exchange: en/reference/exchange.md
       - Relationship: en/reference/relationship.md
-      - P3Tags: en/reference/p3tags.md
+      - Context Tags: en/reference/context-tags.md
       - Identifiers: en/reference/identifier-schemes.md
+      - Identity Tiers and External IDs: en/reference/identity-tiers.md
       - SNFEI: en/reference/snfei.md
       - Compatibility Matrix: en/reference/compatibility-matrix.md
       - Reference Standards: en/reference/reference-standards.md

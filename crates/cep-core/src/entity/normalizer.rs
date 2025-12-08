@@ -45,8 +45,8 @@ lazy_static::lazy_static! {
         // Limited
         m.insert("ltd", "limited");
         m.insert("ltd.", "limited");
-        m.insert("ltda", "limitada");         // Spanish/Portuguese
-        m.insert("ltee", "limitee");         // French (will be ASCII-ified)
+        m.insert("ltda", "limitada");    // Spanish/Portuguese
+        m.insert("ltee", "limitee");     // French (will be ASCII-ified)
         // Professional
         m.insert("pc", "professional corporation");
         m.insert("p.c.", "professional corporation");
@@ -61,11 +61,12 @@ lazy_static::lazy_static! {
         // Partnership
         m.insert("gp", "general partnership");
         m.insert("g.p.", "general partnership");
-        // Other
+        // Recognize "s a" as "sa" when tokenizing legal forms
+        m.insert("sa", "societe anonyme");
+        m.insert("s.a.", "societe anonyme");
+        m.insert("s a", "societe anonyme");
         m.insert("plc", "public limited company");
         m.insert("p.l.c.", "public limited company");
-        m.insert("sa", "sociedad anonima");     // Spanish
-        m.insert("s.a.", "sociedad anonima");
         m.insert("ag", "aktiengesellschaft");  // German
         m.insert("gmbh", "gesellschaft mit beschrankter haftung"); // German
         m.insert("bv", "besloten vennootschap"); // Dutch
@@ -80,35 +81,78 @@ lazy_static::lazy_static! {
     /// Common abbreviations: ALWAYS expand
     static ref COMMON_ABBREVIATIONS: HashMap<&'static str, &'static str> = {
         let mut m = HashMap::new();
-        // Organizational
-        m.insert("assn", "association");
-        m.insert("assoc", "association");
-        m.insert("dept", "department");
-        // ... (All other COMMON_ABBREVIATIONS from Python code)
-        m.insert("mfg", "manufacturing");
-        m.insert("mfr", "manufacturer");
-        m.insert("bros", "brothers");
-        m.insert("sys", "systems");
-        m.insert("tech", "technology");
-        m.insert("ind", "industries");
-        m.insert("inds", "industries");
-        m.insert("ent", "enterprises");
-        m.insert("hldgs", "holdings");
-        m.insert("props", "properties");
-        m.insert("invs", "investments");
-        m.insert("inv", "investment");
-        m.insert("fin", "financial");
-        m.insert("ins", "insurance");
-        m.insert("med", "medical");
-        m.insert("hlth", "health");
-        m.insert("pharm", "pharmaceutical");
-        m.insert("bio", "biological");
-        m.insert("chem", "chemical");
-        m.insert("elec", "electric");
-        m.insert("util", "utilities");
-        // Junior/Senior (for schools, orgs)
-        m.insert("jr", "junior");
-        m.insert("sr", "senior");
+ // Organizational
+    m.insert("assn", "association");
+    m.insert("assoc", "association");
+    m.insert("dept", "department");
+    m.insert("div", "division");
+    m.insert("grp", "group");
+    m.insert("org", "organization");
+    m.insert("inst", "institute");
+    m.insert("ctr", "center");
+    m.insert("ctre", "centre");
+    m.insert("comm", "commission");
+    m.insert("auth", "authority");
+    m.insert("admin", "administration");
+    m.insert("svcs", "services");
+    m.insert("svc", "service");
+    m.insert("mgmt", "management");
+    m.insert("mgt", "management");
+
+    // Geographic (directional are intentionally omitted here, handled in address)
+    m.insert("natl", "national");
+    m.insert("intl", "international");
+    m.insert("regl", "regional");
+    m.insert("govt", "government");
+    m.insert("fed", "federal");
+    m.insert("muni", "municipal");
+    m.insert("metro", "metropolitan");
+
+    // Educational
+    m.insert("univ", "university");
+    m.insert("coll", "college");
+    m.insert("acad", "academy");
+    m.insert("sch", "school");
+    m.insert("elem", "elementary");
+    m.insert("dist", "district");
+    m.insert("usd", "unified school district");
+    m.insert("isd", "independent school district");
+
+    // Geographic features, directional are intentionally omitted, handled in address
+    m.insert("st", "saint");
+    m.insert("ste", "sainte");
+    m.insert("mt", "mount");
+    m.insert("ft", "fort");
+    m.insert("pt", "point");
+    m.insert("cty", "county");
+    m.insert("twp", "township");
+    m.insert("vlg", "village");
+    m.insert("boro", "borough");
+
+    // Business
+    m.insert("mfg", "manufacturing");
+    m.insert("mfr", "manufacturer");
+    m.insert("bros", "brothers");
+    m.insert("sys", "systems");
+    m.insert("tech", "technology");
+    m.insert("ind", "industries");
+    m.insert("inds", "industries");
+    m.insert("ent", "enterprises");
+    m.insert("hldgs", "holdings");
+    m.insert("props", "properties");
+    m.insert("invs", "investments");
+    m.insert("inv", "investment");
+    m.insert("fin", "financial");
+    m.insert("ins", "insurance");
+    m.insert("med", "medical");
+    m.insert("hlth", "health");
+    m.insert("pharm", "pharmaceutical");
+    m.insert("bio", "biological");
+    m.insert("chem", "chemical");
+    m.insert("elec", "electric");
+    m.insert("util", "utilities");
+    m.insert("jr", "junior");
+    m.insert("sr", "senior");
         m
     };
 
@@ -201,9 +245,12 @@ lazy_static::lazy_static! {
 // NORMALIZATION PIPELINE
 // =============================================================================
 
-/// Convert Unicode to ASCII equivalent.
+/// Normalize Unicode and strip accents where safe.
 ///
-/// Handles accented characters, special quotes, etc.
+/// - Decompose characters (NFD)
+/// - Remove combining marks (accents) so é → e, ñ → n, etc. for Latin script
+/// - Apply a few explicit replacements for ligatures and special letters
+/// - Preserve non-Latin scripts (Greek, Cyrillic, Han, etc.)
 fn normalize_unicode_basic(text: &str) -> String {
     // 1. NFD normalization and removal of combining marks (accents)
     let mut normalized_text: String = text.nfd().filter(|c| !is_combining_mark(*c)).collect();
@@ -233,8 +280,7 @@ fn normalize_unicode_basic(text: &str) -> String {
         normalized_text = normalized_text.replace(*old, new);
     }
 
-    // 3. Do NOT drop non-ASCII now; Greek, Cyrillic, etc. remain.
-    // Strip control characters:
+    // 3. Preserve non-ASCII; just drop control characters.
     normalized_text
         .chars()
         .filter(|c| !c.is_control())
@@ -322,7 +368,13 @@ pub fn normalize_legal_name(
     // 1. Lowercase (done implicitly during token expansion, but better upfront)
     let mut text = name.to_lowercase();
 
-    // 2. ASCII transliteration
+    // 1b. Normalize dotted legal forms like "S.A." into "sa"
+    // so they survive punctuation stripping and hit LEGAL_SUFFIX_EXPANSIONS.
+    // This is narrowly scoped on purpose.
+    text = text.replace(" s.a.", " sa ");
+    text = text.replace(" s a ", " sa ");
+
+    // 2. ASCII-ish normalization (accent stripping etc.)
     text = normalize_unicode_basic(&text);
 
     // 3. Remove punctuation
@@ -498,5 +550,24 @@ pub fn build_canonical_input(
         }),
         country_code: country_code.to_uppercase(),
         registration_date: registration_date.and_then(|d| normalize_registration_date(d)),
+    }
+}
+#[cfg(test)]
+mod normalizer_tests {
+    use super::*;
+    #[test]
+    fn legal_name_normalization_matches_python_example() {
+        let s = normalize_legal_name(
+            "The Springfield Unified Sch. Dist., Inc.",
+            true,  // remove_stop_words_flag
+            false, // preserve_initial_stop
+        );
+        assert_eq!(s, "springfield unified school district incorporated");
+    }
+
+    #[test]
+    fn address_normalization_matches_python_example() {
+        let s = normalize_address("123 N. Main St., Suite 400", true);
+        assert_eq!(s, "123 north main street");
     }
 }

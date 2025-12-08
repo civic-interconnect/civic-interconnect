@@ -85,7 +85,12 @@ uv run cx codegen-python-constants
 cargo fmt
 cargo build
 cargo test -p cep-core
+
+# build and install cep_py
+cd crates/cep-py
+cargo build
 uv run maturin develop --release
+cd ../../
 
 uvx ruff check . --fix
 uvx ruff format .

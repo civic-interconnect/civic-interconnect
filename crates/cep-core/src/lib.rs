@@ -4,7 +4,7 @@
 //! - Entity
 //! - Relationship
 //! - Exchange
-//! - P3Tag
+//! - CTag
 //!
 //! Also includes:
 //! - Common ID types
@@ -19,9 +19,9 @@
 //! Only the stable public API is re-exported here.
 
 pub mod common;
+pub mod ctag;
 pub mod entity;
 pub mod exchange;
-pub mod p3tag;
 pub mod relationship;
 
 // The Foreign Function Interface layer

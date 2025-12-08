@@ -1,94 +1,88 @@
-# CEP Entity Example: Nonprofit (us_ma_01)
+# Example: Nonprofit Entity (US-MA 01)
 
-This page provides a documentation view of the example located at:
+This example demonstrates a CEP EntityRecord for a nonprofit organization based in Massachusetts.  
+It uses the standard four-stage CEP example pipeline described in  
+[**How CEP Examples Work**](../../README.md).
 
-```
+Directory:
+
+```text
 examples/entity/nonprofit/us_ma_01/
 ```
 
-That directory contains a **vertical slice** of the CEP Entity pipeline:
+Files:
 
-```
-01_raw_source.json   = raw input from the upstream system
-02_normalized.json   = adapter-normalized form (NormalizedEntityInput)
-03_canonical.json    = canonicalized input (Normalizing Functor)
-04_entity_record.json= final EntityRecord produced by the Rust builder
+```text
+01_raw_source.json
+02_normalized.json
+03_canonical.json
+04_entity_record.json
 ```
 
 ---
 
-## What This Example Shows
+## Highlights of This Example
 
-This example illustrates:
+This example illustrates nonprofit-specific details:
 
-- How the **Normalizing Functor** transforms inconsistent source data  
-- How the **SNFEI** is computed and used as the entity’s `verifiableId`
-- How the **Identifier Scheme Vocabulary** applies (`schemeUri` → SNFEI term)
-- How the **EntityRecord envelope** (status, timestamps, attestation) is produced
-- How minimal but valid inputs produce a fully structured CEP record
+- Shows CEP’s handling of **nonprofit legal names** and their normalized variants.
+- Demonstrates how a nonprofit’s identifier inputs feed into SNFEI-based identity.
+- Applies the nonprofit `entityTypeUri`.
+- Contains a simple first-revision record with no amendment history.
+- Displays how minimal upstream data can still produce a valid, attested CEP EntityRecord.
 
----
-
-## Pipeline Summary
-
-### 1. Raw Source → Normalized Input  
-The adapter extracts:
-
-- `jurisdictionIso`
-- `legalName`
-- `legalNameNormalized`
-- `entityType`
-- `snfei` (via Rust SNFEI generator)
-
-### 2. Normalized Input → Canonical Input  
-The Canonical Input stage applies:
-
-- Unicode normalization  
-- whitespace & punctuation cleanup  
-- deterministic hashing-preimage formation
-
-### 3. Canonical Input → SNFEI  
-SNFEI is computed as:
-
-```
-SNFEI = SHA256( canonical.to_hash_string() )
-```
-
-### 4. SNFEI + Normalized Input → EntityRecord  
-Using:
-
-```
-cep_py.build_entity_json(normalized_json)
-```
-
-The resulting EntityRecord includes:
-
-- `verifiableId = "cep-entity:snfei:<hash>"`
-- `identifiers[]` with the official SNFEI `schemeUri`
-- Envelope metadata (status, timestamps, attestation)
-- Domain fields (legalName, jurisdictionIso, entityTypeUri)
+For a full explanation of each pipeline stage, see  
+[How CEP Examples Work](../../README.md).
 
 ---
 
-## Quick Preview
+## Pipeline Notes (Specific to This Example)
 
-**SNFEI used:**
+### Normalization (02)
 
-```
-<insert-short-hash>…
+The adapter extracts and standardizes:
+
+- `jurisdictionIso: "US-MA"`
+- `legalName`  
+- `legalNameNormalized`  
+- `entityType: nonprofit`
+- SNFEI preimage inputs
+
+Massachusetts nonprofit names often include punctuation, abbreviations (e.g., “Inc.”), or suffixes; the normalizer removes or reduces these deterministically.
+
+### Canonicalization (03)
+
+The canonical form includes:
+
+- normalized legal name  
+- Massachusetts jurisdiction code  
+- nonprofit entity type  
+- deterministically ordered fields  
+
+This example requires no special locale-specific adjustments.
+
+### Verifiable ID (SNFEI)
+
+SNFEI is calculated via:
+
+```text
+SHA256( canonical.to_hash_string() )
 ```
 
-**Record Type URI:**
+The value is used:
 
-```
-https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#<entity-type>
-```
+- as the basis of `verifiableId`, and  
+- as an entry in `identifiers[]` using the SNFEI identifier scheme.
 
-**Identifier Scheme:**
+### Final EntityRecord (04)
 
-```
-https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei
-```
+The Rust builder (`build_entity_json`) constructs:
+
+- the canonical EntityRecord  
+- `status` and `statusEffectiveDate`
+- `recordHash` and the first-revision `revisionNumber`  
+- a cryptographic attestation  
+- structured URI references for entity type and identifier scheme  
 
 ---
 
@@ -100,39 +94,26 @@ From the repository root:
 uv run cx generate-example --path examples/entity/nonprofit/us_ma_01/
 ```
 
-Or run each step manually:
-
-1. Normalize the raw source  
-2. Canonicalize  
-3. Compute SNFEI  
-4. Build final entity record via Rust:
+Or manually:
 
 ```python
 from cep_py import build_entity_json
-build_entity_json(normalized_json)
+entity_record = build_entity_json(normalized_json)
 ```
 
 ---
 
 ## Related Documentation
 
-- **Identifier Schemes**  
-  `docs/en/reference/identifier-schemes.md`
-
-- **Entity Specification**  
-  `docs/en/reference/entity.md`
-
-- **Normalization and SNFEI**  
-  `docs/en/concepts/normalization.md`
+- [Identifier Schemes](../../../reference/identifier-schemes.md)  
+- [Entity Specification](../../../reference/entity.md)  
+- [Normalization & SNFEI](../../../concepts/normalization.md)
 
 ---
 
-## Files for This Example
+## Example Files
 
-Links to the files in GitHub:
-
-- [`01_raw_source.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/nonprofit/us_ma_01/01_raw_source.json)
-- [`02_normalized.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/nonprofit/us_ma_01/02_normalized.json)
-- [`03_canonical.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/nonprofit/us_ma_01/03_canonical.json)
+- [`01_raw_source.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/nonprofit/us_ma_01/01_raw_source.json)  
+- [`02_normalized.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/nonprofit/us_ma_01/02_normalized.json)  
+- [`03_canonical.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/nonprofit/us_ma_01/03_canonical.json)  
 - [`04_entity_record.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/nonprofit/us_ma_01/04_entity_record.json)
-

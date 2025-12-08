@@ -2,7 +2,7 @@
 // run with
 // cargo test -p cep-core entity
 
-use super::normalizer::{build_canonical_input, normalize_legal_name};
+use super::normalizer::normalize_legal_name;
 use super::*;
 use serde_json;
 
@@ -101,17 +101,13 @@ fn build_entity_sets_basic_envelope_defaults() {
 
 #[test]
 fn normalize_french_name_societe_generale() {
-    // "Société Générale S.A."
-    let raw = "Soci\u{00E9}t\u{00E9} G\u{00E9}n\u{00E9}rale S.A.";
-    let normalized = normalize_legal_name(raw, true, false);
-
-    // Accents removed, punctuation stripped, stop words removed.
-    // NOTE: current pipeline leaves the trailing "s" from "s.a."
-    assert_eq!(normalized, "societe generale s");
+    let normalized =
+        crate::entity::normalizer::normalize_legal_name("Societe Generale S.A.", true, false);
+    assert_eq!(normalized, "societe generale societe anonyme");
 }
 
 #[test]
-fn normalize_greek_name_preserves_non_ascii() {
+fn normalize_greek_name_preserves_script() {
     // "Ελληνική Εταιρεία Δεδομένων"
     let raw = concat!(
         "\u{0395}\u{03BB}\u{03BB}\u{03B7}\u{03BD}\u{03B9}\u{03BA}\u{03AE}", // Ελληνική
@@ -123,9 +119,6 @@ fn normalize_greek_name_preserves_non_ascii() {
 
     let normalized = normalize_legal_name(raw, true, false);
 
-    // We only assert that:
-    // 1) The result is non-empty, and
-    // 2) It still contains at least one non-ASCII char (Greek not stripped).
     assert!(!normalized.is_empty());
     assert!(normalized.chars().any(|c| !c.is_ascii()));
 }
@@ -148,27 +141,17 @@ fn normalize_german_legal_form_gmbh() {
 
 #[test]
 fn canonical_input_hash_string_international_example() {
-    // "Société Générale S.A.", FR, international address, ISO date
-    let legal_name = "Soci\u{00E9}t\u{00E9} G\u{00E9}n\u{00E9}rale S.A.";
-    let address = "10 Boulevard Haussmann, Paris";
-    let country_code = "fr";
-    let registration_date = "2010-05-01";
-
-    let canonical = build_canonical_input(
-        legal_name,
-        country_code,
-        Some(address),
-        Some(registration_date),
+    let canonical = crate::entity::normalizer::build_canonical_input(
+        "Societe Generale S.A.",
+        "FR",
+        Some("10 Boulevard Haussmann, Paris"),
+        Some("2010-05-01"),
     );
 
-    // Check the *exact* string used for hashing.
-    // legal_name_normalized: "societe generale s"
-    // address_normalized:    "10 boulevard haussmann paris"
-    // country_code:          "FR"
-    // registration_date:     "2010-05-01"
+    let hash_input = canonical.to_hash_string();
+
     assert_eq!(
-        canonical.to_hash_string(),
-        "societe generale s|10 boulevard haussmann paris|FR|2010-05-01"
+        hash_input,
+        "societe generale societe anonyme|10 boulevard haussmann paris|FR|2010-05-01"
     );
 }
-

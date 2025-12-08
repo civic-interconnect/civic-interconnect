@@ -12,8 +12,6 @@ pub use super::generated::{
     Timestamps,
 };
 
-
-
 impl EntityRecord {
     pub fn is_active(&self) -> bool {
         matches!(self.status.status_code, StatusCode::Active)
@@ -29,7 +27,6 @@ impl From<(&str, &str)> for Identifier {
         }
     }
 }
-
 
 /// Normalized input payload from adapters.
 ///
@@ -96,6 +93,7 @@ fn build_entity_from_normalized(input: NormalizedEntityInput) -> EntityRecord {
         short_name: None,
 
         identifiers: Some(build_identifiers_snfei(&input.snfei)),
+        ctags: None,
 
         // Filled later by upstream systems as desired.
         inception_date: None,

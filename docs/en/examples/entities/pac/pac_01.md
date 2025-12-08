@@ -1,94 +1,88 @@
-# CEP Entity Example: PAC (pac_01)
+# Example: PAC Entity (pac_01)
 
-This page provides a documentation view of the example located at:
+This example demonstrates a CEP EntityRecord for a Political Action Committee (PAC).  
+It follows the standard four-stage CEP example pipeline described in  
+[**How CEP Examples Work**](../../README.md).
 
-```
+Directory:
+
+```text
 examples/entity/pac/pac_01/
 ```
 
-That directory contains a **vertical slice** of the CEP Entity pipeline:
+Files:
 
-```
-01_raw_source.json   = raw input from the upstream system
-02_normalized.json   = adapter-normalized form (NormalizedEntityInput)
-03_canonical.json    = canonicalized input (Normalizing Functor)
-04_entity_record.json= final EntityRecord produced by the Rust builder
+```text
+01_raw_source.json
+02_normalized.json
+03_canonical.json
+04_entity_record.json
 ```
 
 ---
 
-## What This Example Shows
+## Highlights of This Example
 
-This example illustrates:
+This example demonstrates PAC-specific characteristics:
 
-- How the **Normalizing Functor** transforms inconsistent source data  
-- How the **SNFEI** is computed and used as the entity’s `verifiableId`
-- How the **Identifier Scheme Vocabulary** applies (`schemeUri` → SNFEI term)
-- How the **EntityRecord envelope** (status, timestamps, attestation) is produced
-- How minimal but valid inputs produce a fully structured CEP record
+- Shows normalization of PAC names, which often include financial or campaign-specific suffixes.
+- Illustrates how identifier inputs (e.g., state or federal PAC IDs) contribute to the SNFEI preimage.
+- Applies the `pac` `entityTypeUri`.
+- Demonstrates that even highly varied upstream PAC filings normalize into a stable canonical representation.
+- Contains a first-revision EntityRecord with no amendment history.
+
+For a complete explanation of each pipeline stage, see  
+[How CEP Examples Work](../../README.md).
 
 ---
 
-## Pipeline Summary
+## Pipeline Notes (Specific to This Example)
 
-### 1. Raw Source → Normalized Input  
+### Normalization (02)
+
 The adapter extracts:
 
 - `jurisdictionIso`
 - `legalName`
 - `legalNameNormalized`
-- `entityType`
-- `snfei` (via Rust SNFEI generator)
+- `entityType: pac`
+- SNFEI preimage components (sometimes including federal or state PAC identifiers)
 
-### 2. Normalized Input → Canonical Input  
-The Canonical Input stage applies:
+PAC names often contain uppercase acronyms, campaign references, and punctuation; the normalizer handles these deterministically.
 
-- Unicode normalization  
-- whitespace & punctuation cleanup  
-- deterministic hashing-preimage formation
+### Canonicalization (03)
 
-### 3. Canonical Input → SNFEI  
-SNFEI is computed as:
+The canonical form includes:
 
-```
-SNFEI = SHA256( canonical.to_hash_string() )
-```
+- normalized PAC name  
+- jurisdiction code  
+- entity type  
+- deterministically ordered fields  
 
-### 4. SNFEI + Normalized Input → EntityRecord  
-Using:
+PACs sometimes have complex or lengthy names, but canonicalization treats them uniformly.
 
-```
-cep_py.build_entity_json(normalized_json)
-```
+### Verifiable ID (SNFEI)
 
-The resulting EntityRecord includes:
+SNFEI is computed via:
 
-- `verifiableId = "cep-entity:snfei:<hash>"`
-- `identifiers[]` with the official SNFEI `schemeUri`
-- Envelope metadata (status, timestamps, attestation)
-- Domain fields (legalName, jurisdictionIso, entityTypeUri)
-
----
-
-## Quick Preview
-
-**SNFEI used:**
-
-```
-<insert-short-hash>…
+```text
+SHA256( canonical.to_hash_string() )
 ```
 
-**Record Type URI:**
+The resulting SNFEI:
 
-```
-https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#<entity-type>
-```
+- forms the `verifiableId`, and  
+- appears in the `identifiers[]` array under the SNFEI identifier scheme.
 
-**Identifier Scheme:**
+### Final EntityRecord (04)
 
-```
-https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei
-```
+The Rust builder (`build_entity_json`) produces:
+
+- the complete EntityRecord  
+- default `status` and `statusEffectiveDate`
+- revision metadata (`revisionNumber`, `recordHash`)
+- a cryptographic attestation
+- canonical URIs for PAC entity type and SNFEI identifier scheme  
 
 ---
 
@@ -100,39 +94,26 @@ From the repository root:
 uv run cx generate-example --path examples/entity/pac/pac_01/
 ```
 
-Or run each step manually:
-
-1. Normalize the raw source  
-2. Canonicalize  
-3. Compute SNFEI  
-4. Build final entity record via Rust:
+Or manually:
 
 ```python
 from cep_py import build_entity_json
-build_entity_json(normalized_json)
+entity_record = build_entity_json(normalized_json)
 ```
 
 ---
 
 ## Related Documentation
 
-- **Identifier Schemes**  
-  `docs/en/reference/identifier-schemes.md`
-
-- **Entity Specification**  
-  `docs/en/reference/entity.md`
-
-- **Normalization and SNFEI**  
-  `docs/en/concepts/normalization.md`
+- [Identifier Schemes](../../../reference/identifier-schemes.md)  
+- [Entity Specification](../../../reference/entity.md)  
+- [Normalization & SNFEI](../../../concepts/normalization.md)
 
 ---
 
-## Files for This Example
+## Example Files
 
-Links to the files in GitHub:
-
-- [`01_raw_source.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/pac/pac_01/01_raw_source.json)
-- [`02_normalized.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/pac/pac_01/02_normalized.json)
-- [`03_canonical.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/pac/pac_01/03_canonical.json)
+- [`01_raw_source.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/pac/pac_01/01_raw_source.json)  
+- [`02_normalized.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/pac/pac_01/02_normalized.json)  
+- [`03_canonical.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/pac/pac_01/03_canonical.json)  
 - [`04_entity_record.json`](https://github.com/civic-interconnect/civic-interconnect/blob/main/examples/entity/pac/pac_01/04_entity_record.json)
-

@@ -3,6 +3,19 @@
 This guide provides a practical overview for developers building Civic Exchange Protocol (CEP) implementations in any language.  
 It complements the formal schemas and the categorical foundations by describing how to validate, construct, serialize, and verify CEP records in a deterministic and interoperable way.
 
+CEP defines a stable core specification (CEP-Core).
+Jurisdictions or systems may optionally adopt additional implementation profiles to support specialized workflows (e.g., AI constraints, legacy onboarding, or extended privacy requirements).
+Profiles do not alter the core Civic category.
+For more information, see [profiles.md](./profiles.md).
+
+This implementation guide covers:
+
+- how revisions work
+- how to create updates without overwriting
+- what to do about onboarding mistakes
+- how to manage very long chains
+- how to handle bulk imports
+
 ---
 
 ## Technical Assurance
@@ -306,7 +319,21 @@ All languages MUST yield identical canonical bytes.
 
 ---
 
-## 13. Summary
+## 13. Revision Mechanics & Long-Term Operation
+
+### Non-Destructive Revision Model (Practical Implementation)
+
+### Revision Classification for Error Handling
+
+### Hash-Checkpointing for Long Chains
+
+### Onboarding Legacy Systems Without Violating Invariants
+
+### Operational Best Practices for Persisting Large Provenance Graphs
+
+---
+
+## Summary
 
 A complete CEP implementation MUST:
 

@@ -5,14 +5,6 @@ members = [
     "crates/cep-py",
 ]
 
-[workspace.package]
-version = "0.1.0"
-edition = "2024"
-license = "Apache-2.0"
-description = "Civic Interconnect Standard Rust Workspace"
-repository = "https://github.com/civic-interconnect/civic-interconnect"
-keywords = ["civic", "interconnect", "contract", "government", "exchange"]
-
 [workspace.dependencies]
 chrono = { version = "0.4", features = ["serde"] }
 lazy_static = "1.4"

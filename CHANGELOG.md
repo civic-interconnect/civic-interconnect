@@ -17,6 +17,34 @@ and this project adheres to **[Semantic Versioning](https://semver.org/spec/v2.0
 
 ---
 
+## [0.0.3] – 2025-12-08
+
+### Added
+
+- Rust–Python FFI stabilization:
+  - New generate_snfei_detailed wrapper exposed cleanly through the Python cep_py extension module.
+  - Python snfei package exports normalized function names with correct .pyi stubs.
+- Improved international normalization behavior:
+  - Legal-name normalization now preserves non-ASCII scripts (e.g., Greek) instead of ASCII-stripping entire strings.
+  - Added targeted compatibility handling for dotted legal forms (e.g., S.A. to sa) before punctuation removal.
+
+### Changed
+
+- Normalization pipeline (Rust):
+  - Revised abbreviation expansion ordering to prevent accidental s to south expansions in international names.
+  - Updated French S.A. handling to resolve correctly to societe anonyme during canonicalization.
+  - Deterministic alignment of canonical hash strings across Rust and Python paths.
+- Removed Python normalizers:
+  - Python-side normalization logic removed in favor of the authoritative Rust implementation.
+  - Updated CLI (cx) and Python package imports to route through FFI-backed functions only.
+- Typing:
+  - Consolidated Python stub files  __init__.pyi) so Pylance correctly resolves exported symbols.
+
+### Deleted
+- Removed legacy Python SNFEI and normalization implementations in place of Rust logic.
+
+---
+
 ## [0.0.2] – 2025-12-07
 
 ### Added
@@ -58,7 +86,7 @@ and this project adheres to **[Semantic Versioning](https://semver.org/spec/v2.0
   - Address canonicalization
   - Deterministic hash construction
 - First canonicalization test vectors for French, German, Greek, and international cases.
-- Architecture foundations for Entity, Relationship, Exchange, and P3Tag record families.
+- Architecture foundations for Entity, Relationship, Exchange, and Context Tag record families.
 - Initial FFI boundary design (python to Rust) with validated JSON record output.
 - Initial CI workflows and package metadata for PyPI distribution.
 
@@ -74,6 +102,7 @@ and this project adheres to **[Semantic Versioning](https://semver.org/spec/v2.0
   Tag the repository with `vX.Y.Z` to publish a release.
 - Documentation and badges are updated per tag and aliased to **latest**.
 
-[Unreleased]: https://github.com/civic-interconnect/civic-interconnect/compare/v0.0.2...HEAD  
+[Unreleased]: https://github.com/civic-interconnect/civic-interconnect/compare/v0.0.3...HEAD  
+[0.0.3]: https://github.com/civic-interconnect/civic-interconnect/releases/tag/v0.0.2
 [0.0.2]: https://github.com/civic-interconnect/civic-interconnect/releases/tag/v0.0.2
 [0.0.1]: https://github.com/civic-interconnect/civic-interconnect/releases/tag/v0.0.1
