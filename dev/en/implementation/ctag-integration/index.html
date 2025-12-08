@@ -12,13 +12,13 @@
         <meta name="author" content="civic-interconnect">
       
       
-        <link rel="canonical" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/validator/">
+        <link rel="canonical" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/ctag-integration/">
       
       
-        <link rel="prev" href="../implementation-guide/">
+        <link rel="prev" href="../validator/">
       
       
-        <link rel="next" href="../ctag-integration/">
+        <link rel="next" href="../casing/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Validator - civic-interconnect</title>
+        <title>CTag Integration - civic-interconnect</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#validator" class="md-skip">
+        <a href="#ctag-integration-in-cep-record-envelopes" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Validator
+              CTag Integration
             
           </span>
         </div>
@@ -804,37 +804,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Validator
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../validator/" class="md-nav__link">
         
   
   
@@ -850,70 +823,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#schema-endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Schema Endpoints
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1-choose-schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1. Choose schema
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-input-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2. Input JSON
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-validation-result" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3. Validation Result
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -923,10 +832,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../ctag-integration/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -942,6 +860,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1915,58 +1834,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#schema-endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Schema Endpoints
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1-choose-schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1. Choose schema
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-input-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2. Input JSON
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-validation-result" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3. Validation Result
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1985,93 +1852,229 @@
   
 
 
-<h1 id="validator">Validator<a class="headerlink" href="#validator" title="Permanent link">&para;</a></h1>
-<p>Paste a sample Civic Exchange Protocol record below and validate it
-against one of the official schemas.</p>
+<h1 id="ctag-integration-in-cep-record-envelopes">CTag Integration in CEP Record Envelopes<a class="headerlink" href="#ctag-integration-in-cep-record-envelopes" title="Permanent link">&para;</a></h1>
+<p>This is provided for implementers of CEP-compliant systems and pipelines.</p>
 <hr />
-<h2 id="schema-endpoints">Schema Endpoints<a class="headerlink" href="#schema-endpoints" title="Permanent link">&para;</a></h2>
-<p>The validator checks your JSON against one of the official Civic Exchange Protocol schemas:</p>
+<h1 id="1-purpose">1. Purpose<a class="headerlink" href="#1-purpose" title="Permanent link">&para;</a></h1>
+<p>Context Tags (<strong>CTags</strong>) are lightweight annotations that attach to a <strong>record envelope</strong>, not to the internal entity, relationship, or exchange payload.</p>
+<p>CTags provide interpretive, analytic, or contextual notes that help downstream systems understand how a record is being used, evaluated, or interpreted.
+They do <strong>not</strong> affect canonical identity, SNFEI, schema validity, or the meaning of the core data.</p>
+<p>CTags are:</p>
 <ul>
-<li>
-<p><strong>Entity Schema</strong><br />
-<a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json">https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json</a></p>
-</li>
-<li>
-<p><strong>Relationship Schema</strong><br />
-<a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.relationship.schema.json">https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.relationship.schema.json</a></p>
-</li>
-<li>
-<p><strong>Exchange Schema</strong><br />
-<a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.exchange.schema.json">https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.exchange.schema.json</a></p>
-</li>
-<li>
-<p><strong>Identifier Scheme vocabularies</strong><br />
-<a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.identifier-scheme.schema.json">https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.identifier-scheme.schema.json</a></p>
-</li>
+<li>optional  </li>
+<li>vocabulary-governed  </li>
+<li>non-destructive  </li>
+<li>independent of canonicalization  </li>
+<li>safe to add, modify, or remove without altering the record’s semantics  </li>
+</ul>
+<p>This document defines how CTags integrate with CEP record envelopes.</p>
+<hr />
+<h1 id="2-record-envelope-overview">2. Record Envelope Overview<a class="headerlink" href="#2-record-envelope-overview" title="Permanent link">&para;</a></h1>
+<p>All CEP records (entities, relationships, exchanges, p3tags, etc.) share the same envelope structure.
+The envelope contains:</p>
+<ul>
+<li>identity and type information  </li>
+<li>schema version  </li>
+<li>lifecycle status  </li>
+<li>timestamps  </li>
+<li>attestations  </li>
+<li>optional <strong>ctags</strong>  </li>
+</ul>
+<p>The CTags appear at the envelope level:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;recordKind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;entity&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;recordSchemaUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;schemaVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;revisionNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;verifiableId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cep-entity:snfei:...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;recordTypeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;...&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;timestamps&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;...&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;attestations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&quot;...snip...&quot;</span><span class="w"> </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;ctags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;typeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.org/vocab/ctag-type#analysis.cluster.membership&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cluster-12&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Optional note.&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The <strong>payload</strong> (e.g., entity fields, relationship fields, exchange content) sits beside the envelope fields, not inside CTags.</p>
+<hr />
+<h1 id="3-why-ctags-live-in-the-envelope">3. Why CTags Live in the Envelope<a class="headerlink" href="#3-why-ctags-live-in-the-envelope" title="Permanent link">&para;</a></h1>
+<h3 id="31-separation-of-meaning-vs-interpretation">3.1 Separation of Meaning vs Interpretation<a class="headerlink" href="#31-separation-of-meaning-vs-interpretation" title="Permanent link">&para;</a></h3>
+<p>The envelope is the correct location for annotations because:</p>
+<ul>
+<li>The <strong>payload</strong> expresses the factual civic record.</li>
+<li>The <strong>envelope</strong> expresses lifecycle context, attestations, and analytic overlays.</li>
+<li>CTags belong with the latter.</li>
+</ul>
+<p>This separation prevents accidental semantic modification of the underlying civic facts.</p>
+<hr />
+<h3 id="32-safe-for-canonicalization">3.2 Safe for Canonicalization<a class="headerlink" href="#32-safe-for-canonicalization" title="Permanent link">&para;</a></h3>
+<p>CTags <strong>do not participate</strong> in:</p>
+<ul>
+<li>normalization  </li>
+<li>canonical input building  </li>
+<li>SNFEI hashing or ID derivation  </li>
+</ul>
+<p>A record with or without CTags must have the <strong>same SNFEI</strong> and the same canonical identity.</p>
+<p>Deterministic pipelines must treat CTags as optional, removable accessories.</p>
+<hr />
+<h3 id="33-compatible-with-multiple-uses">3.3 Compatible With Multiple Uses<a class="headerlink" href="#33-compatible-with-multiple-uses" title="Permanent link">&para;</a></h3>
+<p>Envelope-level CTags support:</p>
+<ul>
+<li>risk flags  </li>
+<li>data quality indicators  </li>
+<li>clustering or classification results  </li>
+<li>editorial highlights  </li>
+<li>narrative tags used in reports  </li>
+<li>AI-assisted annotations  </li>
+</ul>
+<p>All without polluting the core civic data model.</p>
+<hr />
+<h1 id="4-ctag-object-structure">4. CTag Object Structure<a class="headerlink" href="#4-ctag-object-structure" title="Permanent link">&para;</a></h1>
+<p>Each tag references a controlled vocabulary term:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;typeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.org/vocab/ctag-type#quality.issue.incomplete_address&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Address missing postal code&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>typeUri</code></td>
+<td>yes</td>
+<td>URI of the CTag type from the ctag-type vocabulary</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>no</td>
+<td>JSON value (string, boolean, number, object)</td>
+</tr>
+<tr>
+<td><code>note</code></td>
+<td>no</td>
+<td>Human-readable explanation</td>
+</tr>
+</tbody>
+</table>
+<p>Implementations may extend with additional optional fields as long as the vocabulary contract remains intact.</p>
+<hr />
+<h1 id="5-how-systems-should-use-ctags">5. How Systems Should Use CTags<a class="headerlink" href="#5-how-systems-should-use-ctags" title="Permanent link">&para;</a></h1>
+<h3 id="51-ingestion-pipelines">5.1 Ingestion Pipelines<a class="headerlink" href="#51-ingestion-pipelines" title="Permanent link">&para;</a></h3>
+<p>Adapters may add tags such as:</p>
+<ul>
+<li>incomplete fields  </li>
+<li>inconsistent identifiers  </li>
+<li>address quality issues  </li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ctags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;typeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://...#quality.issue.incomplete_address&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="52-analysis-and-machine-learning-pipelines">5.2 Analysis and Machine Learning Pipelines<a class="headerlink" href="#52-analysis-and-machine-learning-pipelines" title="Permanent link">&para;</a></h3>
+<p>Analytic systems may add tags like:</p>
+<ul>
+<li>cluster membership  </li>
+<li>risk classification  </li>
+<li>anomaly scores  </li>
+<li>narrative highlights  </li>
+<li>AI summary categories  </li>
+</ul>
+<p>These do not change the core record; they only annotate it.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;ctags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;typeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://...#analysis.cluster.membership&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cluster-7&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;typeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://...#narrative.highlight.key_actor&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Mentioned in investigative report&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="53-exchange-and-workflow-systems">5.3 Exchange and Workflow Systems<a class="headerlink" href="#53-exchange-and-workflow-systems" title="Permanent link">&para;</a></h3>
+<p>When a workflow involves document packets, filings, or automated transformations, CTags may indicate:</p>
+<ul>
+<li>processing status  </li>
+<li>triage flags  </li>
+<li>routing categories  </li>
+<li>confidence levels from AI models  </li>
+</ul>
+<p>Because CTags are non-semantic, they can be applied uniformly across record types.</p>
+<hr />
+<h1 id="6-validation-rules">6. Validation Rules<a class="headerlink" href="#6-validation-rules" title="Permanent link">&para;</a></h1>
+<p>A conformant implementation MUST ensure:</p>
+<ol>
+<li><code>typeUri</code> is a valid URI and maps to a vocabulary term.  </li>
+<li>CTags do <strong>not</strong> modify <code>verifiableId</code>, canonical identity, or payload semantics.  </li>
+<li><code>value</code> is valid JSON if present.  </li>
+<li>Adding or removing a CTag must leave the core record unchanged.  </li>
+<li>CTags must not interfere with schema-required fields.</li>
+</ol>
+<p>Best practices:</p>
+<ul>
+<li>flag deprecated CTag terms  </li>
+<li>treat unknown terms as warnings, not fatal errors  </li>
+<li>keep CTags small and additive  </li>
 </ul>
 <hr />
-<h2 id="step-1-choose-schema">Step 1. Choose schema<a class="headerlink" href="#step-1-choose-schema" title="Permanent link">&para;</a></h2>
-<p><select id="schema-select">
-<br />
-<option selected value="entity">Entity (cep.entity.schema.json)</option></p>
-<option value="relationship">Relationship (cep.relationship.schema.json)</option>
-<option value="exchange">Exchange (cep.exchange.schema.json)</option>
-<p></select></p>
-<hr />
-<h2 id="step-2-input-json">Step 2. Input JSON<a class="headerlink" href="#step-2-input-json" title="Permanent link">&para;</a></h2>
-<textarea id="data-to-validate" rows="18" style="width: 100%; font-family: monospace;">
-{
-  "schemaVersion": "1.0.0",
-  "verifiableId": "cep-entity:sam-uei:J6H4FB3N5YK7",
-  "identifiers": {
-    "samUei": "J6H4FB3N5YK7",
-    "snfei": "d41d8cd98f00b204e9800998ecf8427ed41d8cd98f00b204e9800998ecf8427e",
-    "additionalSchemes": [
-      {
-        "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/identifier-scheme.json#us-mn-district-id",
-        "value": "ISD-0123"
-      },
-      {
-        "schemeUri": "https://opencivicdata.org/id/division",
-        "value": "ocd-division/country:us/state:mn/school_district:123"
-      }
-    ]
-  },
-  "legalName": "Springfield Public School District 123",
-  "legalNameNormalized": "springfield public school district 123",
-  "entityTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#school-district",
-  "jurisdictionIso": "US-MN",
-  "status": {
-    "statusCode": "ACTIVE",
-    "statusEffectiveDate": "2001-07-01",
-    "statusTerminationDate": null,
-    "successorEntityId": null
-  },
-  "naicsCode": null,
-  "resolutionConfidence": {
-    "score": 1.0,
-    "methodUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/resolution-method.json#authoritative-sam-sync",
-    "sourceRecordCount": 1
-  },
-  "attestation": {
-    "attestorId": "cep-entity:sam-uei:EDFEDERAL0001",
-    "attestationTimestamp": "2025-11-28T15:30:45.123456Z",
-    "proofType": "Ed25519Signature2020",
-    "proofValue": "BASE64_SIGNATURE_VALUE_HERE",
-    "verificationMethodUri": "https://keys.civic-interconnect.org/attestors/edfederal-node-1#primary-key",
-    "proofPurpose": "assertionMethod",
-    "anchorUri": null
-  },
-  "previousRecordHash": null,
-  "revisionNumber": 1
-}
-</textarea>
+<h1 id="7-example-entity-record-envelope-with-ctags">7. Example: Entity Record Envelope with CTags<a class="headerlink" href="#7-example-entity-record-envelope-with-ctags" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;recordKind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;entity&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;recordSchemaUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://.../entity.schema.json&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;schemaVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;revisionNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;verifiableId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cep-entity:snfei:...&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;recordTypeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://...#municipality&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;statusCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACTIVE&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;statusEffectiveDate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1900-01-01&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;timestamps&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;firstSeenAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;lastUpdatedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;validFrom&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;attestations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;...&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span>
 
+<span class="w">  </span><span class="nt">&quot;ctags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;typeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://...#narrative.highlight.key_actor&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;note&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Frequently referenced in planning documents&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;City of Springfield&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;jurisdictionIso&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;US-IL&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;identifiers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;...&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
-<h2 id="step-3-validation-result">Step 3. Validation Result<a class="headerlink" href="#step-3-validation-result" title="Permanent link">&para;</a></h2>
-<div id="validation-result" style="font-weight: bold; padding: 10px; border: 1px solid #ccc;">
-  (Waiting for input...)
-</div>
+<h1 id="8-summary">8. Summary<a class="headerlink" href="#8-summary" title="Permanent link">&para;</a></h1>
+<ul>
+<li>CTags live exclusively in the <strong>record envelope</strong>, not in core payload structures.  </li>
+<li>CTags provide non-destructive, optional, vocabulary-driven annotations.  </li>
+<li>Adding, removing, or modifying CTags does not affect canonicalization or identity.  </li>
+<li>CTags support analytics, data quality, workflows, and narrative reporting.  </li>
+<li>CTag infrastructure unifies annotation across all CEP record families.</li>
+</ul>
 
 
 
