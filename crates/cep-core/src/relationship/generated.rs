@@ -6,6 +6,7 @@
 
 use serde::{Deserialize, Serialize};
 
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum RecordKind {
     #[serde(rename = "entity")]
@@ -35,6 +36,7 @@ pub enum StatusCode {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct StatusEnvelope {
+
     #[serde(rename = "statusCode")]
     pub status_code: StatusCode,
 
@@ -50,6 +52,7 @@ pub struct StatusEnvelope {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Timestamps {
+
     #[serde(rename = "firstSeenAt")]
     pub first_seen_at: String,
 
@@ -68,6 +71,7 @@ pub struct Timestamps {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Attestation {
+
     #[serde(rename = "attestationTimestamp")]
     pub attestation_timestamp: String,
 
@@ -93,11 +97,23 @@ pub struct Attestation {
     pub source_reference: Option<String>,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Sourcereferencesitem {
+    #[serde(rename = "sourceSystemUri")]
+    pub source_system_uri: String,
+    #[serde(rename = "sourceRecordId")]
+    pub source_record_id: String,
+    #[serde(rename = "sourceUrl")]
+    pub source_url: Option<String>,
+}
+
 /// Defines a verifiable legal or functional relationship between two or more attested entities. Supports bilateral contracts, n-ary memberships, fiscal sponsorships, and hierarchical compositions. CEP Relationships are designed to interoperate with existing open civic standards (Popolo Membership/Post, Open Civic Data organizations and jurisdictions, Open Contracting Data Standard awards/contracts, Schema.org Grant/MonetaryGrant, HSDS funding relationships) via recordTypeUri, roleUri, and sourceReferences.
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RelationshipRecord {
+
     #[serde(rename = "recordKind")]
     pub record_kind: RecordKind,
 
@@ -149,7 +165,7 @@ pub struct RelationshipRecord {
     pub jurisdiction_iso: String,
 
     #[serde(rename = "sourceReferences")]
-    pub source_references: Option<Vec<serde_json::Value>>,
+    pub source_references: Option<Vec<Sourcereferencesitem>>,
 
     #[serde(rename = "previousRecordHash")]
     pub previous_record_hash: Option<String>,

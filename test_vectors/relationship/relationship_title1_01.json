@@ -3,24 +3,24 @@
   "verifiableId": "cep-exchange:mn-doe:TITLE1_2025_Q1_DISB_0001",
   "relationshipId": "cep-relationship:usdoe:TITLE1_2025_SPRINGFIELD123",
 
-  "exchangeTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-type.json#grant-disbursement",
+  "exchangeTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-type.json#grant-disbursement",
 
   "sourceEntity": {
     "entityId": "cep-entity:sam-uei:MNSTATEED0002",
-    "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-role.json#disbursing-agency",
+    "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-role.json#disbursing-agency",
     "accountIdentifier": "MN_ED_TITLE1_FUND_FY2025"
   },
 
   "recipientEntity": {
     "entityId": "cep-entity:sam-uei:J6H4FB3N5YK7",
-    "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-role.json#subrecipient",
+    "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-role.json#subrecipient",
     "accountIdentifier": "SPRINGFIELD123_GENERAL_FUND"
   },
 
   "value": {
     "amount": 125000.0,
     "currencyCode": "USD",
-    "valueTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/value-type.json#monetary",
+    "valueTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/value-type.json#monetary",
     "inKindDescription": null
   },
 
@@ -37,7 +37,7 @@
     "intermediaryEntities": [
       {
         "entityId": "cep-entity:sam-uei:MNSTATEED0002",
-        "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/exchange-role.json#pass-through-entity"
+        "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/exchange-role.json#pass-through-entity"
       }
     ],
     "parentExchangeId": null
@@ -53,7 +53,7 @@
 
   "sourceReferences": [
     {
-      "sourceSystemUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/source-system.json#mn-state-finance",
+      "sourceSystemUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/source-system.json#mn-state-finance",
       "sourceRecordId": "MN_FIN_2025_09_VCHR_00012345",
       "sourceUrl": "https://open.checkbook.mn.gov/#!/payment/MN_FIN_2025_09_VCHR_00012345"
     }

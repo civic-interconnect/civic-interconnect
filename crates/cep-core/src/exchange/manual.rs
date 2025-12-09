@@ -1,74 +1,59 @@
 // crates/cep-core/src/exchange/manual.rs
-use crate::common::errors::CepResult;
-use serde::{Deserialize, Serialize};
 
-pub use super::generated::{
-    Attestation, ExchangeRecord, RecordKind, StatusCode, StatusEnvelope, Timestamps,
+// Pull in the generated types.
+use crate::exchange::generated::{
+    ExchangeRecord,
+    Exchangestatus,
+    Sourceentity,
+    Recipiententity,
+    Value,
 };
 
-// Add ergonomic helpers
+use crate::common::errors::CepResult;
+
+// Ergonomic type aliases so downstream code can use nicer names if desired.
+pub type SourceEntity = Sourceentity;
+pub type RecipientEntity = Recipiententity;
+pub type ExchangeValue = Value;
+pub type ExchangeStatusLite = Exchangestatus;
+
+// Re-export commonly used generated types so callers can just use `exchange::manual::*`.
+pub use crate::exchange::generated::{Attestation as GeneratedAttestation};
+
+// Add ergonomic helpers on the generated ExchangeRecord.
 impl ExchangeRecord {
+    /// Returns the YYYY-MM-DD portion of occurredTimestamp.
+    /// Note: this assumes occurredTimestamp is at least 10 characters long.
     pub fn occurred_date(&self) -> &str {
         &self.occurred_timestamp[..10]
+    }
+
+    /// Strongly-typed access to the source entity.
+    pub fn source_entity_typed(&self) -> &SourceEntity {
+        &self.source_entity
+    }
+
+    /// Strongly-typed access to the recipient entity.
+    pub fn recipient_entity_typed(&self) -> &RecipientEntity {
+        &self.recipient_entity
+    }
+
+    /// Strongly-typed access to the value block.
+    pub fn value_typed(&self) -> &ExchangeValue {
+        &self.value
+    }
+
+    /// Strongly-typed access to the exchange status.
+    pub fn exchange_status_typed(&self) -> &ExchangeStatusLite {
+        &self.exchange_status
     }
 }
 
 /// Temporary stub builder for exchanges.
+/// For now this is a passthrough; future work can:
+/// - validate against the schema
+/// - hydrate into `ExchangeRecord`
+/// - attach attestations / hashes, etc.
 pub fn build_exchange_from_normalized_json(input_json: &str) -> CepResult<String> {
     Ok(input_json.to_string())
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct SourceEntity {
-    pub entity_id: String,
-    pub role_uri: Option<String>,
-    pub account_identifier: Option<String>,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct RecipientEntity {
-    pub entity_id: String,
-    pub role_uri: Option<String>,
-    pub account_identifier: Option<String>,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ExchangeValue {
-    pub amount: f64,
-    #[serde(rename = "currencyCode")]
-    pub currency_code: Option<String>,
-    #[serde(rename = "valueTypeUri")]
-    pub value_type_uri: Option<String>,
-    #[serde(rename = "inKindDescription")]
-    pub in_kind_description: Option<String>,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ExchangeStatusLite {
-    #[serde(rename = "statusCode")]
-    pub status_code: String,
-    #[serde(rename = "statusEffectiveTimestamp")]
-    pub status_effective_timestamp: String,
-}
-
-impl ExchangeRecord {
-    pub fn source_entity_typed(&self) -> Option<SourceEntity> {
-        serde_json::from_value(self.source_entity.clone()).ok()
-    }
-
-    pub fn recipient_entity_typed(&self) -> Option<RecipientEntity> {
-        serde_json::from_value(self.recipient_entity.clone()).ok()
-    }
-
-    pub fn value_typed(&self) -> Option<ExchangeValue> {
-        serde_json::from_value(self.value.clone()).ok()
-    }
-
-    pub fn exchange_status_typed(&self) -> Option<ExchangeStatusLite> {
-        serde_json::from_value(self.exchange_status.clone()).ok()
-    }
 }

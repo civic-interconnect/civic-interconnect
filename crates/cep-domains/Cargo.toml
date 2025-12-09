@@ -1,0 +1,15 @@
+[package]
+name = "cep-domains"
+version = "0.1.0"
+edition = "2024"
+description = "CEP domain-specific record types"
+license = "Apache-2.0"
+
+[lib]
+name = "cep_domains"
+path = "src/lib.rs"
+
+[dependencies]
+cep-core = { path = "../cep-core" }
+serde = { workspace = true }
+serde_json = { workspace = true }

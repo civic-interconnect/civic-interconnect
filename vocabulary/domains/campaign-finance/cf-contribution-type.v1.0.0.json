@@ -1,0 +1,101 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/campaign-finance/cf-contribution-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "CEP Campaign Finance Contribution Type Vocabulary",
+  "description": "Controlled vocabulary for types of campaign finance contributions and receipts.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:contributionType:cf:individualContribution",
+      "code": "IND",
+      "label": "Individual Contribution",
+      "definition": "A contribution received from a natural person, including joint contributions from spouses.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:contributionType:cf:partyCommitteeContribution",
+      "code": "PARTY",
+      "label": "Party Committee Contribution",
+      "definition": "A contribution received from a political party committee.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:contributionType:cf:otherCommitteeContribution",
+      "code": "OTHER_CMTE",
+      "label": "Other Committee Contribution",
+      "definition": "A contribution received from a political committee that is not a party committee.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:contributionType:cf:loanReceived",
+      "code": "LOAN",
+      "label": "Loan Received",
+      "definition": "A loan received by the committee, including candidate loans and bank loans.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:contributionType:cf:inkindContribution",
+      "code": "IN_KIND",
+      "label": "In-kind Contribution",
+      "definition": "A non-monetary contribution of goods or services measured at fair market value.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:contributionType:cf:transferIn",
+      "code": "TRANSFER_IN",
+      "label": "Transfer In",
+      "definition": "Funds transferred into the committee from another committee under common control or within a party structure.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:contributionType:cf:refundToCommittee",
+      "code": "REFUND",
+      "label": "Refund or Rebate",
+      "definition": "A refund or rebate received by the committee from a vendor, payee, or previous recipient.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:contributionType:cf:otherReceipt",
+      "code": "OTHER",
+      "label": "Other Receipt",
+      "definition": "A receipt that does not fit any more specific contribution or transfer type.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    }
+  ],
+  "mappings": []
+}

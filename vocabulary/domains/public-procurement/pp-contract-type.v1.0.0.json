@@ -1,0 +1,100 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/public-procurement/pp-contract-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Public Procurement Contract Type Vocabulary",
+  "description": "Controlled vocabulary for high-level types of public procurement contracts.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:contractType:pp:works",
+      "code": "WORKS",
+      "label": "Works",
+      "definition": "A contract whose primary purpose is the execution, completion, or design of construction or civil engineering works.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "works"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:contractType:pp:supplies",
+      "code": "SUPPLIES",
+      "label": "Supplies",
+      "definition": "A contract whose primary purpose is the purchase, lease, rental, or hire of goods or supplies.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "goods"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:contractType:pp:services",
+      "code": "SERVICES",
+      "label": "Services",
+      "definition": "A contract whose primary purpose is the provision of services, including professional, technical, or operational services.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "services"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:contractType:pp:frameworkAgreement",
+      "code": "FRAMEWORK",
+      "label": "Framework Agreement",
+      "definition": "A contract establishing a framework under which specific call-offs, orders, or mini-competitions may take place over time.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:contractType:pp:concession",
+      "code": "CONCESSION",
+      "label": "Concession",
+      "definition": "A contract in which a private party receives the right to exploit works or services and derives remuneration from users rather than from direct public payments.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:contractType:pp:other",
+      "code": "OTHER",
+      "label": "Other Contract Type",
+      "definition": "A contract type that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

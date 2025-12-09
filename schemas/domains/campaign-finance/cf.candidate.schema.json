@@ -1,0 +1,15 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/campaign-finance/cf.candidate.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Campaign Finance Candidate",
+  "type": "object",
+  "properties": {
+    "entityTypeUri": { "const": "cep:entity:cf:candidate" },
+    "candidateIdentifier": { "type": "string" },
+    "legalName": { "type": "string" },
+    "partyUri": { "type": "string" },
+    "officeUri": { "type": "string" },
+    "jurisdictionUri": { "type": "string" }
+  },
+  "required": ["entityTypeUri", "candidateIdentifier", "legalName"]
+}

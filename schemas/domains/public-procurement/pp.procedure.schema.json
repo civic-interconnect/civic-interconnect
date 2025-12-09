@@ -1,0 +1,29 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/public-procurement/pp.procedure.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Procurement Procedure",
+  "type": "object",
+  "properties": {
+    "entityTypeUri": {
+      "const": "cep:entity:pp:procedure"
+    },
+    "procedureIdentifier": {
+      "type": "string"
+    },
+    "procedureTypeUri": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "jurisdictionUri": {
+      "type": "string"
+    }
+  },
+  "required": ["entityTypeUri", "procedureIdentifier", "procedureTypeUri"],
+  "additionalProperties": false
+}

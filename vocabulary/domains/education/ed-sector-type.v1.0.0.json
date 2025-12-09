@@ -1,0 +1,100 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/ed-sector-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Education Sector Type Vocabulary",
+  "description": "Controlled vocabulary for sector classifications of education institutions and programs.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:sectorType:ed:public",
+      "code": "PUBLIC",
+      "label": "Public",
+      "definition": "An institution or program that is publicly governed and funded, typically by a governmental body or public authority.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "IPEDS",
+          "code": "1"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:sectorType:ed:privateNonprofit",
+      "code": "PRIVATE_NONPROFIT",
+      "label": "Private Nonprofit",
+      "definition": "An institution or program operated by a nonprofit organization, not primarily for profit distribution to owners or shareholders.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "IPEDS",
+          "code": "2"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:sectorType:ed:privateForProfit",
+      "code": "PRIVATE_FORPROFIT",
+      "label": "Private For-profit",
+      "definition": "An institution or program operated as a for-profit enterprise, where owners or investors may receive financial returns.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "IPEDS",
+          "code": "3"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:sectorType:ed:charterOrSpecialStatus",
+      "code": "CHARTER",
+      "label": "Charter or Special Status",
+      "definition": "An institution or program operating under a charter, special statute, or similar special status framework within the public system.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:sectorType:ed:tribalOrIndigenous",
+      "code": "TRIBAL",
+      "label": "Tribal or Indigenous",
+      "definition": "An institution or program governed by or primarily serving a tribal or indigenous community under recognized authority.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:sectorType:ed:other",
+      "code": "OTHER",
+      "label": "Other Education Sector",
+      "definition": "An education sector classification that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

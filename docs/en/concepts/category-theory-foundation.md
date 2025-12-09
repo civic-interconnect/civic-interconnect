@@ -1,11 +1,11 @@
 # Category Theory Foundation for the Civic Exchange Protocol (CEP)
 
-> Mathematical definition of `Civic`
+> Mathematical definition of the category **CEP**
 
-## Abstract: A Categorical Data Model for Verifiable Civic Information
+## Abstract: A Categorical Data Model for Verifiable Information Exchange
 
-Government data today is fragmented across diverse systems that lack shared identity, provenance, and attestation structures.  
-The **Civic Exchange Protocol (CEP)** provides a mathematically principled interoperability layer defined as a category **Civic**, whose objects are attested civic entities and whose morphisms are typed relationships and exchanges.
+Government and institutional information today is fragmented across heterogeneous systems that lack shared identity, provenance, and attestation structures.  
+The **Civic Exchange Protocol (CEP)** provides a mathematically principled interoperability layer defined as a category **CEP**, whose objects are attested CEP entities and whose morphisms are typed CEP relationships and exchanges.
 
 The core of CEP rests on six structural invariants:
 
@@ -22,17 +22,17 @@ CEP's categorical semantics allow data from heterogeneous sources to interoperat
 
 ---
 
-# 1. The Category Civic
+# 1. The Category CEP
 
-## 1.1 Objects: Attested Civic Entities
+## 1.1 Objects: Attested CEP Entities
 
-Objects in **Civic** are attested entity records conforming to the CEP schema.  
+Objects in **CEP** are attested entity records conforming to the CEP schema.  
 An object represents a legal or administrative actor (e.g., agency, vendor, nonprofit, district) at a specific revision.
 
 Formally:
 
 ```
-Ob(Civic) = { E | E is a valid, attested CEP entity record }
+Ob(CEP) = { E | E is a valid, attested CEP entity record }
 ```
 
 Each entity object must satisfy the following invariants:
@@ -48,7 +48,7 @@ Keys and verification endpoints must support independent validation across juris
 
 ---
 
-## 1.2 Morphisms: Civic Relationships and Exchanges
+## 1.2 Morphisms: CEP Relationships and Exchanges
 
 Morphisms are directed civic flows between entities.
 
@@ -169,7 +169,7 @@ CEP models this evolution through a non-destructive revision sequence:
 E₁ → E₂ → E₃ → ...
 ```
 
-Each revision is an object in Civic, linked by an amendment morphism.
+Each revision is an object in CEP, linked by an amendment morphism.
 
 ### Invariant: Non-Destructive Revision Chain
 
@@ -200,7 +200,7 @@ CEP models jurisdictional scoping using **slice categories**.
 For a jurisdiction J:
 
 ```
-Civic / J
+CEP / J
 ```
 
 contains:
@@ -228,7 +228,7 @@ without centralizing authority.
 Define:
 
 ```
-Civic_verified ⊆ Civic
+CEP_verified ⊆ CEP
 ```
 
 as the full subcategory where:
@@ -248,7 +248,7 @@ Morphisms in the verified subcategory remain verified under composition.
 
 # 7. Summary of Embedded Invariants
 
-CEP embeds six structural invariants directly into the mathematical definition of **Civic**:
+CEP embeds six structural invariants directly into the mathematical definition of **CEP**:
 
 1. Distributed verification
 2. Immutable provenance chains
@@ -257,4 +257,4 @@ CEP embeds six structural invariants directly into the mathematical definition o
 5. Cryptographic attestation
 6. Non-destructive revision chains
 
-These invariants ensure that CEP provides a verifiable, interoperable, tamper-evident, and jurisdictionally respectful foundation for civic data exchange across all levels of government.
+These invariants ensure that CEP provides a verifiable, interoperable, tamper-evident, and jurisdictionally respectful foundation for verifiable information exchange across jurisdictions and domains.

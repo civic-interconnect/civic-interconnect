@@ -1,0 +1,144 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/ed-entity-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Education Entity Type Vocabulary",
+  "description": "Domain-specific refinement of CEP entity types for education institutions, programs, participants, and related entities.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:entityType:ed:institution",
+      "code": "ED_INSTITUTION",
+      "label": "Education Institution",
+      "definition": "An organization that delivers education services, such as a school, district, college, or university.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "ORGANIZATION"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:ed:program",
+      "code": "ED_PROGRAM",
+      "label": "Education Program",
+      "definition": "A coherent set of courses or learning activities leading to a credential, degree, certificate, or other recognized outcome.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "PROGRAM"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:ed:courseInstance",
+      "code": "ED_COURSE_INSTANCE",
+      "label": "Course Instance",
+      "definition": "A specific scheduled offering of a course or class, tied to a term, instructor, and roster of participants.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "EVENT"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:ed:personParticipant",
+      "code": "ED_PERSON",
+      "label": "Education Person",
+      "definition": "A natural person who participates in education as a student, instructor, administrator, or other role within the education system.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "PERSON"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:ed:credential",
+      "code": "ED_CREDENTIAL",
+      "label": "Credential",
+      "definition": "A formal record of completion or attainment, such as a degree, diploma, certificate, or license linked to programs or courses.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "DOCUMENT"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:ed:assessment",
+      "code": "ED_ASSESSMENT",
+      "label": "Assessment or Evaluation",
+      "definition": "An assessment instrument, exam, or evaluation event associated with student learning or program outcomes.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "EVENT"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:ed:governanceBody",
+      "code": "ED_GOVERNANCE_BODY",
+      "label": "Education Governance Body",
+      "definition": "A board, council, committee, or similar collective entity that provides governance, oversight, or policy direction for education institutions or systems.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "ORGANIZATION"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:ed:other",
+      "code": "ED_OTHER",
+      "label": "Other Education Entity",
+      "definition": "An education-related entity that does not fit another, more specific category in this vocabulary but participates in CEP education graphs.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

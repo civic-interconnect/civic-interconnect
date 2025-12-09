@@ -60,7 +60,7 @@ vocabularies/entity-type.json#educational-institution"
         .iter()
         .find(|id| {
             id.scheme_uri
-                == "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei"
+                == "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#snfei"
         })
         .expect("snfei identifier should exist");
 

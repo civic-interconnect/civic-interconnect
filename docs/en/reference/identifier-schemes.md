@@ -5,7 +5,7 @@ Identifier schemes define how these IDs are interpreted, validated, and transfor
 
 ---
 
-## 1. SNFEI (Sub-National Fixed Entity Identifier)
+## 1. SNFEI (Structured Non-Fungible Entity Identifier)
 
 Scheme URI:
 

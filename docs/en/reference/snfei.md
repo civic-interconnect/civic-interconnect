@@ -1,6 +1,6 @@
 # What is SNFEI?
 
-**SNFEI** stands for **Sub-National Fixed Entity Identifier**.  
+**SNFEI** stands for **Structured Non-Fungible Entity Identifier**.  
 It is a deterministic, recomputable identifier designed for civic, educational, nonprofit, and other public-interest entities that **lack a national or global registry identifier** such as LEI or SAM-UEI.
 
 SNFEI is *not* a proprietary ID and does not rely on any external registry.  
@@ -84,7 +84,7 @@ If a primary ID exists, CEP includes it; if not, SNFEI provides a consistent fal
 The SNFEI scheme is defined in the **CEP Identifier Scheme Vocabulary**:
 
 ```
-https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei
+https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-identifier-scheme.v1.0.0.json#snfei
 ```
 
 This URI is the canonical value used in CEP records under:

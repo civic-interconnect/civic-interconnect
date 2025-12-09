@@ -1,10 +1,10 @@
-# SNFEI: Sub-National Fixed Entity Identifier
+# SNFEI: Structured Non-Fungible Entity Identifier
 
 ## Specification Version 1.1.0
 
 ### Abstract
 
-The Sub-National Fixed Entity Identifier (SNFEI) provides deterministic,
+The Structured Non-Fungible Entity Identifier (SNFEI) provides deterministic,
 collision-resistant identification for civic entities that lack federal identifiers
 (LEI, SAM UEI). This includes school districts, local governments, small nonprofits,
 political action committees, and local businesses.

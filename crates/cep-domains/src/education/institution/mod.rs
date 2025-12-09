@@ -1,0 +1,6 @@
+// crates/cep-domains/src/education/institution/mod.rs
+
+pub mod generated;
+pub mod manual;
+
+pub use generated::*;

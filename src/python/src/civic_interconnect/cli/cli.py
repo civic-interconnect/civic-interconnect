@@ -44,9 +44,9 @@ from civic_interconnect.cep.validation.json_validator import (
 
 app = typer.Typer(help="Civic Exchange Protocol CLI")
 
-DEFAULT_ENTITY_SCHEMA = Path("schemas/cep.entity.schema.json")
-DEFAULT_RELATIONSHIP_SCHEMA = Path("schemas/cep.relationship.schema.json")
-DEFAULT_EXCHANGE_SCHEMA = Path("schemas/cep.exchange.schema.json")
+DEFAULT_ENTITY_SCHEMA = Path("schemas/core/cep.entity.schema.json")
+DEFAULT_RELATIONSHIP_SCHEMA = Path("schemas/core/cep.relationship.schema.json")
+DEFAULT_EXCHANGE_SCHEMA = Path("schemas/core/cep.exchange.schema.json")
 
 DEFAULT_ENTITY_OUT = Path("crates/cep-core/src/entity/generated.rs")
 DEFAULT_RELATIONSHIP_OUT = Path("crates/cep-core/src/relationship/generated.rs")

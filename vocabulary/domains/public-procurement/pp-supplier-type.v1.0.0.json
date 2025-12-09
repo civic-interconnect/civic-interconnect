@@ -1,0 +1,85 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/public-procurement/pp-supplier-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Public Procurement Supplier Type Vocabulary",
+  "description": "Controlled vocabulary for categorizing suppliers and economic operators in public procurement.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:supplierType:pp:privateForProfit",
+      "code": "PRIVATE_FORPROFIT",
+      "label": "Private For-profit Supplier",
+      "definition": "A privately owned, for-profit organization acting as a supplier or contractor in public procurement.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:supplierType:pp:nonprofitOrNgo",
+      "code": "NONPROFIT",
+      "label": "Nonprofit or NGO Supplier",
+      "definition": "A nonprofit organization, charity, or nongovernmental organization acting as a supplier or service provider in public procurement.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:supplierType:pp:publicEnterprise",
+      "code": "PUBLIC_ENTERPRISE",
+      "label": "Public Enterprise Supplier",
+      "definition": "A publicly owned enterprise or utility acting as a supplier or contractor in procurement processes.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:supplierType:pp:individualOrSoleTrader",
+      "code": "SOLE_TRADER",
+      "label": "Individual or Sole Trader",
+      "definition": "An individual person or sole trader acting as a supplier or contractor in procurement processes.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:supplierType:pp:jointVentureOrConsortium",
+      "code": "CONSORTIUM",
+      "label": "Joint Venture or Consortium",
+      "definition": "A consortium, joint venture, or temporary grouping of suppliers formed to participate in a procurement procedure or contract.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:supplierType:pp:other",
+      "code": "OTHER",
+      "label": "Other Supplier Type",
+      "definition": "A supplier type that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

@@ -1,0 +1,113 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/governance/adapter-manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CEP Adapter Manifest",
+  "description": "Manifest describing a CEP adapter: its identity, schemas, invocation, and optional self-test.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "properties": {
+    "apsVersion": {
+      "type": "string",
+      "description": "Version of the Adapter Protocol Specification this manifest targets (e.g. '1.0.0')."
+    },
+    "adapterId": {
+      "type": "string",
+      "description": "Globally unique identifier for this adapter."
+    },
+    "adapterVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Adapter version using Semantic Versioning (MAJOR.MINOR.PATCH)."
+    },
+    "adapterKind": {
+      "type": "string",
+      "enum": ["local", "domain", "core", "envelope"],
+      "description": "Position in the CEP pipeline."
+    },
+    "sourceSchemaId": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI identifying the input schema."
+    },
+    "sourceSchemaVersion": {
+      "type": "string",
+      "description": "Version of the input schema."
+    },
+    "targetSchemaId": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI identifying the output schema."
+    },
+    "targetSchemaVersion": {
+      "type": "string",
+      "description": "Version of the output schema."
+    },
+    "invocation": {
+      "type": "object",
+      "description": "How to invoke the adapter.",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["cli"],
+          "description": "Invocation type. APS v1 standardizes 'cli'."
+        },
+        "command": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "Program and arguments to execute."
+        },
+        "stdin": {
+          "type": "string",
+          "enum": ["json"],
+          "description": "Expected stdin format."
+        },
+        "stdout": {
+          "type": "string",
+          "enum": ["json"],
+          "description": "Expected stdout format."
+        }
+      },
+      "required": ["type", "command", "stdin", "stdout"]
+    },
+    "repository": {
+      "type": "string",
+      "format": "uri",
+      "description": "Optional URL of the adapter's source repository."
+    },
+    "selfTest": {
+      "type": "object",
+      "description": "Optional self-test configuration for automated validation.",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "sampleInput": {
+          "description": "Sample input JSON for self-test.",
+          "type": ["object", "array", "string", "number", "boolean", "null"]
+        },
+        "expectedOutputSchemaId": {
+          "type": "string",
+          "format": "uri",
+          "description": "Schema ID the output must conform to in self-test."
+        }
+      },
+      "required": ["enabled"]
+    }
+  },
+
+  "required": [
+    "adapterId",
+    "adapterVersion",
+    "adapterKind",
+    "sourceSchemaId",
+    "sourceSchemaVersion",
+    "targetSchemaId",
+    "targetSchemaVersion",
+    "invocation"
+  ]
+}

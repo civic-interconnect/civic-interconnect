@@ -1,0 +1,122 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/public-procurement/pp-procedure-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Public Procurement Procedure Type Vocabulary",
+  "description": "Controlled vocabulary for high-level types of public procurement procedures and tendering methods.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:procedureType:pp:openProcedure",
+      "code": "OPEN",
+      "label": "Open Procedure",
+      "definition": "A procedure in which any qualified supplier may submit a tender in response to a call for competition.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "open"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:procedureType:pp:restrictedProcedure",
+      "code": "RESTRICTED",
+      "label": "Restricted Procedure",
+      "definition": "A procedure where participation is limited to suppliers invited after a pre-qualification or selection stage.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "selective"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:procedureType:pp:negotiatedProcedure",
+      "code": "NEGOTIATED",
+      "label": "Negotiated Procedure",
+      "definition": "A procedure where the buyer negotiates the terms of the contract with one or more suppliers, possibly following a preselection stage.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "limited"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:procedureType:pp:directAward",
+      "code": "DIRECT",
+      "label": "Direct Award",
+      "definition": "A non-competitive procedure in which the contract is awarded directly to a supplier without an open call for competition.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "direct"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:procedureType:pp:frameworkAgreement",
+      "code": "FRAMEWORK",
+      "label": "Framework Agreement",
+      "definition": "A procedure resulting in a framework agreement under which specific contracts may be awarded during a defined period.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "framework"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:procedureType:pp:competitiveDialogueOrNegotiation",
+      "code": "COMP_DIALOGUE",
+      "label": "Competitive Dialogue or Competitive Negotiation",
+      "definition": "A staged procedure where the buyer conducts structured dialogue or negotiations with suppliers before final tenders are submitted.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:procedureType:pp:other",
+      "code": "OTHER",
+      "label": "Other Procedure Type",
+      "definition": "A procurement procedure type that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

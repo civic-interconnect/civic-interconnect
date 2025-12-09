@@ -1,0 +1,21 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.identifier-scheme.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CEP Identifier Scheme URI",
+  "description": "Allowed identifier scheme URIs for CEP Entity.identifiers.additionalSchemes[].schemeUri. This is the schema-level view of the Identifier Scheme Vocabulary.",
+  "type": "string",
+  "enum": [
+    "https://opencivicdata.org/id/division",
+    "https://opencivicdata.org/id/jurisdiction",
+    "https://opencivicdata.org/id/person",
+    "https://opencivicdata.org/id/organization",
+    "https://standard.open-contracting.org/party-id",
+    "https://openreferral.org/hsds/organization-id",
+    "https://openreferral.org/hsds/service-id",
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#lei",
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#sam-uei",
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#snfei",
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#canadian-bn",
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#uk-companies-house"
+  ]
+}

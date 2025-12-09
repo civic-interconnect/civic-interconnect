@@ -67,6 +67,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "cep-domains"
+version = "0.1.0"
+dependencies = [
+ "cep-core",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "cep-py"
 version = "0.1.0"
 dependencies = [

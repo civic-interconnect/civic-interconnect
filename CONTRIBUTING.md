@@ -11,21 +11,21 @@ Install the following.
 
 ### Required
 
-- **Git** (configure `user.name` and `user.email`)
-- **uv** – Python environment + package manager  
-- **Rust toolchain** (`rustc --version`)
-- **VS Code** (recommended)
+-   **Git** (configure `user.name` and `user.email`)
+-   **uv** – Python environment + package manager
+-   **Rust toolchain** (`rustc --version`)
+-   **VS Code** (recommended)
 
 ### Recommended VS Code Extensions
 
-- charliermarsh.ruff - Python linting/formatting
-- fill-labs.dependi - check dependencies
-- ms-python.python - Python support
-- ms-python.vscode-pylance - Fast, strict language server
-- rust-lang.rust-analyzer – Rust language support
-- streetsidesoftware.code-spell-checker – Spell checking in code/docs
-- tamasfe.even-better-toml – TOML editing (pyproject, config)
-- usernamehw.errorlens – Inline diagnostics (optional, but helpful)
+-   charliermarsh.ruff - Python linting/formatting
+-   fill-labs.dependi - check dependencies
+-   ms-python.python - Python support
+-   ms-python.vscode-pylance - Fast, strict language server
+-   rust-lang.rust-analyzer – Rust language support
+-   streetsidesoftware.code-spell-checker – Spell checking in code/docs
+-   tamasfe.even-better-toml – TOML editing (pyproject, config)
+-   usernamehw.errorlens – Inline diagnostics (optional, but helpful)
 
 You can see your installed extensions by running: `code.cmd --list-extensions`
 
@@ -33,18 +33,18 @@ You can see your installed extensions by running: `code.cmd --list-extensions`
 
 C# Wrapper
 
-- [Build Tools for VS 2022 (as needed)](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)
-- [C# dev kit by Microsoft](https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-visual-studio-code)
+-   [Build Tools for VS 2022 (as needed)](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)
+-   [C# dev kit by Microsoft](https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-visual-studio-code)
 
 Java Wrapper
 
-- JDK
+-   JDK
 
 ---
 
 ## 2. Fork and Clone
 
-1. Fork the repository on GitHub.  
+1. Fork the repository on GitHub.
 2. Clone your fork and open it in VS Code.
 
 ```shell
@@ -63,11 +63,9 @@ Create a local environment and install dependencies.
 ```shell
 uv python pin 3.12
 uv venv
-.venv/Scripts/activate        # Windows
-# source .venv/bin/activate   # Mac or Linux
-
+uv activate
 uv sync --extra dev --extra docs --upgrade
-uv run pre-commit install
+uvx pre-commit install
 ```
 
 ---
@@ -79,19 +77,42 @@ Before committing, pull code, run Python checks, run Rust checks.
 ```shell
 git pull origin main
 
-# after changing schemas, regenerate rust 
+# after changing schemas, regenerate rust
 uv run python tools/codegen_rust.py
-uv run cx codegen-python-constants
-cargo fmt
-cargo build
-cargo test -p cep-core
 
-# build and install cep_py
+rustc --version
+
+# build and install cep_py for cx commands
 cd crates/cep-py
 cargo build
 uv run maturin develop --release
 cd ../../
 
+# regenerate constants
+uv run cx codegen-python-constants
+
+cargo fmt
+cargo check
+
+# fix crates
+cargo fix --lib -p cep-core --allow-dirty --allow-staged
+cargo fix --lib -p cep-domains --allow-dirty --allow-staged
+cargo fix --lib -p cep-py --allow-dirty --allow-staged
+
+# build crates
+cargo build -p cep-core
+cargo build -p cep-domains
+cargo build
+
+# run tests
+cargo test -p cep-core entity
+cargo test -p cep-core -q
+cargo test -- --nocapture -q
+
+# regenerate example records
+uv run cx generate-example examples/entity --overwrite
+
+# Python quality checks
 uvx ruff check . --fix
 uvx ruff format .
 uvx deptry .
@@ -101,40 +122,9 @@ uvx pre-commit autoupdate
 uvx pre-commit run --all-files
 ```
 
-In Windows, Open root in File Explorer and then open a PowerShell terminal if needed.
-Test rust logic until there are no errors and all tests pass.
-
-```shell
-rustc --version
-
-# fix crates
-cargo fix --lib -p cep-core --allow-dirty --allow-staged
-cargo fix --lib -p cep-py --allow-dirty --allow-staged
-cargo fix --lib  --allow-dirty --allow-staged -q
-
-# build crates
-cargo build -p cep-core
-cargo build
-
-# run tests
-cargo test -p cep-core entity
-cargo test -p cep-core -q
-cargo test -- --nocapture -q
-
-# build and install cep_py
-cargo build
-cd crates/cep-py
-cargo build
-uv run maturin develop --release
-cd ../../
-
-uv run cx generate-example examples/entity --overwrite
-
-```
-
 ---
 
-## 5. Build Package and/or Docs
+## 5. Build Package and Docs
 
 ```shell
 uv build
@@ -158,7 +148,7 @@ git push -u origin main
 
 Open a PR from your fork to the `main` branch of the target repository.
 
-Guidelines for good PRs are here:  `REF_PULL_REQUESTS.md`
+Guidelines for good PRs are here: `REF_PULL_REQUESTS.md`
 
 ---
 
@@ -173,6 +163,6 @@ This ensures that all schemas, vocabularies, code, documentation, and other mate
 
 ## Questions
 
-If you have questions, open an issue in the target repository.  
+If you have questions, please open an issue in this repository.
 
 Thank you for contributing.

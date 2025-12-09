@@ -1,6 +1,6 @@
 # Example: CEP EntityRecord with SNFEI
 
-This example demonstrates how a CEP `EntityRecord` includes a **Sub-National Fixed Entity Identifier (SNFEI)** when an entity does not have a national or global registry ID (such as LEI or SAM-UEI).  
+This example demonstrates how a CEP `EntityRecord` includes a **Structured Non-Fungible Entity Identifier (SNFEI)** when an entity does not have a national or global registry ID (such as LEI or SAM-UEI).  
 SNFEI provides a deterministic, recomputable identifier for joining datasets across civic, nonprofit, educational, and local-government domains.
 
 ---
@@ -40,7 +40,7 @@ After running this normalized input through the CEP builder, the resulting `Enti
     "revisionNumber": 1,
 
     "verifiableId": "cep-entity:snfei:34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3",
-    "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#educational-institution",
+    "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#educational-institution",
 
     "status": {
         "statusCode": "ACTIVE",
@@ -69,7 +69,7 @@ After running this normalized input through the CEP builder, the resulting `Enti
 
     "identifiers": [
         {
-            "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei",
+            "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-identifier-scheme.v1.0.0.json#snfei",
             "identifier": "34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3"
         }
     ]
@@ -93,7 +93,7 @@ cep-entity:snfei:<hash>
 The SNFEI entry references the official vocabulary term:
 
 ```
-https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei
+https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-identifier-scheme.v1.0.0.json#snfei
 ```
 
 This ensures consistent identifier semantics across systems.

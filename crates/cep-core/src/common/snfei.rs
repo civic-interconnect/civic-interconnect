@@ -1,6 +1,6 @@
 /// SNFEI Hash Generation.
 ///
-/// This module computes the final SNFEI (Sub-National Fixed Entity Identifier)
+/// This module computes the final SNFEI (Structured Non-Fungible Entity Identifier)
 /// from normalized entity attributes.
 ///
 /// The SNFEI formula:

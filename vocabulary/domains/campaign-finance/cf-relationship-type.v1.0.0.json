@@ -1,0 +1,35 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/campaign-finance/cf-relationship-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "CEP Campaign Finance Relationship Type Vocabulary",
+  "description": "Controlled vocabulary for relationship types between campaign finance entities such as donors, committees, and election authorities.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "terms": [
+    {
+      "termUri": "cep:relationship:cf:contributedTo",
+      "code": "CONTRIBUTED_TO",
+      "label": "Contributed To",
+      "domain": "DONOR",
+      "range": "POLITICAL_COMMITTEE",
+      "cardinality": "many-to-many",
+      "status": "active"
+    },
+    {
+      "termUri": "cep:relationship:cf:filesWith",
+      "code": "FILES_WITH",
+      "label": "Files With Election Authority",
+      "domain": "POLITICAL_COMMITTEE",
+      "range": "ELECTION_AUTHORITY",
+      "cardinality": "many-to-one",
+      "status": "active"
+    },
+    {
+      "termUri": "cep:relationship:cf:associatedWithCandidate",
+      "code": "ASSOCIATED_WITH_CANDIDATE",
+      "domain": "POLITICAL_COMMITTEE",
+      "range": "CANDIDATE",
+      "cardinality": "many-to-one"
+    }
+  ]
+}

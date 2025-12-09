@@ -6,6 +6,7 @@
 
 use serde::{Deserialize, Serialize};
 
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum RecordKind {
     #[serde(rename = "entity")]
@@ -35,6 +36,7 @@ pub enum StatusCode {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct StatusEnvelope {
+
     #[serde(rename = "statusCode")]
     pub status_code: StatusCode,
 
@@ -50,6 +52,7 @@ pub struct StatusEnvelope {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Timestamps {
+
     #[serde(rename = "firstSeenAt")]
     pub first_seen_at: String,
 
@@ -68,6 +71,7 @@ pub struct Timestamps {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Attestation {
+
     #[serde(rename = "attestationTimestamp")]
     pub attestation_timestamp: String,
 
@@ -93,11 +97,109 @@ pub struct Attestation {
     pub source_reference: Option<String>,
 }
 
+/// The entity from which value flows (payer, grantor, transferor). For procurement, this typically aligns with OCDS 'buyer'. For grants, this is the grantor or pass-through entity. For campaign finance, this may be the donor or committee.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Sourceentity {
+    #[serde(rename = "entityId")]
+    pub entity_id: String,
+    #[serde(rename = "roleUri")]
+    pub role_uri: Option<String>,
+    #[serde(rename = "accountIdentifier")]
+    pub account_identifier: Option<String>,
+}
+
+/// The entity to which value flows (payee, grantee, transferee). For procurement this aligns with OCDS 'supplier'; for grants and education finance, the grantee, subrecipient, or school; for campaign finance, the recipient committee or vendor.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Recipiententity {
+    #[serde(rename = "entityId")]
+    pub entity_id: String,
+    #[serde(rename = "roleUri")]
+    pub role_uri: Option<String>,
+    #[serde(rename = "accountIdentifier")]
+    pub account_identifier: Option<String>,
+}
+
+/// The quantified value being exchanged. For monetary flows, this aligns with OCDS 'implementation.transactions.amount', Schema.org MonetaryAmount / MonetaryGrant, and XBRL monetary elements.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Value {
+    pub amount: f64,
+    #[serde(rename = "currencyCode")]
+    pub currency_code: Option<String>,
+    #[serde(rename = "valueTypeUri")]
+    pub value_type_uri: Option<String>,
+    #[serde(rename = "inKindDescription")]
+    pub in_kind_description: Option<String>,
+}
+
+/// Lifecycle/settlement status of the exchange event.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Exchangestatus {
+    #[serde(rename = "statusCode")]
+    pub status_code: String,
+    #[serde(rename = "statusEffectiveTimestamp")]
+    pub status_effective_timestamp: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Intermediaryentitiesitem {
+    #[serde(rename = "entityId")]
+    pub entity_id: String,
+    #[serde(rename = "roleUri")]
+    pub role_uri: Option<String>,
+}
+
+/// Traces the compositional flow of funds or value through the civic graph. Conceptually, this is a Category Theory morphism path and aligns with W3C PROV 'wasDerivedFrom' across exchanges.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Provenancechain {
+    #[serde(rename = "fundingChainTag")]
+    pub funding_chain_tag: Option<String>,
+    #[serde(rename = "ultimateSourceEntityId")]
+    pub ultimate_source_entity_id: Option<String>,
+    #[serde(rename = "intermediaryEntities")]
+    pub intermediary_entities: Option<Vec<Intermediaryentitiesitem>>,
+    #[serde(rename = "parentExchangeId")]
+    pub parent_exchange_id: Option<String>,
+}
+
+/// Standardized categorization codes for reporting and analysis. This block is the main bridge to domain specific reporting frameworks such as federal assistance listings, NAICS, GTAS, and local chart-of-accounts.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Categorization {
+    #[serde(rename = "cfdaNumber")]
+    pub cfda_number: Option<String>,
+    #[serde(rename = "naicsCode")]
+    pub naics_code: Option<String>,
+    #[serde(rename = "gtasAccountCode")]
+    pub gtas_account_code: Option<String>,
+    #[serde(rename = "localCategoryCode")]
+    pub local_category_code: Option<String>,
+    #[serde(rename = "localCategoryLabel")]
+    pub local_category_label: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Sourcereferencesitem {
+    #[serde(rename = "sourceSystemUri")]
+    pub source_system_uri: String,
+    #[serde(rename = "sourceRecordId")]
+    pub source_record_id: String,
+    #[serde(rename = "sourceUrl")]
+    pub source_url: Option<String>,
+}
+
 /// Defines a verifiable value exchange (financial, in-kind, or informational) between entities within an established relationship. This is the atomic unit of civic transparency. CEP Exchanges are designed to interoperate with Open Contracting Data Standard (OCDS) transactions, Schema.org MonetaryGrant/Payment, XBRL financial taxonomies, and campaign finance / education finance datasets via exchangeTypeUri, value, categorization, and sourceReferences.
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ExchangeRecord {
+
     #[serde(rename = "recordKind")]
     pub record_kind: RecordKind,
 
@@ -131,26 +233,26 @@ pub struct ExchangeRecord {
     pub exchange_type_uri: String,
 
     #[serde(rename = "sourceEntity")]
-    pub source_entity: serde_json::Value,
+    pub source_entity: Sourceentity,
 
     #[serde(rename = "recipientEntity")]
-    pub recipient_entity: serde_json::Value,
+    pub recipient_entity: Recipiententity,
 
-    pub value: serde_json::Value,
+    pub value: Value,
 
     #[serde(rename = "occurredTimestamp")]
     pub occurred_timestamp: String,
 
     #[serde(rename = "exchangeStatus")]
-    pub exchange_status: serde_json::Value,
+    pub exchange_status: Exchangestatus,
 
     #[serde(rename = "provenanceChain")]
-    pub provenance_chain: Option<serde_json::Value>,
+    pub provenance_chain: Option<Provenancechain>,
 
-    pub categorization: Option<serde_json::Value>,
+    pub categorization: Option<Categorization>,
 
     #[serde(rename = "sourceReferences")]
-    pub source_references: Option<Vec<serde_json::Value>>,
+    pub source_references: Option<Vec<Sourcereferencesitem>>,
 
     pub attestation: Attestation,
 

@@ -6,7 +6,7 @@
 ///
 /// - Tier 1 (Global): LEI (Legal Entity Identifier)
 /// - Tier 2 (Federal): SAM.gov UEI
-/// - Tier 3 (Sub-National): SNFEI (generated hash-based identifier)
+/// - Tier 3 (Structured Non-Fungible Entity Identifier): SNFEI (generated hash-based identifier)
 /// - Extended: Canadian BN, UK Companies House, etc.
 ///
 /// # SNFEI Generation

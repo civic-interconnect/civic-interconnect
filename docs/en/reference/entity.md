@@ -76,7 +76,7 @@ This ensures:
 Entity type is resolved via the entity-type vocabulary:
 
 ```
-https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.v1.0.0.json#municipality
+https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.v1.0.0.json#municipality
 ```
 
 Adapters provide simple labels (`"municipality"`), and the builder expands them to the full URI.

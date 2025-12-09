@@ -6,7 +6,7 @@ Modern civic data ecosystems contain a patchwork of identity systems.
 Some are globally regulated (LEI), some are national (UEI), and others are local or domain-specific (state vendor IDs, FEC committee IDs, IRS EINs, school district codes).  
 The Civic Exchange Protocol (CEP) models these as **Identity Tiers**, each with different governance, scope, and persistence guarantees.
 
-CEP's identity architecture organizes all IDs into a **three-tier model**, with the **SNFEI** (Sub-National Fixed Entity Identifier) providing a stable, open, globally usable Tier-3 identifier that can employ and coexist with all external identifiers.
+CEP's identity architecture organizes all IDs into a **three-tier model**, with the **SNFEI** (Structured Non-Fungible Entity Identifier) providing a stable, open, globally usable Tier-3 identifier that can employ and coexist with all external identifiers.
 
 ---
 

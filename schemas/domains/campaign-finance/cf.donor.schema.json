@@ -1,0 +1,38 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/campaign-finance/cf.donor.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Campaign Finance Donor",
+  "type": "object",
+
+  "properties": {
+    "entityTypeUri": { "const": "cep:entity:cf:donor" },
+
+    "legalName": { "type": "string" },
+    "normalizedName": { "type": "string" },
+    "jurisdictionUri": { "type": "string" },
+
+    "identifiers": {
+      "type": "object",
+      "properties": {
+        "snfei": { "type": "string" },
+        "samUei": { "type": "string" },
+        "lei": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": { "type": "string" },
+        "city": { "type": "string" },
+        "stateProvince": { "type": "string" },
+        "postalCode": { "type": "string" },
+        "countryCode": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+
+  "required": ["entityTypeUri", "legalName", "jurisdictionUri"]
+}

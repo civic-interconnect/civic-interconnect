@@ -1,0 +1,139 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/public-procurement/pp-entity-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Public Procurement Entity Type Vocabulary",
+  "description": "Domain-specific refinement of CEP entity types for buyers, suppliers, procedures, awards, contracts, and implementation records in public procurement.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:entityType:pp:buyerOrganization",
+      "code": "PP_BUYER",
+      "label": "Buyer Organization",
+      "definition": "A public body or contracting authority that initiates and runs procurement procedures and enters into contracts as the buyer.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "ORGANIZATION"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:pp:supplierOrganization",
+      "code": "PP_SUPPLIER",
+      "label": "Supplier Organization",
+      "definition": "An economic operator, company, nonprofit, or other organization that participates in procurement procedures as a tenderer or contractor.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "ORGANIZATION"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:pp:procedure",
+      "code": "PP_PROCEDURE",
+      "label": "Procurement Procedure",
+      "definition": "A procurement process or procedure, including its type, scope, and governing rules, under which notices, tenders, awards, and contracts are managed.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "PROCESS"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:pp:lot",
+      "code": "PP_LOT",
+      "label": "Procurement Lot",
+      "definition": "A subdivision of a procurement procedure that groups related goods, works, or services and may be awarded separately to one or more suppliers.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:entityType:pp:award",
+      "code": "PP_AWARD",
+      "label": "Award",
+      "definition": "An entity representing the decision to award a contract or lot to one or more suppliers, including associated values and conditions.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "EVENT"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:pp:contract",
+      "code": "PP_CONTRACT",
+      "label": "Contract",
+      "definition": "A legally binding agreement resulting from a procurement procedure or award, including its terms, duration, values, and performance conditions.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "AGREEMENT"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:pp:implementationRecord",
+      "code": "PP_IMPLEMENTATION",
+      "label": "Implementation Record",
+      "definition": "An entity capturing contract implementation information such as payments, delivery milestones, amendments, and completion status.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_ENTITY_TYPE",
+          "code": "EVENT"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:entityType:pp:other",
+      "code": "PP_OTHER",
+      "label": "Other Procurement Entity",
+      "definition": "A procurement-related entity that does not fit another, more specific category in this vocabulary but is needed for CEP procurement graphs.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

@@ -18,8 +18,8 @@ import json
 from pathlib import Path
 
 # Default locations within the civic-interconnect repo
-DEFAULT_ENTITY_SCHEMA = Path("schemas/cep.entity.schema.json")
-DEFAULT_ENVELOPE_SCHEMA = Path("schemas/cep.record-envelope.schema.json")
+DEFAULT_ENTITY_SCHEMA = Path("schemas/core/cep.entity.schema.json")
+DEFAULT_ENVELOPE_SCHEMA = Path("schemas/core/cep.record-envelope.schema.json")
 
 DEFAULT_ENTITY_CONSTANTS_OUT = Path(
     "src/python/src/civic_interconnect/cep/constants/entity_fields.py"

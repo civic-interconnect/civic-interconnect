@@ -112,12 +112,24 @@ nav:
       - Interoperability: en/concepts/interoperability.md
       - Research and Adoption: en/concepts/research-adoption.md
       - Positioning Paper (CEP + CTags): en/concepts/positioning-paper.md
+      - Unified Rewriting: en/concepts/unified-rewriting.md
 
   - Governance:
+      - CEP Foundational Principles: en/governance/cep-foundational-principles.md
       - Evolution Policy and Versioning: en/governance/evolution-policy-and-versioning.md
       - Vocabulary Governance Process: en/governance/vocabulary-process.md
       - Objectives and Vision: en/governance/objectives-and-vision.md
-      
+
+  - Specifications:
+      - Overview: en/specs/README.md
+      - CEC v1 (Canonical Encoding): en/specs/cec-v1.md
+      - AAS v1 (Adapter Architecture): en/specs/aas-v1.md
+      - CDIRA v1 (Identity Resolution): en/specs/cdira-v1.md
+      - EFS v1 (Entity Fingerprints): en/specs/efs-v1.md
+      - GIC v1 (Global Integrity Constraints): en/specs/gic-v1.md
+      - GNS v1 (Graph Normalization): en/specs/gns-v1.md
+      - VGS v1 (Vocabulary Governance Specification): en/specs/vgs-v1.md
+
   - Implementation:
       - Guide: en/implementation/implementation-guide.md
       - Validator: en/implementation/validator.md
@@ -127,6 +139,10 @@ nav:
       - Record Envelopes: en/implementation/record-envelopes.md
       - Profiles: en/implementation/profiles.md
 
+  - Vocabulary:
+      - Domain-Specific Vocabularies: en/vocabulary/overview.md
+      - Using Vocabularies in Schemas: en/vocabulary/using.md
+ 
   - Examples:
       - README: en/examples/README.md
       - Entity with SNFEI: en/examples/entity-with-snfei.md

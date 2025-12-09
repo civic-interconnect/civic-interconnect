@@ -1,0 +1,97 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/ed-role-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Education Role Type Vocabulary",
+  "description": "Controlled vocabulary for roles held by people in education institutions and governance structures.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:roleType:ed:student",
+      "code": "STUDENT",
+      "label": "Student",
+      "definition": "A person enrolled in an education program or institution as a learner.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:roleType:ed:teacherOrInstructor",
+      "code": "INSTRUCTOR",
+      "label": "Teacher or Instructor",
+      "definition": "A person who delivers instruction or facilitates learning in an education program or course.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:roleType:ed:administrator",
+      "code": "ADMIN",
+      "label": "Administrator",
+      "definition": "A person with administrative responsibility at an institution, such as principal, dean, or department chair.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:roleType:ed:governingOfficial",
+      "code": "GOVERNING",
+      "label": "Governing Official",
+      "definition": "A member of a governing board, council, or similar oversight body for an education institution or system.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:roleType:ed:supportStaff",
+      "code": "STAFF",
+      "label": "Support Staff",
+      "definition": "A staff member providing non-instructional support services, such as counseling, technology support, or operations.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:roleType:ed:parentOrGuardian",
+      "code": "PARENT",
+      "label": "Parent or Guardian",
+      "definition": "A person with legal or primary responsibility for a student, engaged with the institution on the student's behalf.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:roleType:ed:other",
+      "code": "OTHER",
+      "label": "Other Education Role",
+      "definition": "A role related to education that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

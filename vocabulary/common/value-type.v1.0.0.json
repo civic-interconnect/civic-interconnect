@@ -1,0 +1,70 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/common/value-type.v1.0.0.json",
+  "$schema": "../../schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "CEP Value Type Vocabulary",
+  "description": "Controlled vocabulary for the nature of value captured in CEP Exchange.value, referenced by valueTypeUri.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/common/value-type.v1.0.0.json#monetary",
+      "code": "monetary",
+      "label": "Monetary",
+      "definition": "A monetary transfer denominated in a currency, represented by an amount and ISO 4217 currency code.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "https://schema.org/MonetaryAmount"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/common/value-type.v1.0.0.json#in-kind",
+      "code": "in-kind",
+      "label": "In-Kind",
+      "definition": "A non-monetary transfer of goods, equipment, supplies, or other tangible items, typically described in inKindDescription.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/common/value-type.v1.0.0.json#service-hours",
+      "code": "service-hours",
+      "label": "Service Hours",
+      "definition": "A non-monetary transfer of time or labor, such as volunteer hours, consulting hours, or instructional time.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/common/value-type.v1.0.0.json#forgiven-loan",
+      "code": "forgiven-loan",
+      "label": "Forgiven Loan",
+      "definition": "Value transferred through the forgiveness or cancellation of a loan obligation, effectively functioning as financial assistance.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/common/value-type.v1.0.0.json#monetary",
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/common/value-type.v1.0.0.json#tax-expenditure",
+      "code": "tax-expenditure",
+      "label": "Tax Expenditure",
+      "definition": "Value transferred via tax credits, exemptions, deductions, or other reductions in tax liability rather than direct outlays.",
+      "parentTermUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/common/value-type.v1.0.0.json#monetary",
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    }
+  ],
+  "mappings": []
+}

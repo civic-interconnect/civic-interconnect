@@ -1,0 +1,93 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.ctag.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CEP Context Tag (CTag)",
+  "description": "Context Tags (CTags) capture interpretive, analytic, or contextual facts about a record, without changing its canonical identity or payload. They are optional, append-only, and vocabulary-driven.",
+  "type": "object",
+  "properties": {
+    "ctagId": {
+      "type": "string",
+      "description": "Optional local identifier for this CTag (for example, a UUID or stable key within a system)."
+    },
+    "tagTypeUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI of the CTag type term in a CEP vocabulary (for example, a term under ctag-type.v1.0.0.json)."
+    },
+    "code": {
+      "type": "string",
+      "description": "Short code from the CTag vocabulary (for example, 'risk.flag.potential_shell')."
+    },
+    "value": {
+      "description": "Optional value or bucket associated with this tag. Often constrained by the vocabulary term (for example, enum values, score bands, or structured payloads).",
+      "oneOf": [
+        { "type": "string" },
+        { "type": "number" },
+        { "type": "integer" },
+        { "type": "boolean" },
+        { "type": "object" },
+        { "type": "array" },
+        { "type": "null" }
+      ]
+    },
+    "appliedBy": {
+      "type": "string",
+      "description": "Identifier for the system, model, analyst, or organization that applied this tag (for example, an Entity verifiableId, system URN, or internal tool ID)."
+    },
+    "appliedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp indicating when this tag was applied, in RFC 3339 / ISO 8601 format with 'Z' for UTC."
+    },
+    "scope": {
+      "type": "string",
+      "description": "Scope of the tag within the record.",
+      "enum": [
+        "record",
+        "field",
+        "relationship",
+        "aggregate"
+      ]
+    },
+    "targetPath": {
+      "type": "string",
+      "description": "Optional JSON Pointer or dot-path indicating which field in the record this CTag refers to when scope is 'field' or 'relationship' (for example, '/identifiers/0/identifier' or 'status.statusCode')."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Optional confidence score in [0.0, 1.0] expressing how strongly the producer believes this tag applies."
+    },
+    "sourceRunId": {
+      "type": "string",
+      "description": "Optional identifier of the analysis run, model version, or pipeline that produced this tag."
+    },
+    "note": {
+      "type": "string",
+      "description": "Optional human-readable explanation describing why this tag was applied."
+    },
+    "provActivityUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "Optional W3C PROV activity URI that this tag is associated with, for standards-aligned provenance graph integration."
+    }
+  },
+  "required": ["tagTypeUri", "appliedBy", "appliedAt"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "ctagId": "ctag-1234",
+      "tagTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/ctag-type.v1.0.0.json#risk.flag.potential_shell",
+      "code": "risk.flag.potential_shell",
+      "value": "pattern_cluster_07",
+      "appliedBy": "cep-analysis:snfei-risk-v1",
+      "appliedAt": "2025-12-07T10:00:00Z",
+      "scope": "record",
+      "confidence": 0.87,
+      "sourceRunId": "risk-model-2025-12-07T09-55Z",
+      "note": "High-velocity donations across multiple PACs with shared treasurer.",
+      "provActivityUri": "urn:prov:activity:snfei-risk-scan:2025-12-07"
+    }
+  ]
+}

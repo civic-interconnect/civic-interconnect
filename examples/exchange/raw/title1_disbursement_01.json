@@ -2,16 +2,16 @@
   "schemaVersion": "1.0.0",
   "verifiableId": "cep-relationship:usdoe:TITLE1_2025_SPRINGFIELD123",
 
-  "relationshipTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/relationship-type.json#grant-award",
+  "relationshipTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/relationship-type.json#grant-award",
 
   "bilateralParties": {
     "partyA": {
       "entityId": "cep-entity:sam-uei:EDFEDERAL0001",
-      "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/party-role.json#grantor"
+      "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/party-role.json#grantor"
     },
     "partyB": {
       "entityId": "cep-entity:sam-uei:J6H4FB3N5YK7",
-      "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/party-role.json#grantee"
+      "roleUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/party-role.json#grantee"
     }
   },
   "multilateralMembers": null,

@@ -17,6 +17,25 @@ and this project adheres to **[Semantic Versioning](https://semver.org/spec/v2.0
 
 ---
 
+## [0.0.4] – 2025-12-09
+
+This release stabilizes several foundational components across Python and Rust.  
+It consolidates schema-driven generation, domain scaffolding, adapters, and  
+cross-language consistency. Work continues, but the following items are now in place  
+and functioning across multiple domains.
+
+- Updated schemas across multiple domains and regenerated Rust + Python code.
+- Added Python adapters (`us_ca_municipality`, `us_mn_municipality`, `fec_csv`, etc.).
+- Introduced `codegen` layer for Rust and Python constants to eliminate hand-typed identifiers.
+- Integrated `cep-core` with generated Rust types and manual helpers.
+- Added domain crate `cep-domains` with generated records in structured module layout.
+- Expanded Python CEP core (`attestation`, `canonical`, `hash`, `schema_registry`, etc.).
+- CLI runs normally (`cx normalize`, codegen commands, example generation).
+- Packaging works: `maturin develop` installs Python bindings cleanly.
+- Current tests in `cep-core` pass after regeneration.
+
+---
+
 ## [0.0.3] – 2025-12-08
 
 ### Added

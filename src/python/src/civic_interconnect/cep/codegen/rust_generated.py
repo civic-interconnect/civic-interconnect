@@ -5,6 +5,7 @@ This module provides functions to:
 - Map JSON Schema types to Rust types
 - Generate serde-compatible field attributes
 - Handle nullable and optional fields
+- Recursively generate nested object types
 
 File: src/python/src/civic_interconnect/cep/codegen/rust_generated.py
 
@@ -39,14 +40,10 @@ TYPE_MAP = {
 
 def _rust_ident(name: str) -> str:
     """Convert a JSON property name (camelCase, kebab, etc.) to snake_case for Rust."""
-    # First, insert underscores based on camelCase transitions.
     s = re.sub(r"(.)([A-Z][a-z0-9]+)", r"\1_\2", name)
     s = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", s)
-
-    # Replace common separators with underscores.
     s = s.replace("-", "_").replace(" ", "_").replace(".", "_")
 
-    # Keep only alphanumeric and underscore, lowercased.
     out: list[str] = []
     for ch in s:
         if ch.isalnum() or ch == "_":
@@ -61,25 +58,20 @@ def _rust_ident(name: str) -> str:
     return ident
 
 
-def _to_rust_enum_variant(value: str) -> str:
-    """Convert a string value (often a URI) to a Rust enum variant name.
+def _to_pascal_case(name: str) -> str:
+    """Convert a name to PascalCase for Rust struct names."""
+    # Handle kebab-case and snake_case
+    parts = re.split(r"[-_]", name)
+    return "".join(word.capitalize() for word in parts if word)
 
-    Heuristics:
-    - If value looks like a URI, prefer the fragment after '#', else last path segment.
-    - Otherwise, use the whole string.
-    - Then:
-      - Split on non-alphanumeric chars
-      - Uppercase first letter of each alphabetic chunk
-      - Preserve leading digits
-    """
-    # If it's a URI with a fragment, use the fragment.
+
+def _to_rust_enum_variant(value: str) -> str:
+    """Convert a string value (often a URI) to a Rust enum variant name."""
     if "#" in value:
         candidate = value.split("#", 1)[1]
     else:
-        # Otherwise, take the last path segment if it looks like a URL/path.
         candidate = value.rsplit("/", 1)[1] if "/" in value else value
 
-    # Replace non-alphanumeric with spaces, then split.
     cleaned = re.sub(r"[^A-Za-z0-9]+", " ", candidate).strip()
     if not cleaned:
         cleaned = "Unknown"
@@ -92,7 +84,6 @@ def _to_rust_enum_variant(value: str) -> str:
         if part[0].isalpha():
             variant_parts.append(part[0].upper() + part[1:].lower())
         else:
-            # Leading digits: keep as-is (e.g., "501c3" -> "501c3").
             variant_parts.append(part)
 
     return "".join(variant_parts) or "Unknown"
@@ -123,13 +114,7 @@ def _generate_string_enum(enum_name: str, values: list[str]) -> str:
 
 
 def _generate_enum_from_vocabulary(vocab_path: Path, enum_name: str) -> str:
-    """Generate a Rust enum from a CEP vocabulary file's terms.termUri values.
-
-    The enum will use:
-    - serde rename with the full termUri string
-    - variant names derived from the fragment or last path segment:
-      e.g. '#monetary' -> Monetary, '#in-kind' -> InKind
-    """
+    """Generate a Rust enum from a CEP vocabulary file's terms.termUri values."""
     if not vocab_path.exists():
         return ""
 
@@ -157,11 +142,9 @@ def _type_from_const(prop_schema: dict[str, Any]) -> str | None:
     const_val = prop_schema["const"]
     explicit_type = prop_schema.get("type")
 
-    # Prefer explicit type if present.
     if explicit_type in TYPE_MAP:
         return TYPE_MAP[explicit_type]
 
-    # Otherwise, infer from the const value.
     if isinstance(const_val, str):
         return TYPE_MAP["string"]
     if isinstance(const_val, bool):
@@ -177,80 +160,137 @@ def _type_from_const(prop_schema: dict[str, Any]) -> str | None:
 def _type_from_enum(prop_schema: dict[str, Any]) -> str | None:
     """Infer a Rust type from a JSON Schema enum, if present."""
     if "enum" in prop_schema and prop_schema.get("type") == "string":
-        # For now, represent enums as plain strings.
         return "String"
     return None
 
 
-def _type_from_union(t: Any, prop_schema: dict[str, Any]) -> str | None:
+def _type_from_union(
+    t: Any,
+    prop_schema: dict[str, Any],
+    nested_structs: list[str],
+    parent_name: str,
+    field_name: str,
+) -> str | None:
     """Handle union types like ['string', 'null']."""
     if not isinstance(t, list):
         return None
 
     non_null = [item for item in t if item != "null"]
     if len(non_null) == 1:
-        inner = _rust_type_for_schema({"type": non_null[0]})
+        inner = _rust_type_for_schema(
+            {"type": non_null[0]}, nested_structs, parent_name, field_name
+        )
         return "Option<" + inner + ">"
     return "serde_json::Value"
 
 
-def _type_from_simple_type(t: Any, prop_schema: dict[str, Any]) -> str | None:
-    """Handle non-union types."""
+def _type_from_simple_type(
+    t: Any,
+    prop_schema: dict[str, Any],
+    nested_structs: list[str],
+    parent_name: str,
+    field_name: str,
+) -> str | None:
+    """Handle non-union types, including nested objects."""
     if t in TYPE_MAP:
         return TYPE_MAP[t]
 
     if t == "array":
         items = prop_schema.get("items", {})
-        inner = _rust_type_for_schema(items) if items else "serde_json::Value"
+        inner = (
+            _rust_type_for_schema(items, nested_structs, parent_name, field_name + "Item")
+            if items
+            else "serde_json::Value"
+        )
         return "Vec<" + inner + ">"
 
     if t == "object":
-        # For now, do not generate nested structs. Use a generic value.
+        props = prop_schema.get("properties")
+        if props and isinstance(props, dict):
+            # Generate a nested struct
+            struct_name = _to_pascal_case(field_name)
+            nested_struct = _generate_nested_struct(struct_name, prop_schema, nested_structs)
+            nested_structs.append(nested_struct)
+            return struct_name
+        # No properties defined, use generic value
         return "serde_json::Value"
 
     return None
 
 
-def _rust_type_for_schema(prop_schema: dict[str, Any]) -> str:
+def _rust_type_for_schema(
+    prop_schema: dict[str, Any],
+    nested_structs: list[str],
+    parent_name: str = "",
+    field_name: str = "",
+) -> str:
     """Map a JSON Schema property to a Rust type string."""
-    # 1) const
     const_type = _type_from_const(prop_schema)
     if const_type is not None:
         return const_type
 
-    # 2) enum
     enum_type = _type_from_enum(prop_schema)
     if enum_type is not None:
         return enum_type
 
-    # 3) union types, e.g. ["string", "null"]
     t = prop_schema.get("type")
-    union_type = _type_from_union(t, prop_schema)
+    union_type = _type_from_union(t, prop_schema, nested_structs, parent_name, field_name)
     if union_type is not None:
         return union_type
 
-    # 4) simple types (string, integer, array, object, etc.)
-    simple_type = _type_from_simple_type(t, prop_schema)
+    simple_type = _type_from_simple_type(t, prop_schema, nested_structs, parent_name, field_name)
     if simple_type is not None:
         return simple_type
 
-    # 5) fallback
     return "serde_json::Value"
 
 
-def _resolve_ref(ref: str, root: dict[str, Any]) -> dict[str, Any]:
-    """Resolve a local JSON Pointer like '#/definitions/X' into a schema dict.
+def _generate_nested_struct(
+    struct_name: str,
+    schema: dict[str, Any],
+    nested_structs: list[str],
+) -> str:
+    """Generate a Rust struct for a nested object schema."""
+    properties: dict[str, Any] = schema.get("properties", {})
+    required: list[str] = schema.get("required", [])
+    description = schema.get("description", "")
 
-    If resolution fails, returns an empty dict.
-    """
+    lines: list[str] = []
+
+    if description:
+        lines.append("/// " + description)
+
+    lines.append("#[derive(Debug, Clone, Serialize, Deserialize)]")
+    lines.append('#[serde(rename_all = "camelCase")]')
+    lines.append("pub struct " + struct_name + " {")
+
+    for name, prop_schema in properties.items():
+        rust_name = _rust_ident(name)
+        ty = _rust_type_for_schema(prop_schema, nested_structs, struct_name, name)
+
+        is_required = name in required
+        if not is_required and not ty.startswith("Option<"):
+            ty = "Option<" + ty + ">"
+
+        # Add serde rename if needed
+        if rust_name != name:
+            lines.append('    #[serde(rename = "' + name + '")]')
+
+        lines.append("    pub " + rust_name + ": " + ty + ",")
+
+    lines.append("}")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def _resolve_ref(ref: str, root: dict[str, Any]) -> dict[str, Any]:
+    """Resolve a local JSON Pointer like '#/definitions/X' into a schema dict."""
     if not ref.startswith("#/"):
-        # External refs are not resolved here; we handle those via pre-merge.
         return {}
     pointer = ref[2:]
     parts = pointer.split("/") if pointer else []
     node: Any = root
     for part in parts:
-        # Unescape JSON Pointer tokens.
         token = part.replace("~1", "/").replace("~0", "~")
         if isinstance(node, dict) and token in node:
             node = node[token]
@@ -267,7 +307,6 @@ def _merge_schema(target: dict[str, Any], source: dict[str, Any]) -> None:
     if src_props:
         props = target.setdefault("properties", {})
         for name, prop_schema in src_props.items():
-            # Later entries win on conflict.
             props[name] = prop_schema
 
     src_required = source.get("required", [])
@@ -304,15 +343,19 @@ def _field_line(
     prop_schema: dict[str, Any],
     flat_schema: dict[str, Any],
     special_types: dict[str, str],
+    nested_structs: list[str],
+    parent_name: str,
 ) -> str:
     """Generate a single Rust field line for a given JSON Schema property."""
     rust_name = _rust_ident(name)
 
-    ty = special_types[name] if name in special_types else _rust_type_for_schema(prop_schema)
+    if name in special_types:
+        ty = special_types[name]
+    else:
+        ty = _rust_type_for_schema(prop_schema, nested_structs, parent_name, name)
 
     is_required = _is_required(name, flat_schema)
 
-    # If not required, wrap in Option<...> unless already Option.
     if not is_required and not ty.startswith("Option<"):
         ty = "Option<" + ty + ">"
 
@@ -328,17 +371,7 @@ def _field_line(
 
 
 def _load_schema_for_codegen(schema_path: Path) -> dict[str, Any]:
-    """Load a schema and, if it references the shared record envelope, merge that in.
-
-    We:
-    - Load the main schema.
-    - If its allOf contains a ref to cep.record-envelope.schema.json,
-      load that file from the same directory.
-    - Build a synthetic root schema with:
-        allOf: [envelope_schema, main_schema]
-        $defs: envelope_schema.$defs (hoisted)
-    This lets local '#/$defs/...' refs resolve correctly.
-    """
+    """Load a schema and, if it references the shared record envelope, merge that in."""
     raw: dict[str, Any] = json.loads(schema_path.read_text(encoding="utf-8"))
 
     all_of = raw.get("allOf", [])
@@ -355,7 +388,6 @@ def _load_schema_for_codegen(schema_path: Path) -> dict[str, Any]:
 
     envelope_path = schema_path.parent / "cep.record-envelope.schema.json"
     if not envelope_path.exists():
-        # If the envelope file is missing locally, fall back to raw.
         return raw
 
     envelope: dict[str, Any] = json.loads(envelope_path.read_text(encoding="utf-8"))
@@ -376,6 +408,7 @@ def _generate_simple_struct(
     root: dict[str, Any],
     struct_name: str,
     special_types: dict[str, str],
+    nested_structs: list[str],
 ) -> str:
     """Generate a Rust struct for a simple object schema (no outer envelope merging)."""
     flat: dict[str, Any] = {}
@@ -394,7 +427,9 @@ def _generate_simple_struct(
     lines.append("pub struct " + struct_name + " {")
 
     for name, prop_schema in properties.items():
-        lines.append(_field_line(name, prop_schema, flat, special_types))
+        lines.append(
+            _field_line(name, prop_schema, flat, special_types, nested_structs, struct_name)
+        )
 
     lines.append("}")
     lines.append("")
@@ -402,10 +437,7 @@ def _generate_simple_struct(
 
 
 def _generate_record_kind_enum(root: dict[str, Any]) -> str:
-    """Generate RecordKind enum from envelope's recordKind enum, if present.
-
-    We look for an allOf subschema that has properties.recordKind.enum.
-    """
+    """Generate RecordKind enum from envelope's recordKind enum, if present."""
     all_of = root.get("allOf", [])
     for sub in all_of:
         if not isinstance(sub, dict):
@@ -443,7 +475,6 @@ def _generate_status_code_enum_from_defs(
         return ""
 
     enum_code = _generate_string_enum("StatusCode", status_code_enum_values)
-    # Use StatusCode for the statusCode field inside StatusEnvelope.
     special_types["statusCode"] = "StatusCode"
     return enum_code
 
@@ -452,6 +483,7 @@ def _generate_envelope_structs_from_defs(
     defs: dict[str, Any],
     root: dict[str, Any],
     special_types: dict[str, str],
+    nested_structs: list[str],
 ) -> str:
     """Generate StatusEnvelope, Timestamps, Attestation from $defs."""
     pieces: list[str] = []
@@ -465,9 +497,10 @@ def _generate_envelope_structs_from_defs(
     for key, struct_name in mapping:
         schema = defs.get(key)
         if isinstance(schema, dict):
-            pieces.append(_generate_simple_struct(schema, root, struct_name, special_types))
+            pieces.append(
+                _generate_simple_struct(schema, root, struct_name, special_types, nested_structs)
+            )
 
-    # For main records, map these top-level fields to the envelope structs.
     special_types["status"] = "StatusEnvelope"
     special_types["timestamps"] = "Timestamps"
     special_types["attestations"] = "Vec<Attestation>"
@@ -476,26 +509,21 @@ def _generate_envelope_structs_from_defs(
     return "\n".join(pieces)
 
 
-def _generate_envelope_items(root: dict[str, Any], special_types: dict[str, str]) -> str:
-    """Generate enums/structs from the shared envelope $defs if present.
-
-    This includes:
-    - StatusCode enum (from status.statusCode.enum)
-    - StatusEnvelope, Timestamps, Attestation structs
-    """
+def _generate_envelope_items(
+    root: dict[str, Any], special_types: dict[str, str], nested_structs: list[str]
+) -> str:
+    """Generate enums/structs from the shared envelope $defs if present."""
     defs = root.get("$defs")
     if not isinstance(defs, dict):
         return ""
 
     pieces: list[str] = []
 
-    # StatusCode enum from $defs.status.properties.statusCode.enum
     status_code_enum = _generate_status_code_enum_from_defs(defs, special_types)
     if status_code_enum:
         pieces.append(status_code_enum)
 
-    # Envelope structs: status, timestamps, attestation.
-    env_structs = _generate_envelope_structs_from_defs(defs, root, special_types)
+    env_structs = _generate_envelope_structs_from_defs(defs, root, special_types, nested_structs)
     if env_structs:
         pieces.append(env_structs)
 
@@ -506,7 +534,6 @@ def generate_rust_struct(schema_path: Path, struct_name: str) -> str:
     """Generate a single Rust struct from a JSON Schema file."""
     root: dict[str, Any] = _load_schema_for_codegen(schema_path)
 
-    # Flatten via allOf + local $refs for the main record.
     flat: dict[str, Any] = {}
     _flatten_schema(root, root, flat)
 
@@ -515,21 +542,18 @@ def generate_rust_struct(schema_path: Path, struct_name: str) -> str:
 
     lines: list[str] = [RUST_HEADER]
 
-    # special_types maps JSON field names to explicit Rust types.
     special_types: dict[str, str] = {}
+    nested_structs: list[str] = []
 
-    # Optional: RecordKind enum from envelope's recordKind enum.
     record_kind_enum = _generate_record_kind_enum(root)
     if record_kind_enum:
         lines.append(record_kind_enum)
         special_types["recordKind"] = "RecordKind"
 
-    # Envelope structs + StatusCode enum (if $defs present).
-    envelope_items = _generate_envelope_items(root, special_types)
+    envelope_items = _generate_envelope_items(root, special_types, nested_structs)
     if envelope_items:
         lines.append(envelope_items)
 
-    # Typed identifiers map alias if the schema uses "identifiers".
     identifiers_items = ""
     if "identifiers" in properties:
         identifiers_items = (
@@ -550,7 +574,17 @@ def generate_rust_struct(schema_path: Path, struct_name: str) -> str:
 
     if identifiers_items:
         lines.append(identifiers_items)
-    # Emit the main record struct.
+
+    # Process all fields to collect nested structs
+    for name, prop_schema in properties.items():
+        if name not in special_types:
+            _rust_type_for_schema(prop_schema, nested_structs, struct_name, name)
+
+    # Emit nested structs before the main struct
+    for nested in nested_structs:
+        lines.append(nested)
+
+    # Emit the main record struct
     if description:
         lines.append("/// " + description + "\n")
 
@@ -559,7 +593,9 @@ def generate_rust_struct(schema_path: Path, struct_name: str) -> str:
     lines.append("pub struct " + struct_name + " {")
 
     for name, prop_schema in properties.items():
-        lines.append(_field_line(name, prop_schema, flat, special_types))
+        lines.append(
+            _field_line(name, prop_schema, flat, special_types, nested_structs, struct_name)
+        )
 
     lines.append("}")
     lines.append("")

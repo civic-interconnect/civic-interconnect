@@ -1,0 +1,119 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/ed-institution-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Education Institution Type Vocabulary",
+  "description": "Controlled vocabulary for types of education institutions (K–12, higher education, and related organizations).",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:institutionType:ed:schoolK12",
+      "code": "K12_SCHOOL",
+      "label": "K–12 School",
+      "definition": "A primary or secondary school serving pre-kindergarten through grade 12 learners.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:institutionType:ed:schoolDistrict",
+      "code": "DISTRICT",
+      "label": "School District",
+      "definition": "An administrative unit responsible for operating one or more K–12 schools within a defined jurisdiction.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:institutionType:ed:collegeOrUniversity",
+      "code": "HEI",
+      "label": "College or University",
+      "definition": "An institution of higher education authorized to grant degrees or equivalent qualifications.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "IPEDS",
+          "code": "1"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:institutionType:ed:communityCollege",
+      "code": "COMM_COLLEGE",
+      "label": "Community or Technical College",
+      "definition": "A two-year or similar institution focused on associate degrees, certificates, or technical education.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "IPEDS",
+          "code": "2"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:institutionType:ed:adultEducationCenter",
+      "code": "ADULT_ED",
+      "label": "Adult Education Center",
+      "definition": "An institution primarily serving adult learners, including continuing education and workforce programs.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:institutionType:ed:trainingProvider",
+      "code": "TRAINING",
+      "label": "Training Provider",
+      "definition": "An organization that delivers structured training or credential programs outside traditional school or university structures.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:institutionType:ed:educationAgency",
+      "code": "ED_AGENCY",
+      "label": "Education Agency",
+      "definition": "A governmental or quasi-governmental body responsible for education policy, regulation, or funding.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:institutionType:ed:other",
+      "code": "OTHER",
+      "label": "Other Education Institution",
+      "definition": "An institution involved in education that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

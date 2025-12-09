@@ -1,5 +1,5 @@
 // Module for computing and validating SNFEI
-// (Sub-National Fixed Entity Identifier)
+// (Structured Non-Fungible Entity Identifier)
 
 use sha2::{Digest, Sha256};
 

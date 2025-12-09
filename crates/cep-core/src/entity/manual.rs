@@ -4,7 +4,7 @@ use crate::common::errors::{CepError, CepResult};
 use serde::{Deserialize, Serialize};
 use serde_json;
 
-pub(crate) const SNFEI_SCHEME_URI: &str = "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei";
+pub(crate) const SNFEI_SCHEME_URI: &str = "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#snfei";
 
 // Re-export generated types you want applications to use.
 pub use super::generated::{
@@ -158,7 +158,7 @@ fn default_ingest_attestation() -> Attestation {
 /// Produces:
 /// [
 ///   {
-///     "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-identifier-scheme.v1.0.0.json#snfei",
+///     "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-identifier-scheme.v1.0.0.json#snfei",
 ///     "identifier": "<hash>",
 ///     "sourceReference": null
 ///   }
@@ -283,11 +283,12 @@ mod tests {
         use std::fs;
         use std::path::PathBuf;
 
-        // Build path to: <repo-root>/vocabularies/entity-identifier-scheme.v1.0.0.json
+        // Build path to: <repo-root>/vocabulary/core/entity-identifier-scheme.v1.0.0.json
         let mut path = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
         path.push("..");
         path.push("..");
-        path.push("vocabularies");
+        path.push("vocabulary");
+        path.push("core");
         path.push("entity-identifier-scheme.v1.0.0.json");
 
         let text = fs::read_to_string(&path)
