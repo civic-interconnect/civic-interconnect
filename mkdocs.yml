@@ -132,6 +132,7 @@ nav:
 
   - Implementation:
       - Guide: en/implementation/implementation-guide.md
+      - Adapters: en/implementation/adapters.md
       - Validator: en/implementation/validator.md
       - CTag Integration: en/implementation/ctag-integration.md
       - Casing: en/implementation/casing.md
