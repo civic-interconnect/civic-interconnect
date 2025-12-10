@@ -1,0 +1,129 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/procurement/relationship-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Public Procurement Relationship Type Vocabulary",
+  "description": "Domain-specific refinement of CEP relationship types for buyers, suppliers, procedures, lots, awards, contracts, and implementation events in public procurement.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:relationshipType:pp:buyer-runs-procedure",
+      "code": "buyer-runs-procedure",
+      "label": "Buyer Runs Procedure",
+      "definition": "A relationship where a buyer organization initiates, manages, or is responsible for a procurement procedure as the contracting authority or purchasing body.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_RELATIONSHIP_TYPE",
+          "code": "RESPONSIBLE_FOR"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:relationshipType:pp:contract-based-on-award",
+      "code": "contract-based-on-award",
+      "label": "Contract Based on Award",
+      "definition": "A relationship where a contract is created based on a specific award decision for a lot or procedure, linking the legal agreement to the underlying award event.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:relationshipType:pp:contract-implemented-by-supplier",
+      "code": "contract-implemented-by-supplier",
+      "label": "Contract Implemented by Supplier",
+      "definition": "A relationship where a supplier or group of suppliers performs the work, delivers goods, or provides services under a contract, as captured in implementation records.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_RELATIONSHIP_TYPE",
+          "code": "FULFILLS"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:relationshipType:pp:implementation-event-for-contract",
+      "code": "implementation-event-for-contract",
+      "label": "Implementation Event for Contract",
+      "definition": "A relationship where an implementation record, such as a payment, milestone, or amendment, is associated with a specific contract in the procurement process.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:relationshipType:pp:lot-awarded-to-supplier",
+      "code": "lot-awarded-to-supplier",
+      "label": "Lot Awarded to Supplier",
+      "definition": "A relationship where a specific lot is awarded to one or more supplier organizations as a result of an award decision.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_RELATIONSHIP_TYPE",
+          "code": "AWARD"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:relationshipType:pp:other-procurement-relationship",
+      "code": "other-procurement-relationship",
+      "label": "Other Procurement Relationship",
+      "definition": "A procurement relationship type that does not fit another, more specific category in this vocabulary but is needed to reflect source systems or standards.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:relationshipType:pp:procedure-includes-lot",
+      "code": "procedure-includes-lot",
+      "label": "Procedure Includes Lot",
+      "definition": "A relationship where a procurement procedure includes one or more lots that subdivide the overall scope of goods, works, or services to be procured.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:relationshipType:pp:supplier-participates-in-procedure",
+      "code": "supplier-participates-in-procedure",
+      "label": "Supplier Participates in Procedure",
+      "definition": "A relationship where a supplier organization expresses interest, submits a tender, or otherwise participates in a procurement procedure or lot competition.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "CEP_CORE_RELATIONSHIP_TYPE",
+          "code": "PARTICIPATION"
+        }
+      ]
+    }
+  ],
+  "mappings": []
+}

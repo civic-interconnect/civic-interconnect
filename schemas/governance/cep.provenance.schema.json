@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/governance/cep.provenance.schema.json",
+  "title": "ProvenanceSpec",
+  "description": "Specification for CEP provenance representations and alignment with W3C PROV.",
+  "type": "object",
+  "properties": {
+    "provenanceSpecId": {
+      "type": "string",
+      "description": "Identifier for this provenance specification."
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of this provenance specification."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of this provenance specification."
+    }
+  },
+  "required": [
+    "provenanceSpecId"
+  ],
+  "additionalProperties": false
+}

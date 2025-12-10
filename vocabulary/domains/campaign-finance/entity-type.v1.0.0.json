@@ -1,0 +1,57 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/campaign-finance/entity-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "CEP Campaign Finance Entity Type Vocabulary",
+  "description": "Controlled vocabulary for major entity categories in campaign finance data (committees, candidates, donors).",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:entityType:cf:political-committee",
+      "code": "political-committee",
+      "label": "Political Committee",
+      "definition": "A registered political committee such as a candidate committee, party committee, PAC, or super PAC.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:entityType:cf:candidate",
+      "code": "candidate",
+      "label": "Candidate",
+      "definition": "An individual seeking election to public office.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:entityType:cf:donor-person",
+      "code": "donor-person",
+      "label": "Individual Donor",
+      "definition": "An individual contributing funds or in-kind value to a political committee.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:entityType:cf:donor-organization",
+      "code": "donor-organization",
+      "label": "Organizational Donor",
+      "definition": "An organization contributing funds or in-kind value to a political committee, such as a corporation, union, or association.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    }
+  ],
+  "mappings": []
+}

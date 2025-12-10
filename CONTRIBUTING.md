@@ -80,8 +80,6 @@ git pull origin main
 # after changing schemas, regenerate rust
 uv run python tools/codegen_rust.py
 
-rustc --version
-
 # build and install cep_py for cx commands
 cd crates/cep-py
 cargo build
@@ -94,7 +92,7 @@ uv run cx codegen-python-constants
 cargo fmt
 cargo check
 
-# fix crates
+# fix crates as needed
 cargo fix --lib -p cep-core --allow-dirty --allow-staged
 cargo fix --lib -p cep-domains --allow-dirty --allow-staged
 cargo fix --lib -p cep-py --allow-dirty --allow-staged

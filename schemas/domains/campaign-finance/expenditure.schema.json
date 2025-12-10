@@ -1,0 +1,18 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/campaign-finance/expenditure.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Campaign Finance Expenditure",
+  "allOf": [
+    { "$ref": "transaction.schema.json" },
+    {
+      "properties": {
+        "entityTypeUri": { "const": "cep:entity:cf:expenditure" },
+        "payerCommitteeRef": { "type": "string" },
+        "vendorRef": { "type": "string" },
+        "purpose": { "type": "string" },
+        "expenditureTypeUri": { "type": "string" }
+      },
+      "required": ["entityTypeUri", "payerCommitteeRef", "vendorRef"]
+    }
+  ]
+}

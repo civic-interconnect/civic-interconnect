@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/governance/cep.versions.schema.json",
+  "title": "CepVersionInfo",
+  "description": "Version information for CEP schemas, vocabularies, and related specifications.",
+  "type": "object",
+  "properties": {
+    "specVersion": {
+      "type": "string",
+      "description": "Version identifier for the CEP specification."
+    },
+    "coreSchemaVersion": {
+      "type": "string",
+      "description": "Version identifier for the core CEP schemas."
+    },
+    "vocabularyVersion": {
+      "type": "string",
+      "description": "Version identifier for the vocabulary schemas."
+    },
+    "ceeVersion": {
+      "type": "string",
+      "description": "Version identifier for the CEE extension, if applicable."
+    },
+    "releasedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this version bundle was released."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

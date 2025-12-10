@@ -1,0 +1,123 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/campaign-finance/office.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "CEP Campaign Finance Office Vocabulary",
+  "description": "Controlled vocabulary for public offices associated with candidates and elections in campaign finance data.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:office:cf:us-president",
+      "code": "us-president",
+      "label": "President",
+      "definition": "The office of President of the United States or its direct functional equivalent in other jurisdictions.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:office:cf:us-senate",
+      "code": "us-senate",
+      "label": "U.S. Senate",
+      "definition": "The office of United States Senator or a comparable upper-chamber national legislative office.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:office:cf:us-house",
+      "code": "us-house",
+      "label": "U.S. House of Representatives",
+      "definition": "The office of United States Representative or a comparable lower-chamber national legislative office.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:office:cf:governor",
+      "code": "governor",
+      "label": "Governor",
+      "definition": "The chief executive office of a state, province, or equivalent subnational jurisdiction.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:office:cf:state-upper-chamber",
+      "code": "state-upper-chamber",
+      "label": "State or Provincial Upper Chamber",
+      "definition": "A state, provincial, or regional legislative upper-chamber office, such as a State Senate.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:office:cf:state-lower-chamber",
+      "code": "state-lower-chamber",
+      "label": "State or Provincial Lower Chamber",
+      "definition": "A state, provincial, or regional legislative lower-chamber office, such as a State House or Assembly.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:office:cf:local-executive",
+      "code": "local-executive",
+      "label": "Local Executive",
+      "definition": "A local executive office such as mayor, county executive, or similar municipal leader.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:office:cf:local-legislative",
+      "code": "local-legislative",
+      "label": "Local Legislative",
+      "definition": "A local legislative office such as city council member, county board member, or equivalent.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:office:cf:judicial-office",
+      "code": "judicial-office",
+      "label": "Judicial Office",
+      "definition": "A judicial office such as judge or justice at any level of the court system where campaigns are reported.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:office:cf:other-office",
+      "code": "other-office",
+      "label": "Other Office",
+      "definition": "An office not covered by any more specific term in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    }
+  ],
+  "mappings": []
+}

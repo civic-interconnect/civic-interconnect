@@ -1,0 +1,101 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/campaign-finance/committee-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "CEP Campaign Finance Committee Type Vocabulary",
+  "description": "Controlled vocabulary for types of campaign finance committees (candidate, party, PAC, etc.).",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:committeeType:cf:principal-campaign-committee",
+      "code": "principal-campaign-committee",
+      "label": "Principal Campaign Committee",
+      "definition": "A committee designated as the primary campaign committee for a specific candidate (commonly coded as PCC in campaign-finance systems).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:committeeType:cf:party-committee",
+      "code": "party-committee",
+      "label": "Party Committee",
+      "definition": "A committee established and maintained by a political party organization (often labeled PARTY in source systems).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:committeeType:cf:political-action-committee",
+      "code": "political-action-committee",
+      "label": "Political Action Committee",
+      "definition": "A committee that receives contributions and makes expenditures to influence elections but is not a party or candidate committee (commonly coded as PAC).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:committeeType:cf:independent-expenditure-only-committee",
+      "code": "independent-expenditure-only-committee",
+      "label": "Independent Expenditure Only Committee",
+      "definition": "A committee that makes only independent expenditures and does not contribute directly to candidates or parties (often referred to as a Super PAC, code SUPER_PAC).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:committeeType:cf:leadership-pac",
+      "code": "leadership-pac",
+      "label": "Leadership PAC",
+      "definition": "A political action committee established or controlled by a current or former candidate or officeholder (commonly coded as LEAD_PAC).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:committeeType:cf:ballot-measure-committee",
+      "code": "ballot-measure-committee",
+      "label": "Ballot Measure Committee",
+      "definition": "A committee organized primarily to support or oppose a ballot measure or referendum (often coded as BALLOT).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:committeeType:cf:independent-expenditure-committee",
+      "code": "independent-expenditure-committee",
+      "label": "Independent Expenditure Committee",
+      "definition": "A committee whose primary activity is making independent expenditures in support of or opposition to candidates or ballot measures (commonly coded as IE in source data).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:committeeType:cf:other-committee-type",
+      "code": "other-committee-type",
+      "label": "Other Committee Type",
+      "definition": "A committee whose type does not fit any more specific category in this vocabulary (often coded as OTHER in source systems).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    }
+  ],
+  "mappings": []
+}

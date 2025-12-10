@@ -1,0 +1,119 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/relationship-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Education Relationship Type Vocabulary",
+  "description": "Domain-specific refinement of CEP relationship types for education institutions, programs, people, and credentials.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:relationshipType:ed:institution-offers-program",
+      "code": "institution-offers-program",
+      "label": "Institution Offers Program",
+      "definition": "A relationship where an education institution offers or is responsible for delivering a specific program or course of study.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        { "system": "CEP_CORE_RELATIONSHIP_TYPE", "code": "PROVISION" }
+      ]
+    },
+    {
+      "termUri": "cep:relationshipType:ed:institution-runs-course-instance",
+      "code": "institution-runs-course-instance",
+      "label": "Institution Runs Course Instance",
+      "definition": "A relationship where an institution organizes or schedules a particular course instance or class offering.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:relationshipType:ed:person-enrolled-in-program",
+      "code": "person-enrolled-in-program",
+      "label": "Person Enrolled in Program",
+      "definition": "A relationship where a person is enrolled as a learner in a specific education program, course of study, or pathway.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        { "system": "CEP_CORE_RELATIONSHIP_TYPE", "code": "PARTICIPATION" }
+      ]
+    },
+    {
+      "termUri": "cep:relationshipType:ed:person-enrolled-in-course-instance",
+      "code": "person-enrolled-in-course-instance",
+      "label": "Person Enrolled in Course Instance",
+      "definition": "A relationship where a person is enrolled in a specific course instance, section, or class offering during a defined term or period.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:relationshipType:ed:person-teaches-course-instance",
+      "code": "person-teaches-course-instance",
+      "label": "Person Teaches Course Instance",
+      "definition": "A relationship where a person acts as teacher or instructor for a specific course instance or class offering.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        { "system": "CEP_CORE_RELATIONSHIP_TYPE", "code": "EMPLOYMENT" }
+      ]
+    },
+    {
+      "termUri": "cep:relationshipType:ed:person-holds-credential",
+      "code": "person-holds-credential",
+      "label": "Person Holds Credential",
+      "definition": "A relationship where a person has been awarded a credential, degree, certificate, or license by an institution or authority.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        { "system": "CEP_CORE_RELATIONSHIP_TYPE", "code": "OWNERSHIP" }
+      ]
+    },
+    {
+      "termUri": "cep:relationshipType:ed:institution-accredited-by-body",
+      "code": "institution-accredited-by-body",
+      "label": "Institution Accredited by Body",
+      "definition": "A relationship where an institution is accredited, approved, or recognized by an accreditation body or regulatory authority.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        { "system": "CEP_CORE_RELATIONSHIP_TYPE", "code": "ACCREDITATION" }
+      ]
+    },
+    {
+      "termUri": "cep:relationshipType:ed:other-education-relationship",
+      "code": "other-education-relationship",
+      "label": "Other Education Relationship",
+      "definition": "An education-related relationship type that does not fit another, more specific category in this vocabulary but is needed to represent source systems.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

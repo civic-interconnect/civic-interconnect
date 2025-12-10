@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/procurement/relationship.schema.json",
+  "title": "ProcurementRelationship",
+  "description": "Relationship between procurement entities (e.g., lot to tender, contract to lot).",
+  "type": "object",
+  "properties": {
+    "relationshipId": {
+      "type": "string",
+      "description": "Identifier for this relationship."
+    },
+    "fromEntityId": {
+      "type": "string",
+      "description": "Identifier of the source entity."
+    },
+    "toEntityId": {
+      "type": "string",
+      "description": "Identifier of the target entity."
+    },
+    "relationshipTypeCode": {
+      "type": "string",
+      "description": "Code indicating the type of relationship."
+    },
+    "validFrom": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start of the validity period."
+    },
+    "validTo": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End of the validity period, if any."
+    }
+  },
+  "required": [
+    "relationshipId",
+    "fromEntityId",
+    "toEntityId",
+    "relationshipTypeCode"
+  ],
+  "additionalProperties": false
+}

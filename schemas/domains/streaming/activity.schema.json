@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/streaming/activity.schema.json",
+  "title": "StreamingActivity",
+  "description": "Higher-level activity realized over one or more streaming segments.",
+  "type": "object",
+  "properties": {
+    "activityId": {
+      "type": "string",
+      "description": "Identifier for this activity."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Identifier of the primary session for this activity."
+    },
+    "activityType": {
+      "type": "string",
+      "description": "Type of activity (e.g., NORMAL_OPERATION, STARTUP, SHUTDOWN)."
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start time of the activity."
+    },
+    "endedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End time of the activity."
+    }
+  },
+  "required": [
+    "activityId",
+    "activityType"
+  ],
+  "additionalProperties": false
+}

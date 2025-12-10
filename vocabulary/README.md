@@ -62,7 +62,7 @@ Contains vocabularies that are defined and curated within individual subject-mat
 ```
 domains/
   campaign-finance/
-  public-procurement/
+  procurement/
   education/
   environment/
   ...
@@ -94,7 +94,7 @@ Examples:
 - `party-role.v1.0.0.json`  
 - `resolution-method.v1.0.0.json`  
 - `currency.v1.0.0.json`  
-- `cf-filing-type.v1.0.0.json` (domain example)
+- `filing-type.v1.0.0.json` (domain example)
 
 The file name describes **what** the vocabulary is.  
 The directory path describes **where** it belongs in the CEP ecosystem.  

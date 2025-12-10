@@ -1,0 +1,97 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/environment/site-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Environmental Site Type Vocabulary",
+  "description": "Controlled vocabulary for types of sites relevant to environmental management and regulation.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:siteType:env:industrial",
+      "code": "industrial",
+      "label": "Industrial Facility",
+      "definition": "A facility engaged in manufacturing, processing, or industrial operations that may generate environmental impacts.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:siteType:env:energy",
+      "code": "energy",
+      "label": "Energy Facility",
+      "definition": "A facility that generates, transmits, or distributes energy, such as power plants or large renewable installations.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:siteType:env:waste",
+      "code": "waste",
+      "label": "Waste Facility",
+      "definition": "A site used for waste collection, transfer, treatment, recycling, or disposal, including landfills and incinerators.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:siteType:env:monitoring",
+      "code": "monitoring",
+      "label": "Monitoring Station",
+      "definition": "A site where environmental measurements are collected, such as air quality or water quality monitoring locations.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:siteType:env:remediation",
+      "code": "remediation",
+      "label": "Remediation Site",
+      "definition": "A site undergoing environmental cleanup or remediation to address contamination or legacy impacts.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:siteType:env:natural",
+      "code": "natural",
+      "label": "Natural Area",
+      "definition": "A natural or semi-natural area of environmental significance, such as a protected area, park, or reserve, relevant to impact assessments or monitoring.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:siteType:env:other",
+      "code": "other",
+      "label": "Other Environmental Site",
+      "definition": "A site type relevant to environmental management that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

@@ -9,18 +9,8 @@
   "deprecatesVersion": null,
   "terms": [
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/ctag-type.v1.0.0.json#risk.flag.potential_shell",
-      "code": "risk.flag.potential_shell",
-      "label": "Potential Shell Entity",
-      "definition": "Flag indicating that this entity exhibits transaction patterns consistent with a shell organization (for example, funds passing through without operational activity).",
-      "status": "active",
-      "deprecationNote": null,
-      "addedInVersion": "1.0.0",
-      "seeAlso": []
-    },
-    {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/ctag-type.v1.0.0.json#analysis.cluster.membership",
-      "code": "analysis.cluster.membership",
+      "termUri": "cep:ctagType:core:analysis-cluster-membership",
+      "code": "analysis-cluster-membership",
       "label": "Cluster Membership",
       "definition": "Indicates that the record participates in an inferred cluster (for example, community detection or similarity clustering). The value field typically carries a cluster identifier.",
       "status": "active",
@@ -29,8 +19,18 @@
       "seeAlso": []
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/ctag-type.v1.0.0.json#quality.issue.incomplete_address",
-      "code": "quality.issue.incomplete_address",
+      "termUri": "cep:ctagType:core:narrative-highlight-key-actor",
+      "code": "narrative-highlight-key-actor",
+      "label": "Key Actor Highlight",
+      "definition": "Marks this entity or relationship as a key actor within a specific investigation, story, or analytic report.",
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "seeAlso": []
+    },
+    {
+      "termUri": "cep:ctagType:core:quality-issue-incomplete-address",
+      "code": "quality-issue-incomplete-address",
       "label": "Incomplete Address",
       "definition": "Data quality flag for records where address fields are present but incomplete for operational or analytic use.",
       "status": "active",
@@ -39,10 +39,10 @@
       "seeAlso": []
     },
     {
-      "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/ctag-type.v1.0.0.json#narrative.highlight.key_actor",
-      "code": "narrative.highlight.key_actor",
-      "label": "Key Actor Highlight",
-      "definition": "Marks this entity or relationship as a key actor within a specific investigation, story, or analytic report.",
+      "termUri": "cep:ctagType:core:risk-flag-potential-shell",
+      "code": "risk-flag-potential-shell",
+      "label": "Potential Shell Entity",
+      "definition": "Flag indicating that this entity exhibits transaction patterns consistent with a shell organization (for example, funds passing through without operational activity).",
       "status": "active",
       "deprecationNote": null,
       "addedInVersion": "1.0.0",

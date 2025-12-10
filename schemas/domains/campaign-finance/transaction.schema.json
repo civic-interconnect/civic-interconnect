@@ -1,0 +1,12 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/campaign-finance/transaction.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Campaign Finance Transaction (Abstract)",
+  "type": "object",
+  "properties": {
+    "date": { "type": "string", "format": "date" },
+    "amount": { "type": "number" },
+    "currency": { "type": "string", "default": "USD" }
+  },
+  "required": ["date", "amount"]
+}

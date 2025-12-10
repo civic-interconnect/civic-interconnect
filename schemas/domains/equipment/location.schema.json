@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/equipment/location.schema.json",
+  "title": "EquipmentLocation",
+  "description": "Location associated with equipment or sensors (site, room, GPS point).",
+  "type": "object",
+  "properties": {
+    "locationId": {
+      "type": "string",
+      "description": "Identifier for this location."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the location."
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Latitude in decimal degrees."
+    },
+    "longitude": {
+      "type": "number",
+      "description": "Longitude in decimal degrees."
+    },
+    "elevationMeters": {
+      "type": "number",
+      "description": "Elevation above sea level in meters."
+    },
+    "address": {
+      "type": "string",
+      "description": "Optional postal or site address."
+    }
+  },
+  "required": [
+    "locationId"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/cee/core/attribution-set.schema.json",
+  "title": "AttributionSet",
+  "description": "Relative contributions of evidence items to a model output or decision.",
+  "type": "object",
+  "properties": {
+    "attribution": {
+      "type": "array",
+      "description": "List of attribution weights per evidence item.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "evidenceId": {
+            "type": "string",
+            "description": "Identifier of the evidence item this attribution refers to."
+          },
+          "weight": {
+            "type": "number",
+            "description": "Non-negative contribution weight. Typically weights sum to 1.0.",
+            "minimum": 0.0
+          }
+        },
+        "required": [
+          "evidenceId",
+          "weight"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "attribution"
+  ],
+  "additionalProperties": false
+}

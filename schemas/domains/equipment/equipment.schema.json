@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/equipment/equipment.schema.json",
+  "title": "Equipment",
+  "description": "Physical equipment asset that may host sensors or participate in monitored activities.",
+  "type": "object",
+  "properties": {
+    "equipmentId": {
+      "type": "string",
+      "description": "Identifier for the equipment asset."
+    },
+    "equipmentType": {
+      "type": "string",
+      "description": "Type or category of equipment (e.g., pump, turbine, vehicle)."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the equipment."
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the equipment."
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Identifier of the primary location for this equipment."
+    },
+    "statusCode": {
+      "type": "string",
+      "description": "Operational status (e.g., ACTIVE, INACTIVE, MAINTENANCE)."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional implementation-specific metadata.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "equipmentId"
+  ],
+  "additionalProperties": false
+}

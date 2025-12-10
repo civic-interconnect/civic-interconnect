@@ -24,14 +24,14 @@ Each file in this directory is a **machine-readable vocabulary** in CEP’s stan
 
 This directory currently includes domain vocabularies for:
 
--   **Committee Type** (`cf-committee-type.v1.0.0.json`)
--   **Contribution Type** (`cf-contribution-type.v1.0.0.json`)
--   **Expenditure Type** (`cf-expenditure-type.v1.0.0.json`)
--   **Party** (`cf-party.v1.0.0.json`)
--   **Office** (`cf-office.v1.0.0.json`)
--   **Filing Type** (`cf-filing-type.v1.0.0.json`)
--   **Entity Type (CF-specific)** (`cf-entity-type.v1.0.0.json`)
--   **Relationship Type (CF-specific)** (`cf-relationship-type.v1.0.0.json`)
+-   **Committee Type** (`committee-type.v1.0.0.json`)
+-   **Contribution Type** (`contribution-type.v1.0.0.json`)
+-   **Expenditure Type** (`expenditure-type.v1.0.0.json`)
+-   **Party** (`party.v1.0.0.json`)
+-   **Office** (`office.v1.0.0.json`)
+-   **Filing Type** (`filing-type.v1.0.0.json`)
+-   **Entity Type (specific)** (`entity-type.v1.0.0.json`)
+-   **Relationship Type (specific)** (`relationship-type.v1.0.0.json`)
 
 These vocabularies may be expanded over time as additional regulatory concepts, filing structures, or jurisdictional distinctions are incorporated into CEP.
 
@@ -57,7 +57,7 @@ This domain defines a set of **campaign-finance-specific entity types** that ref
 
 The vocabulary file:
 
--   [`cf-entity-type.v1.0.0.json`](cf-entity-type.v1.0.0.json)
+-   [`entity-type.v1.0.0.json`](entity-type.v1.0.0.json)
 
 includes entity classes such as:
 
@@ -81,7 +81,7 @@ Adapters should assign each campaign-finance entity a domain-specific entity typ
 Campaign finance data involves structured interactions among committees, contributors, candidates, vendors, and regulatory bodies.  
 The CEP campaign-finance domain models these interactions using a dedicated relationship-type vocabulary:
 
--   [`cf-relationship-type.v1.0.0.json`](cf-relationship-type.v1.0.0.json)
+-   [`relationship-type.v1.0.0.json`](relationship-type.v1.0.0.json)
 
 Key relationships include:
 

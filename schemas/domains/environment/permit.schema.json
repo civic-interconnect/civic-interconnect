@@ -1,0 +1,27 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/environment/permit.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Environmental Permit",
+  "type": "object",
+
+  "properties": {
+    "entityTypeUri": {
+      "const": "cep:entity:env:permit"
+    },
+    "permitIdentifier": { "type": "string" },
+    "permitTypeUri": { "type": "string" },
+    "issueDate": { "type": "string", "format": "date" },
+    "expirationDate": { "type": ["string", "null"], "format": "date" },
+    "jurisdictionUri": { "type": "string" },
+
+    "facilityRef": {
+      "type": "object",
+      "properties": {
+        "facilityVerifiableId": { "type": "string" }
+      },
+      "required": ["facilityVerifiableId"]
+    }
+  },
+
+  "required": ["entityTypeUri", "permitIdentifier", "permitTypeUri", "issueDate"]
+}

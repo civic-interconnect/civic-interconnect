@@ -21,8 +21,8 @@ def schema_name_to_record_name(schema_path: Path) -> str:
 
     Examples:
         cep.entity.schema.json -> EntityRecord
-        cf.contribution.schema.json -> ContributionRecord
-        env.facility.schema.json -> FacilityRecord
+        contribution.schema.json -> ContributionRecord
+        facility.schema.json -> FacilityRecord
     """
     stem = schema_path.stem.removesuffix(".schema")  # "cep.entity"
     parts = stem.split(".")

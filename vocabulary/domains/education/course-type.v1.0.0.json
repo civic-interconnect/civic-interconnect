@@ -1,0 +1,109 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/course-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Education Course Type Vocabulary",
+  "description": "Controlled vocabulary for types of courses or course instances in education programs.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:courseType:ed:lecture",
+      "code": "lecture",
+      "label": "Lecture",
+      "definition": "A course type primarily based on instructor-led presentations and discussions with learners.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:courseType:ed:lab",
+      "code": "lab",
+      "label": "Laboratory",
+      "definition": "A course or component focused on hands-on experimentation, labs, or supervised practice activities.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:courseType:ed:seminar",
+      "code": "seminar",
+      "label": "Seminar",
+      "definition": "A course emphasizing discussion, reading, and learner participation, often in smaller groups.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:courseType:ed:studio",
+      "code": "studio",
+      "label": "Studio",
+      "definition": "A course with a studio format, common in design, art, architecture, and creative disciplines.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:courseType:ed:independent-study",
+      "code": "independent-study",
+      "label": "Independent Study",
+      "definition": "A course where a learner works independently under the guidance of an instructor on agreed-upon activities or projects.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:courseType:ed:internship-or-practicum",
+      "code": "internship-or-practicum",
+      "label": "Internship or Practicum",
+      "definition": "A course based on supervised work experience, clinical practice, or field placement in a professional setting.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:courseType:ed:workshop-or-short-course",
+      "code": "workshop-or-short-course",
+      "label": "Workshop or Short Course",
+      "definition": "A short, intensive course or workshop focusing on a specific topic or skill set.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:courseType:ed:other-course-type",
+      "code": "other-course-type",
+      "label": "Other Course Type",
+      "definition": "A course type that does not fit another, more specific category in this vocabulary but is needed to represent source systems.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

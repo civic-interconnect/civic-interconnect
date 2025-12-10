@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/cee/core/model-output.schema.json",
+  "title": "ModelOutput",
+  "description": "Generic model output for a scoring or decision system, including scalar and structured values.",
+  "type": "object",
+  "properties": {
+    "modelOutputId": {
+      "type": "string",
+      "description": "Stable identifier for this model output instance."
+    },
+    "modelVersionId": {
+      "type": "string",
+      "description": "Identifier for the model version that produced this output."
+    },
+    "scalarValue": {
+      "type": "number",
+      "description": "Primary scalar output, e.g., risk score in [0,1]."
+    },
+    "structuredValue": {
+      "type": "object",
+      "description": "Optional structured representation of the model output (e.g., {\"decision\": \"APPROVED\"}).",
+      "additionalProperties": true
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the model output was generated."
+    },
+    "requestContext": {
+      "type": "object",
+      "description": "Domain-specific context for this model run (e.g., tenderId, supplierId, contractId).",
+      "additionalProperties": true
+    },
+    "provenanceRef": {
+      "type": "string",
+      "description": "Identifier or URI referencing the provenance record for this model output."
+    }
+  },
+  "required": [
+    "modelOutputId",
+    "modelVersionId",
+    "generatedAt"
+  ],
+  "additionalProperties": false
+}

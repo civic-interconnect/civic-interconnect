@@ -1,0 +1,97 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/procurement/buyer-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Public Procurement Buyer Type Vocabulary",
+  "description": "Controlled vocabulary for categorizing buyers and contracting authorities in public procurement.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:buyerType:pp:central-government",
+      "code": "central-government",
+      "label": "Central Government",
+      "definition": "A national or federal ministry, department, or central government body that acts as a buyer or contracting authority.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:buyerType:pp:subcentral-government",
+      "code": "subcentral-government",
+      "label": "Sub-central Government",
+      "definition": "A regional, state, provincial, or equivalent subnational government body acting as a buyer or contracting authority.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:buyerType:pp:local-authority",
+      "code": "local-authority",
+      "label": "Local Authority",
+      "definition": "A municipality, city, county, or other local public authority that acts as a buyer or contracting authority.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:buyerType:pp:state-owned-enterprise",
+      "code": "state-owned-enterprise",
+      "label": "State-owned Enterprise",
+      "definition": "An enterprise in which public bodies hold a controlling interest and which conducts commercial or service activities, acting as a buyer.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:buyerType:pp:public-body-or-agency",
+      "code": "public-body-or-agency",
+      "label": "Public Body or Agency",
+      "definition": "A publicly controlled body or agency with a mandate to provide public services and which may act as a contracting authority.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:buyerType:pp:international-organization",
+      "code": "international-organization",
+      "label": "International Organization",
+      "definition": "An international or multilateral organization acting as a buyer or funder in procurement processes.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:buyerType:pp:other-buyer-type",
+      "code": "other-buyer-type",
+      "label": "Other Buyer Type",
+      "definition": "A buyer or contracting authority type that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

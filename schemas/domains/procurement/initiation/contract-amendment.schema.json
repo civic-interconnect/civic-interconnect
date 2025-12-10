@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/procurement/initiation/contract-amendment.schema.json",
+  "title": "ContractAmendment",
+  "description": "Amendment to a procurement contract (scope, value, dates, etc.).",
+  "type": "object",
+  "properties": {
+    "contractAmendmentId": {
+      "type": "string",
+      "description": "Identifier for this contract amendment."
+    },
+    "contractId": {
+      "type": "string",
+      "description": "Identifier of the contract being amended."
+    },
+    "amendmentNumber": {
+      "type": "string",
+      "description": "Sponsor or internal amendment number."
+    },
+    "effectiveDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when this amendment takes effect."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the amendment."
+    }
+  },
+  "required": [
+    "contractAmendmentId",
+    "contractId"
+  ],
+  "additionalProperties": false
+}

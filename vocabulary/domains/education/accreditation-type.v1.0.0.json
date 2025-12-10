@@ -1,0 +1,68 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/accreditation-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Education Accreditation Type Vocabulary",
+  "description": "Controlled vocabulary for types of accreditation and quality assurance recognitions in education.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:accreditationType:ed:institutional",
+      "code": "institutional",
+      "label": "Institutional Accreditation",
+      "definition": "Accreditation that applies to an entire institution, such as a college, university, or school.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:accreditationType:ed:programmatic",
+      "code": "programmatic",
+      "label": "Programmatic Accreditation",
+      "definition": "Accreditation applied to specific programs, departments, or fields of study within an institution.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:accreditationType:ed:licensure-approval",
+      "code": "licensure-approval",
+      "label": "Licensure or Regulatory Approval",
+      "definition": "Recognition by a licensing or regulatory body that a program or institution meets specific legal or professional standards.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:accreditationType:ed:quality-label",
+      "code": "quality-label",
+      "label": "Quality Label or Endorsement",
+      "definition": "A quality label, ranking, or endorsement from a recognized organization that does not constitute formal accreditation or licensure.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:accreditationType:ed:other-accreditation-type",
+      "code": "other-accreditation-type",
+      "label": "Other Accreditation Type",
+      "definition": "An accreditation or recognition type that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    }
+  ],
+  "mappings": []
+}

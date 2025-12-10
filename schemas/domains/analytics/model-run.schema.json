@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.civicinterconnect.org/domains/analytics/model-run.schema.json",
+  "title": "ModelRun",
+  "type": "object",
+  "description": "Execution instance of a model. TODO: include timestamp, parameters, inputs, runtime context, and provenance links."
+}

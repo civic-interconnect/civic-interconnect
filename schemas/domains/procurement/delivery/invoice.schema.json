@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/procurement/delivery/invoice.schema.json",
+  "title": "Invoice",
+  "description": "Invoice issued by a supplier under a procurement contract.",
+  "type": "object",
+  "properties": {
+    "invoiceId": {
+      "type": "string",
+      "description": "Identifier for this invoice."
+    },
+    "contractId": {
+      "type": "string",
+      "description": "Identifier of the contract this invoice is associated with."
+    },
+    "invoiceNumber": {
+      "type": "string",
+      "description": "Supplier-issued invoice number."
+    },
+    "issueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when the invoice was issued."
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when payment is due."
+    },
+    "totalAmount": {
+      "type": "number",
+      "description": "Total amount of the invoice."
+    },
+    "currencyCode": {
+      "type": "string",
+      "description": "Currency code (ISO 4217)."
+    },
+    "statusCode": {
+      "type": "string",
+      "description": "Invoice status (e.g., ISSUED, PAID, PARTIALLY_PAID, CANCELLED)."
+    }
+  },
+  "required": [
+    "invoiceId",
+    "contractId",
+    "totalAmount",
+    "currencyCode"
+  ],
+  "additionalProperties": false
+}

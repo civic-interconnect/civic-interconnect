@@ -6,7 +6,6 @@
 
 use serde::{Deserialize, Serialize};
 
-
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Identifier {
@@ -18,7 +17,6 @@ pub struct Identifier {
 }
 
 pub type Identifiers = Vec<Identifier>;
-
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -32,7 +30,6 @@ pub struct Delivery {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ProgramRecord {
-
     #[serde(rename = "entityTypeUri")]
     pub entity_type_uri: String,
 
@@ -44,6 +41,9 @@ pub struct ProgramRecord {
 
     #[serde(rename = "jurisdictionUri")]
     pub jurisdiction_uri: String,
+
+    #[serde(rename = "programTypeUri")]
+    pub program_type_uri: Option<String>,
 
     pub identifiers: Option<Identifiers>,
 

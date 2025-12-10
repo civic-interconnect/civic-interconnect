@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/realtime/evidence-set.schema.json",
+  "title": "RealtimeAlertEvidenceSet",
+  "description": "Evidence used to raise a realtime alert, typically derived from one or more feature windows and streams.",
+  "type": "object",
+  "properties": {
+    "alertId": {
+      "type": "string",
+      "description": "Identifier of the alert this evidence set is associated with."
+    },
+    "windowId": {
+      "type": "string",
+      "description": "Identifier of the feature window used to generate this evidence."
+    },
+    "evidence": {
+      "type": "array",
+      "description": "Evidence items specific to this alert.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the evidence item or feature."
+          },
+          "value": {
+            "description": "Value of the evidence item.",
+            "nullable": true
+          },
+          "sourceStreamId": {
+            "type": "string",
+            "description": "Identifier of the originating stream, if applicable."
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "alertId",
+    "evidence"
+  ],
+  "additionalProperties": false
+}

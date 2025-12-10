@@ -87,6 +87,15 @@ repos:
         language: system
         pass_filenames: false
 
+      # ------------------- TEST SCHEMAS/ and VOCABULARY/ -------------------
+
+      - id: C2-validate-schemas
+        name: C2) Validate JSON Schemas and Vocabulary
+        entry: uv run python tools/validate_schemas.py
+        language: system
+        pass_filenames: false
+        files: ^(schemas/|vocabulary/).*\.(json|yaml|yml)$
+
   # ------------------- EXTERNAL REPOS ---------------------  
 
   - repo: https://github.com/rhysd/actionlint
@@ -95,3 +104,4 @@ repos:
       - id: actionlint
         name: B7) Actionlint (GitHub Actions Linter)
         files: ^\.github/workflows/.*\.ya?ml$
+

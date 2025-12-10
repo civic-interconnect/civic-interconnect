@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/procurement/party-role.schema.json",
+  "title": "ProcurementPartyRole",
+  "description": "Role that a party plays in a procurement context (buyer, supplier, evaluator, etc.).",
+  "type": "object",
+  "properties": {
+    "partyRoleId": {
+      "type": "string",
+      "description": "Identifier for this party role."
+    },
+    "partyId": {
+      "type": "string",
+      "description": "Identifier for the party (organization or person)."
+    },
+    "roleCode": {
+      "type": "string",
+      "description": "Role performed in the procurement (e.g., BUYER, SUPPLIER, EVALUATOR)."
+    },
+    "tenderId": {
+      "type": "string",
+      "description": "Identifier of the tender, if applicable."
+    },
+    "contractId": {
+      "type": "string",
+      "description": "Identifier of the contract, if applicable."
+    }
+  },
+  "required": [
+    "partyRoleId",
+    "partyId",
+    "roleCode"
+  ],
+  "additionalProperties": false
+}

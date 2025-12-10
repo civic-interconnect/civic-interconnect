@@ -1,0 +1,57 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/education/course-instance.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Education Course Instance",
+  "type": "object",
+
+  "properties": {
+    "entityTypeUri": { "const": "cep:entityType:ed:courseInstance" },
+
+    "courseTitle": { "type": "string" },
+    "courseCode": { "type": "string" },
+    "sectionCode": { "type": "string" },
+
+    "institutionRef": {
+      "type": "string",
+      "description": "Reference to an Education Institution entity."
+    },
+    "programRef": {
+      "type": "string",
+      "description": "Optional reference to an Education Program entity that this course instance belongs to."
+    },
+    "jurisdictionUri": { "type": "string" },
+
+    "identifiers": {
+      "type": "object",
+      "properties": {
+        "localCourseInstanceId": { "type": "string" },
+        "externalCourseInstanceId": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "delivery": {
+      "type": "object",
+      "properties": {
+        "modalityUri": {
+          "type": "string",
+          "description": "Term URI from the Education Delivery Mode vocabulary (vocabulary/domains/education/delivery-mode.v1.0.0.json)."
+        },
+        "academicTermTypeUri": {
+          "type": "string",
+          "description": "Term URI from the Academic Term Type vocabulary (vocabulary/domains/education/academic-term-type.v1.0.0.json)."
+        },
+        "startDate": { "type": "string", "format": "date" },
+        "endDate": { "type": "string", "format": "date" }
+      },
+      "additionalProperties": false
+    }
+  },
+
+  "required": [
+    "entityTypeUri",
+    "courseTitle",
+    "institutionRef",
+    "jurisdictionUri"
+  ]
+}

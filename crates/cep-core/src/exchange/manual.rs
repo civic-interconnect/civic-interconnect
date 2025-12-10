@@ -2,11 +2,7 @@
 
 // Pull in the generated types.
 use crate::exchange::generated::{
-    ExchangeRecord,
-    Exchangestatus,
-    Sourceentity,
-    Recipiententity,
-    Value,
+    ExchangeRecord, Exchangestatus, Recipiententity, Sourceentity, Value,
 };
 
 use crate::common::errors::CepResult;
@@ -18,7 +14,7 @@ pub type ExchangeValue = Value;
 pub type ExchangeStatusLite = Exchangestatus;
 
 // Re-export commonly used generated types so callers can just use `exchange::manual::*`.
-pub use crate::exchange::generated::{Attestation as GeneratedAttestation};
+pub use crate::exchange::generated::Attestation as GeneratedAttestation;
 
 // Add ergonomic helpers on the generated ExchangeRecord.
 impl ExchangeRecord {

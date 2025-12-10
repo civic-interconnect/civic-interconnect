@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/realtime/alert.schema.json",
+  "title": "RealtimeAlert",
+  "description": "An alert raised by a realtime monitoring or streaming system.",
+  "type": "object",
+  "properties": {
+    "alertId": {
+      "type": "string",
+      "description": "Identifier for this alert."
+    },
+    "windowId": {
+      "type": "string",
+      "description": "Identifier of the feature window that triggered this alert."
+    },
+    "alertType": {
+      "type": "string",
+      "description": "Type or category of alert (e.g., threshold, anomaly, missing-data)."
+    },
+    "severity": {
+      "type": "string",
+      "description": "Severity level of the alert (e.g., INFO, WARNING, CRITICAL)."
+    },
+    "detectedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the alert was detected."
+    },
+    "context": {
+      "type": "object",
+      "description": "Additional domain-specific context about this alert.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "alertId",
+    "alertType",
+    "detectedAt"
+  ],
+  "additionalProperties": false
+}

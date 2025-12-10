@@ -1,0 +1,115 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/environment/parameter-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Environmental Parameter Type Vocabulary",
+  "description": "Controlled vocabulary for types of environmental parameters, pollutants, analytes, and measured environmental indicators.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:parameterType:env:greenhouse-gas",
+      "code": "greenhouse-gas",
+      "label": "Greenhouse Gas",
+      "definition": "A greenhouse gas parameter such as carbon dioxide, methane, nitrous oxide, or fluorinated gases.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "cep:emissionType:env:greenhouse-gas-emission"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:parameterType:env:criteria-air-pollutant",
+      "code": "criteria-air-pollutant",
+      "label": "Criteria Air Pollutant",
+      "definition": "A regulated air pollutant such as ozone, particulate matter (PM2.5, PM10), sulfur dioxide, nitrogen dioxide, carbon monoxide, or lead.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "cep:emissionType:env:air-pollutant-emission"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:parameterType:env:hazardous-air-pollutant",
+      "code": "hazardous-air-pollutant",
+      "label": "Hazardous Air Pollutant",
+      "definition": "A hazardous air pollutant (HAP) such as benzene, formaldehyde, mercury, or other toxics regulated for health impacts.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:parameterType:env:nutrient",
+      "code": "nutrient",
+      "label": "Nutrient",
+      "definition": "A nutrient parameter such as nitrogen, phosphorus, nitrate, ammonia, or related compounds relevant to water quality.",
+      "parentTermUri": null,
+      "seeAlso": [
+        "cep:emissionType:env:water-discharge"
+      ],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:parameterType:env:metal",
+      "code": "metal",
+      "label": "Metal or Heavy Metal",
+      "definition": "A metal or heavy metal parameter such as lead, mercury, cadmium, chromium, or arsenic measured in environmental media.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:parameterType:env:organic-compound",
+      "code": "organic-compound",
+      "label": "Organic Compound",
+      "definition": "An organic compound parameter such as VOCs, PAHs, pesticides, solvents, or other carbon-based chemical analytes.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:parameterType:env:physical-indicator",
+      "code": "physical-indicator",
+      "label": "Physical Indicator",
+      "definition": "A physical environmental parameter such as temperature, turbidity, pH, dissolved oxygen, or conductivity.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:parameterType:env:other-environmental-parameter",
+      "code": "other-environmental-parameter",
+      "label": "Other Environmental Parameter",
+      "definition": "A parameter type not covered by another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

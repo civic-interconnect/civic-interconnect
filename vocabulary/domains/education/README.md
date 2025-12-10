@@ -53,7 +53,7 @@ The Education domain refines CEP’s global `entity-type` vocabulary to represen
 
 The vocabulary file:
 
-- [`ed-entity-type.v1.0.0.json`](ed-entity-type.v1.0.0.json)
+- [`entity-type.v1.0.0.json`](entity-type.v1.0.0.json)
 
 includes entity classes such as:
 
@@ -76,7 +76,7 @@ Adapters should use these entity types when normalizing education datasets.
 Education systems involve structured relationships among institutions, programs, people, and credentials.  
 The CEP education domain defines these interactions via the vocabulary:
 
-- [`ed-relationship-type.v1.0.0.json`](ed-relationship-type.v1.0.0.json)
+- [`relationship-type.v1.0.0.json`](relationship-type.v1.0.0.json)
 
 Key relationships include:
 

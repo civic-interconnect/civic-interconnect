@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/cee/core/explanation-contract.schema.json",
+  "title": "ExplanationContract",
+  "description": "Contract describing an explanation: what output it explains, which evidence it uses, and what constraints apply.",
+  "type": "object",
+  "properties": {
+    "explanationContractId": {
+      "type": "string",
+      "description": "Identifier for this explanation contract."
+    },
+    "modelOutputId": {
+      "type": "string",
+      "description": "Identifier of the model output this explanation is linked to."
+    },
+    "explanationType": {
+      "type": "string",
+      "description": "Type of explanation (e.g., local, global, counterfactual)."
+    },
+    "evidenceIds": {
+      "type": "array",
+      "description": "Evidence identifiers included in this explanation.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "constraintsValidated": {
+      "type": "boolean",
+      "description": "True if this explanation bundle has been validated against required constraints."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time when this explanation contract was instantiated."
+    },
+    "provenanceRef": {
+      "type": "string",
+      "description": "Reference to provenance describing how this explanation was generated."
+    }
+  },
+  "required": [
+    "explanationContractId",
+    "modelOutputId",
+    "explanationType",
+    "timestamp"
+  ],
+  "additionalProperties": false
+}

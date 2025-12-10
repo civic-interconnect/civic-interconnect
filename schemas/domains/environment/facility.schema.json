@@ -1,0 +1,38 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/environment/facility.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Environmental Regulated Facility",
+  "type": "object",
+
+  "properties": {
+    "entityTypeUri": {
+      "const": "cep:entity:env:regulatedFacility"
+    },
+    "facilityName": { "type": "string" },
+    "jurisdictionUri": { "type": "string" },
+
+    "identifiers": {
+      "type": "object",
+      "properties": {
+        "epaRegistryId": { "type": "string" },
+        "stateFacilityId": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "location": {
+      "type": "object",
+      "properties": {
+        "street": { "type": "string" },
+        "city": { "type": "string" },
+        "stateProvince": { "type": "string" },
+        "postalCode": { "type": "string" },
+        "countryCode": { "type": "string" },
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" }
+      }
+    }
+  },
+
+  "required": ["entityTypeUri", "facilityName", "jurisdictionUri"]
+}

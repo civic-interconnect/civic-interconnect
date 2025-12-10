@@ -1,0 +1,97 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/assessment-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Education Assessment Type Vocabulary",
+  "description": "Controlled vocabulary for types of assessments and evaluation instruments in education.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:assessmentType:ed:exam",
+      "code": "exam",
+      "label": "Exam",
+      "definition": "A formal, typically high-stakes assessment such as a midterm or final exam administered under controlled conditions.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:assessmentType:ed:quiz",
+      "code": "quiz",
+      "label": "Quiz",
+      "definition": "A shorter or lower-stakes assessment used to check understanding of specific topics or units.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:assessmentType:ed:assignment",
+      "code": "assignment",
+      "label": "Assignment",
+      "definition": "A task such as homework, problem set, essay, or coding exercise submitted by learners for evaluation.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:assessmentType:ed:project-or-portfolio",
+      "code": "project-or-portfolio",
+      "label": "Project or Portfolio",
+      "definition": "A project, capstone, or portfolio-based assessment that synthesizes learning across multiple topics or courses.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:assessmentType:ed:performance-or-practical",
+      "code": "performance-or-practical",
+      "label": "Performance or Practical Assessment",
+      "definition": "A performance, lab practical, demonstration, or other hands-on assessment of applied skills.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:assessmentType:ed:standardized-test",
+      "code": "standardized-test",
+      "label": "Standardized Test",
+      "definition": "An externally defined and administered standardized test or exam used across multiple institutions or jurisdictions.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:assessmentType:ed:other-assessment-type",
+      "code": "other-assessment-type",
+      "label": "Other Assessment Type",
+      "definition": "An assessment type that does not fit another, more specific category in this vocabulary but is needed to represent source systems.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

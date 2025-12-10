@@ -1,0 +1,97 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/program-outcome-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Education Program Outcome Type Vocabulary",
+  "description": "Controlled vocabulary for outcomes of participation in education programs or pathways.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:programOutcomeType:ed:degree-awarded",
+      "code": "degree-awarded",
+      "label": "Degree Awarded",
+      "definition": "The person successfully completed the program and was awarded a degree (e.g., associate, bachelor, master, doctoral).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:programOutcomeType:ed:certificate-awarded",
+      "code": "certificate-awarded",
+      "label": "Certificate Awarded",
+      "definition": "The person successfully completed the program and was awarded a certificate, diploma, or similar non-degree credential.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:programOutcomeType:ed:completed-no-credential",
+      "code": "completed-no-credential",
+      "label": "Program Completed, No Credential Awarded",
+      "definition": "The person completed the program requirements in the source system, but no credential was formally awarded (for example, noncredit programs).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:programOutcomeType:ed:program-withdrawal",
+      "code": "program-withdrawal",
+      "label": "Program Withdrawal",
+      "definition": "The person withdrew from the program before completion, whether voluntarily or administratively.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:programOutcomeType:ed:program-transfer",
+      "code": "program-transfer",
+      "label": "Program Transfer",
+      "definition": "The person left the program to transfer into a different program or institution, as recorded in the source system.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:programOutcomeType:ed:program-ongoing",
+      "code": "program-ongoing",
+      "label": "Program Ongoing",
+      "definition": "The person remains actively enrolled in the program and has not yet reached a terminal outcome at the time of reporting.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:programOutcomeType:ed:other-program-outcome",
+      "code": "other-program-outcome",
+      "label": "Other Program Outcome",
+      "definition": "A program outcome that does not fit another, more specific category in this vocabulary but is needed to represent a source system.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

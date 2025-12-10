@@ -1,0 +1,37 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/procurement/init/contract.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contract",
+  "type": "object",
+  "properties": {
+    "entityTypeUri": {
+      "const": "cep:entity:pp:contract"
+    },
+    "contractIdentifier": {
+      "type": "string"
+    },
+    "signedDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "value": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "awardRef": {
+      "type": "string",
+      "description": "Reference to the originating award."
+    },
+    "durationMonths": {
+      "type": "number"
+    },
+    "statusUri": {
+      "type": "string",
+      "description": "Contract status from contract-status vocabulary."
+    }
+  },
+  "required": ["entityTypeUri", "contractIdentifier", "signedDate"],
+  "additionalProperties": false
+}

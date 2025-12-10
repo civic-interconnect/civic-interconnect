@@ -1,0 +1,45 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/education/institution.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Education Institution",
+  "type": "object",
+
+  "properties": {
+    "entityTypeUri": { "const": "cep:entityType:ed:institution" },
+
+    "institutionName": { "type": "string" },
+    "jurisdictionUri": { "type": "string" },
+
+    "institutionTypeUri": {
+      "type": "string",
+      "description": "Term URI from the Education Institution Type vocabulary (vocabulary/domains/education/institution-type.v1.0.0.json)."
+    },
+    "sectorTypeUri": {
+      "type": "string",
+      "description": "Term URI from the Education Sector Type vocabulary (vocabulary/domains/education/sector-type.v1.0.0.json)."
+    },
+
+    "identifiers": {
+      "type": "object",
+      "properties": {
+        "ipedsUnitId": { "type": "string" },
+        "opeid": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "location": {
+      "type": "object",
+      "properties": {
+        "street": { "type": "string" },
+        "city": { "type": "string" },
+        "stateProvince": { "type": "string" },
+        "postalCode": { "type": "string" },
+        "countryCode": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+
+  "required": ["entityTypeUri", "institutionName", "jurisdictionUri"]
+}

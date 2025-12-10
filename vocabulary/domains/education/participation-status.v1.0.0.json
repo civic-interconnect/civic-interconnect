@@ -1,0 +1,97 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/participation-status.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Education Participation Status Vocabulary",
+  "description": "Controlled vocabulary for participation and enrollment statuses of people in education programs and course instances.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:participationStatus:ed:enrolled",
+      "code": "enrolled",
+      "label": "Enrolled",
+      "definition": "The person is officially enrolled and expected to participate in the program or course instance.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:participationStatus:ed:waitlisted",
+      "code": "waitlisted",
+      "label": "Waitlisted",
+      "definition": "The person has requested enrollment and is on a waitlist pending space or approval.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:participationStatus:ed:dropped-before-start",
+      "code": "dropped-before-start",
+      "label": "Dropped Before Start",
+      "definition": "The person dropped or canceled enrollment before the course or program officially began.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:participationStatus:ed:dropped-after-start",
+      "code": "dropped-after-start",
+      "label": "Dropped After Start",
+      "definition": "The person dropped or withdrew from the course or program after it officially began, but without completing it.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:participationStatus:ed:completed",
+      "code": "completed",
+      "label": "Completed",
+      "definition": "The person completed the required activities for the course or program in the source system, regardless of outcome or grade.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:participationStatus:ed:auditing",
+      "code": "auditing",
+      "label": "Auditing",
+      "definition": "The person is participating without seeking formal credit, credential, or assessment outcome in the source system.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:participationStatus:ed:other-participation-status",
+      "code": "other-participation-status",
+      "label": "Other Participation Status",
+      "definition": "A participation or enrollment status that does not fit another, more specific category in this vocabulary but is needed to represent a source system.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

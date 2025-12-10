@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/governance/cep.fingerprint.schema.json",
+  "title": "CanonicalFingerprint",
+  "description": "Fingerprint of a CEP record or graph, derived from its canonical encoding.",
+  "type": "object",
+  "properties": {
+    "fingerprintId": {
+      "type": "string",
+      "description": "Identifier for this fingerprint record."
+    },
+    "canonicalEncodingId": {
+      "type": "string",
+      "description": "Identifier of the canonical encoding specification used."
+    },
+    "algorithm": {
+      "type": "string",
+      "description": "Hash or fingerprint algorithm (e.g., SHA-256)."
+    },
+    "value": {
+      "type": "string",
+      "description": "Fingerprint value, typically hex-encoded."
+    }
+  },
+  "required": [
+    "fingerprintId",
+    "canonicalEncodingId",
+    "algorithm",
+    "value"
+  ],
+  "additionalProperties": false
+}

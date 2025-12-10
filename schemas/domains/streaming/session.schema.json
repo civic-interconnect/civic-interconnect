@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/streaming/session.schema.json",
+  "title": "StreamingSession",
+  "description": "Logical session for a streaming data source.",
+  "type": "object",
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "description": "Identifier for this streaming session."
+    },
+    "streamId": {
+      "type": "string",
+      "description": "Identifier of the underlying data stream."
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Session start time."
+    },
+    "endedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Session end time, if the session is closed."
+    },
+    "statusCode": {
+      "type": "string",
+      "description": "Status of the session (e.g., ACTIVE, CLOSED, ERROR)."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional session metadata.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "sessionId"
+  ],
+  "additionalProperties": false
+}

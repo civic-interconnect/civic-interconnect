@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/procurement/initiation/tender.schema.json",
+  "title": "Tender",
+  "description": "Initiation of a procurement procedure (tender, RFP, RFQ, etc.).",
+  "type": "object",
+  "properties": {
+    "tenderId": {
+      "type": "string",
+      "description": "Identifier for this tender."
+    },
+    "procedureTypeCode": {
+      "type": "string",
+      "description": "Type of procurement procedure (e.g., OPEN, RESTRICTED)."
+    },
+    "buyerId": {
+      "type": "string",
+      "description": "Identifier of the buying organization."
+    },
+    "jurisdictionId": {
+      "type": "string",
+      "description": "Jurisdiction of the procurement."
+    },
+    "estimatedValue": {
+      "type": "object",
+      "description": "Estimated value of the tender.",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "currencyCode": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "tenderId"
+  ],
+  "additionalProperties": false
+}

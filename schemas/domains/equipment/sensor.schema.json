@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/equipment/sensor.schema.json",
+  "title": "Sensor",
+  "description": "Sensor attached to equipment or a location, producing a data stream.",
+  "type": "object",
+  "properties": {
+    "sensorId": {
+      "type": "string",
+      "description": "Identifier for this sensor."
+    },
+    "equipmentId": {
+      "type": "string",
+      "description": "Identifier of the equipment this sensor is attached to."
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Identifier of the location for this sensor, if not directly attached to equipment."
+    },
+    "sensorType": {
+      "type": "string",
+      "description": "Type of sensor (e.g., temperature, pressure, vibration)."
+    },
+    "unit": {
+      "type": "string",
+      "description": "Measurement unit (e.g., C, kPa)."
+    },
+    "samplingFrequencyHz": {
+      "type": "number",
+      "description": "Nominal sampling frequency in Hertz."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional sensor metadata.",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "sensorId"
+  ],
+  "additionalProperties": false
+}

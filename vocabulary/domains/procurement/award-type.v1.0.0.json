@@ -1,0 +1,73 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/procurement/award-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Public Procurement Award Type Vocabulary",
+  "description": "Controlled vocabulary for types of awards in public procurement processes.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:awardType:pp:single-supplier-award",
+      "code": "single-supplier-award",
+      "label": "Single-supplier Award",
+      "definition": "An award made to a single supplier for the contract or lot in question.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:awardType:pp:multiple-supplier-award",
+      "code": "multiple-supplier-award",
+      "label": "Multiple-supplier Award",
+      "definition": "An award made to more than one supplier, such as under a framework agreement or multiple-award contract.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:awardType:pp:lot-level-award",
+      "code": "lot-level-award",
+      "label": "Lot-level Award",
+      "definition": "An award that covers a specific lot or subset of the procurement, rather than the entire procedure or framework.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:awardType:pp:variation-or-amendment",
+      "code": "variation-or-amendment",
+      "label": "Variation or Amendment",
+      "definition": "A modification to an existing award or contract that changes scope, value, or other material terms, treated as an award event for transparency purposes.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:awardType:pp:other-award-type",
+      "code": "other-award-type",
+      "label": "Other Award Type",
+      "definition": "An award type that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

@@ -1,0 +1,99 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/program-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Education Program Type Vocabulary",
+  "description": "Controlled vocabulary for types of education programs and offerings.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:programType:ed:degree-program",
+      "code": "degree-program",
+      "label": "Degree Program",
+      "definition": "A program leading to a formally awarded academic degree, such as a bachelor's or master's degree.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        { "system": "ISCED", "code": "5-8" }
+      ]
+    },
+    {
+      "termUri": "cep:programType:ed:certificate-program",
+      "code": "certificate-program",
+      "label": "Certificate Program",
+      "definition": "A program leading to a formal certificate or diploma but not a degree, often focused on applied or technical skills.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:programType:ed:noncredit-course",
+      "code": "noncredit-course",
+      "label": "Non-credit Course or Program",
+      "definition": "An educational offering that does not confer academic credit but may support professional or personal development.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:programType:ed:apprenticeship",
+      "code": "apprenticeship",
+      "label": "Apprenticeship Program",
+      "definition": "A structured work-based learning program that combines on-the-job training with related instruction.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:programType:ed:short-course",
+      "code": "short-course",
+      "label": "Short Course or Bootcamp",
+      "definition": "An intensive, time-limited educational offering focused on a specific set of skills or topics.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:programType:ed:continuing-education",
+      "code": "continuing-education",
+      "label": "Continuing Education Program",
+      "definition": "A program intended for ongoing professional education, often for licensed or certified professionals.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:programType:ed:other-program-type",
+      "code": "other-program-type",
+      "label": "Other Program Type",
+      "definition": "An education program type that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

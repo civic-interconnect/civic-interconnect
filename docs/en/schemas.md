@@ -13,7 +13,7 @@ These schemas are the source of truth for CEP:
 | [cep.relationship.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.relationship.schema.json) | Relationship records |
 | [cep.exchange.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.exchange.schema.json) | Exchange records |
 | [cep.record-envelope.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.record-envelope.schema.json) | Core envelope shared by all record families |
-| [cep.vocabulary.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.vocabulary.schema.json) | Vocabulary definition meta-schema |
+| [cep.vocabulary.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json) | Vocabulary definition meta-schema |
 | [cep.ctag.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.ctag.schema.json) | Per-post tagging model |
 | [README.md](https://github.com/civic-interconnect/civic-interconnect/blob/main/schemas/README.md) | Schema overview and documentation |
 

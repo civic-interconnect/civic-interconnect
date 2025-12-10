@@ -1,0 +1,55 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/campaign-finance/relationship-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "CEP Campaign Finance Relationship Type Vocabulary",
+  "description": "Controlled vocabulary for relationship types between campaign finance entities such as donors, committees, and election authorities.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:relationshipType:cf:contributed-to",
+      "code": "contributed-to",
+      "label": "Contributed To",
+      "definition": "Indicates that a donor provided a contribution (monetary or in-kind) to a political committee.",
+      "domain": "donor",
+      "range": "political-committee",
+      "cardinality": "many-to-many",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:relationshipType:cf:files-with",
+      "code": "files-with",
+      "label": "Files With Election Authority",
+      "definition": "Indicates that a political committee files required campaign finance reports with a specific election authority.",
+      "domain": "political-committee",
+      "range": "election-authority",
+      "cardinality": "many-to-one",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    },
+    {
+      "termUri": "cep:relationshipType:cf:associated-with-candidate",
+      "code": "associated-with-candidate",
+      "label": "Associated With Candidate",
+      "definition": "Indicates that a political committee is organized to support, oppose, or otherwise act on behalf of a specific candidate.",
+      "domain": "political-committee",
+      "range": "candidate",
+      "cardinality": "many-to-one",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0"
+    }
+  ],
+  "mappings": []
+}

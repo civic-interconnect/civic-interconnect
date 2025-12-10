@@ -1,0 +1,34 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/campaign-finance/committee.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Campaign Finance Committee",
+  "type": "object",
+  "properties": {
+    "entityTypeUri": {
+      "const": "cep:entity:cf:committee"
+    },
+    "committeeIdentifier": {
+      "type": "string",
+      "description": "FEC CMTE_ID or state-level equivalent"
+    },
+    "legalName": {
+      "type": "string"
+    },
+    "committeeTypeUri": {
+      "type": "string",
+      "description": "Link to committee-type vocabulary"
+    },
+    "jurisdictionUri": {
+      "type": "string"
+    },
+    "registrationDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "terminationDate": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": ["entityTypeUri", "committeeIdentifier", "legalName"]
+}

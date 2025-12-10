@@ -1,0 +1,97 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/delivery-mode.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Education Delivery Mode Vocabulary",
+  "description": "Controlled vocabulary for modes by which education programs and course instances are delivered.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:deliveryMode:ed:in-person",
+      "code": "in-person",
+      "label": "In-person",
+      "definition": "Instruction delivered with learners and instructors physically co-located in the same place at scheduled times.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:deliveryMode:ed:online-synchronous",
+      "code": "online-synchronous",
+      "label": "Online Synchronous",
+      "definition": "Instruction delivered online where learners and instructors meet at scheduled times in real time (e.g., live video sessions).",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:deliveryMode:ed:online-asynchronous",
+      "code": "online-asynchronous",
+      "label": "Online Asynchronous",
+      "definition": "Instruction delivered online without a requirement for learners and instructors to be present at the same time, using self-paced materials and activities.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:deliveryMode:ed:hybrid",
+      "code": "hybrid",
+      "label": "Hybrid",
+      "definition": "Instruction that combines in-person and online components in a planned and integrated way within a single course or program.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:deliveryMode:ed:hyflex",
+      "code": "hyflex",
+      "label": "HyFlex",
+      "definition": "Instruction where learners can choose among in-person, synchronous online, or asynchronous online participation paths for the same course instance.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:deliveryMode:ed:experiential-or-work-based",
+      "code": "experiential-or-work-based",
+      "label": "Experiential or Work-based",
+      "definition": "Instruction primarily based on workplace learning, field placement, clinical practice, or other experiential settings rather than traditional classroom delivery.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:deliveryMode:ed:other-delivery-mode",
+      "code": "other-delivery-mode",
+      "label": "Other Delivery Mode",
+      "definition": "A delivery mode that does not fit another, more specific category in this vocabulary but is needed to represent a source system or institution practice.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

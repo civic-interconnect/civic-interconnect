@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/procurement/delivery/funding-source.schema.json",
+  "title": "FundingSource",
+  "description": "Funding source for payments under a contract (e.g., budget line, grant).",
+  "type": "object",
+  "properties": {
+    "fundingSourceId": {
+      "type": "string",
+      "description": "Identifier for this funding source."
+    },
+    "fundingSourceTypeCode": {
+      "type": "string",
+      "description": "Type of funding source (e.g., BUDGET_LINE, GRANT, BOND)."
+    },
+    "jurisdictionId": {
+      "type": "string",
+      "description": "Jurisdiction responsible for this funding source."
+    },
+    "budgetLineId": {
+      "type": "string",
+      "description": "Identifier of the budget line or account this funding comes from."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the funding source."
+    }
+  },
+  "required": [
+    "fundingSourceId"
+  ],
+  "additionalProperties": false
+}

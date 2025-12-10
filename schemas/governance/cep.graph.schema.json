@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/governance/cep.graph.schema.json",
+  "title": "GraphSpec",
+  "description": "Specification for CEP graphs (entity, provenance, or merged graphs).",
+  "type": "object",
+  "properties": {
+    "graphSpecId": {
+      "type": "string",
+      "description": "Identifier for this graph specification."
+    },
+    "graphType": {
+      "type": "string",
+      "description": "Type of graph (e.g., ENTITY_GRAPH, PROVENANCE_GRAPH, MERGED_GRAPH)."
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of this graph specification."
+    }
+  },
+  "required": [
+    "graphSpecId"
+  ],
+  "additionalProperties": false
+}

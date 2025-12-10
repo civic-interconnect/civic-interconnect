@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/realtime/feature-window.schema.json",
+  "title": "FeatureWindow",
+  "description": "A time-bounded window over one or more streams, containing the features used for a realtime alert or decision.",
+  "type": "object",
+  "properties": {
+    "windowId": {
+      "type": "string",
+      "description": "Identifier for this feature window."
+    },
+    "streamIds": {
+      "type": "array",
+      "description": "Identifiers for the streams included in this window.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start time (inclusive) of the window."
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End time (exclusive) of the window."
+    },
+    "features": {
+      "type": "object",
+      "description": "Aggregated feature values computed over the window (e.g., averages, counts, deltas).",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "windowId",
+    "startTime",
+    "endTime"
+  ],
+  "additionalProperties": false
+}

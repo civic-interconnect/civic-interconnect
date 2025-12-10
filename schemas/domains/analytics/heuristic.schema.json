@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.civicinterconnect.org/domains/analytics/heuristic.schema.json",
+  "title": "Heuristic",
+  "type": "object",
+  "description": "A rule-of-thumb or domain-derived decision rule. TODO: add condition structure, scoring functions, and links to evidence sets."
+}

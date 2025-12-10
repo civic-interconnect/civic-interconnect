@@ -1,0 +1,97 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/environment/media-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Environmental Media Type Vocabulary",
+  "description": "Controlled vocabulary for environmental media into which emissions, discharges, or monitoring measurements apply.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:mediaType:env:air",
+      "code": "air",
+      "label": "Air",
+      "definition": "The atmospheric medium including ambient outdoor air and emissions released directly to the atmosphere.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:mediaType:env:surface-water",
+      "code": "surface-water",
+      "label": "Surface Water",
+      "definition": "Rivers, lakes, wetlands, and other above-ground water bodies receiving discharges or monitoring observations.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:mediaType:env:groundwater",
+      "code": "groundwater",
+      "label": "Groundwater",
+      "definition": "Subsurface water including aquifers and wells subject to contamination, discharge, or monitoring.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:mediaType:env:soil",
+      "code": "soil",
+      "label": "Soil",
+      "definition": "Soil and surficial materials relevant to contamination, remediation, or land-based releases.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:mediaType:env:sediment",
+      "code": "sediment",
+      "label": "Sediment",
+      "definition": "Deposited particulate material in surface waters that may accumulate pollutants or be subjected to sampling.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:mediaType:env:biota",
+      "code": "biota",
+      "label": "Biota",
+      "definition": "Plants, animals, or microorganisms sampled or monitored for bioaccumulated contaminants or ecological impacts.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:mediaType:env:other-environmental-medium",
+      "code": "other-environmental-medium",
+      "label": "Other Medium",
+      "definition": "An environmental medium that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

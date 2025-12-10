@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/procurement/delivery/payment.schema.json",
+  "title": "Payment",
+  "description": "Payment made against an invoice under a procurement contract.",
+  "type": "object",
+  "properties": {
+    "paymentId": {
+      "type": "string",
+      "description": "Identifier for this payment."
+    },
+    "invoiceId": {
+      "type": "string",
+      "description": "Identifier of the invoice being paid."
+    },
+    "contractId": {
+      "type": "string",
+      "description": "Identifier of the contract this payment relates to."
+    },
+    "fundingSourceId": {
+      "type": "string",
+      "description": "Identifier of the funding source used for this payment."
+    },
+    "paymentDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when the payment was made."
+    },
+    "amount": {
+      "type": "number",
+      "description": "Amount paid."
+    },
+    "currencyCode": {
+      "type": "string",
+      "description": "Currency code (ISO 4217)."
+    }
+  },
+  "required": [
+    "paymentId",
+    "amount",
+    "currencyCode"
+  ],
+  "additionalProperties": false
+}

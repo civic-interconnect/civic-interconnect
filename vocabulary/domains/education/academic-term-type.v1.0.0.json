@@ -1,0 +1,85 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/education/academic-term-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Academic Term Type Vocabulary",
+  "description": "Controlled vocabulary for types of academic terms and periods used in education calendars.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:academicTermType:ed:fall",
+      "code": "fall",
+      "label": "Fall Term",
+      "definition": "An academic term typically occurring in the latter part of the calendar year, often the primary term in a semester-based system.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:academicTermType:ed:spring",
+      "code": "spring",
+      "label": "Spring Term",
+      "definition": "An academic term typically occurring in the early part of the calendar year, often the second primary term in a semester-based system.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:academicTermType:ed:summer",
+      "code": "summer",
+      "label": "Summer Term",
+      "definition": "An academic term occurring during the summer months, often shorter or structured as multiple sessions.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:academicTermType:ed:winter",
+      "code": "winter",
+      "label": "Winter Term or Intersession",
+      "definition": "A short academic term or intersession occurring between major terms, often in the winter months.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:academicTermType:ed:full-year",
+      "code": "full-year",
+      "label": "Full Year",
+      "definition": "An academic period that spans an entire academic year rather than being divided into separate terms or semesters.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:academicTermType:ed:other-academic-term",
+      "code": "other-academic-term",
+      "label": "Other Academic Term Type",
+      "definition": "An academic term type that does not fit another, more specific category in this vocabulary, such as custom sessions or blocks.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.civicinterconnect.org/domains/analytics/analytic-artifact.schema.json",
+  "title": "AnalyticArtifact",
+  "type": "object",
+  "description": "Base type for analytic components (models, heuristics, rules, pipelines). TODO: define discriminator and common metadata."
+}

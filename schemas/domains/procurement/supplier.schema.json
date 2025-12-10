@@ -1,0 +1,37 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/procurement/supplier.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Public Procurement Supplier",
+  "type": "object",
+  "properties": {
+    "entityTypeUri": {
+      "const": "cep:entity:pp:supplier"
+    },
+    "legalName": {
+      "type": "string"
+    },
+    "jurisdictionUri": {
+      "type": "string"
+    },
+    "identifiers": {
+      "type": "object",
+      "properties": {
+        "orgId": {
+          "type": "string"
+        },
+        "nationalRegistryId": {
+          "type": "string"
+        },
+        "vatId": {
+          "type": "string"
+        },
+        "businessRegistryId": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["entityTypeUri", "legalName"],
+  "additionalProperties": false
+}

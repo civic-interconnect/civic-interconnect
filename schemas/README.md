@@ -55,7 +55,7 @@ Examples:
 
 - `cep.entity.schema.json`  
 - `cep.relationship.schema.json`  
-- `cf.contribution.schema.json` (domain example)  
+- `contribution.schema.json` (domain example)  
 - `cep.record-envelope.schema.json`  
 - `cep.graph.schema.json`
 

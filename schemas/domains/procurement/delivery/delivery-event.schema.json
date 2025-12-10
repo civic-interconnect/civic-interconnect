@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/procurement/delivery/delivery-event.schema.json",
+  "title": "ProcurementDeliveryEvent",
+  "description": "Event representing a delivery of goods or services under a contract.",
+  "type": "object",
+  "properties": {
+    "deliveryEventId": {
+      "type": "string",
+      "description": "Identifier for this delivery event."
+    },
+    "contractId": {
+      "type": "string",
+      "description": "Identifier of the contract under which this delivery occurs."
+    },
+    "lineItemId": {
+      "type": "string",
+      "description": "Identifier of the contract line item this delivery fulfills, if applicable."
+    },
+    "deliveredQuantity": {
+      "type": "number",
+      "description": "Quantity delivered in this event."
+    },
+    "deliveredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the delivery occurred or was recorded."
+    },
+    "locationId": {
+      "type": "string",
+      "description": "Location where the delivery occurred."
+    },
+    "statusCode": {
+      "type": "string",
+      "description": "Status of the delivery (e.g., COMPLETED, PARTIAL, REJECTED)."
+    }
+  },
+  "required": [
+    "deliveryEventId",
+    "contractId",
+    "deliveredAt"
+  ],
+  "additionalProperties": false
+}

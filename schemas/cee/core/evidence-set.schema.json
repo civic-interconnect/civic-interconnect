@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/cee/core/evidence-set.schema.json",
+  "title": "EvidenceSet",
+  "description": "Collection of evidence items used as inputs to a model decision or explanation.",
+  "type": "object",
+  "properties": {
+    "evidence": {
+      "type": "array",
+      "description": "List of evidence items that were available to the model at decision time.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "evidenceId": {
+            "type": "string",
+            "description": "Identifier for this evidence item, typically a stable feature name."
+          },
+          "evidenceType": {
+            "type": "string",
+            "description": "Type of evidence (e.g., feature, derived, externalReference)."
+          },
+          "value": {
+            "description": "The value of this evidence item.",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "description": "Source system or dataset from which this evidence item was obtained."
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Time when this evidence item was observed or derived."
+          },
+          "provenanceRef": {
+            "type": "string",
+            "description": "Reference to a provenance record for this evidence item."
+          }
+        },
+        "required": [
+          "evidenceId"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "evidence"
+  ],
+  "additionalProperties": false
+}

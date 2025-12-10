@@ -6,7 +6,6 @@
 
 use serde::{Deserialize, Serialize};
 
-
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Facilityref {
@@ -17,7 +16,6 @@ pub struct Facilityref {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PermitRecord {
-
     #[serde(rename = "entityTypeUri")]
     pub entity_type_uri: String,
 

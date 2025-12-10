@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/cee/core/explanation-bundle.schema.json",
+  "title": "ExplanationBundle",
+  "description": "Complete explanation artifact for a model output, including evidence, attribution, contract, and confidence.",
+  "type": "object",
+  "properties": {
+    "explanationId": {
+      "type": "string",
+      "description": "Identifier for this explanation bundle."
+    },
+    "modelOutput": {
+      "$ref": "model-output.schema.json"
+    },
+    "explanationContract": {
+      "$ref": "explanation-contract.schema.json"
+    },
+    "evidenceSet": {
+      "$ref": "evidence-set.schema.json"
+    },
+    "attributionSet": {
+      "$ref": "attribution-set.schema.json"
+    },
+    "confidence": {
+      "type": "object",
+      "description": "Optional confidence interval or bounds for the model output.",
+      "properties": {
+        "lower": {
+          "type": "number"
+        },
+        "upper": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "humanReadableSummary": {
+      "type": "string",
+      "description": "Optional human-readable explanation summary."
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when this explanation bundle was generated."
+    },
+    "provenanceRef": {
+      "type": "string",
+      "description": "Reference to provenance for the explanation generation process."
+    }
+  },
+  "required": [
+    "explanationId",
+    "modelOutput",
+    "explanationContract",
+    "evidenceSet",
+    "attributionSet",
+    "generatedAt"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,85 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/environment/permit-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Environmental Permit Type Vocabulary",
+  "description": "Controlled vocabulary for types of environmental permits and authorizations.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:permitType:env:air-emission-permit",
+      "code": "air-emission-permit",
+      "label": "Air Emission Permit",
+      "definition": "A permit governing emissions of air pollutants from a facility or activity.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:permitType:env:water-discharge-permit",
+      "code": "water-discharge-permit",
+      "label": "Water Discharge Permit",
+      "definition": "A permit regulating discharges of wastewater or other effluents to surface or groundwater bodies.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:permitType:env:waste-management-permit",
+      "code": "waste-management-permit",
+      "label": "Waste Management Permit",
+      "definition": "A permit covering generation, storage, treatment, or disposal of solid or hazardous waste.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:permitType:env:land-use-permit",
+      "code": "land-use-permit",
+      "label": "Land Use or Development Permit",
+      "definition": "An authorization for land development, site alteration, or resource extraction activities with environmental impacts.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:permitType:env:emissions-trading-authorization",
+      "code": "emissions-trading-authorization",
+      "label": "Emissions Trading or Quota Authorization",
+      "definition": "An authorization or allocation under an emissions trading, cap-and-trade, or quota system for environmental impacts such as greenhouse gases.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:permitType:env:other-environmental-permit",
+      "code": "other-environmental-permit",
+      "label": "Other Environmental Permit",
+      "definition": "An environmental permit type that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

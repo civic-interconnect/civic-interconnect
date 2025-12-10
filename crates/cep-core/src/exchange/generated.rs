@@ -6,7 +6,6 @@
 
 use serde::{Deserialize, Serialize};
 
-
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum RecordKind {
     #[serde(rename = "entity")]
@@ -36,7 +35,6 @@ pub enum StatusCode {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct StatusEnvelope {
-
     #[serde(rename = "statusCode")]
     pub status_code: StatusCode,
 
@@ -52,7 +50,6 @@ pub struct StatusEnvelope {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Timestamps {
-
     #[serde(rename = "firstSeenAt")]
     pub first_seen_at: String,
 
@@ -71,7 +68,6 @@ pub struct Timestamps {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Attestation {
-
     #[serde(rename = "attestationTimestamp")]
     pub attestation_timestamp: String,
 
@@ -199,7 +195,6 @@ pub struct Sourcereferencesitem {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ExchangeRecord {
-
     #[serde(rename = "recordKind")]
     pub record_kind: RecordKind,
 

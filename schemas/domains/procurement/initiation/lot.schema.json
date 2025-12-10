@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/procurement/initiation/lot.schema.json",
+  "title": "Lot",
+  "description": "Lot within a tender, grouping one or more line items for joint award.",
+  "type": "object",
+  "properties": {
+    "lotId": {
+      "type": "string",
+      "description": "Identifier for this lot."
+    },
+    "tenderId": {
+      "type": "string",
+      "description": "Identifier of the tender this lot belongs to."
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the lot."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the lot."
+    }
+  },
+  "required": [
+    "lotId",
+    "tenderId"
+  ],
+  "additionalProperties": false
+}

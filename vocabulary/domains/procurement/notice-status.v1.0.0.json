@@ -1,0 +1,110 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/procurement/notice-status.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Public Procurement Notice Status Vocabulary",
+  "description": "Controlled vocabulary for the lifecycle status of procurement notices and calls for tenders.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:noticeStatus:pp:active",
+      "code": "active",
+      "label": "Active",
+      "definition": "The notice is published and suppliers may submit requests to participate, expressions of interest, or tenders according to the procedure rules.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "active"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:noticeStatus:pp:cancelled",
+      "code": "cancelled",
+      "label": "Cancelled",
+      "definition": "The notice or associated procurement procedure has been cancelled without awarding a contract under this notice.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "cancelled"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:noticeStatus:pp:closed-to-responses",
+      "code": "closed-to-responses",
+      "label": "Closed to Responses",
+      "definition": "The deadline for submitting responses or tenders has passed and no new submissions are accepted under this notice.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "closed"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:noticeStatus:pp:complete",
+      "code": "complete",
+      "label": "Complete",
+      "definition": "The notice lifecycle is complete, and awards or contracts resulting from the procedure have been published or recorded as final.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "complete"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:noticeStatus:pp:other-notice-status",
+      "code": "other-notice-status",
+      "label": "Other Notice Status",
+      "definition": "A notice status that does not fit another, more specific category in this vocabulary but is necessary to represent source system distinctions.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:noticeStatus:pp:planned",
+      "code": "planned",
+      "label": "Planned",
+      "definition": "The buyer has signaled an intention to procure but has not yet published a formal call for tenders or request for proposals.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "OCDS",
+          "code": "planning"
+        }
+      ]
+    }
+  ],
+  "mappings": []
+}

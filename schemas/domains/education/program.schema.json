@@ -1,0 +1,45 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/education/program.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Education Program",
+  "type": "object",
+
+  "properties": {
+    "entityTypeUri": { "const": "cep:entityType:ed:program" },
+
+    "programName": { "type": "string" },
+    "institutionRef": { "type": "string" },
+    "jurisdictionUri": { "type": "string" },
+
+    "programTypeUri": {
+      "type": "string",
+      "description": "Term URI from the Education Program Type vocabulary (vocabulary/domains/education/program-type.v1.0.0.json)."
+    },
+
+    "identifiers": {
+      "type": "object",
+      "properties": {
+        "cipCode": { "type": "string" },
+        "programCode": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "delivery": {
+      "type": "object",
+      "properties": {
+        "modalityUri": {
+          "type": "string",
+          "description": "Term URI from the Education Delivery Mode vocabulary (vocabulary/domains/education/delivery-mode.v1.0.0.json)."
+        },
+        "programLevelUri": {
+          "type": "string",
+          "description": "URI identifying the program level (future vocabulary or external framework; placeholder for now)."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+
+  "required": ["entityTypeUri", "programName", "institutionRef", "jurisdictionUri"]
+}

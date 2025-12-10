@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.civicinterconnect.org/domains/analytics/model-output.schema.json",
+  "title": "ModelOutput",
+  "type": "object",
+  "description": "Represents the output of a model run. TODO: define structure, link to evidence, feature windows, and CEE explanation bundles."
+}

@@ -1,0 +1,90 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/domains/environment/emission-type.v1.0.0.json",
+  "$schema": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/vocabulary/cep.vocabulary.schema.json",
+  "version": "1.0.0",
+  "title": "Environmental Emission Type Vocabulary",
+  "description": "Controlled vocabulary for types of emissions, discharges, and releases relevant to environmental reporting.",
+  "governanceUri": "https://github.com/civic-interconnect/civic-interconnect/blob/main/docs/governance/vocabulary-process.md",
+  "effectiveDate": "2025-01-01",
+  "deprecatesVersion": null,
+  "terms": [
+    {
+      "termUri": "cep:emissionType:env:greenhouse-gas-emission",
+      "code": "greenhouse-gas-emission",
+      "label": "Greenhouse Gas Emission",
+      "definition": "Emissions of greenhouse gases, such as CO2, CH4, or N2O, relevant to climate reporting and regulation.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": [
+        {
+          "system": "GHG_PROTOCOL",
+          "code": "GHG"
+        }
+      ]
+    },
+    {
+      "termUri": "cep:emissionType:env:air-pollutant-emission",
+      "code": "air-pollutant-emission",
+      "label": "Air Pollutant Emission",
+      "definition": "Emissions of regulated air pollutants, such as NOx, SO2, PM, or VOCs, impacting local or regional air quality.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:emissionType:env:water-discharge",
+      "code": "water-discharge",
+      "label": "Water Discharge",
+      "definition": "Discharges of pollutants to surface or groundwater bodies, including organic matter, nutrients, or hazardous substances.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:emissionType:env:waste-release",
+      "code": "waste-release",
+      "label": "Waste Release",
+      "definition": "Releases of solid or hazardous waste to land, including accidental releases and unauthorized disposal events.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:emissionType:env:noise-or-vibration",
+      "code": "noise-or-vibration",
+      "label": "Noise or Vibration",
+      "definition": "Emissions of noise or vibration at levels relevant to environmental or community impact assessments.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    },
+    {
+      "termUri": "cep:emissionType:env:other-environmental-emission-or-release",
+      "code": "other-environmental-emission-or-release",
+      "label": "Other Environmental Emission or Release",
+      "definition": "An emission or release type that does not fit another, more specific category in this vocabulary.",
+      "parentTermUri": null,
+      "seeAlso": [],
+      "status": "active",
+      "deprecationNote": null,
+      "addedInVersion": "1.0.0",
+      "mappings": []
+    }
+  ],
+  "mappings": []
+}

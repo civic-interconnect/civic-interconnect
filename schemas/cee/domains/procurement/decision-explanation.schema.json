@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/cee/domains/procurement/decision-explanation.schema.json",
+  "title": "ProcurementDecisionExplanation",
+  "description": "Procurement-specific explanation bundle for decisions such as award recommendations or risk classifications.",
+  "type": "object",
+  "properties": {
+    "explanationId": {
+      "type": "string",
+      "description": "Identifier for this procurement decision explanation."
+    },
+    "tenderId": {
+      "type": "string",
+      "description": "Identifier of the tender involved in the decision."
+    },
+    "contractId": {
+      "type": "string",
+      "description": "Identifier of the contract, if applicable."
+    },
+    "supplierId": {
+      "type": "string",
+      "description": "Identifier of the supplier the decision concerns."
+    },
+    "decisionType": {
+      "type": "string",
+      "description": "Type of decision (e.g., AWARD_RECOMMENDED, AWARD_NOT_RECOMMENDED, RISK_FLAG)."
+    },
+    "explanationBundle": {
+      "$ref": "../../core/explanation-bundle.schema.json"
+    }
+  },
+  "required": [
+    "explanationId",
+    "decisionType",
+    "explanationBundle"
+  ],
+  "additionalProperties": false
+}

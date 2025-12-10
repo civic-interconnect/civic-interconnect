@@ -6,11 +6,9 @@
 
 use serde::{Deserialize, Serialize};
 
-
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AwardRecord {
-
     #[serde(rename = "entityTypeUri")]
     pub entity_type_uri: String,
 

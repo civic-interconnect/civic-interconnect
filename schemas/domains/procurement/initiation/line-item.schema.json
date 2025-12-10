@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/procurement/initiation/line-item.schema.json",
+  "title": "LineItem",
+  "description": "Line item in a tender or contract, describing a good or service and its quantity.",
+  "type": "object",
+  "properties": {
+    "lineItemId": {
+      "type": "string",
+      "description": "Identifier for this line item."
+    },
+    "lotId": {
+      "type": "string",
+      "description": "Identifier of the lot this line item belongs to."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the good or service."
+    },
+    "quantity": {
+      "type": "number",
+      "description": "Quantity for this line item."
+    },
+    "unitPrice": {
+      "type": "number",
+      "description": "Unit price for this line item."
+    },
+    "currencyCode": {
+      "type": "string",
+      "description": "Currency code (ISO 4217)."
+    }
+  },
+  "required": [
+    "lineItemId"
+  ],
+  "additionalProperties": false
+}

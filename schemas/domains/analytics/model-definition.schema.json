@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.civicinterconnect.org/domains/analytics/model-definition.schema.json",
+  "title": "ModelDefinition",
+  "type": "object",
+  "description": "Identifies and describes a model (purpose, versioning policy, documentation). TODO: add inputs, outputs, parameters, and governing metadata."
+}

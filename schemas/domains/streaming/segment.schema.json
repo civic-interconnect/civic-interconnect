@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/domains/streaming/segment.schema.json",
+  "title": "StreamingSegment",
+  "description": "Time-bounded segment within a streaming session.",
+  "type": "object",
+  "properties": {
+    "segmentId": {
+      "type": "string",
+      "description": "Identifier for this segment."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Identifier of the session this segment belongs to."
+    },
+    "sequenceIndex": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Zero-based index of the segment within the session."
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start time of the segment."
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End time of the segment."
+    }
+  },
+  "required": [
+    "segmentId",
+    "sessionId"
+  ],
+  "additionalProperties": false
+}

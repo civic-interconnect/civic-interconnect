@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civic-interconnect.org/cep/schemas/governance/cep.canonical-encoding.schema.json",
+  "title": "CanonicalEncodingSpec",
+  "description": "Specification for CEP canonical encoding of records or graphs.",
+  "type": "object",
+  "properties": {
+    "encodingId": {
+      "type": "string",
+      "description": "Identifier for this canonical encoding specification."
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of the canonical encoding specification."
+    },
+    "algorithm": {
+      "type": "string",
+      "description": "Name or identifier of the encoding algorithm."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "Content type for the canonical form (e.g., application/json)."
+    }
+  },
+  "required": [
+    "encodingId",
+    "version"
+  ],
+  "additionalProperties": false
+}

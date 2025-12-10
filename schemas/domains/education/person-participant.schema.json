@@ -1,0 +1,61 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/domains/education/person-participant.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Education Person Participant",
+  "type": "object",
+
+  "properties": {
+    "entityTypeUri": { "const": "cep:entityType:ed:personParticipant" },
+
+    "givenName": { "type": "string" },
+    "familyName": { "type": "string" },
+    "fullName": { "type": "string" },
+    "jurisdictionUri": { "type": "string" },
+
+    "identifiers": {
+      "type": "object",
+      "properties": {
+        "localPersonId": { "type": "string" },
+        "stateStudentId": { "type": "string" },
+        "nationalId": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "roles": {
+      "type": "array",
+      "description": "Roles this person holds in education contexts (student, instructor, administrator, etc.).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "roleTypeUri": {
+            "type": "string",
+            "description": "Term URI from the Education Role Type vocabulary (vocabulary/domains/education/role-type.v1.0.0.json)."
+          },
+          "contextType": {
+            "type": "string",
+            "enum": ["program", "course-instance"],
+            "description": "The kind of context the role is attached to (program or course instance)."
+          },
+          "contextRef": {
+            "type": "string",
+            "description": "Reference to the program or course instance entity where this role is held."
+          },
+          "participationStatusUri": {
+            "type": "string",
+            "description": "Term URI from the Education Participation Status vocabulary (vocabulary/domains/education/participation-status.v1.0.0.json)."
+          },
+          "startDate": { "type": "string", "format": "date" },
+          "endDate": { "type": "string", "format": "date" }
+        },
+        "required": ["roleTypeUri", "contextType", "contextRef"],
+        "additionalProperties": false
+      }
+    }
+  },
+
+  "required": [
+    "entityTypeUri",
+    "jurisdictionUri"
+  ]
+}

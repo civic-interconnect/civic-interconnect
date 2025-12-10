@@ -6,13 +6,11 @@
 
 use serde::{Deserialize, Serialize};
 
-
 /// Context Tags (CTags) capture interpretive, analytic, or contextual facts about a record, without changing its canonical identity or payload. They are optional, append-only, and vocabulary-driven.
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CtagRecord {
-
     #[serde(rename = "ctagId")]
     pub ctag_id: Option<String>,
 
