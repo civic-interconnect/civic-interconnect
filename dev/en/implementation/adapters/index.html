@@ -12,13 +12,13 @@
         <meta name="author" content="civic-interconnect">
       
       
-        <link rel="canonical" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/specs/gns-v1/">
+        <link rel="canonical" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/adapters/">
       
       
-        <link rel="prev" href="../gic-v1/">
+        <link rel="prev" href="../implementation-guide/">
       
       
-        <link rel="next" href="../vgs-v1/">
+        <link rel="next" href="../validator/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>GNS v1 (Graph Normalization) - civic-interconnect</title>
+        <title>Adapters - civic-interconnect</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#graph-normalization-specification-gns-v1" class="md-skip">
+        <a href="#cep-adapters-implementation-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              GNS v1 (Graph Normalization)
+              Adapters
             
           </span>
         </div>
@@ -778,8 +778,6 @@
       
   
   
-    
-  
   
   
     
@@ -792,11 +790,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
@@ -817,7 +817,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -835,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../specs/" class="md-nav__link">
         
   
   
@@ -863,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cec-v1/" class="md-nav__link">
+      <a href="../../specs/cec-v1/" class="md-nav__link">
         
   
   
@@ -891,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../aas-v1/" class="md-nav__link">
+      <a href="../../specs/aas-v1/" class="md-nav__link">
         
   
   
@@ -919,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cdira-v1/" class="md-nav__link">
+      <a href="../../specs/cdira-v1/" class="md-nav__link">
         
   
   
@@ -947,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../efs-v1/" class="md-nav__link">
+      <a href="../../specs/efs-v1/" class="md-nav__link">
         
   
   
@@ -975,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gic-v1/" class="md-nav__link">
+      <a href="../../specs/gic-v1/" class="md-nav__link">
         
   
   
@@ -983,6 +983,151 @@
     
   
     GIC v1 (Global Integrity Constraints)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../specs/gns-v1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GNS v1 (Graph Normalization)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../specs/vgs-v1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VGS v1 (Vocabulary Governance Specification)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Implementation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../implementation-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide
   
 
     
@@ -1019,7 +1164,7 @@
   <span class="md-ellipsis">
     
   
-    GNS v1 (Graph Normalization)
+    Adapters
   
 
     
@@ -1037,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    GNS v1 (Graph Normalization)
+    Adapters
   
 
     
@@ -1063,10 +1208,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-overview" class="md-nav__link">
+  <a href="#1-cep-adapter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Overview
+        1. CEP Adapter
       
     </span>
   </a>
@@ -1074,22 +1219,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-graph-model" class="md-nav__link">
+  <a href="#2-determinism-and-strategy-control" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Graph Model
+        2. Determinism and Strategy Control
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Graph Model">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-input-and-output-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Input and Output Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Input and Output Types">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-nodes" class="md-nav__link">
+  <a href="#input" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 Nodes
+        Input
       
     </span>
   </a>
@@ -1097,21 +1253,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-edges" class="md-nav__link">
+  <a href="#output" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 Edges
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-graph" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 Graph
+        Output
       
     </span>
   </a>
@@ -1124,33 +1269,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-goals-of-graph-normalization" class="md-nav__link">
+  <a href="#4-adapter-responsibilities" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Goals of Graph Normalization
+        4. Adapter Responsibilities
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-node-identity-and-labeling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Node Identity and Labeling
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Node Identity and Labeling">
+    <nav class="md-nav" aria-label="4. Adapter Responsibilities">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-entity-nodes" class="md-nav__link">
+  <a href="#41-structural-mapping" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1 Entity Nodes
+        4.1 Structural Mapping
       
     </span>
   </a>
@@ -1158,10 +1292,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-non-entity-nodes-activities-agents-relationships-envelopes" class="md-nav__link">
+  <a href="#42-name-canonicalization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2 Non-Entity Nodes (Activities, Agents, Relationships, Envelopes)
+        4.2 Name Canonicalization
       
     </span>
   </a>
@@ -1169,10 +1303,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-labeling-procedure-and-fixed-point" class="md-nav__link">
+  <a href="#43-vocabulary-application" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.3 Labeling Procedure and Fixed Point
+        4.3 Vocabulary Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-identifier-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Identifier Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-provenance-attachment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Provenance Attachment
       
     </span>
   </a>
@@ -1185,10 +1341,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-edge-normalization" class="md-nav__link">
+  <a href="#5-adapter-composition" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Edge Normalization
+        5. Adapter Composition
       
     </span>
   </a>
@@ -1196,10 +1352,99 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-node-list-normalization" class="md-nav__link">
+  <a href="#6-domain-vs-jurisdiction-adapters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Node List Normalization
+        6. Domain vs. Jurisdiction Adapters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Domain vs. Jurisdiction Adapters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#domain-adapters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain Adapters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jurisdiction-adapters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jurisdiction Adapters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-rust-and-python-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Rust and Python Implementations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Rust and Python Implementations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rust Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codegen-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codegen Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-testing-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Testing Requirements
       
     </span>
   </a>
@@ -1207,10 +1452,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-canonical-graph-serialization" class="md-nav__link">
+  <a href="#9-when-to-create-a-new-adapter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Canonical Graph Serialization
+        9. When to Create a New Adapter
       
     </span>
   </a>
@@ -1218,57 +1463,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-graph-hash-and-graph-level-ctag" class="md-nav__link">
+  <a href="#10-task-checklist-for-adapter-authors" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. Graph Hash and Graph-Level CTag
+        10. Task Checklist for Adapter Authors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Task Checklist for Adapter Authors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#9-recursion-guards-and-idempotence" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        9. Recursion Guards and Idempotence
+        Optional
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#10-relationship-to-other-cep-specifications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        10. Relationship to Other CEP Specifications
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11-versioning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        11. Versioning
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#12-summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        12. Summary
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1288,152 +1517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../vgs-v1/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VGS v1 (Vocabulary Governance Specification)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Implementation
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Implementation
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../implementation/implementation-guide/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../implementation/adapters/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Adapters
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../implementation/validator/" class="md-nav__link">
+      <a href="../validator/" class="md-nav__link">
         
   
   
@@ -1461,7 +1545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../implementation/ctag-integration/" class="md-nav__link">
+      <a href="../ctag-integration/" class="md-nav__link">
         
   
   
@@ -1489,7 +1573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../implementation/casing/" class="md-nav__link">
+      <a href="../casing/" class="md-nav__link">
         
   
   
@@ -1517,7 +1601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../implementation/new-connector/" class="md-nav__link">
+      <a href="../new-connector/" class="md-nav__link">
         
   
   
@@ -1545,7 +1629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../implementation/record-envelopes/" class="md-nav__link">
+      <a href="../record-envelopes/" class="md-nav__link">
         
   
   
@@ -1573,7 +1657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../implementation/profiles/" class="md-nav__link">
+      <a href="../profiles/" class="md-nav__link">
         
   
   
@@ -2574,10 +2658,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-overview" class="md-nav__link">
+  <a href="#1-cep-adapter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Overview
+        1. CEP Adapter
       
     </span>
   </a>
@@ -2585,22 +2669,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-graph-model" class="md-nav__link">
+  <a href="#2-determinism-and-strategy-control" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Graph Model
+        2. Determinism and Strategy Control
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Graph Model">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-input-and-output-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Input and Output Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Input and Output Types">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-nodes" class="md-nav__link">
+  <a href="#input" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 Nodes
+        Input
       
     </span>
   </a>
@@ -2608,21 +2703,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-edges" class="md-nav__link">
+  <a href="#output" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 Edges
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-graph" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 Graph
+        Output
       
     </span>
   </a>
@@ -2635,33 +2719,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-goals-of-graph-normalization" class="md-nav__link">
+  <a href="#4-adapter-responsibilities" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Goals of Graph Normalization
+        4. Adapter Responsibilities
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-node-identity-and-labeling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Node Identity and Labeling
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Node Identity and Labeling">
+    <nav class="md-nav" aria-label="4. Adapter Responsibilities">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-entity-nodes" class="md-nav__link">
+  <a href="#41-structural-mapping" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1 Entity Nodes
+        4.1 Structural Mapping
       
     </span>
   </a>
@@ -2669,10 +2742,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-non-entity-nodes-activities-agents-relationships-envelopes" class="md-nav__link">
+  <a href="#42-name-canonicalization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2 Non-Entity Nodes (Activities, Agents, Relationships, Envelopes)
+        4.2 Name Canonicalization
       
     </span>
   </a>
@@ -2680,10 +2753,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-labeling-procedure-and-fixed-point" class="md-nav__link">
+  <a href="#43-vocabulary-application" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.3 Labeling Procedure and Fixed Point
+        4.3 Vocabulary Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-identifier-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Identifier Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-provenance-attachment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Provenance Attachment
       
     </span>
   </a>
@@ -2696,10 +2791,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-edge-normalization" class="md-nav__link">
+  <a href="#5-adapter-composition" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Edge Normalization
+        5. Adapter Composition
       
     </span>
   </a>
@@ -2707,10 +2802,99 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-node-list-normalization" class="md-nav__link">
+  <a href="#6-domain-vs-jurisdiction-adapters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Node List Normalization
+        6. Domain vs. Jurisdiction Adapters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Domain vs. Jurisdiction Adapters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#domain-adapters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain Adapters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jurisdiction-adapters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jurisdiction Adapters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-rust-and-python-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Rust and Python Implementations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Rust and Python Implementations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rust Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codegen-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codegen Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-testing-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Testing Requirements
       
     </span>
   </a>
@@ -2718,10 +2902,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-canonical-graph-serialization" class="md-nav__link">
+  <a href="#9-when-to-create-a-new-adapter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Canonical Graph Serialization
+        9. When to Create a New Adapter
       
     </span>
   </a>
@@ -2729,57 +2913,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-graph-hash-and-graph-level-ctag" class="md-nav__link">
+  <a href="#10-task-checklist-for-adapter-authors" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. Graph Hash and Graph-Level CTag
+        10. Task Checklist for Adapter Authors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Task Checklist for Adapter Authors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#9-recursion-guards-and-idempotence" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        9. Recursion Guards and Idempotence
+        Optional
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#10-relationship-to-other-cep-specifications" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        10. Relationship to Other CEP Specifications
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11-versioning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        11. Versioning
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#12-summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        12. Summary
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2803,242 +2971,235 @@
   
 
 
-<h1 id="graph-normalization-specification-gns-v1">Graph Normalization Specification (GNS v1)<a class="headerlink" href="#graph-normalization-specification-gns-v1" title="Permanent link">&para;</a></h1>
-<p>Version: 1.0.0<br />
-Status: Draft<br />
-Applies to: CEP entity graphs, provenance graphs, and merged graphs<br />
-Purpose: Define a deterministic normal form for CEP graphs so that equivalent graphs produce identical canonical representations and hashes.</p>
+<h1 id="cep-adapters-implementation-guide">CEP Adapters: Implementation Guide<a class="headerlink" href="#cep-adapters-implementation-guide" title="Permanent link">&para;</a></h1>
+<p>Adapters are the mechanism by which heterogeneous civic data sources are rewritten into canonical CEP records.
+Each adapter is a deterministic, strategy-governed transformation function that takes a source-specific record and returns a fully validated CEP
+<strong>entity</strong>, <strong>relationship</strong>, or <strong>exchange</strong>, wrapped in a CEP <strong>record envelope</strong>.</p>
+<p>This document describes the adapter model, required invariants, implementation structure, and best practices for adding new domain or jurisdiction adapters.</p>
 <hr />
-<h2 id="1-overview">1. Overview<a class="headerlink" href="#1-overview" title="Permanent link">&para;</a></h2>
-<p>CEP represents civic data as graphs:</p>
-<ul>
-<li><strong>Entity graphs</strong>: entities, relationships, and their links.  </li>
-<li><strong>Provenance graphs</strong>: entities, activities, and agents (PROV-style).  </li>
-<li><strong>Merged graphs</strong>: combined views over multiple sources and versions.</li>
-</ul>
-<p>The Graph Normalization Specification (GNS) defines how to:</p>
-<ol>
-<li>Represent graphs in a uniform structural model.  </li>
-<li>Canonically label nodes that lack global identifiers.  </li>
-<li>Order nodes and edges deterministically.  </li>
-<li>Serialize graphs via CEC v1 for hashing and verification.  </li>
-<li>Guarantee that semantically equivalent graphs normalize to the same form.</li>
-</ol>
-<p>GNS is versioned independently from CEC, schemas, and vocabularies.</p>
-<hr />
-<h2 id="2-graph-model">2. Graph Model<a class="headerlink" href="#2-graph-model" title="Permanent link">&para;</a></h2>
-<h3 id="21-nodes">2.1 Nodes<a class="headerlink" href="#21-nodes" title="Permanent link">&para;</a></h3>
-<p>Each node has:</p>
-<ul>
-<li><code>nodeId</code>: a string identifier (global or canonical local)  </li>
-<li><code>nodeType</code>: one of  </li>
-<li><code>entity</code>  </li>
-<li><code>relationship</code>  </li>
-<li><code>activity</code>  </li>
-<li><code>agent</code>  </li>
-<li><code>envelope</code> (optional, for packaging)  </li>
-<li><code>payload</code>: a CEC-compatible JSON object containing the node’s attributes</li>
-</ul>
-<p>Entity nodes should carry their <code>verifiableId</code> (from EFS) in the payload.</p>
-<h3 id="22-edges">2.2 Edges<a class="headerlink" href="#22-edges" title="Permanent link">&para;</a></h3>
-<p>Each edge has:</p>
-<ul>
-<li><code>sourceNodeId</code>  </li>
-<li><code>targetNodeId</code>  </li>
-<li><code>edgeType</code>: a label (e.g., <code>used</code>, <code>wasGeneratedBy</code>, <code>wasAttributedTo</code>, <code>hasRelationship</code>, <code>participatesIn</code>, domain-specific relationship types)  </li>
-<li><code>edgePayload</code>: optional attributes (e.g., role labels, qualifiers)</li>
-</ul>
-<h3 id="23-graph">2.3 Graph<a class="headerlink" href="#23-graph" title="Permanent link">&para;</a></h3>
-<p>A graph <code>G</code> is:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;graphId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;optional, see hashing&gt;&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;nodes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;edges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;graphMetadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;gnsVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;cecVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;schemaVersions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;...&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;vocabularyVersions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;...&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
+<h2 id="1-cep-adapter">1. CEP Adapter<a class="headerlink" href="#1-cep-adapter" title="Permanent link">&para;</a></h2>
+<p>A <strong>CEP adapter</strong> is a deterministic mapping:</p>
+<div class="highlight"><pre><span></span><code>SourceRecord → CEPRecord
 </code></pre></div>
-<p>The normalization process produces a canonical graph object of this shape.</p>
-<hr />
-<h2 id="3-goals-of-graph-normalization">3. Goals of Graph Normalization<a class="headerlink" href="#3-goals-of-graph-normalization" title="Permanent link">&para;</a></h2>
-<p>GNS aims to ensure that:</p>
-<p><strong>Determinism</strong><br />
-For a fixed input graph semantics and version tuple, every implementation produces the same normalized graph.</p>
-<p><strong>Idempotence</strong><br />
-Normalizing an already normalized graph yields the identical graph.</p>
-<p><strong>Equivalence</strong><br />
-Graphs that differ only by node-labeling or edge ordering but represent the same structure normalize to the same canonical form.</p>
-<p><strong>Hash stability</strong><br />
-The normalized graph can be CEC-serialized and hashed to yield a stable graph-level CTag.</p>
-<hr />
-<h2 id="4-node-identity-and-labeling">4. Node Identity and Labeling<a class="headerlink" href="#4-node-identity-and-labeling" title="Permanent link">&para;</a></h2>
-<h3 id="41-entity-nodes">4.1 Entity Nodes<a class="headerlink" href="#41-entity-nodes" title="Permanent link">&para;</a></h3>
-<p>Entity nodes have stable global identifiers.</p>
-<p>The payload <strong>MUST</strong> include:</p>
-<ul>
-<li><code>verifiableId</code> (from the Entity Fingerprint Specification)  </li>
-<li><code>entityTypeUri</code></li>
-</ul>
-<p>The <code>nodeId</code> for entity nodes <strong>MUST</strong> be set to <code>verifiableId</code>.</p>
-<p>No relabeling is required for entity nodes.</p>
-<h3 id="42-non-entity-nodes-activities-agents-relationships-envelopes">4.2 Non-Entity Nodes (Activities, Agents, Relationships, Envelopes)<a class="headerlink" href="#42-non-entity-nodes-activities-agents-relationships-envelopes" title="Permanent link">&para;</a></h3>
-<p>Non-entity nodes may not have globally stable IDs. For such nodes, GNS defines a canonical local ID computed from:</p>
-<ul>
-<li>The node’s type  </li>
-<li>A deterministic summary of its payload  </li>
-<li>The multiset of incident edges (types + endpoint identifiers)  </li>
-<li>Optional timestamps where present  </li>
-</ul>
-<p>Canonical local ID:</p>
-<div class="highlight"><pre><span></span><code>canonicalLocalId = &quot;gns:&quot; || base64url( H( summary(node) ) )
-</code></pre></div>
-<p>Where <code>summary(node)</code> is a CEC-serialized JSON object:</p>
-<ul>
-<li><code>nodeType</code>  </li>
-<li><code>payload</code> (CEC-normalized)  </li>
-<li><code>incidentEdges</code>: a sorted list of <code>{ edgeType, direction, otherNodeId }</code></li>
-</ul>
-<p>Hash function <code>H</code> is typically SHA-256.</p>
-<p><code>base64url</code> is standard URL-safe Base64 encoding.</p>
-<p><strong>incidentEdges</strong> sorting order:</p>
+<p>It consists of three layered rewriting stages:</p>
 <ol>
-<li><code>edgeType</code>  </li>
-<li><code>direction</code> ("in" or "out")  </li>
-<li><code>otherNodeId</code></li>
-</ol>
-<h3 id="43-labeling-procedure-and-fixed-point">4.3 Labeling Procedure and Fixed Point<a class="headerlink" href="#43-labeling-procedure-and-fixed-point" title="Permanent link">&para;</a></h3>
-<p>Because non-entity node labels depend on incident edges and incident edges depend on node labels, GNS defines a fixed-point procedure:</p>
-<p><strong>Initial labeling</strong></p>
-<ul>
-<li>Entity nodes: <code>nodeId = verifiableId</code>  </li>
-<li>Non-entity nodes: temporary IDs (internal indices)</li>
-</ul>
-<p><strong>Procedure</strong></p>
-<ol>
-<li>Compute summaries for all non-entity nodes using current IDs.  </li>
-<li>Compute canonicalLocalId for each non-entity node.  </li>
-<li>Replace temporary IDs with canonicalLocalId.  </li>
-<li>Rebuild edges with updated sourceNodeId / targetNodeId.</li>
-</ol>
-<p>This converges in one iteration because:</p>
-<ul>
-<li>entity IDs are stable  </li>
-<li>each non-entity ID depends only on:</li>
-<li>node type  </li>
-<li>payload  </li>
-<li>incident edges with stable entity IDs and previously computed local IDs  </li>
-</ul>
-<p>Implementations <strong>MUST</strong> perform at least one full pass.<br />
-A second pass <strong>MUST</strong> produce identical results (idempotence).</p>
-<hr />
-<h2 id="5-edge-normalization">5. Edge Normalization<a class="headerlink" href="#5-edge-normalization" title="Permanent link">&para;</a></h2>
-<p>After node IDs are canonical:</p>
-<p>For each edge:</p>
-<ul>
-<li>Ensure <code>sourceNodeId</code> and <code>targetNodeId</code> use canonical IDs.  </li>
-<li>Canonicalize <code>edgePayload</code> via CEP normalization + CEC.  </li>
-</ul>
-<p>Sort edges by:</p>
-<ol>
-<li><code>edgeType</code>  </li>
-<li><code>sourceNodeId</code>  </li>
-<li><code>targetNodeId</code>  </li>
-<li><code>CEC(edgePayload)</code>  </li>
-</ol>
-<p>If <code>edgePayload</code> is absent, treat it as <code>{}</code> for CEC.</p>
-<hr />
-<h2 id="6-node-list-normalization">6. Node List Normalization<a class="headerlink" href="#6-node-list-normalization" title="Permanent link">&para;</a></h2>
-<p>After node IDs are canonical:</p>
-<ul>
-<li>Canonicalize each <code>payload</code> via CEP normalization + CEC.  </li>
 <li>
-<p>Sort nodes by:</p>
+<p><strong>Lexical canonicalization</strong> - Normalizes raw strings, punctuation, Unicode, abbreviations, corporate suffixes, whitespace, etc.</p>
 </li>
 <li>
-<p><code>nodeType</code>  </p>
+<p><strong>Semantic expansion</strong> - Converts codes, categories, and jurisdiction-specific classifications into CEP <strong>vocabulary URIs</strong>. Aligns the structure with CEP schemas.</p>
 </li>
-<li><code>nodeId</code>  </li>
-<li><code>CEC(payload)</code>  </li>
+<li>
+<p><strong>Schema alignment + envelope construction</strong> - Produces a CEP JSON payload and adds:</p>
+<ul>
+<li>recordSchemaUri</li>
+<li>recordKind</li>
+<li>vocabulary references</li>
+<li>timestamps</li>
+<li>attestation placeholders</li>
+<li>identity inputs (used later for SNFEI)</li>
 </ul>
+</li>
+</ol>
+<p>Adapters do <strong>not</strong> compute SNFEI hashes directly.</p>
 <hr />
-<h2 id="7-canonical-graph-serialization">7. Canonical Graph Serialization<a class="headerlink" href="#7-canonical-graph-serialization" title="Permanent link">&para;</a></h2>
-<p>Construct the graph object:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;graphMetadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;gnsVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;cecVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;cecVersion used&gt;&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;schemaVersions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;vocabularyVersions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;nodes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;edges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">]</span>
-<span class="p">}</span>
+<h2 id="2-determinism-and-strategy-control">2. Determinism and Strategy Control<a class="headerlink" href="#2-determinism-and-strategy-control" title="Permanent link">&para;</a></h2>
+<p>Adapters use <strong>ordered, stratified rewriting</strong>, not free application of rules.<br />
+This guarantees:</p>
+<ul>
+<li>deterministic output</li>
+<li>no rule commutation</li>
+<li>predictable interpretation of source records</li>
+<li>reproducible hash inputs</li>
+</ul>
+<p>Evaluation order:</p>
+<ol>
+<li>information-preserving rewrites</li>
+<li>semantic enrichments</li>
+<li>information-reducing defaults</li>
+<li>schema assembly</li>
+<li>envelope construction</li>
+</ol>
+<p>Only the full pipeline defines semantic meaning.</p>
+<hr />
+<h2 id="3-input-and-output-types">3. Input and Output Types<a class="headerlink" href="#3-input-and-output-types" title="Permanent link">&para;</a></h2>
+<h3 id="input">Input<a class="headerlink" href="#input" title="Permanent link">&para;</a></h3>
+<p>Any structured representation of source data<br />
+(e.g., CSV row → dict, API JSON → dict).</p>
+<h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
+<p>A dict that validates under a CEP JSON Schema:</p>
+<ul>
+<li><code>cep.entity.schema.json</code></li>
+<li><code>cep.relationship.schema.json</code></li>
+<li><code>cep.exchange.schema.json</code></li>
+<li>domain-specific schemas in <code>schemas/domains/…</code></li>
+</ul>
+<p>This payload is then wrapped in a CEP record envelope.</p>
+<hr />
+<h2 id="4-adapter-responsibilities">4. Adapter Responsibilities<a class="headerlink" href="#4-adapter-responsibilities" title="Permanent link">&para;</a></h2>
+<p>Every adapter must implement:</p>
+<h3 id="41-structural-mapping">4.1 Structural Mapping<a class="headerlink" href="#41-structural-mapping" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Select target CEP record type.</li>
+<li>Map source fields → CEP fields.</li>
+<li>Remove non-CEP source fields.</li>
+</ul>
+<h3 id="42-name-canonicalization">4.2 Name Canonicalization<a class="headerlink" href="#42-name-canonicalization" title="Permanent link">&para;</a></h3>
+<p>Use the global canonicalization module:</p>
+<ul>
+<li>ASCII folding</li>
+<li>Unicode NFKC</li>
+<li>corporate suffix normalization</li>
+<li>jurisdictional abbreviation expansion</li>
+<li>strict whitespace/punctuation rules</li>
+</ul>
+<p>Never implement local name hacks.</p>
+<h3 id="43-vocabulary-application">4.3 Vocabulary Application<a class="headerlink" href="#43-vocabulary-application" title="Permanent link">&para;</a></h3>
+<p>Controlled vocabularies require the adapter to produce URIs such as:</p>
+<div class="highlight"><pre><span></span><code>&quot;committeeTypeUri&quot;: &quot;cep:committeeType:cf:principalCampaignCommittee&quot;
 </code></pre></div>
-<p>Serialize via <strong>CEC v1</strong>:</p>
+<p>Rules:</p>
 <ul>
-<li>lexicographic key ordering  </li>
-<li>omit <code>null</code> values  </li>
-<li>normalize numbers, strings, lists per CEC  </li>
+<li>must use valid, versioned URIs</li>
+<li>must not invent terms</li>
+<li>must not use deprecated codes</li>
 </ul>
-<p>The result is the canonical graph JSON.</p>
+<h3 id="44-identifier-handling">4.4 Identifier Handling<a class="headerlink" href="#44-identifier-handling" title="Permanent link">&para;</a></h3>
+<p>Adapters:</p>
+<ul>
+<li><strong>may</strong> parse external identifiers (OCD, LEI, SAM-UEI, etc.)</li>
+<li><strong>must not</strong> compute CEP SNFEI</li>
+<li><strong>must</strong> expose cleaned identity-relevant fields</li>
+</ul>
+<p>Identity invariants must be preserved.</p>
+<h3 id="45-provenance-attachment">4.5 Provenance Attachment<a class="headerlink" href="#45-provenance-attachment" title="Permanent link">&para;</a></h3>
+<p>Include minimal provenance:</p>
+<ul>
+<li>adapterVersion</li>
+<li>sourceUri or metadata</li>
+<li>attestation seed data</li>
+</ul>
+<p>Downstream pipelines may enrich provenance.</p>
 <hr />
-<h2 id="8-graph-hash-and-graph-level-ctag">8. Graph Hash and Graph-Level CTag<a class="headerlink" href="#8-graph-hash-and-graph-level-ctag" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>graphHash = H( CEC(graphObject) )
-graphTag  = &quot;cep-graph:&quot; || base64url(graphHash)
+<h2 id="5-adapter-composition">5. Adapter Composition<a class="headerlink" href="#5-adapter-composition" title="Permanent link">&para;</a></h2>
+<p>Adapters compose into the following chain:</p>
+<div class="highlight"><pre><span></span><code>raw_source
+   → lexical canonicalizer
+   → domain adapter
+   → jurisdiction adapter
+   → entity canonicalizer (SNFEI input)
+   → envelope constructor
 </code></pre></div>
-<p>Uses:</p>
+<p>Properties:</p>
 <ul>
-<li>as a <code>graphId</code>  </li>
-<li>as a provenance reference  </li>
-<li>for caching and deduplication  </li>
+<li>associative (up to strategy)</li>
+<li>not commutative</li>
+<li>fully deterministic</li>
+</ul>
+<p>Each adapter must declare:</p>
+<ul>
+<li>required upstream adapters</li>
+<li>required vocabularies</li>
+<li>canonicalization version dependency</li>
 </ul>
 <hr />
-<h2 id="9-recursion-guards-and-idempotence">9. Recursion Guards and Idempotence<a class="headerlink" href="#9-recursion-guards-and-idempotence" title="Permanent link">&para;</a></h2>
-<p>Implementations <strong>MUST</strong> ensure:</p>
+<h2 id="6-domain-vs-jurisdiction-adapters">6. Domain vs. Jurisdiction Adapters<a class="headerlink" href="#6-domain-vs-jurisdiction-adapters" title="Permanent link">&para;</a></h2>
+<h3 id="domain-adapters">Domain Adapters<a class="headerlink" href="#domain-adapters" title="Permanent link">&para;</a></h3>
+<p>Define the meaning of data within a domain:</p>
 <ul>
-<li><strong>Idempotence</strong>: normalizing a normalized graph yields identical output.  </li>
-<li><strong>No recursive expansion</strong>: do not re-run canonicalization or adapters.  </li>
-<li><strong>Finite behavior</strong>: normalization must terminate for all finite graphs.  </li>
-<li><strong>Order of operations</strong>: all canonicalization must occur <em>before</em> graph normalization begins.</li>
+<li>campaign finance</li>
+<li>environmental permits</li>
+<li>education</li>
+<li>procurement</li>
+<li>elections</li>
 </ul>
+<p>Domain adapters perform:</p>
+<ul>
+<li>code → vocabulary mapping</li>
+<li>high-level structural alignment</li>
+<li>domain canonicalization rules</li>
+</ul>
+<h3 id="jurisdiction-adapters">Jurisdiction Adapters<a class="headerlink" href="#jurisdiction-adapters" title="Permanent link">&para;</a></h3>
+<p>Handle differences across states, counties, authorities:</p>
+<ul>
+<li>state-specific IDs</li>
+<li>local naming conventions</li>
+<li>differing code definitions</li>
+<li>special cases or omissions</li>
+</ul>
+<p>A domain can have many jurisdiction adapters.</p>
 <hr />
-<h2 id="10-relationship-to-other-cep-specifications">10. Relationship to Other CEP Specifications<a class="headerlink" href="#10-relationship-to-other-cep-specifications" title="Permanent link">&para;</a></h2>
-<p>GNS builds upon:</p>
+<h2 id="7-rust-and-python-implementations">7. Rust and Python Implementations<a class="headerlink" href="#7-rust-and-python-implementations" title="Permanent link">&para;</a></h2>
+<h3 id="python-location">Python Location<a class="headerlink" href="#python-location" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>src/python/src/civic_interconnect/cep/adapters/
+<span class="w">    </span>us_mn_campaign_finance.py
+<span class="w">    </span>us_ca_environment.py
+</code></pre></div>
+<h3 id="rust-location">Rust Location<a class="headerlink" href="#rust-location" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>crates/cep-adapters/src/us/mn/campaign_finance.rs
+crates/cep-adapters/src/us/ca/environment.rs
+</code></pre></div>
+<p>Both languages must implement equivalent rewriting semantics.</p>
+<h3 id="codegen-integration">Codegen Integration<a class="headerlink" href="#codegen-integration" title="Permanent link">&para;</a></h3>
+<p>Adapters consume generated constants for:</p>
 <ul>
-<li><strong>Canonical Encoding (CEC v1)</strong>  </li>
-<li><strong>Entity Fingerprint Specification (EFS v1)</strong>  </li>
-<li><strong>Adapter Algebra Specification (AAS v1)</strong>  </li>
+<li>schema URIs</li>
+<li>vocabulary URIs</li>
+<li>record kinds</li>
 </ul>
-<p>GNS ensures graph-level determinism and hashing; it does <strong>not</strong> redefine canonicalization or adapter semantics.</p>
+<p>Avoid hand-typed camelCase; always use generated constants.</p>
 <hr />
-<h2 id="11-versioning">11. Versioning<a class="headerlink" href="#11-versioning" title="Permanent link">&para;</a></h2>
-<p>Semantic versioning:</p>
+<h2 id="8-testing-requirements">8. Testing Requirements<a class="headerlink" href="#8-testing-requirements" title="Permanent link">&para;</a></h2>
+<p>Every adapter must include:</p>
 <ul>
-<li><strong>MAJOR</strong>: breaking changes  </li>
-<li><strong>MINOR</strong>: backward-compatible additions  </li>
-<li><strong>PATCH</strong>: clarifications, editorial fixes  </li>
+<li>
+<p><strong>Round-trip tests</strong> - Sample → canonical → schema-validated.</p>
+</li>
+<li>
+<p><strong>Identity stability tests</strong> - SNFEI must be stable under irrelevant reordering.</p>
+</li>
+<li>
+<p><strong>Vocabulary resolution tests</strong> - URIs must correspond to actual vocab terms.</p>
+</li>
+<li>
+<p><strong>Provenance tests</strong> - Envelope structure must match expectations.</p>
+</li>
 </ul>
-<p>Every normalized graph MUST include:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;graphMetadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;gnsVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="err">...</span>
-<span class="p">}</span>
+<p>If any test fails, the adapter cannot be merged.</p>
+<hr />
+<h2 id="9-when-to-create-a-new-adapter">9. When to Create a New Adapter<a class="headerlink" href="#9-when-to-create-a-new-adapter" title="Permanent link">&para;</a></h2>
+<p>Create a new adapter when:</p>
+<ul>
+<li>a new domain is added</li>
+<li>a new state or jurisdiction is introduced</li>
+<li>a new agency format appears</li>
+<li>a source version changes</li>
+</ul>
+<p>Document each adapter under:</p>
+<div class="highlight"><pre><span></span><code>docs/en/implementation/adapters/
 </code></pre></div>
 <hr />
-<h2 id="12-summary">12. Summary<a class="headerlink" href="#12-summary" title="Permanent link">&para;</a></h2>
-<p>GNS v1 defines:</p>
+<h2 id="10-task-checklist-for-adapter-authors">10. Task Checklist for Adapter Authors<a class="headerlink" href="#10-task-checklist-for-adapter-authors" title="Permanent link">&para;</a></h2>
+<h3 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h3>
 <ul>
-<li>a uniform CEP graph model  </li>
-<li>canonical labeling for non-entity nodes  </li>
-<li>deterministic node and edge ordering  </li>
-<li>CEC-based canonical serialization  </li>
-<li>a graph-level CTag mechanism  </li>
+<li>[ ] Identify the source format</li>
+<li>[ ] Build input parser</li>
+<li>[ ] Apply canonicalization</li>
+<li>[ ] Map domain categories to vocabularies</li>
+<li>[ ] Map jurisdiction identifiers</li>
+<li>[ ] Construct CEP payload</li>
+<li>[ ] Run canonicalization to compute SNFEI input</li>
+<li>[ ] Construct envelope</li>
+<li>[ ] Add attestation seed</li>
+<li>[ ] Add sample input/output records</li>
+<li>[ ] Add test suite (round-trip, vocab, identity)</li>
 </ul>
-<p>These together provide a stable foundation for provenance, merges, cross-source entity graphs, and higher-level CEP reasoning.</p>
+<h3 id="optional">Optional<a class="headerlink" href="#optional" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] Add debug logging for rewrite steps</li>
+<li>[ ] Document edge cases</li>
+<li>[ ] Add CTag suggestions for low-quality data</li>
+</ul>
 
 
 

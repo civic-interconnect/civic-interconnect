@@ -133,6 +133,12 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/governance/vocabulary-process/"/>
     </url>
     <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/adapters/</loc>
+        <lastmod>2025-12-10</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/adapters/"/>
+    </url>
+    <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/casing/</loc>
         <lastmod>2025-12-10</lastmod>
         <changefreq>daily</changefreq>
