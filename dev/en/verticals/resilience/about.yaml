@@ -1,0 +1,167 @@
+verticalId: resilience
+id: disaster-resilience-critical-shelters
+title: Disaster Resilience and Critical Shelters
+domain: resilience
+status: planned
+
+summary: >
+  Identify and explain critical shelter and route nodes in disaster preparedness
+  plans, so that emergency managers and communities can prioritize investments
+  that most improve resilience.
+
+whoCares:
+  - actorId: emergency-manager
+    role: Emergency operations or civil protection manager
+    motivation: >
+      Wants to know which shelters and facilities are truly critical in a
+      disaster so limited resources can be focused where they matter most.
+    decisions:
+      - Prioritize investments in critical shelters and routes
+      - Design realistic emergency response plans
+
+  - actorId: infrastructure-leader
+    role: Public works or infrastructure director
+    motivation: >
+      Needs to understand which assets and routes are linchpins in resilience
+      so capital projects can reduce systemic vulnerability.
+    decisions:
+      - Plan upgrades to infrastructure and transport routes
+
+  - actorId: community-preparedness-group
+    role: Community resilience or preparedness organization
+    motivation: >
+      Wants clear, map-based explanations of local risks and shelter options
+      to organize drills and preparedness activities with residents.
+    decisions:
+      - Develop and communicate neighborhood preparedness plans
+
+userStories:
+  - id: res-1
+    as: emergency-manager
+    want: >
+      clear explanations for which shelters and routes are considered critical nodes
+    so_that: >
+      I can allocate limited resources to upgrades and planning where they have
+      the most impact.
+  - id: res-2
+    as: infrastructure-planner
+    want: >
+      to understand the dependencies between shelters, infrastructure, and hazard
+      zones
+    so_that: >
+      I can schedule capital projects to reduce bottlenecks and vulnerabilities.
+  - id: res-3
+    as: community-preparedness-group
+    want: >
+      easy-to-understand explanations of our primary shelters and evacuation routes
+    so_that: >
+      we can train residents and prepare without confusion.
+
+actions:
+  - id: res-act-1
+    label: Prioritize shelter upgrades
+    description: >
+      Use CRITICAL_SHELTER_PRIORITY explanations to decide which shelters to
+      retrofit, stock, or staff first.
+    actorIds:
+      - emergency-manager
+  - id: res-act-2
+    label: Plan infrastructure projects
+    description: >
+      Use route and shelter dependency information to sequence road and infrastructure
+      improvements that support evacuation and access to shelters.
+    actorIds:
+      - infrastructure-planner
+  - id: res-act-3
+    label: Develop community plans
+    description: >
+      Provide prioritized shelter and route explanations to communities to build
+      realistic preparedness plans and training materials.
+    actorIds:
+      - community-preparedness-group
+
+dataSources:
+  notes: >
+    Use national hazard, infrastructure, and demographic datasets as external
+    sources; keep only small slices in-repo.
+  primary:
+    - id: hazard-zones
+      type: http
+      description: >
+        Official floodplain, wildfire, seismic, or storm surge hazard layers.
+      examples:
+        - "https://example-hazard-agency.gov/floodplains"
+    - id: shelters-and-facilities
+      type: http
+      description: >
+        Registries or GIS layers of emergency shelters and critical facilities.
+      examples:
+        - "https://example-gis.gov/shelters"
+        - "https://example-gis.gov/hospitals"
+    - id: road-network-and-population
+      type: http
+      description: >
+        Road networks and population grids needed to estimate catchments and access.
+      examples:
+        - "https://example-gis.gov/roads"
+        - "https://example-stat-agency.gov/population/grid"
+  internal_examples:
+    path_prefix: examples/resilience/shelters/
+    notes: >
+      Synthetic or reduced examples with a few shelters, routes, and hazard zones.
+
+cep:
+  entities:
+    - id: shelter
+      schema: "schemas/domains/resilience/shelter.entity.schema.json"
+    - id: critical-facility
+      schema: "schemas/domains/resilience/critical-facility.entity.schema.json"
+    - id: hazard-zone
+      schema: "schemas/domains/resilience/hazard-zone.entity.schema.json"
+    - id: route
+      schema: "schemas/domains/resilience/route.entity.schema.json"
+  relationships:
+    - id: shelter-serves-area
+      schema: "schemas/domains/resilience/shelter-area.relationship.schema.json"
+    - id: facility-in-hazard-zone
+      schema: "schemas/domains/resilience/facility-hazard.relationship.schema.json"
+    - id: route-connects-facilities
+      schema: "schemas/domains/resilience/route-facility.relationship.schema.json"
+  identity:
+    notes: >
+      SNFEI for shelters and facilities based on jurisdiction, official identifier,
+      and geospatial coordinates. Hazard zones and routes use source identifiers
+      plus geometry hashes.
+  envelopes:
+    notes: >
+      Use record-envelope schema to wrap shelter and hazard entities with provenance
+      from national or regional hazard and emergency management data.
+
+cee:
+  explanation_types:
+    - id: CRITICAL_SHELTER_PRIORITY
+      description: >
+        Explains why a shelter is designated as critical for resilience planning.
+      subject_entity: shelter
+      evidence:
+        - metric: catchment_population
+        - metric: hazard_intensity_in_catchment
+        - metric: number_of_alternative_shelters
+        - metric: route_redundancy_score
+      attribution:
+        - model_id: "resilience-shelter-rule-v1"
+          model_type: "rule-based"
+  vertical_outputs:
+    - id: critical_shelter_priority_bundle
+      description: >
+        ExplanationBundle instances attached to shelter entities describing why
+        they are considered critical in preparedness plans.
+
+tests:
+  - id: res-example-roundtrip
+    description: >
+      Example shelters, routes, and hazard zones are transformed into CEP entities
+      and relationships; CRITICAL_SHELTER_PRIORITY bundles are generated for at
+      least one shelter and validate against CEE schemas.
+    files:
+      - "src/python/tests/verticals/test_resilience_roundtrip.py"

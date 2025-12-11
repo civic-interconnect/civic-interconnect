@@ -1,0 +1,168 @@
+verticalId: edaccess
+id: education-access-value
+title: Civic Education Access and Program Value
+domain: education
+status: planned
+
+summary: >
+  Help students, institutions, and policymakers understand which educational programs
+  are accessible and high-value for different learner groups, and explain why.
+
+whoCares:
+  - actorId: student-or-family
+    role: Prospective student or family member
+    motivation: >
+      Wants to make confident choices among many programs, understanding which
+      options are realistically affordable and likely to lead to good outcomes.
+    decisions:
+      - Choose between multiple programs and institutions
+
+  - actorId: institution-leader
+    role: Dean or program director
+    motivation: >
+      Needs a transparent view of which programs under-perform on access or
+      value so they can plan improvements, supports, or redesigns.
+    decisions:
+      - Improve programs that under-perform on access or value
+
+  - actorId: state-agency
+    role: State or regional higher education agency
+    motivation: >
+      Wants to allocate limited public resources toward programs that genuinely
+      expand opportunity for underserved learners.
+    decisions:
+      - Target funding and support to programs that expand opportunity
+
+
+userStories:
+  - id: edu-1
+    as: student-or-family
+    want: >
+      explanations of why certain programs are considered strong options for my
+      situation
+    so_that: >
+      I can make confident choices instead of guessing based on brand alone.
+  - id: edu-2
+    as: institution-leader
+    want: >
+      a transparent breakdown of access and value metrics per program
+    so_that: >
+      I can prioritize which programs to support, redesign, or sunset.
+  - id: edu-3
+    as: state-agency
+    want: >
+      explainable rankings of programs by access and value across the state
+    so_that: >
+      I can direct limited resources where they increase opportunity the most.
+
+actions:
+  - id: edu-act-1
+    label: Guide student choices
+    description: >
+      Use PROGRAM_ACCESS_VALUE explanations to power advising tools that show students
+      why specific programs may be good fits given their goals and constraints.
+    actorIds:
+      - student-or-family
+  - id: edu-act-2
+    label: Prioritize program improvement
+    description: >
+      Use explainable access and value metrics to choose which programs to invest in,
+      redesign, or sunset.
+    actorIds:
+      - institution-leader
+  - id: edu-act-3
+    label: Target funding and support
+    description: >
+      Use statewide, explainable program rankings to direct funding and supports to
+      programs that most expand equitable opportunity.
+    actorIds:
+      - state-agency
+
+dataSources:
+  notes: >
+    Use national statistics systems as external sources; keep small example slices
+    in-repo for tests.
+  primary:
+    - id: institutions-and-programs
+      type: http
+      description: >
+        Public datasets with institution and program metadata, including cost and
+        mode of delivery.
+      examples:
+        - "https://example-ed-agency.gov/institutions"
+        - "https://example-ed-agency.gov/programs"
+    - id: outcomes
+      type: http
+      description: >
+        Completion rates, employment outcomes, or earnings measures at the program
+        or field-of-study level.
+      examples:
+        - "https://example-ed-agency.gov/outcomes"
+    - id: demographics-or-regions
+      type: http
+      description: >
+        Regional demographics and geography to support access analyses (distance,
+        commuting regions).
+      examples:
+        - "https://example-stat-agency.gov/regions"
+  internal_examples:
+    path_prefix: examples/education/access/
+    notes: >
+      Small JSON slices showing a handful of institutions, programs, and outcomes.
+
+cep:
+  entities:
+    - id: institution
+      schema: "schemas/domains/education/institution.entity.schema.json"
+    - id: program
+      schema: "schemas/domains/education/program.entity.schema.json"
+    - id: credential
+      schema: "schemas/domains/education/credential.entity.schema.json"
+    - id: region
+      schema: "schemas/domains/education/region.entity.schema.json"
+  relationships:
+    - id: institution-offers-program
+      schema: "schemas/domains/education/institution-program.relationship.schema.json"
+    - id: program-leads-to-credential
+      schema: "schemas/domains/education/program-credential.relationship.schema.json"
+    - id: institution-located-in-region
+      schema: "schemas/domains/education/institution-region.relationship.schema.json"
+  identity:
+    notes: >
+      SNFEI for institutions based on country, system identifier, and canonical name.
+      SNFEI for programs based on institution SNFEI, program code, and level.
+  envelopes:
+    notes: >
+      Use record-envelope schema for program and institution entities, with provenance
+      pointing to the statistics or education agency exports.
+
+cee:
+  explanation_types:
+    - id: PROGRAM_ACCESS_VALUE
+      description: >
+        Explains why a program is highlighted as accessible and high-value for a
+        given learner profile.
+      subject_entity: program
+      evidence:
+        - metric: tuition_or_net_cost
+        - metric: completion_rate
+        - metric: earnings_or_employment_outcome
+        - metric: distance_to_campus_or_online_availability
+        - metric: support_for_target_group
+      attribution:
+        - model_id: "program-access-value-rule-v1"
+          model_type: "rule-based"
+  vertical_outputs:
+    - id: program_access_value_bundle
+      description: >
+        ExplanationBundle instances attached to program entities describing why they
+        appear on a list of strong options.
+
+tests:
+  - id: edu-example-roundtrip
+    description: >
+      Example institutions and programs with outcomes are transformed into CEP
+      entities and relationships; PROGRAM_ACCESS_VALUE bundles are generated for
+      at least one program and validate against CEE schemas.
+    files:
+      - "src/python/tests/verticals/test_eduaccess_roundtrip.py"

@@ -1,0 +1,173 @@
+verticalId: env
+id: environmental-compliance-risk
+title: Environmental Compliance Risk and Prioritization
+domain: environment
+status: planned
+
+summary: >
+  Provide transparent, evidence-based explanations for why certain facilities are
+  prioritized for monitoring or mitigation, focusing on risk and harm reduction.
+
+whoCares:
+  - actorId: regulator
+    role: Environmental regulator or compliance supervisor
+    motivation: >
+      Needs to prioritize inspections and mitigation where potential harm is
+      greatest, using transparent criteria rather than only complaints.
+    decisions:
+      - Prioritize inspections and enforcement resources
+      - Plan mitigation and remediation programs
+
+  - actorId: facility-sustainability-manager
+    role: Corporate or facility sustainability manager
+    motivation: >
+      Wants an evidence-based view of risk factors so they can fix problems
+      early and demonstrate responsible performance to regulators and the public.
+    decisions:
+      - Identify and address risk factors before they trigger enforcement
+
+  - actorId: community-resident
+    role: Residents and community groups near facilities
+    motivation: >
+      Needs understandable information about local environmental risk in order
+      to advocate for protections without relying on rumors or technical jargon.
+    decisions:
+      - Engage constructively with regulators and operators about local risks
+
+
+userStories:
+  - id: env-1
+    as: regulator
+    want: >
+      explainable rankings of facilities that require closer monitoring
+    so_that: >
+      I can allocate inspection resources where potential harm is greatest.
+  - id: env-2
+    as: facility-sustainability-manager
+    want: >
+      a clear breakdown of the factors increasing our facility's risk score
+    so_that: >
+      I can design and justify corrective actions to leadership.
+  - id: env-3
+    as: community-resident
+    want: >
+      easy-to-understand explanations of why a facility near me is considered
+      higher or lower risk
+    so_that: >
+      I can advocate for mitigation without relying on rumors or fear.
+
+actions:
+  - id: env-act-1
+    label: Prioritize inspections
+    description: >
+      Use FACILITY_RISK_PRIORITY explanations to select facilities for inspection
+      based on transparent risk factors instead of ad hoc or complaint-driven lists.
+    actorIds:
+      - regulator
+  - id: env-act-2
+    label: Plan corrective actions
+    description: >
+      Use risk-factor breakdowns to design targeted mitigation projects at facilities
+      and demonstrate their expected impact on risk scores.
+    actorIds:
+      - facility-sustainability-manager
+  - id: env-act-3
+    label: Support constructive community dialogue
+    description: >
+      Provide residents with simple, evidence-based explanations of facility risk
+      and mitigation progress to support informed engagement.
+    actorIds:
+      - community-resident
+
+dataSources:
+  notes: >
+    Use external open data as the primary source and keep only small, anonymized
+    or synthetic examples in-repo.
+  primary:
+    - id: facility-register
+      type: http
+      description: >
+        National or regional facility registries with location, sector, and permit
+        status.
+      examples:
+        - "https://example-environment-agency.gov/facilities"
+    - id: inspections-and-violations
+      type: http
+      description: >
+        Open data on inspections, violations, and enforcement actions.
+      examples:
+        - "https://example-environment-agency.gov/enforcement"
+    - id: sensitive-areas
+      type: http
+      description: >
+        Layers for sensitive receptors such as schools, hospitals, and protected
+        water bodies.
+      examples:
+        - "https://example-gis.gov/schools"
+        - "https://example-gis.gov/watersheds"
+  internal_examples:
+    path_prefix: examples/environment/compliance/
+    notes: >
+      Small JSON and geojson slices (1–3 facilities) used for docs and tests.
+
+cep:
+  entities:
+    - id: facility
+      schema: "schemas/domains/environment/facility.entity.schema.json"
+    - id: permit
+      schema: "schemas/domains/environment/permit.entity.schema.json"
+    - id: inspection
+      schema: "schemas/domains/environment/inspection.entity.schema.json"
+    - id: violation
+      schema: "schemas/domains/environment/violation.entity.schema.json"
+    - id: sensitive-area
+      schema: "schemas/domains/environment/sensitive-area.entity.schema.json"
+  relationships:
+    - id: facility-has-permit
+      schema: "schemas/domains/environment/facility-permit.relationship.schema.json"
+    - id: facility-had-inspection
+      schema: "schemas/domains/environment/facility-inspection.relationship.schema.json"
+    - id: inspection-resulted-in-violation
+      schema: "schemas/domains/environment/inspection-violation.relationship.schema.json"
+    - id: facility-near-sensitive-area
+      schema: "schemas/domains/environment/facility-sensitive.relationship.schema.json"
+  identity:
+    notes: >
+      SNFEI for facilities based on country, registry identifier, canonical name,
+      and coordinates. Permits, inspections, and violations use source identifiers
+      plus facility SNFEI.
+  envelopes:
+    notes: >
+      Use record-envelope schema with provenance pointing to the source environment
+      agency and data export.
+
+cee:
+  explanation_types:
+    - id: FACILITY_RISK_PRIORITY
+      description: >
+        Explains why a facility is placed in a higher-risk monitoring tier, focusing
+        on severity, frequency, and proximity to sensitive receptors.
+      subject_entity: facility
+      evidence:
+        - metric: violation_count_window
+        - metric: violation_severity_index
+        - metric: time_since_last_violation
+        - metric: distance_to_sensitive_areas
+        - metric: facility_sector_risk_category
+      attribution:
+        - model_id: "env-risk-rule-v1"
+          model_type: "rule-based"
+  vertical_outputs:
+    - id: facility_risk_priority_bundle
+      description: >
+        ExplanationBundle instances for facilities describing the factors contributing
+        to their risk tier.
+
+tests:
+  - id: env-example-roundtrip
+    description: >
+      Example facilities with inspections and violations are transformed into CEP
+      entities and relationships; FACILITY_RISK_PRIORITY bundles are generated for
+      at least one facility and validate against CEE schemas.
+    files:
+      - "src/python/tests/verticals/test_env_roundtrip.py"
