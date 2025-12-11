@@ -1,0 +1,21 @@
+{
+  "id": "cep-entity:procurement:lot:example-123",
+  "schemaVersion": "1.0.0",
+  "entityType": "procurement.lot",
+  "jurisdictionIso": "EU",
+  "tenderId": "ocds-12345",
+  "lotId": "1",
+  "title": "IT support services for small offices",
+  "cpvCodes": ["72000000"],
+  "estimatedValue": {
+    "amount": 180000.0,
+    "currency": "EUR"
+  },
+  "procedureType": "open",
+  "identifiers": {
+    "snfei": {
+      "value": "TODO_snfei_hash_here"
+    }
+  },
+  "metadata": {}
+}

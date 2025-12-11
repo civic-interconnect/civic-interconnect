@@ -96,6 +96,14 @@ repos:
         pass_filenames: false
         files: ^(schemas/|vocabulary/).*\.(json|yaml|yml)$
 
+      # ------------------- TEST ABOUT.YAML FILES -------------------
+
+      - id: C2-validate-verticals
+        name: C2) Validate docs/en/verticals about.yaml Files
+        entry: uv run python tools/validate_verticals.py
+        language: system
+        pass_filenames: false
+
   # ------------------- EXTERNAL REPOS ---------------------  
 
   - repo: https://github.com/rhysd/actionlint

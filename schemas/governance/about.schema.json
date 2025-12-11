@@ -1,0 +1,443 @@
+{
+  "$id": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/governance/about.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CEP Vertical About File",
+  "description": "Roadmap metadata for a single CEP/CEE vertical slice (about.yaml). Describes who cares, what actions they can take, and which CEP/CEE components the vertical uses.",
+  "type": "object",
+  "required": [
+    "verticalId",
+    "id",
+    "title",
+    "domain",
+    "status",
+    "summary",
+    "whoCares",
+    "actions",
+    "dataSources",
+    "cep",
+    "cee",
+    "userStories",
+    "tests"
+  ],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-": {}
+  },
+  "properties": {
+    "verticalId": {
+      "type": "string",
+      "description": "Short, stable identifier for the vertical, used as a slug in paths. Example: 'procurement-eu-sme', 'assets-community', 'environment-compliance'.",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "id": {
+      "type": "string",
+      "description": "Human-readable identifier for this vertical slice.",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable title for the vertical. Example: 'EU SME-Friendly Procurement', 'Community Parks and Health Access'."
+    },
+    "domain": {
+      "type": "string",
+      "description": "Primary domain for this vertical. Example: 'procurement', 'environment', 'education', 'assets', 'resilience'."
+    },
+    "status": {
+      "type": "string",
+      "description": "Lifecycle state of this vertical slice.",
+      "enum": ["idea", "planned", "experimental", "active", "deprecated"]
+    },
+    "version": {
+      "type": "string",
+      "description": "Optional semantic version for this vertical definition. Example: '1.0.0'."
+    },
+    "summary": {
+      "type": "string",
+      "description": "Short description of what this vertical does and why it exists. One or two paragraphs max."
+    },
+    "whoCares": {
+      "type": "array",
+      "description": "Key stakeholder types who care about this vertical and why.",
+      "items": {
+        "type": "object",
+        "required": ["actorId", "role", "motivation"],
+        "additionalProperties": false,
+        "properties": {
+          "actorId": {
+            "type": "string",
+            "description": "Short identifier for this actor type, for reference from other sections. Example: 'sme-founder', 'city-planner'.",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "role": {
+            "type": "string",
+            "description": "Concise description of the actor role. Example: 'Small business owner', 'Emergency manager'."
+          },
+          "motivation": {
+            "type": "string",
+            "description": "Why this actor cares about the vertical. Example: 'Wants to find realistic procurement opportunities for small firms.'"
+          },
+          "decisions": {
+            "type": "array",
+            "description": "Optional list of key decisions this actor makes that the vertical can support. Example items: 'Where to site new parks', 'Which tenders to bid on'.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string",
+            "description": "Optional additional context about this actor."
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "actions": {
+      "type": "array",
+      "description": "Positive actions stakeholders can take using this vertical.",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "description", "actorIds"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Short identifier for this action.",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "label": {
+            "type": "string",
+            "description": "Short human-readable label for the action."
+          },
+          "description": {
+            "type": "string",
+            "description": "Longer description of what the actor does using this vertical."
+          },
+          "actorIds": {
+            "type": "array",
+            "description": "List of actorIds (from whoCares) for whom this action is relevant.",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "notes": {
+            "type": "string",
+            "description": "Optional elaboration or constraints on this action."
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "primaryQuestion": {
+      "type": "string",
+      "description": "Primary driving question for this vertical. Example: 'Why is this procurement lot SME-friendly?', 'Why is this neighborhood prioritized for new parks?'."
+    },
+    "additionalQuestions": {
+      "type": "array",
+      "description": "Optional secondary questions this vertical may help answer.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dataSources": {
+      "type": "object",
+      "description": "Key public and internal data sources used in this vertical.",
+      "required": ["primary"],
+      "additionalProperties": false,
+      "properties": {
+        "notes": {
+          "type": "string",
+          "description": "General notes about data sourcing for this vertical."
+        },
+        "primary": {
+          "type": "array",
+          "description": "Primary external data sources.",
+          "items": {
+            "type": "object",
+            "required": ["id", "description"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              "type": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "examples": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "internal_examples": {
+          "type": "object",
+          "required": ["path_prefix"],
+          "additionalProperties": false,
+          "properties": {
+            "path_prefix": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "cep": {
+      "type": "object",
+      "description": "Scope of CEP artifacts that this vertical will exercise.",
+      "required": ["entities", "relationships"],
+      "additionalProperties": false,
+      "properties": {
+        "entities": {
+          "type": "array",
+          "description": "List of CEP entity types this vertical uses, with schema and optional example references.",
+          "items": {
+            "type": "object",
+            "required": ["id", "schema"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Short identifier for this entity type within the vertical.",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              "schema": {
+                "type": "string",
+                "description": "Path to the CEP entity schema JSON file used for this entity type."
+              },
+              "examples": {
+                "type": "array",
+                "description": "Optional list of paths to example CEP entity instances for this type.",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "relationships": {
+          "type": "array",
+          "description": "List of CEP relationship types this vertical uses, with schema references.",
+          "items": {
+            "type": "object",
+            "required": ["id", "schema"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Short identifier for this relationship type within the vertical.",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              "schema": {
+                "type": "string",
+                "description": "Path to the CEP relationship schema JSON file used for this relationship type."
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "vocabularies": {
+          "type": "array",
+          "description": "Optional list of vocabulary identifiers relevant to this vertical. Example: 'procurement.procedure-type.v1.0.0', 'environment.violation-type.v1.0.0'.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "identity": {
+          "type": "object",
+          "description": "Notes about identity design (e.g., SNFEI input fields) for this vertical.",
+          "additionalProperties": false,
+          "properties": {
+            "notes": {
+              "type": "string",
+              "description": "Free-form notes describing how SNFEI or other identifiers are constructed for this vertical."
+            }
+          }
+        },
+        "envelopes": {
+          "type": "object",
+          "description": "Notes about how CEP record envelopes are used in this vertical.",
+          "additionalProperties": false,
+          "properties": {
+            "notes": {
+              "type": "string",
+              "description": "Free-form notes about envelope usage and provenance patterns."
+            }
+          }
+        }
+      }
+    },
+    "cee": {
+      "type": "object",
+      "description": "Scope of CEE explanations this vertical will produce.",
+      "required": ["explanation_types"],
+      "additionalProperties": false,
+      "properties": {
+        "explanation_types": {
+          "type": "array",
+          "description": "Explanation types used in this vertical, with subject entity, evidence, and attribution hints.",
+          "items": {
+            "type": "object",
+            "required": ["id", "description", "subject_entity"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Identifier for the explanation type. Example: 'SME_FRIENDLY_PROCUREMENT'."
+              },
+              "description": {
+                "type": "string",
+                "description": "Human-readable description of what this explanation type covers."
+              },
+              "subject_entity": {
+                "type": "string",
+                "description": "Entity id (from cep.entities[].id) that this explanation is attached to. Example: 'area', 'program', 'facility', 'lot'."
+              },
+              "evidence": {
+                "type": "array",
+                "description": "Optional list of evidence metrics used in this explanation.",
+                "items": {
+                  "type": "object",
+                  "required": ["metric"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "metric": {
+                      "type": "string",
+                      "description": "Metric identifier, e.g. 'population_served', 'distance_to_nearest_assets'."
+                    },
+                    "notes": {
+                      "type": "string",
+                      "description": "Optional notes about how this metric is computed or interpreted."
+                    }
+                  }
+                }
+              },
+              "attribution": {
+                "type": "array",
+                "description": "Optional list of attribution model descriptors.",
+                "items": {
+                  "type": "object",
+                  "required": ["model_id", "model_type"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "model_id": {
+                      "type": "string",
+                      "description": "Identifier for the rule or model. Example: 'assets-access-rule-v1'."
+                    },
+                    "model_type": {
+                      "type": "string",
+                      "description": "Type of model (e.g. 'rule-based', 'tree-based', 'linear')."
+                    },
+                    "notes": {
+                      "type": "string",
+                      "description": "Optional notes about the model."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "vertical_outputs": {
+          "type": "array",
+          "description": "Named output artifacts (e.g., bundles) produced in this vertical.",
+          "items": {
+            "type": "object",
+            "required": ["id", "description"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Identifier for this output type. Example: 'area_access_priority_bundle'."
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of what this output represents."
+              }
+            }
+          }
+        },
+        "keyQuestions": {
+          "type": "array",
+          "description": "Key CEE questions this vertical answers. Example items: 'Why is this lot SME-friendly?', 'Why is this shelter critical?'.",
+          "items": { "type": "string" }
+        },
+        "notes": {
+          "type": "string",
+          "description": "Optional notes about evidence, attribution, or explanation patterns in this vertical."
+        }
+      }
+    },
+    "userStories": {
+      "type": "array",
+      "description": "Classic user-story style motivations.",
+      "items": {
+        "type": "object",
+        "required": ["id", "as", "want", "so_that"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "as": { "type": "string" },
+          "want": { "type": "string" },
+          "so_that": { "type": "string" }
+        }
+      }
+    },
+
+    "tests": {
+      "type": "array",
+      "description": "List of test files or test scenarios validating the vertical slice.",
+      "items": {
+        "type": "object",
+        "required": ["id", "files"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "description": { "type": "string" },
+          "files": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+
+    "roadmap": {
+      "type": "object",
+      "description": "Optional high-level roadmap for this vertical, for human use only.",
+      "additionalProperties": false,
+      "properties": {
+        "milestones": {
+          "type": "array",
+          "description": "Optional list of milestone descriptions for this vertical.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "risks": {
+          "type": "array",
+          "description": "Optional list of known risks or open questions.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "string",
+          "description": "Any additional planning notes for this vertical."
+        }
+      }
+    }
+  }
+}

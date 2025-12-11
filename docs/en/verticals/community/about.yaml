@@ -1,0 +1,162 @@
+verticalId: community
+id: community-assets-access
+title: Community Assets and Local Access
+domain: assets
+status: planned
+
+summary: >
+  Highlight neighborhoods where access to parks, libraries, and other public assets
+  is limited, and explain why those areas are prioritized for investment.
+
+whoCares:
+  - actorId: city-planner
+    role: City planner or urban designer
+    motivation: >
+      Needs a defensible, data-backed way to decide where new parks, trails,
+      and community facilities should go, instead of relying on ad hoc pressure.
+    decisions:
+      - Prioritize locations for new parks, trails, or community facilities
+      - Justify siting decisions to leadership and the public
+
+  - actorId: public-health-analyst
+    role: Public health agency analyst
+    motivation: >
+      Wants to connect patterns in physical activity, chronic disease, and
+      mental health to access to community assets, to design targeted programs.
+    decisions:
+      - Target health and activity programs to underserved neighborhoods
+
+  - actorId: community-advocate
+    role: Neighborhood or community organization
+    motivation: >
+      Needs clear, transparent evidence to support concrete asks in public
+      processes, rather than relying on anecdotes or one-off complaints.
+    decisions:
+      - Make data-backed requests for local improvements
+
+
+userStories:
+  - id: ca-1
+    as: city-planner
+    want: >
+      to see which neighborhoods lack accessible parks or public facilities
+    so_that: >
+      I can prioritize capital investments in areas with the largest access gaps.
+  - id: ca-2
+    as: public-health-analyst
+    want: >
+      to understand how access to community assets aligns with health indicators
+    so_that: >
+      I can design targeted interventions to reduce disparities.
+  - id: ca-3
+    as: community-advocate
+    want: >
+      clear explanations of why our neighborhood is prioritized for improvements
+    so_that: >
+      I can build local support and secure funding.
+
+actions:
+  - id: ca-act-1
+    label: Prioritize capital projects
+    description: >
+      Use AREA_ACCESS_PRIORITY explanations to rank neighborhoods by access gaps
+      and feed that ranking into capital improvement and siting decisions.
+    actorIds:
+      - city-planner
+  - id: ca-act-2
+    label: Target health programs
+    description: >
+      Combine asset-access metrics with basic health indicators to choose where
+      to launch or expand physical activity and wellness programs.
+    actorIds:
+      - public-health-analyst
+  - id: ca-act-3
+    label: Support community advocacy
+    description: >
+      Provide prioritized-area explanations to neighborhood groups so they can
+      make concrete, data-backed requests in public processes.
+    actorIds:
+      - community-advocate
+
+dataSources:
+  notes: >
+    Do not vendor large datasets into the repo. Use small example slices plus
+    stable external URLs where possible.
+  primary:
+    - id: city-open-data-assets
+      type: http
+      description: >
+        City or regional open data portals for parks, libraries, recreation centers,
+        trails, community centers, and similar public assets.
+      examples:
+        - "https://data.examplecity.gov/datasets/parks"
+        - "https://data.examplecity.gov/datasets/libraries"
+    - id: census-or-population-grid
+      type: http
+      description: >
+        Population counts and demographics at neighborhood or tract level.
+      examples:
+        - "https://example-stat-agency.gov/population/tracts"
+  internal_examples:
+    path_prefix: examples/assets/community/
+    notes: >
+      Tiny geojson/csv snippets kept under version control to support tests and docs.
+
+cep:
+  entities:
+    - id: asset
+      schema: "schemas/domains/assets/asset.entity.schema.json"
+      examples:
+        - "examples/assets/community/cep/asset.entity.park.example.json"
+        - "examples/assets/community/cep/asset.entity.library.example.json"
+    - id: area
+      schema: "schemas/domains/assets/area.entity.schema.json"
+      examples:
+        - "examples/assets/community/cep/area.entity.neighborhood.example.json"
+    - id: jurisdiction
+      schema: "schemas/domains/procurement/jurisdiction.entity.schema.json"
+      examples:
+        - "examples/assets/community/cep/jurisdiction.entity.municipality.example.json"
+  relationships:
+    - id: asset-located-in-area
+      schema: "schemas/domains/assets/asset-area.relationship.schema.json"
+    - id: area-part-of-jurisdiction
+      schema: "schemas/domains/assets/area-jurisdiction.relationship.schema.json"
+  identity:
+    notes: >
+      SNFEI for assets based on jurisdiction, asset type, canonicalized legal/official
+      name, and location (centroid).
+  envelopes:
+    notes: >
+      Use standard record-envelope schema to wrap asset and area entities with
+      provenance from the city or regional data portals.
+
+cee:
+  explanation_types:
+    - id: AREA_ACCESS_PRIORITY
+      description: >
+        Explains why a neighborhood/area is highlighted as a priority for improved
+        access to community assets.
+      subject_entity: area
+      evidence:
+        - metric: population_served
+        - metric: distance_to_nearest_assets
+        - metric: num_assets_within_threshold
+        - metric: deprivation_or_equity_index
+      attribution:
+        - model_id: "assets-access-rule-v1"
+          model_type: "rule-based"
+  vertical_outputs:
+    - id: area_access_priority_bundle
+      description: >
+        ExplanationBundle instances attached to area entities, describing why
+        they are prioritized for asset investment.
+
+tests:
+  - id: ca-example-roundtrip
+    description: >
+      Raw geojson/csv asset + population snippets are transformed via adapter into CEP
+      entities and relationships, then CEE AREA_ACCESS_PRIORITY bundles are created
+      for at least one neighborhood.
+    files:
+      - "src/python/tests/verticals/test_community_roundtrip.py"

@@ -1,0 +1,25 @@
+{
+  "ocid": "ocds-example-sme-0001",
+  "id": "ocds-example-sme-0001-01",
+  "tag": ["tender"],
+  "date": "2025-01-01T00:00:00Z",
+  "tender": {
+    "id": "EU-EXAMPLE-TENDER-001",
+    "title": "Example IT Equipment Purchase",
+    "procurementMethod": "open",
+    "value": {
+      "amount": 180000.0,
+      "currency": "EUR"
+    },
+    "items": [
+      {
+        "id": "LOT-001",
+        "classification": {
+          "scheme": "CPV",
+          "id": "30200000",
+          "description": "Computer equipment"
+        }
+      }
+    ]
+  }
+}

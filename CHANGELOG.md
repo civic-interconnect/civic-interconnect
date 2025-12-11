@@ -17,6 +17,67 @@ and this project adheres to **[Semantic Versioning](https://semver.org/spec/v2.0
 
 ---
 
+## [0.0.5] - 2025-12-10
+
+This release introduces the vertical-slice architecture for CEP/CEE and unifies
+multiple governance, documentation, and validation layers.
+The system can formally describe and validate cross-domain verticals
+(e.g., community assets, education access, environmental compliance, SME-friendly
+procurement).
+
+### Major Additions
+- Vertical Slice Framework
+  - Added `about.yaml` governance schema (`schemas/governance/about.schema.json`).
+  - Introduced five initial verticals under `docs/en/verticals/`:
+    `community`, `edaccess`, `env`, `resilience`, and `sme`.
+  - Each vertical includes:
+    - `about.yaml` (schema-validated roadmap and modeling contract)
+    - `index.md` (overview)
+    - `explanations.md` (CEE explanation catalog)
+
+- Vertical Validation Tooling
+  - New command: `tools/validate_verticals.py`
+  - Validates `about.yaml` files against the new governance schema.
+  - Ensures required fields, actor motivations, actions, data sources, CEP/CEE scopes,
+    user stories, and test declarations are complete and consistent.
+
+### CEE (Civic Explanation Engine)
+- Added scaffolding for SME-Friendly Procurement explanations:
+  - `build_sme_evidence`
+  - `build_sme_attribution`
+  - `build_sme_explanation_bundle`
+- Added test suite structure for SME explanations:
+  - `test_procurement_sme_explanations.py`
+  - `test_sme_roundtrip.py`
+- Introduced example bundles for verticals:
+  - `examples/verticals/sme/…`
+
+### Adapters & Pipeline
+- Formalized adapter layout:
+  `src/python/src/civic_interconnect/cep/adapters/<domain>/<vertical>/adapter.py`
+- Added Procurement SME adapter scaffold using example OCDS releases as input.
+- Strengthened identity-construction patterns (SNFEI projections for buyer, lot, contract).
+
+### Documentation Structure
+- Added nav entries for each vertical.
+- Standardized initial vertical documentation format:
+  - Overview (`index.md`)
+  - Explanation catalogue (`explanations.md`)
+  - Schema-typed roadmap (`about.yaml`)
+
+### Governance & Modeling Improvements
+- Extended `about.schema.json` with:
+  - `id`, `userStories`, and `tests` as required sections
+  - Stricter regex requirements for identifiers
+  - Explicit modeling of CEP entities, relationships, identity notes, and envelope usage
+  - Explicit CEE explanation types and vertical outputs
+
+### Quality & Consistency
+- Five verticals validate cleanly.
+- Directory layouts for examples, adapters, tests, and documentation are settling out.
+
+---
+
 ## [0.0.4] – 2025-12-09
 
 This release stabilizes several foundational components across Python and Rust.  
@@ -121,7 +182,8 @@ and functioning across multiple domains.
   Tag the repository with `vX.Y.Z` to publish a release.
 - Documentation and badges are updated per tag and aliased to **latest**.
 
-[Unreleased]: https://github.com/civic-interconnect/civic-interconnect/compare/v0.0.4...HEAD  
+[Unreleased]: https://github.com/civic-interconnect/civic-interconnect/compare/v0.0.5...HEAD  
+[0.0.5]: https://github.com/civic-interconnect/civic-interconnect/releases/tag/v0.0.5
 [0.0.4]: https://github.com/civic-interconnect/civic-interconnect/releases/tag/v0.0.4
 [0.0.3]: https://github.com/civic-interconnect/civic-interconnect/releases/tag/v0.0.3
 [0.0.2]: https://github.com/civic-interconnect/civic-interconnect/releases/tag/v0.0.2

@@ -155,6 +155,28 @@ nav:
       - PAC:
           - PAC Example: en/examples/entities/pac/pac_01.md
 
+  - Verticals:
+    - Community:
+        - Overview: en/verticals/community/index.md
+        - Explanations: en/verticals/community/explanations.md
+        - About (YAML): en/verticals/community/about.yaml
+    - Education Access:
+        - Overview: en/verticals/edaccess/index.md
+        - Explanations: en/verticals/edaccess/explanations.md
+        - About (YAML): en/verticals/edaccess/about.yaml
+    - Environment:
+        - Overview: en/verticals/env/index.md
+        - Explanations: en/verticals/env/explanations.md
+        - About (YAML): en/verticals/env/about.yaml
+    - Resilience:
+        - Overview: en/verticals/resilience/index.md
+        - Explanations: en/verticals/resilience/explanations.md
+        - About (YAML): en/verticals/resilience/about.yaml
+    - SME Procurement:
+        - Overview: en/verticals/sme/index.md
+        - Explanations: en/verticals/sme/explanations.md
+        - About (YAML): en/verticals/sme/about.yaml
+
   - Reference:
       - Entity: en/reference/entity.md
       - Exchange: en/reference/exchange.md

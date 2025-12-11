@@ -1,0 +1,1 @@
+"""Procurement SME adapter manifest."""

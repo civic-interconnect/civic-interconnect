@@ -77,6 +77,12 @@ Before committing, pull code, run Python checks, run Rust checks.
 ```shell
 git pull origin main
 
+# after changing about.yaml files (for vertical slice examples)
+uv run python tools/validate_verticals.py  
+
+# after changing schemas or vocabs, revalidate
+uv run python tools/validate_schemas.py  
+
 # after changing schemas, regenerate rust
 uv run python tools/codegen_rust.py
 
@@ -111,6 +117,7 @@ cargo test -- --nocapture -q
 uv run cx generate-example examples/entity --overwrite
 
 # Python quality checks
+git add .
 uvx ruff check . --fix
 uvx ruff format .
 uvx deptry .

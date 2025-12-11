@@ -1,0 +1,165 @@
+verticalId: sme
+id: sme-friendly-procurement
+title: SME-Friendly Public Procurement Opportunities
+domain: procurement
+status: planned
+
+summary: >
+  Identify public procurement tenders and lots that are realistically accessible
+  to small and medium enterprises (SMEs), and explain why they are SME-friendly.
+
+whoCares:
+  - actorId: sme-founder
+    role: Small business owner or founder
+    motivation: >
+      Wants to find public contracts that are realistically within the capacity
+      of a small firm, rather than wasting effort on oversized or bundled tenders.
+    decisions:
+      - Decide which public tenders are worth preparing bids for
+
+  - actorId: procurement-officer
+    role: Contracting authority or procurement officer
+    motivation: >
+      Needs feedback on how tender and lot design affects SME participation,
+      so future procurements can be more inclusive and competitive.
+    decisions:
+      - Adjust tender and lot design to support SME participation
+
+  - actorId: sme-support-agency
+    role: SME support or business development organization
+    motivation: >
+      Wants to proactively guide small firms toward suitable opportunities,
+      using clear rules instead of ad hoc manual screening.
+    decisions:
+      - Curate and share lists of SME-friendly opportunities
+
+
+userStories:
+  - id: sme-1
+    as: sme-founder
+    want: >
+      to see which tenders and lots are realistically within my firm's capacity
+    so_that: >
+      I can focus bid effort on opportunities where SMEs have a fair chance.
+  - id: sme-2
+    as: procurement-officer
+    want: >
+      clear explanations of why lots are labeled SME-friendly
+    so_that: >
+      I can adjust tender design to support SME participation in future procurements.
+  - id: sme-3
+    as: sme-support-agency
+    want: >
+      an explainable list of SME-suitable tenders across sectors and regions
+    so_that: >
+      I can provide targeted support and track progress on SME access goals.
+
+actions:
+  - id: sme-act-1
+    label: Guide SME bidding
+    description: >
+      Use SME_FRIENDLY_LOT explanations to build advisory tools and newsletters
+      that highlight suitable tenders for SMEs and explain why.
+    actorIds:
+      - sme-founder
+      - sme-support-agency
+  - id: sme-act-2
+    label: Improve tender design
+    description: >
+      Use model explanations to analyze which features (lot size, procedure type,
+      criteria) drive SME-friendly labels, and redesign future tenders accordingly.
+    actorIds:
+      - procurement-officer
+  - id: sme-act-3
+    label: Track SME access progress
+    description: >
+      Aggregate SME-friendly tender explanations to measure how SME access evolves
+      over time and across sectors, supporting policy evaluation.
+    actorIds:
+      - sme-support-agency
+
+dataSources:
+  notes: >
+    Use TED/eForms or OCDS-mapped EU procurement data as the primary external
+    sources; keep only small derived examples in-repo.
+  primary:
+    - id: eu-ted-eforms
+      type: http
+      description: >
+        Tenders Electronic Daily (TED) notices in eForms format for selected years,
+        countries, and CPV sectors.
+      examples:
+        - "https://example-eu-opendata.eu/ted/eforms"
+    - id: ocds-eu-profile
+      type: http
+      description: >
+        OCDS for the EU profile or derived OCDS releases for the same tenders.
+      examples:
+        - "https://example-opendata.org/eu/ocds"
+  internal_examples:
+    path_prefix: examples/procurement/eu_sme/
+    notes: >
+      Small JSON examples derived from a handful of TED or OCDS records used for
+      tests and documentation.
+
+cep:
+  entities:
+    - id: buyer
+      schema: "schemas/domains/procurement/buyer.entity.schema.json"
+    - id: supplier
+      schema: "schemas/domains/procurement/supplier.entity.schema.json"
+    - id: tender
+      schema: "schemas/domains/procurement/tender.entity.schema.json"
+    - id: lot
+      schema: "schemas/domains/procurement/lot.entity.schema.json"
+    - id: contract
+      schema: "schemas/domains/procurement/contract.entity.schema.json"
+  relationships:
+    - id: buyer-issues-tender
+      schema: "schemas/domains/procurement/buyer-tender.relationship.schema.json"
+    - id: tender-includes-lot
+      schema: "schemas/domains/procurement/tender-lot.relationship.schema.json"
+    - id: lot-results-in-contract
+      schema: "schemas/domains/procurement/lot-contract.relationship.schema.json"
+    - id: contract-awarded-to-supplier
+      schema: "schemas/domains/procurement/contract-supplier.relationship.schema.json"
+  identity:
+    notes: >
+      SNFEI for buyers and suppliers based on jurisdiction, official identifiers
+      (e.g., VAT or registry ID), and canonical names. Lots and contracts use
+      source system identifiers plus notice IDs and dates.
+  envelopes:
+    notes: >
+      Use record-envelope schema to wrap buyer, tender, lot, contract, and supplier
+      entities with provenance pointing to TED/eForms or OCDS exports.
+
+cee:
+  explanation_types:
+    - id: SME_FRIENDLY_LOT
+      description: >
+        Explains why a tender lot is considered SME-friendly under a transparent,
+        rule-based scoring model.
+      subject_entity: lot
+      evidence:
+        - metric: estimated_value
+        - metric: sme_value_threshold
+        - metric: procedure_type
+        - metric: num_cpv_categories
+        - metric: historical_sme_win_rate
+      attribution:
+        - model_id: "sme-friendly-rule-v1"
+          model_type: "rule-based"
+  vertical_outputs:
+    - id: sme_friendly_lot_bundle
+      description: >
+        ExplanationBundle instances attached to lot entities, describing why they
+        are classified as SME-friendly.
+
+tests:
+  - id: sme-example-roundtrip
+    description: >
+      Example TED/eForms or OCDS records are transformed into CEP procurement
+      entities and relationships; SME_FRIENDLY_LOT bundles are generated for at
+      least one lot and validate against CEE schemas.
+    files:
+      - "src/python/tests/examples/test_examples_procurement_eu_sme_roundtrip.py"

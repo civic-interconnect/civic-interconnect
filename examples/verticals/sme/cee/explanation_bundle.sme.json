@@ -1,0 +1,25 @@
+{
+  "bundleId": "cee:explanation:smeFriendly:example-123",
+  "explanationType": "SME_FRIENDLY_PROCUREMENT",
+  "subjectEntityId": "cep-entity:procurement:lot:example-123",
+
+  "headline": "This lot is highlighted as SME-friendly.",
+  "narrative": "Estimated value is below the SME threshold, the procedure type is open, and the lot scope is not excessively bundled.",
+
+  "evidenceSet": {
+    "metrics": {
+      "estimatedValueEUR": 180000.0,
+      "smeValueThresholdEUR": 250000.0,
+      "procedureType": "open",
+      "numCpvCodes": 1
+    },
+    "isSmeFriendlyByValue": true
+  },
+
+  "attributionSet": {
+    "modelId": "sme-friendly-rule-v1",
+    "modelType": "rule-based",
+    "agentId": "cep-agent:procurement:sme-friendly-rule",
+    "version": "1.0.0"
+  }
+}
