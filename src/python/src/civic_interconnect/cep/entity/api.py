@@ -19,7 +19,7 @@ import json
 from typing import Any
 
 try:
-    # Native extension from crates/cep-py, if built and on PYTHONPATH.
+    # Native extension from src/rust/cep-py, if built and on PYTHONPATH.
     from cep_py import (  # type: ignore
         build_entity_json as _build_entity_json_native,  # type: ignore[attr-defined]
     )

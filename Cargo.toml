@@ -1,9 +1,9 @@
 [workspace]
 resolver = "2"
 members = [
-    "crates/cep-core",
-    "crates/cep-domains",
-    "crates/cep-py",
+    "src/rust/cep-core",
+    "src/rust/cep-domains",
+    "src/rust/cep-py",
 ]
 
 [workspace.dependencies]

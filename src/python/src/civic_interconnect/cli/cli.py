@@ -49,9 +49,9 @@ DEFAULT_ENTITY_SCHEMA = Path("schemas/core/cep.entity.schema.json")
 DEFAULT_RELATIONSHIP_SCHEMA = Path("schemas/core/cep.relationship.schema.json")
 DEFAULT_EXCHANGE_SCHEMA = Path("schemas/core/cep.exchange.schema.json")
 
-DEFAULT_ENTITY_OUT = Path("crates/cep-core/src/entity/generated.rs")
-DEFAULT_RELATIONSHIP_OUT = Path("crates/cep-core/src/relationship/generated.rs")
-DEFAULT_EXCHANGE_OUT = Path("crates/cep-core/src/exchange/generated.rs")
+DEFAULT_ENTITY_OUT = Path("src/rust/cep-core/src/entity/generated.rs")
+DEFAULT_RELATIONSHIP_OUT = Path("src/rust/cep-core/src/relationship/generated.rs")
+DEFAULT_EXCHANGE_OUT = Path("src/rust/cep-core/src/exchange/generated.rs")
 
 
 def _canonical_snapshot_from_result(snfei_result: dict[str, Any]) -> dict[str, Any]:

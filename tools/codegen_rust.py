@@ -13,7 +13,13 @@ from civic_interconnect.cep.codegen.rust_generated import write_generated_rust
 
 BASE = Path(__file__).resolve().parent.parent
 SCHEMAS = BASE / "schemas"
-CRATES = BASE / "crates"
+RUST_ROOT = BASE / "src" / "rust"
+
+if not (BASE / "src" / "rust").is_dir():
+    raise RuntimeError(f"Expected Rust root at {BASE / 'src' / 'rust'}")
+
+if not (SCHEMAS / "core").is_dir():
+    raise RuntimeError(f"Expected schemas at {SCHEMAS}")
 
 
 def schema_name_to_record_name(schema_path: Path) -> str:
@@ -47,7 +53,7 @@ def get_output_mapping() -> dict[Path, Path]:
     for schema_file, module in core_schemas.items():
         schema_path = SCHEMAS / "core" / schema_file
         if schema_path.exists():
-            mapping[schema_path] = CRATES / "cep-core" / "src" / module / "generated.rs"
+            mapping[schema_path] = RUST_ROOT / "cep-core" / "src" / module / "generated.rs"
 
     # Domain schemas -> cep-domains/src/{domain}/{name}/generated.rs
     domains_dir = SCHEMAS / "domains"
@@ -66,7 +72,9 @@ def get_output_mapping() -> dict[Path, Path]:
                 parts = stem.split(".")
                 module_name = parts[-1].replace("-", "_") if parts else stem
 
-                output = CRATES / "cep-domains" / "src" / domain_name / module_name / "generated.rs"
+                output = (
+                    RUST_ROOT / "cep-domains" / "src" / domain_name / module_name / "generated.rs"
+                )
                 mapping[schema_file] = output
 
     return mapping

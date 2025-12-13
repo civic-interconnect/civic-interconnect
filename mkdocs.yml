@@ -92,7 +92,8 @@ markdown_extensions:
   - codehilite # Syntax highlighting
   - tables # Markdown tables
   - toc:
-      permalink: true # Clickable headers
+      permalink:
+       true # Clickable headers
       toc_depth: 3
   - pymdownx.superfences # Code blocks with syntax highlighting
   - pymdownx.details # Collapsible sections
@@ -104,6 +105,95 @@ nav:
   - Home: en/index.md
   - Quick Start: en/quick-start.md
   - Schemas: en/schemas.md
+
+  - Reference:
+      - Overview: en/01_reference/README.md
+
+      - CAE:
+          - Overview: en/01_reference/01_cae/README.md
+          - Entities: en/01_reference/01_cae/01_entities.md
+          - Roles and Authority: en/01_reference/01_cae/02_roles_and_authority.md
+          - Identity: en/01_reference/01_cae/03_identity.md
+
+      - CEP:
+          - Overview: en/01_reference/02_cep/README.md
+          - Relationships: en/01_reference/02_cep/01_relationships.md
+          - Exchanges: en/01_reference/02_cep/02_exchanges.md
+          - Envelopes: en/01_reference/02_cep/03_envelopes.md
+
+      - CEE:
+          - Overview: en/01_reference/03_cee/README.md
+          - Observations: en/01_reference/03_cee/01_observations.md
+          - Explanations: en/01_reference/03_cee/02_explanations.md
+          - Models as Instruments: en/01_reference/03_cee/03_models_as_instruments.md
+          - Context Tags: en/01_reference/03_cee/04_context_tags.md
+          - Outcomes vs Explanations: en/01_reference/03_cee/05_outcomes_vs_explanations.md
+
+      - Assurance:
+          - Overview: en/01_reference/04_assurance/README.md
+          - Attestations: en/01_reference/04_assurance/01_attestations.md
+
+  - Explanations:
+      - Design Principles: en/02_explanations/01_design_principles.md
+      - Neutrality and Values: en/02_explanations/02_neutrality_and_values.md
+      - Why Category Theory: en/02_explanations/03_why_category_theory.md
+      - Tradeoffs and Alternatives: en/02_explanations/04_tradeoffs_and_alternatives.md
+      - FAQ:
+          - Overview: en/02_explanations/05_faq/README.md
+          - Practitioners: en/02_explanations/05_faq/01_practitioners.md
+          - Policy Makers: en/02_explanations/05_faq/02_policy_makers.md
+          - Engineers and CTOs: en/02_explanations/05_faq/03_engineers_and_ctos.md
+          - Small Organizations: en/02_explanations/05_faq/04_small_organizations.md
+
+  - Implementation:
+      - Overview: en/03_implementation/README.md
+      - Components:
+          - Overview: en/03_implementation/01_components/README.md
+          - Component Map: en/03_implementation/01_components/01_component_map.md
+      - Pipelines:
+          - Overview: en/03_implementation/02_pipelines/README.md
+          - Adapter Pipeline: en/03_implementation/02_pipelines/01_adapter_pipeline.md
+      - Policies:
+          - Overview: en/03_implementation/03_policies/README.md
+          - Missing and Nulls: en/03_implementation/03_policies/01_missing_and_nulls.md
+          - Text Normalization: en/03_implementation/03_policies/02_text_normalization.md
+          - Localization Normalization: en/03_implementation/03_policies/03_localization_normalization.md
+          - Identifiers: en/03_implementation/03_policies/04_identifiers.md
+          - Provenance Minimums: en/03_implementation/03_policies/05_provenance_minimums.md
+      - Adapters:
+          - Overview: en/03_implementation/04_adapters/README.md
+          - Adapter Concept: en/03_implementation/04_adapters/01_adapter_concept.md
+          - Adapter Template: en/03_implementation/04_adapters/02_adapter_template.md
+
+  - Verticals:
+      - Overview: en/04_verticals/README.md
+      - How Verticals Work: en/04_verticals/01_how_verticals_work.md
+      - Community:
+          - Overview: en/04_verticals/community/index.md
+          - Explanations: en/04_verticals/community/explanations.md
+      - Education Access:
+          - Overview: en/04_verticals/edaccess/index.md
+          - Explanations: en/04_verticals/edaccess/explanations.md
+      - Environment:
+          - Overview: en/04_verticals/env/index.md
+          - Explanations: en/04_verticals/env/explanations.md
+      - Resilience:
+          - Overview: en/04_verticals/resilience/index.md
+          - Explanations: en/04_verticals/resilience/explanations.md
+      - SME Procurement:
+          - Overview: en/04_verticals/sme/index.md
+          - Explanations: en/04_verticals/sme/explanations.md
+
+  - Examples:
+      - Overview: en/05_examples/README.md
+      - Entity with SNFEI: en/05_examples/entity-with-snfei.md
+      - Municipalities:
+          - US-IL Example: en/05_examples/entities/municipality/us_il_01.md
+          - US-MN Example: en/05_examples/entities/municipality/us_mn_01.md
+      - Nonprofit:
+          - US-MA Example: en/05_examples/entities/nonprofit/us_ma_01.md
+      - PAC:
+          - PAC Example: en/05_examples/entities/pac/pac_01.md
 
   - Concepts:
       - Normalization: en/concepts/normalization.md
@@ -144,39 +234,6 @@ nav:
   - Vocabulary:
       - Domain-Specific Vocabularies: en/vocabulary/overview.md
       - Using Vocabularies in Schemas: en/vocabulary/using.md
- 
-  - Examples:
-      - README: en/examples/README.md
-      - Entity with SNFEI: en/examples/entity-with-snfei.md
-      - Municipalities:
-          - US-IL Example: en/examples/entities/municipality/us_il_01.md
-          - US-MN Example: en/examples/entities/municipality/us_mn_01.md
-      - Nonprofit:
-          - US-MA Example: en/examples/entities/nonprofit/us_ma_01.md
-      - PAC:
-          - PAC Example: en/examples/entities/pac/pac_01.md
-
-  - Verticals:
-    - Community:
-        - Overview: en/verticals/community/index.md
-        - Explanations: en/verticals/community/explanations.md
-        - About (YAML): en/verticals/community/about.yaml
-    - Education Access:
-        - Overview: en/verticals/edaccess/index.md
-        - Explanations: en/verticals/edaccess/explanations.md
-        - About (YAML): en/verticals/edaccess/about.yaml
-    - Environment:
-        - Overview: en/verticals/env/index.md
-        - Explanations: en/verticals/env/explanations.md
-        - About (YAML): en/verticals/env/about.yaml
-    - Resilience:
-        - Overview: en/verticals/resilience/index.md
-        - Explanations: en/verticals/resilience/explanations.md
-        - About (YAML): en/verticals/resilience/about.yaml
-    - SME Procurement:
-        - Overview: en/verticals/sme/index.md
-        - Explanations: en/verticals/sme/explanations.md
-        - About (YAML): en/verticals/sme/about.yaml
 
   - Reference:
       - Entity: en/reference/entity.md

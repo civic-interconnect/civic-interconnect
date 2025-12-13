@@ -129,7 +129,10 @@ source = ["src/python/src/", "tools/"]
 output = "coverage.xml"
 
 [tool.deptry]
-known_first_party = ["civic_interconnect"]
+known_first_party = [
+  "civic_interconnect",
+  "ci_adapters",
+]
 package_module_name_map = {PyYAML = "yaml"  }
 
 [tool.deptry.per_rule_ignores]
@@ -189,7 +192,7 @@ addopts = [
   "--tb=short",  # short traceback format
 ]
 minversion = "9.0"
-pythonpath = ["./src/python/src","./typings"]
+pythonpath = ["./", "./src/python/src","./typings"]
 testpaths = ["src/python/tests"]
 
 [tool.ruff]

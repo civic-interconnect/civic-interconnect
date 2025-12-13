@@ -104,8 +104,8 @@ Schema annotations (`x-cep-*`) indicate vocabulary-backed fields, ID references,
 schemas/          # JSON Schemas (source of truth)
 vocabulary/       # Controlled vocabularies
 tools/            # Codegen and helper tools
-crates/           # Rust crates (core logic and bindings)
 src/python/       # Python packages (ci-cep, ci-ctag, adapters)
+src/rust/         # Rust crates (core logic and bindings)
 ```
 
 ## Schemas

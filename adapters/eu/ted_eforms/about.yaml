@@ -1,0 +1,47 @@
+adapterId: eu/ted_eforms
+status: experimental
+
+sourceSystem:
+  name: "TED eForms"
+  kind: "open_data"
+  homePage: null
+  canonicalUris: []
+
+scope:
+  jurisdictions: []
+  coverageNotes: null
+
+emits:
+  caeEntityClasses:
+    - organization
+    - jurisdiction
+    - program
+    - instrument
+    - resource
+  cepArtifacts:
+    - entities
+    - relationships
+    - exchanges
+    - record_envelopes
+  ceeArtifacts:
+    - observations
+    - explanations
+    - context_tags
+
+contracts:
+  normativeVectorsPath: "test-vectors/adapters/eu/ted_eforms"
+  notes: "Normative vectors live at the path above."
+
+implementation:
+  languages:
+    - python
+  entrypoints:
+    python:
+      distribution: "civic-interconnect-adapter-eu-ted-eforms"
+      importPackage: "ci_adapter"
+      adapterClass: "ci_adapter.adapter:TedEformsAdapter"
+    rust: null
+
+versioning:
+  policy: "SemVer"
+  notes: null

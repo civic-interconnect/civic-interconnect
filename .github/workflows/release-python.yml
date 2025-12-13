@@ -62,7 +62,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: A7) Build and install cep_py for tests
-        working-directory: crates/cep-py
+        working-directory: src/rust/cep-py
         run: |
           cargo build --release
           uv run maturin develop --release

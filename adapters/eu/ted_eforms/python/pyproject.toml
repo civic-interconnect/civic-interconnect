@@ -1,0 +1,25 @@
+[project]
+name = "civic-interconnect-adapter-eu-ted-eforms"
+version = "0.1.0"
+description = "Civic Interconnect adapter for EU TED eForms."
+readme = "../README.md"
+requires-python = ">=3.11"
+dependencies = [
+  # Replace with the actual core distribution name once finalized.
+  # Example: "civic-interconnect",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ci_adapters"]

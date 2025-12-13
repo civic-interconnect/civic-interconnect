@@ -1,7 +1,7 @@
 # Contributing
 
 This document describes the recommended workflow for developing in this Civic Interconnect repository.  
-It applies to our schemas, Rust crates, Python packages, adapters, and tools.
+It applies to our schemas, Rust rust, Python packages, adapters, and tools.
 
 ---
 
@@ -81,22 +81,22 @@ Before committing, pull code, run Python checks, run Rust checks.
 git pull origin main
 
 # after changing about.yaml files (for vertical slice examples)
-uv run python tools/validate_verticals.py  
+uv run python tools/validate_verticals.py
 
 # after changing localization/ yaml files
 uv run python tools/sync_localization_assets.py
 
 # after changing schemas or vocabs, revalidate
-uv run python tools/validate_schemas.py  
+uv run python tools/validate_schemas.py
 
 # regenerate rust
 uv run python tools/codegen_rust.py
 
 # build and install cep_py for cx commands
-cd crates/cep-py
+cd src/rust/cep-py
 cargo build
 uv run maturin develop --release
-cd ../../
+cd ../../../
 
 # regenerate constants
 uv run cx codegen-python-constants
@@ -104,18 +104,20 @@ uv run cx codegen-python-constants
 cargo fmt
 cargo check
 
-# fix crates as needed
+# clean and fix rust as needed
+cargo clean -p cep-core
+cargo clean -p cep-py
 cargo fix --lib -p cep-core --allow-dirty --allow-staged
 cargo fix --lib -p cep-domains --allow-dirty --allow-staged
 cargo fix --lib -p cep-py --allow-dirty --allow-staged
 
-# build crates
+# build rust
 cargo build -p cep-core
 cargo build -p cep-domains
 cargo build -p cep-py
 cargo build
 
-# run tests
+# run rust tests
 cargo test -p cep-core entity
 cargo test -p cep-core -q
 cargo test -- --nocapture -q
@@ -125,6 +127,26 @@ uv run cx generate-example examples/entity --overwrite
 
 # test the chicago identity localization
 uv run pytest src/python/tests/identity/test_us_il_vendor_snfei.py -s
+
+# run audit tool to get collisions (e.g. out/audit/us_il_vendor/collisions.csv)
+uv run python tools/audit_identity_collisions.py   --input-url "https://raw.githubusercontent.com/civic-interconnect/civic-data-identity-us-il/refs/heads/main/data/identity/chicago_contracts_vendors_sample_20k.csv"   --name-column "Vendor Name"   --jurisdiction-iso US-IL   --limit 20000   --include-traces   --out-dir out/audit/us_il_vendor
+
+uv run pytest src/python/tests/audit/test_us_il_vendor_audit.py -s
+
+# fetch Italy OCDS sample to
+# src/python/tests/data/procurement/it_anac/ocds_sample.jsonl
+uv run python tools/fetch_procurement_it_anac_sample.py
+
+
+# install adapters and test
+uv pip install -e adapters/eu/ted_eforms/python
+
+uv run pytest adapters/eu/ted_eforms/python/tests -q
+uv run pytest adapters/eu/ted_eforms/python/tests -s
+
+uv run python -c "from ci_adapters.eu.ted_eforms import TedEformsAdapter; a=TedEformsAdapter(); r=a.adapt_records([{'notice_id':'N1'}]); print(r.envelopes[0])"
+
+
 
 # Python quality checks
 git add .

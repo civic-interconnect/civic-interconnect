@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 r"""Validate YAML about files for vertical slices.
 
-- Validates all about.yaml files under docs/en/verticals/ against
+- Validates all about.yaml files under docs/en/04_verticals/ against
   the schemas/governance/about.schema.json schema.
 
 Path: tools/validate_verticals.py
@@ -19,13 +19,13 @@ ABOUT_SCHEMA_PATH = Path("schemas/governance/about.schema.json")
 
 
 def find_about_yaml_files():
-    """Find about.yaml files under docs/en/verticals/ directories.
+    """Find about.yaml files under docs/en/04_verticals/ directories.
 
     Returns:
         list[Path]: Sorted list of paths to about.yaml files found under
-        docs/en/verticals/.
+        docs/en/04_verticals/.
     """
-    root = Path("docs/en/verticals")
+    root = Path("docs/en/04_verticals")
     if not root.exists():
         return []
 

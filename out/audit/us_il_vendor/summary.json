@@ -1,0 +1,11 @@
+{
+  "collision_bucket_count": 37,
+  "input_path": null,
+  "input_url": "https://raw.githubusercontent.com/civic-interconnect/civic-data-identity-us-il/refs/heads/main/data/identity/chicago_contracts_vendors_sample_20k.csv",
+  "jurisdiction_iso": "US-IL",
+  "limit": 20000,
+  "name_column": "Vendor Name",
+  "normalized_unique_count": 3675,
+  "raw_collided_count": 76,
+  "raw_unique_count": 3714
+}

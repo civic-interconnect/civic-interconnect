@@ -396,9 +396,7 @@ If normalization rules change in future versions:
 
 ## 9. Reference Implementation
 
-See `crates/cep-core/src/common/snfei.rs` and
-`/src/python/src/civic_exchange_protocol/snfei/generator.py` for
-canonical implementations.
+See `src/rust/cep-core/src/common/snfei.rs` for canonical implementations.
 
 # Generation
 generate_snfei()

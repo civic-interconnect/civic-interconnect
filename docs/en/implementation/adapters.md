@@ -205,8 +205,8 @@ src/python/src/civic_interconnect/cep/adapters/
 ### Rust Location
 
 ```shell
-crates/cep-adapters/src/us/mn/campaign_finance.rs
-crates/cep-adapters/src/us/ca/environment.rs
+src/rust/cep-adapters/src/us/mn/campaign_finance.rs
+src/rust/cep-adapters/src/us/ca/environment.rs
 ```
 
 Both languages must implement equivalent rewriting semantics.

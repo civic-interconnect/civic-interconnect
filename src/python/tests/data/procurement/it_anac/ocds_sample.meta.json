@@ -1,0 +1,12 @@
+{
+  "cached_gz_bytes": 6316071,
+  "cached_gz_path": "out\\cache\\procurement\\it_anac\\anac_ocds_8ea72ff0e22d.jsonl.gz",
+  "cached_gz_sha256": "16693600731ad2463a295725bba97cf09f2cb1495abc9db1ab400c90b625c369",
+  "fetched_at_utc": "2025-12-13T03:09:24Z",
+  "lines_scanned_until_stop": 15040,
+  "notes": "Sample selection is deterministic by hash(ocid).",
+  "sample_items_written": 32,
+  "sample_max_items": 300,
+  "sample_threshold_per_10000": 25,
+  "source_url": "https://data.open-contracting.org/en/publication/117/download?name=2022.jsonl.gz"
+}
