@@ -24,7 +24,7 @@ permissions:
 env:
   PYTHONUNBUFFERED: "1" # real-time logging
   PYTHONIOENCODING: "utf-8"
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build-and-release:
@@ -61,11 +61,12 @@ jobs:
       - name: A6) Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
-      - name: A7) Build and install cep_py into the venv (maturin develop)
+      - name: A7) Build and install cep_py for tests
+        working-directory: crates/cep-py
         run: |
-          uv run maturin develop --release -m crates/cep-py/Cargo.toml
+          cargo build --release
+          uv run maturin develop --release
           uv run python -c "import cep_py; missing=[n for n in ('apply_localization_name','apply_localization_name_detailed') if not hasattr(cep_py,n)]; print('missing:', missing); assert not missing"
-
 
       # ------------------- BASELINE / TESTS -------------------
 
@@ -86,7 +87,7 @@ jobs:
       - name: C0) Debug cep_py import
         run: |
           uv run python -c "import cep_py; print('cep_py file:', getattr(cep_py, '__file__', None)); print('has apply_localization_name:', hasattr(cep_py, 'apply_localization_name')); print('has apply_localization_name_detailed:', hasattr(cep_py, 'apply_localization_name_detailed'))"
-      
+
       - name: C1) Run tests (pytest; coverage per pytest.ini)
         run: uv run pytest -q
 
@@ -125,7 +126,7 @@ jobs:
       - name: D6) Create GitHub Release and upload artifacts
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_name }}   # e.g., vx.y.z
+          tag_name: ${{ github.ref_name }} # e.g., vx.y.z
           name: ${{ github.ref_name }}
           generate_release_notes: true
           files: |
