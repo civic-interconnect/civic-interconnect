@@ -266,6 +266,3 @@ fallback_version = "0.0.1"
 local_scheme = "no-local-version"
 version_file = "src/python/src/civic_interconnect/_version.py"
 version_scheme = "guess-next-dev"
-
-[tool.uv.sources]
-civic-data-identity-us-il = { path = "../civic-data-identity-us-il", editable = true }
