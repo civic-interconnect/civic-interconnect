@@ -12,31 +12,31 @@
         <meta name="author" content="civic-interconnect">
       
       
-        <link rel="canonical" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/implementation/new-data-source/">
+        <link rel="canonical" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/02_explanations/">
       
       
-        <link rel="prev" href="../new-connector/">
+        <link rel="prev" href="../01_reference/04_assurance/01_attestations/">
       
       
-        <link rel="next" href="../record-envelopes/">
+        <link rel="next" href="01_design_principles/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>New Data Source - civic-interconnect</title>
+        <title>Overview - civic-interconnect</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adding-a-new-external-data-source" class="md-skip">
+        <a href="#how-these-parts-fit-together" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../" title="civic-interconnect" class="md-header__button md-logo" aria-label="civic-interconnect" data-md-component="logo">
+    <a href="../" title="civic-interconnect" class="md-header__button md-logo" aria-label="civic-interconnect" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              New Data Source
+              Overview
             
           </span>
         </div>
@@ -240,7 +240,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../" title="civic-interconnect" class="md-nav__button md-logo" aria-label="civic-interconnect" data-md-component="logo">
+    <a href="../" title="civic-interconnect" class="md-nav__button md-logo" aria-label="civic-interconnect" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -270,7 +270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -297,7 +297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quick-start/" class="md-nav__link">
+      <a href="../quick-start/" class="md-nav__link">
         
   
   
@@ -324,7 +324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../schemas/" class="md-nav__link">
+      <a href="../schemas/" class="md-nav__link">
         
   
   
@@ -351,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../00_overview/" class="md-nav__link">
+      <a href="../00_overview/" class="md-nav__link">
         
   
   
@@ -432,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/" class="md-nav__link">
+      <a href="../01_reference/" class="md-nav__link">
         
   
   
@@ -511,7 +511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/01_cae/" class="md-nav__link">
+      <a href="../01_reference/01_cae/" class="md-nav__link">
         
   
   
@@ -539,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/01_cae/01_entities/" class="md-nav__link">
+      <a href="../01_reference/01_cae/01_entities/" class="md-nav__link">
         
   
   
@@ -567,7 +567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/01_cae/02_roles_and_authority/" class="md-nav__link">
+      <a href="../01_reference/01_cae/02_roles_and_authority/" class="md-nav__link">
         
   
   
@@ -595,7 +595,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/01_cae/03_identity/" class="md-nav__link">
+      <a href="../01_reference/01_cae/03_identity/" class="md-nav__link">
         
   
   
@@ -682,7 +682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/02_cep/" class="md-nav__link">
+      <a href="../01_reference/02_cep/" class="md-nav__link">
         
   
   
@@ -710,7 +710,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/02_cep/01_relationships/" class="md-nav__link">
+      <a href="../01_reference/02_cep/01_relationships/" class="md-nav__link">
         
   
   
@@ -738,7 +738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/02_cep/02_exchanges/" class="md-nav__link">
+      <a href="../01_reference/02_cep/02_exchanges/" class="md-nav__link">
         
   
   
@@ -766,7 +766,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/02_cep/03_envelopes/" class="md-nav__link">
+      <a href="../01_reference/02_cep/03_envelopes/" class="md-nav__link">
         
   
   
@@ -853,7 +853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/03_cee/" class="md-nav__link">
+      <a href="../01_reference/03_cee/" class="md-nav__link">
         
   
   
@@ -881,7 +881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/03_cee/01_observations/" class="md-nav__link">
+      <a href="../01_reference/03_cee/01_observations/" class="md-nav__link">
         
   
   
@@ -909,7 +909,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/03_cee/02_explanations/" class="md-nav__link">
+      <a href="../01_reference/03_cee/02_explanations/" class="md-nav__link">
         
   
   
@@ -937,7 +937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/03_cee/03_models_as_instruments/" class="md-nav__link">
+      <a href="../01_reference/03_cee/03_models_as_instruments/" class="md-nav__link">
         
   
   
@@ -965,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/03_cee/04_context_tags/" class="md-nav__link">
+      <a href="../01_reference/03_cee/04_context_tags/" class="md-nav__link">
         
   
   
@@ -993,7 +993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/03_cee/05_outcomes_vs_explanations/" class="md-nav__link">
+      <a href="../01_reference/03_cee/05_outcomes_vs_explanations/" class="md-nav__link">
         
   
   
@@ -1080,7 +1080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/04_assurance/" class="md-nav__link">
+      <a href="../01_reference/04_assurance/" class="md-nav__link">
         
   
   
@@ -1108,7 +1108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_reference/04_assurance/01_attestations/" class="md-nav__link">
+      <a href="../01_reference/04_assurance/01_attestations/" class="md-nav__link">
         
   
   
@@ -1148,8 +1148,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -1160,13 +1162,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
@@ -1187,7 +1187,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1202,10 +1202,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../02_explanations/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1221,6 +1248,103 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cae-civic-and-administrative-entities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CAE: Civic and Administrative Entities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cep-civic-exchange-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CEP: Civic Exchange Protocol
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cee-contextual-evidence-and-explanations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CEE: Contextual Evidence and Explanations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assurance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assurance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#separation-of-concerns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separation of Concerns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-structure-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Structure Exists
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1233,7 +1357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_explanations/01_design_principles/" class="md-nav__link">
+      <a href="01_design_principles/" class="md-nav__link">
         
   
   
@@ -1261,7 +1385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_explanations/02_neutrality_and_values/" class="md-nav__link">
+      <a href="02_neutrality_and_values/" class="md-nav__link">
         
   
   
@@ -1289,7 +1413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_explanations/03_why_category_theory/" class="md-nav__link">
+      <a href="03_why_category_theory/" class="md-nav__link">
         
   
   
@@ -1317,7 +1441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_explanations/04_tradeoffs_and_alternatives/" class="md-nav__link">
+      <a href="04_tradeoffs_and_alternatives/" class="md-nav__link">
         
   
   
@@ -1396,7 +1520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_explanations/05_faq/" class="md-nav__link">
+      <a href="05_faq/" class="md-nav__link">
         
   
   
@@ -1424,7 +1548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_explanations/05_faq/01_practitioners/" class="md-nav__link">
+      <a href="05_faq/01_practitioners/" class="md-nav__link">
         
   
   
@@ -1452,7 +1576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_explanations/05_faq/02_policy_makers/" class="md-nav__link">
+      <a href="05_faq/02_policy_makers/" class="md-nav__link">
         
   
   
@@ -1480,7 +1604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_explanations/05_faq/03_engineers_and_ctos/" class="md-nav__link">
+      <a href="05_faq/03_engineers_and_ctos/" class="md-nav__link">
         
   
   
@@ -1508,7 +1632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_explanations/05_faq/04_small_organizations/" class="md-nav__link">
+      <a href="05_faq/04_small_organizations/" class="md-nav__link">
         
   
   
@@ -1605,7 +1729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/" class="md-nav__link">
+      <a href="../03_implementation/" class="md-nav__link">
         
   
   
@@ -1684,7 +1808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/01_components/" class="md-nav__link">
+      <a href="../03_implementation/01_components/" class="md-nav__link">
         
   
   
@@ -1712,7 +1836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/01_components/01_component_map/" class="md-nav__link">
+      <a href="../03_implementation/01_components/01_component_map/" class="md-nav__link">
         
   
   
@@ -1799,7 +1923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/02_pipelines/" class="md-nav__link">
+      <a href="../03_implementation/02_pipelines/" class="md-nav__link">
         
   
   
@@ -1827,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/02_pipelines/01_adapter_pipeline/" class="md-nav__link">
+      <a href="../03_implementation/02_pipelines/01_adapter_pipeline/" class="md-nav__link">
         
   
   
@@ -1914,7 +2038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/03_policies/" class="md-nav__link">
+      <a href="../03_implementation/03_policies/" class="md-nav__link">
         
   
   
@@ -1942,7 +2066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/03_policies/01_missing_and_nulls/" class="md-nav__link">
+      <a href="../03_implementation/03_policies/01_missing_and_nulls/" class="md-nav__link">
         
   
   
@@ -1970,7 +2094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/03_policies/02_text_normalization/" class="md-nav__link">
+      <a href="../03_implementation/03_policies/02_text_normalization/" class="md-nav__link">
         
   
   
@@ -1998,7 +2122,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/03_policies/03_localization_normalization/" class="md-nav__link">
+      <a href="../03_implementation/03_policies/03_localization_normalization/" class="md-nav__link">
         
   
   
@@ -2026,7 +2150,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/03_policies/04_identifiers/" class="md-nav__link">
+      <a href="../03_implementation/03_policies/04_identifiers/" class="md-nav__link">
         
   
   
@@ -2054,7 +2178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/03_policies/05_provenance_minimums/" class="md-nav__link">
+      <a href="../03_implementation/03_policies/05_provenance_minimums/" class="md-nav__link">
         
   
   
@@ -2141,7 +2265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/04_adapters/" class="md-nav__link">
+      <a href="../03_implementation/04_adapters/" class="md-nav__link">
         
   
   
@@ -2169,7 +2293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/04_adapters/01_adapter_concept/" class="md-nav__link">
+      <a href="../03_implementation/04_adapters/01_adapter_concept/" class="md-nav__link">
         
   
   
@@ -2197,7 +2321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_implementation/04_adapters/02_adapter_template/" class="md-nav__link">
+      <a href="../03_implementation/04_adapters/02_adapter_template/" class="md-nav__link">
         
   
   
@@ -2294,7 +2418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_verticals/" class="md-nav__link">
+      <a href="../04_verticals/" class="md-nav__link">
         
   
   
@@ -2322,7 +2446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_verticals/01_how_verticals_work/" class="md-nav__link">
+      <a href="../04_verticals/01_how_verticals_work/" class="md-nav__link">
         
   
   
@@ -2401,7 +2525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_verticals/community/" class="md-nav__link">
+      <a href="../04_verticals/community/" class="md-nav__link">
         
   
   
@@ -2429,7 +2553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_verticals/community/explanations/" class="md-nav__link">
+      <a href="../04_verticals/community/explanations/" class="md-nav__link">
         
   
   
@@ -2516,7 +2640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_verticals/edaccess/" class="md-nav__link">
+      <a href="../04_verticals/edaccess/" class="md-nav__link">
         
   
   
@@ -2544,7 +2668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_verticals/edaccess/explanations/" class="md-nav__link">
+      <a href="../04_verticals/edaccess/explanations/" class="md-nav__link">
         
   
   
@@ -2631,7 +2755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_verticals/env/" class="md-nav__link">
+      <a href="../04_verticals/env/" class="md-nav__link">
         
   
   
@@ -2659,7 +2783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_verticals/env/explanations/" class="md-nav__link">
+      <a href="../04_verticals/env/explanations/" class="md-nav__link">
         
   
   
@@ -2746,7 +2870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_verticals/resilience/" class="md-nav__link">
+      <a href="../04_verticals/resilience/" class="md-nav__link">
         
   
   
@@ -2774,7 +2898,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_verticals/resilience/explanations/" class="md-nav__link">
+      <a href="../04_verticals/resilience/explanations/" class="md-nav__link">
         
   
   
@@ -2861,7 +2985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_verticals/sme/" class="md-nav__link">
+      <a href="../04_verticals/sme/" class="md-nav__link">
         
   
   
@@ -2889,7 +3013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_verticals/sme/explanations/" class="md-nav__link">
+      <a href="../04_verticals/sme/explanations/" class="md-nav__link">
         
   
   
@@ -2986,7 +3110,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_examples/" class="md-nav__link">
+      <a href="../05_examples/" class="md-nav__link">
         
   
   
@@ -3014,7 +3138,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_examples/entity-with-snfei/" class="md-nav__link">
+      <a href="../05_examples/entity-with-snfei/" class="md-nav__link">
         
   
   
@@ -3093,7 +3217,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_examples/entities/municipality/us_il_01/" class="md-nav__link">
+      <a href="../05_examples/entities/municipality/us_il_01/" class="md-nav__link">
         
   
   
@@ -3121,7 +3245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_examples/entities/municipality/us_mn_01/" class="md-nav__link">
+      <a href="../05_examples/entities/municipality/us_mn_01/" class="md-nav__link">
         
   
   
@@ -3208,7 +3332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_examples/entities/nonprofit/us_ma_01/" class="md-nav__link">
+      <a href="../05_examples/entities/nonprofit/us_ma_01/" class="md-nav__link">
         
   
   
@@ -3295,7 +3419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_examples/entities/pac/pac_01/" class="md-nav__link">
+      <a href="../05_examples/entities/pac/pac_01/" class="md-nav__link">
         
   
   
@@ -3392,7 +3516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/normalization/" class="md-nav__link">
+      <a href="../concepts/normalization/" class="md-nav__link">
         
   
   
@@ -3420,7 +3544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/category-theory-foundation/" class="md-nav__link">
+      <a href="../concepts/category-theory-foundation/" class="md-nav__link">
         
   
   
@@ -3448,7 +3572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/related-domains/" class="md-nav__link">
+      <a href="../concepts/related-domains/" class="md-nav__link">
         
   
   
@@ -3476,7 +3600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/interoperability/" class="md-nav__link">
+      <a href="../concepts/interoperability/" class="md-nav__link">
         
   
   
@@ -3504,7 +3628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/research-adoption/" class="md-nav__link">
+      <a href="../concepts/research-adoption/" class="md-nav__link">
         
   
   
@@ -3532,7 +3656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/positioning-paper/" class="md-nav__link">
+      <a href="../concepts/positioning-paper/" class="md-nav__link">
         
   
   
@@ -3560,7 +3684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/unified-rewriting/" class="md-nav__link">
+      <a href="../concepts/unified-rewriting/" class="md-nav__link">
         
   
   
@@ -3649,7 +3773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../governance/cep-foundational-principles/" class="md-nav__link">
+      <a href="../governance/cep-foundational-principles/" class="md-nav__link">
         
   
   
@@ -3677,7 +3801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../governance/evolution-policy-and-versioning/" class="md-nav__link">
+      <a href="../governance/evolution-policy-and-versioning/" class="md-nav__link">
         
   
   
@@ -3705,7 +3829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../governance/vocabulary-process/" class="md-nav__link">
+      <a href="../governance/vocabulary-process/" class="md-nav__link">
         
   
   
@@ -3733,7 +3857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../governance/objectives-and-vision/" class="md-nav__link">
+      <a href="../governance/objectives-and-vision/" class="md-nav__link">
         
   
   
@@ -3822,7 +3946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/" class="md-nav__link">
+      <a href="../specs/" class="md-nav__link">
         
   
   
@@ -3850,7 +3974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/cec-v1/" class="md-nav__link">
+      <a href="../specs/cec-v1/" class="md-nav__link">
         
   
   
@@ -3878,7 +4002,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/aas-v1/" class="md-nav__link">
+      <a href="../specs/aas-v1/" class="md-nav__link">
         
   
   
@@ -3906,7 +4030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/cdira-v1/" class="md-nav__link">
+      <a href="../specs/cdira-v1/" class="md-nav__link">
         
   
   
@@ -3934,7 +4058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/efs-v1/" class="md-nav__link">
+      <a href="../specs/efs-v1/" class="md-nav__link">
         
   
   
@@ -3962,7 +4086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/gic-v1/" class="md-nav__link">
+      <a href="../specs/gic-v1/" class="md-nav__link">
         
   
   
@@ -3990,7 +4114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/gns-v1/" class="md-nav__link">
+      <a href="../specs/gns-v1/" class="md-nav__link">
         
   
   
@@ -4018,7 +4142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/vgs-v1/" class="md-nav__link">
+      <a href="../specs/vgs-v1/" class="md-nav__link">
         
   
   
@@ -4050,8 +4174,6 @@
       
   
   
-    
-  
   
   
     
@@ -4064,11 +4186,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_13" >
         
           
           <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
@@ -4089,7 +4213,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_13">
             <span class="md-nav__icon md-icon"></span>
             
@@ -4107,7 +4231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../implementation-guide/" class="md-nav__link">
+      <a href="../implementation/implementation-guide/" class="md-nav__link">
         
   
   
@@ -4135,7 +4259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../adapters/" class="md-nav__link">
+      <a href="../implementation/adapters/" class="md-nav__link">
         
   
   
@@ -4163,7 +4287,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../validator/" class="md-nav__link">
+      <a href="../implementation/validator/" class="md-nav__link">
         
   
   
@@ -4191,7 +4315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ctag-integration/" class="md-nav__link">
+      <a href="../implementation/ctag-integration/" class="md-nav__link">
         
   
   
@@ -4219,7 +4343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../casing/" class="md-nav__link">
+      <a href="../implementation/casing/" class="md-nav__link">
         
   
   
@@ -4247,7 +4371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../new-connector/" class="md-nav__link">
+      <a href="../implementation/new-connector/" class="md-nav__link">
         
   
   
@@ -4272,37 +4396,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    New Data Source
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../implementation/new-data-source/" class="md-nav__link">
         
   
   
@@ -4318,114 +4415,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-add-an-entry-to-data_sourcesmd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Add an Entry to DATA_SOURCES.md
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-create-a-prov-yaml-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Create a PROV-YAML File
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-add-a-local-sourcejson-next-to-example-records" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Add a Local SOURCE.json Next to Example Records
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-add-the-dataset-to-citationcff-under-references" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Add the Dataset to CITATION.cff Under references
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-document-any-adapter-specific-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Document Any Adapter-Specific Notes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-add-or-update-tests" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Add or Update Tests
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-confirm-license-compatibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. Confirm License Compatibility
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick Checklist
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4438,7 +4427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../record-envelopes/" class="md-nav__link">
+      <a href="../implementation/record-envelopes/" class="md-nav__link">
         
   
   
@@ -4466,7 +4455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../profiles/" class="md-nav__link">
+      <a href="../implementation/profiles/" class="md-nav__link">
         
   
   
@@ -4555,7 +4544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../vocabulary/overview/" class="md-nav__link">
+      <a href="../vocabulary/overview/" class="md-nav__link">
         
   
   
@@ -4583,7 +4572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../vocabulary/using/" class="md-nav__link">
+      <a href="../vocabulary/using/" class="md-nav__link">
         
   
   
@@ -4672,7 +4661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/entity/" class="md-nav__link">
+      <a href="../reference/entity/" class="md-nav__link">
         
   
   
@@ -4700,7 +4689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/exchange/" class="md-nav__link">
+      <a href="../reference/exchange/" class="md-nav__link">
         
   
   
@@ -4728,7 +4717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/relationship/" class="md-nav__link">
+      <a href="../reference/relationship/" class="md-nav__link">
         
   
   
@@ -4756,7 +4745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/context-tags/" class="md-nav__link">
+      <a href="../reference/context-tags/" class="md-nav__link">
         
   
   
@@ -4784,7 +4773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/identifier-schemes/" class="md-nav__link">
+      <a href="../reference/identifier-schemes/" class="md-nav__link">
         
   
   
@@ -4812,7 +4801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/identity-tiers/" class="md-nav__link">
+      <a href="../reference/identity-tiers/" class="md-nav__link">
         
   
   
@@ -4840,7 +4829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/snfei/" class="md-nav__link">
+      <a href="../reference/snfei/" class="md-nav__link">
         
   
   
@@ -4868,7 +4857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/compatibility-matrix/" class="md-nav__link">
+      <a href="../reference/compatibility-matrix/" class="md-nav__link">
         
   
   
@@ -4896,7 +4885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/reference-standards/" class="md-nav__link">
+      <a href="../reference/reference-standards/" class="md-nav__link">
         
   
   
@@ -4924,7 +4913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/reference-projects/" class="md-nav__link">
+      <a href="../reference/reference-projects/" class="md-nav__link">
         
   
   
@@ -4952,7 +4941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/w3c-prov/" class="md-nav__link">
+      <a href="../reference/w3c-prov/" class="md-nav__link">
         
   
   
@@ -5041,7 +5030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../provenance/" class="md-nav__link">
+      <a href="../provenance/" class="md-nav__link">
         
   
   
@@ -5069,7 +5058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../provenance/chicago_contracts.prov.yaml" class="md-nav__link">
+      <a href="../provenance/chicago_contracts.prov.yaml" class="md-nav__link">
         
   
   
@@ -5104,7 +5093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/" class="md-nav__link">
+      <a href="../api/" class="md-nav__link">
         
   
   
@@ -5131,7 +5120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/" class="md-nav__link">
+      <a href="../cli/" class="md-nav__link">
         
   
   
@@ -5158,7 +5147,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../DATA_SOURCES/" class="md-nav__link">
+      <a href="../DATA_SOURCES/" class="md-nav__link">
         
   
   
@@ -5205,10 +5194,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-add-an-entry-to-data_sourcesmd" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Add an Entry to DATA_SOURCES.md
+        Overview
       
     </span>
   </a>
@@ -5216,10 +5205,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-create-a-prov-yaml-file" class="md-nav__link">
+  <a href="#cae-civic-and-administrative-entities" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Create a PROV-YAML File
+        CAE: Civic and Administrative Entities
       
     </span>
   </a>
@@ -5227,10 +5216,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-add-a-local-sourcejson-next-to-example-records" class="md-nav__link">
+  <a href="#cep-civic-exchange-protocol" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Add a Local SOURCE.json Next to Example Records
+        CEP: Civic Exchange Protocol
       
     </span>
   </a>
@@ -5238,10 +5227,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-add-the-dataset-to-citationcff-under-references" class="md-nav__link">
+  <a href="#cee-contextual-evidence-and-explanations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Add the Dataset to CITATION.cff Under references
+        CEE: Contextual Evidence and Explanations
       
     </span>
   </a>
@@ -5249,10 +5238,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-document-any-adapter-specific-notes" class="md-nav__link">
+  <a href="#assurance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Document Any Adapter-Specific Notes
+        Assurance
       
     </span>
   </a>
@@ -5260,10 +5249,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-add-or-update-tests" class="md-nav__link">
+  <a href="#separation-of-concerns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Add or Update Tests
+        Separation of Concerns
       
     </span>
   </a>
@@ -5271,21 +5260,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-confirm-license-compatibility" class="md-nav__link">
+  <a href="#why-this-structure-exists" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Confirm License Compatibility
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick Checklist
+        Why This Structure Exists
       
     </span>
   </a>
@@ -5312,171 +5290,70 @@
   
 
 
-<h1 id="adding-a-new-external-data-source">Adding a New External Data Source<a class="headerlink" href="#adding-a-new-external-data-source" title="Permanent link">&para;</a></h1>
-<p>This document defines the <strong>required steps</strong> for adding any new external dataset to
-the Civic Interconnect project. These steps ensure consistent documentation,
-provenance, licensing, reproducibility, and adapter integration across all
-verticals and implementations.</p>
-<p>This guide applies to all external data used for:</p>
+<h1 id="how-these-parts-fit-together">How These Parts Fit Together<a class="headerlink" href="#how-these-parts-fit-together" title="Permanent link">&para;</a></h1>
+<p>This document explains how the major parts of the system relate to one another.</p>
+<p>Each part is defined independently. None requires the others to exist.
+They can be adopted, implemented, or criticized separately.</p>
+<p>This page exists only to explain how they align when used together.</p>
+<hr />
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The system is organized as layered concerns:</p>
 <ul>
-<li>adapter development  </li>
-<li>canonicalization (EFS v1) testing  </li>
-<li>SNFEI identity evaluation  </li>
-<li>example input records  </li>
-<li>vertical demonstrations  </li>
-<li>validation pipelines  </li>
-<li>CEE evidence construction  </li>
+<li>What civic things are</li>
+<li>How civic data is structured</li>
+<li>How meaning is derived</li>
+<li>How confidence is asserted</li>
 </ul>
+<p>Each layer answers a different question.</p>
+<p>No layer determines truth.</p>
 <hr />
-<h2 id="1-add-an-entry-to-data_sourcesmd">1. Add an Entry to <code>DATA_SOURCES.md</code><a class="headerlink" href="#1-add-an-entry-to-data_sourcesmd" title="Permanent link">&para;</a></h2>
-<p>All datasets must be listed in the global catalog at:</p>
-<div class="highlight"><pre><span></span><code>docs/en/reference/DATA_SOURCES.md
-</code></pre></div>
-<p>Each dataset entry must include:</p>
+<h2 id="cae-civic-and-administrative-entities">CAE: Civic and Administrative Entities<a class="headerlink" href="#cae-civic-and-administrative-entities" title="Permanent link">&para;</a></h2>
+<p>CAE defines civic and administrative concepts as they exist in the world.</p>
+<p>It answers:</p>
+<p>What kinds of things exist, and what roles or authority they have.</p>
+<p>CAE does not define data formats, processing rules, or interpretations.
+It can be understood without knowing anything about CEP or CEE.</p>
+<hr />
+<h2 id="cep-civic-exchange-protocol">CEP: Civic Exchange Protocol<a class="headerlink" href="#cep-civic-exchange-protocol" title="Permanent link">&para;</a></h2>
+<p>CEP defines how civic data is structured and exchanged.</p>
+<p>It answers:</p>
+<p>How information about civic entities, relationships, and exchanges is represented
+in a consistent, verifiable form.</p>
+<p>CEP does not interpret meaning, assess impact, or resolve disputes.</p>
+<hr />
+<h2 id="cee-contextual-evidence-and-explanations">CEE: Contextual Evidence and Explanations<a class="headerlink" href="#cee-contextual-evidence-and-explanations" title="Permanent link">&para;</a></h2>
+<p>CEE defines how observations are connected to explanations and models.</p>
+<p>It answers:</p>
+<p>Why a claim is made, what evidence supports it, and how reasoning is structured.</p>
+<p>CEE does not enforce correctness or consensus.</p>
+<hr />
+<h2 id="assurance">Assurance<a class="headerlink" href="#assurance" title="Permanent link">&para;</a></h2>
+<p>Assurance defines how claims of confidence are recorded.</p>
+<p>It answers:</p>
+<p>Who asserts that something holds, under what conditions, and based on what basis.</p>
+<p>Assurance does not decide trustworthiness.</p>
+<hr />
+<h2 id="separation-of-concerns">Separation of Concerns<a class="headerlink" href="#separation-of-concerns" title="Permanent link">&para;</a></h2>
+<p>Each layer can disagree with the others.</p>
+<p>A system may have:</p>
 <ul>
-<li>dataset title  </li>
-<li>publisher  </li>
-<li>URL  </li>
-<li>license  </li>
-<li>retrieval date  </li>
-<li>short description of how CEP uses it  </li>
-<li>a link to its PROV-YAML provenance file  </li>
-<li>embedded JSON citation block (see below)</li>
+<li>Correct structure but contested interpretation</li>
+<li>Strong explanations but weak assurance</li>
+<li>High assurance over incomplete data</li>
 </ul>
-<p>Example block:</p>
-<div class="highlight"><pre><span></span><code><span class="gu">### City of Chicago – Contracts Dataset</span>
-<span class="k">-</span><span class="w"> </span>URL: https://data.cityofchicago.org/Administration-Finance/Contracts/rsxa-ify5  
-<span class="k">-</span><span class="w"> </span>Publisher: City of Chicago  
-<span class="k">-</span><span class="w"> </span>License: Public Domain  
-<span class="k">-</span><span class="w"> </span>Used for: canonicalization tests, adapter validation, SNFEI clustering  
-<span class="k">-</span><span class="w"> </span>Provenance: [<span class="nt">chicago_contracts.prov.yaml</span>](<span class="na">../provenance/chicago_contracts.prov.yaml</span>)
-</code></pre></div>
+<p>These conditions are preserved, not resolved.</p>
 <hr />
-<h2 id="2-create-a-prov-yaml-file">2. Create a PROV-YAML File<a class="headerlink" href="#2-create-a-prov-yaml-file" title="Permanent link">&para;</a></h2>
-<p>Each dataset must have a machine-readable provenance description following
-<strong>W3C PROV-DM</strong>. Place this file in:</p>
-<div class="highlight"><pre><span></span><code>docs/en/provenance/&lt;dataset_name&gt;.prov.yaml
-</code></pre></div>
-<p>This file must contain:</p>
+<h2 id="why-this-structure-exists">Why This Structure Exists<a class="headerlink" href="#why-this-structure-exists" title="Permanent link">&para;</a></h2>
+<p>The goal is not agreement.</p>
+<p>The goal is traceability:</p>
 <ul>
-<li><code>prov:Entity</code> (the dataset)  </li>
-<li><code>prov:Agent</code> (publisher or maintainer)  </li>
-<li><code>prov:Activity</code> (retrieval/download event)  </li>
+<li>of structure</li>
+<li>of interpretation</li>
+<li>of confidence</li>
 </ul>
-<p>Example:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">entity</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">chicago_contracts_dataset</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">prov:type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;prov:Entity&quot;</span>
-<span class="w">    </span><span class="nt">dct:title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;City</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Chicago</span><span class="nv"> </span><span class="s">Contracts</span><span class="nv"> </span><span class="s">Dataset&quot;</span>
-<span class="w">    </span><span class="nt">dct:identifier</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://data.cityofchicago.org/Administration-Finance/Contracts/rsxa-ify5&quot;</span>
-<span class="w">    </span><span class="nt">dct:publisher</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;City</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Chicago&quot;</span>
-<span class="w">    </span><span class="nt">dct:license</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Public</span><span class="nv"> </span><span class="s">Domain&quot;</span>
-
-<span class="nt">agent</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">city_of_chicago</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">prov:type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;prov:Agent&quot;</span>
-<span class="w">    </span><span class="nt">foaf:name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;City</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Chicago,</span><span class="nv"> </span><span class="s">Department</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Procurement</span><span class="nv"> </span><span class="s">Services&quot;</span>
-
-<span class="nt">activity</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">retrieve_chicago_contracts_2025_12_11</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">prov:type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;prov:Activity&quot;</span>
-<span class="w">    </span><span class="nt">prov:startedAtTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-12-11T00:00:00Z&quot;</span>
-<span class="w">    </span><span class="nt">prov:wasAssociatedWith</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">city_of_chicago</span>
-<span class="w">    </span><span class="nt">prov:used</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chicago_contracts_dataset</span>
-</code></pre></div>
+<p>This allows disagreement to be explicit, inspectable, and durable.</p>
 <hr />
-<h2 id="3-add-a-local-sourcejson-next-to-example-records">3. Add a Local <code>SOURCE.json</code> Next to Example Records<a class="headerlink" href="#3-add-a-local-sourcejson-next-to-example-records" title="Permanent link">&para;</a></h2>
-<p>Whenever sample data or test fixtures depend on this dataset, place a minimal
-citation/provenance descriptor <strong>in the same folder</strong> as the example files:</p>
-<div class="highlight"><pre><span></span><code>examples/&lt;domain&gt;/&lt;entity&gt;/SOURCE.json
-</code></pre></div>
-<p>Required fields:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dataset&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;City of Chicago Contracts Dataset&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;publisher&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;City of Chicago&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://data.cityofchicago.org/Administration-Finance/Contracts/rsxa-ify5&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Public Domain&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;retrievedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-12-11T00:00:00Z&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;provenance&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chicago_contracts_dataset&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;activity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;retrieve_chicago_contracts_2025_12_11&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;city_of_chicago&quot;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>This ensures example entity records are portable and self-describing.</p>
-<hr />
-<h2 id="4-add-the-dataset-to-citationcff-under-references">4. Add the Dataset to <code>CITATION.cff</code> Under <code>references</code><a class="headerlink" href="#4-add-the-dataset-to-citationcff-under-references" title="Permanent link">&para;</a></h2>
-<p>External datasets must appear only in the <code>references:</code> section of the root
-<code>CITATION.cff</code>.</p>
-<p>Example:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">references</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dataset</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;City</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Chicago</span><span class="nv"> </span><span class="s">Contracts</span><span class="nv"> </span><span class="s">Dataset&quot;</span>
-<span class="w">    </span><span class="nt">authors</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;City</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Chicago&quot;</span>
-<span class="w">    </span><span class="nt">year</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2025</span>
-<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://data.cityofchicago.org/Administration-Finance/Contracts/rsxa-ify5&quot;</span>
-<span class="w">    </span><span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Public</span><span class="nv"> </span><span class="s">Domain&quot;</span>
-<span class="w">    </span><span class="nt">notes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Used</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">canonicalization</span><span class="nv"> </span><span class="s">tests,</span><span class="nv"> </span><span class="s">SNFEI</span><span class="nv"> </span><span class="s">identity</span><span class="nv"> </span><span class="s">resolution,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">adapter</span><span class="nv"> </span><span class="s">development.&quot;</span>
-</code></pre></div>
-<p>This supports reproducible research and automated citation tools.</p>
-<hr />
-<h2 id="5-document-any-adapter-specific-notes">5. Document Any Adapter-Specific Notes<a class="headerlink" href="#5-document-any-adapter-specific-notes" title="Permanent link">&para;</a></h2>
-<p>If the dataset feeds a new adapter:</p>
-<ul>
-<li>describe any quirks  </li>
-<li>list which fields map to CEP entity properties  </li>
-<li>include normalization notes relevant to:</li>
-<li><code>legalName</code></li>
-<li><code>legalNameNormalized</code></li>
-<li>identifiers</li>
-<li>jurisdiction logic</li>
-<li>address processing</li>
-</ul>
-<p>Add this to:</p>
-<div class="highlight"><pre><span></span><code>docs/en/implementation/adapters.md
-</code></pre></div>
-<p>or create a short README in:</p>
-<div class="highlight"><pre><span></span><code>examples/&lt;domain&gt;/&lt;entity&gt;/README.md
-</code></pre></div>
-<hr />
-<h2 id="6-add-or-update-tests">6. Add or Update Tests<a class="headerlink" href="#6-add-or-update-tests" title="Permanent link">&para;</a></h2>
-<p>If the dataset is used for testing:</p>
-<ul>
-<li>ensure test fixtures reference the correct <code>SOURCE.json</code>  </li>
-<li>ensure example entity records contain embedded provenance  </li>
-<li>optionally add SNFEI clustering tests to validate normalization behavior</li>
-</ul>
-<p>Typical file locations:</p>
-<div class="highlight"><pre><span></span><code>src/python/tests/adapters/
-src/python/tests/identity/
-examples/&lt;domain&gt;/&lt;entity&gt;/tests/
-</code></pre></div>
-<hr />
-<h2 id="7-confirm-license-compatibility">7. Confirm License Compatibility<a class="headerlink" href="#7-confirm-license-compatibility" title="Permanent link">&para;</a></h2>
-<p>Always verify:</p>
-<ul>
-<li>dataset license allows reuse, or  </li>
-<li>only sanitized examples are stored locally if redistribution is restricted  </li>
-</ul>
-<p>Chicago Open Data → <strong>Public Domain</strong>, safe.<br />
-Some state datasets → restrictive, only store small samples + manifests.</p>
-<hr />
-<h2 id="quick-checklist">Quick Checklist<a class="headerlink" href="#quick-checklist" title="Permanent link">&para;</a></h2>
-<ul>
-<li>[ ] Add entry to <code>DATA_SOURCES.md</code>  </li>
-<li>[ ] Create PROV-YAML file under <code>docs/en/provenance/</code>  </li>
-<li>[ ] Add local <code>SOURCE.json</code> next to example data  </li>
-<li>[ ] Add dataset to <code>CITATION.cff</code> → <code>references:</code>  </li>
-<li>[ ] Document adapter rules or notes (if relevant)  </li>
-<li>[ ] Ensure tests reference the dataset correctly  </li>
-<li>[ ] Confirm licensing and sample handling  </li>
-</ul>
-<hr />
-<p>Following these steps ensures CEP and CEE maintain strong provenance,
-reproducibility, and academic transparency across all data pipelines.</p>
+<p>This page explains alignment, not authority.</p>
 
 
 
@@ -5552,16 +5429,16 @@ reproducibility, and academic transparency across all data pipelines.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv-formats/3.0.1/ajv-formats.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.17.1/ajv2020.bundle.js"></script>
       
-        <script src="../../../js/validator.js"></script>
+        <script src="../../js/validator.js"></script>
       
     
   </body>

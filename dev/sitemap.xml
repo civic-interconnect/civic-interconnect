@@ -37,6 +37,12 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/schemas/"/>
     </url>
     <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/00_overview/</loc>
+        <lastmod>2025-12-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/00_overview/"/>
+    </url>
+    <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/01_reference/</loc>
         <lastmod>2025-12-13</lastmod>
         <changefreq>daily</changefreq>
@@ -137,6 +143,12 @@
         <lastmod>2025-12-13</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/01_reference/04_assurance/01_attestations/"/>
+    </url>
+    <url>
+        <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/02_explanations/</loc>
+        <lastmod>2025-12-13</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://civic-interconnect.github.io/civic-interconnect/latest/en/02_explanations/"/>
     </url>
     <url>
         <loc>https://civic-interconnect.github.io/civic-interconnect/latest/en/02_explanations/01_design_principles/</loc>
