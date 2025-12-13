@@ -52,11 +52,9 @@ and provides end-to-end correctness for localization and SNFEI tests.
 -   Re-affirmed boundary: 1+ attestations are required by record-envelope schemas; cep-core does not invent them.
 -   Ingest/adapters/CLI supply attestations; core validates and carries them.
 
----
+## Includes Earlier Work
 
-## [0.0.5] - 2025-12-10
-
-This release introduces the vertical-slice architecture for CEP/CEE and unifies
+Introduces the vertical-slice architecture for CEP/CEE and unifies
 multiple governance, documentation, and validation layers.
 The system can formally describe and validate cross-domain verticals
 (e.g., community assets, education access, environmental compliance, SME-friendly
@@ -231,7 +229,6 @@ and functioning across multiple domains.
 
 [Unreleased]: https://github.com/civic-interconnect/civic-interconnect/compare/v0.0.6...HEAD
 [0.0.6]: https://github.com/civic-interconnect/civic-interconnect/releases/tag/v0.0.6
-[0.0.5]: https://github.com/civic-interconnect/civic-interconnect/releases/tag/v0.0.5
 [0.0.4]: https://github.com/civic-interconnect/civic-interconnect/releases/tag/v0.0.4
 [0.0.3]: https://github.com/civic-interconnect/civic-interconnect/releases/tag/v0.0.3
 [0.0.2]: https://github.com/civic-interconnect/civic-interconnect/releases/tag/v0.0.2
