@@ -1,8 +1,8 @@
 # Disaster Preparedness and Community Resilience
 
 Vertical ID: `resilience`  
-About file: `docs/en/verticals/resilience/about.yaml`  
-Explanations: `docs/en/verticals/resilience/explanations.md`
+About file: `docs/en/04_verticals/resilience/about.yaml`  
+Explanations: `docs/en/04_verticals/resilience/explanations.md`
 
 This vertical slice explores how CEP and CEE can highlight **critical
 shelters, routes, and facilities** in a disaster preparedness context,
@@ -46,9 +46,9 @@ See `about.yaml` for detailed user stories and data-source notes.
 ## Files in this vertical
 
 - Definition and intent:
-  - `docs/en/verticals/resilience/about.yaml`
-  - `docs/en/verticals/resilience/index.md` (this file)
-  - `docs/en/verticals/resilience/explanations.md`
+  - `docs/en/04_verticals/resilience/about.yaml`
+  - `docs/en/04_verticals/resilience/index.md` (this file)
+  - `docs/en/04_verticals/resilience/explanations.md`
 
 - Example data (planned structure):
   - `examples/resilience/shelters/raw/`

@@ -1,8 +1,8 @@
 # Civic Education Access and Program Value
 
 Vertical ID: `edaccess`  
-About file: `docs/en/verticals/edaccess/about.yaml`  
-Explanations: `docs/en/verticals/edaccess/explanations.md`
+About file: `docs/en/04_verticals/edaccess/about.yaml`  
+Explanations: `docs/en/04_verticals/edaccess/explanations.md`
 
 This vertical slice explores how CEP and CEE can help **students,
 institutions, and policymakers** understand which educational programs are
@@ -45,9 +45,9 @@ See `about.yaml` for detailed user stories and data-source notes.
 ## Files in this vertical
 
 - Definition and intent:
-  - `docs/en/verticals/edaccess/about.yaml`
-  - `docs/en/verticals/edaccess/index.md` (this file)
-  - `docs/en/verticals/edaccess/explanations.md`
+  - `docs/en/04_verticals/edaccess/about.yaml`
+  - `docs/en/04_verticals/edaccess/index.md` (this file)
+  - `docs/en/04_verticals/edaccess/explanations.md`
 
 - Example data (planned structure):
   - `examples/education/access/raw/`

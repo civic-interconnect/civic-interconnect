@@ -1,8 +1,8 @@
 # Environmental Compliance Risk and Prioritization
 
 Vertical ID: `env`  
-About file: `docs/en/verticals/env/about.yaml`  
-Explanations: `docs/en/verticals/env/explanations.md`
+About file: `docs/en/04_verticals/env/about.yaml`  
+Explanations: `docs/en/04_verticals/env/explanations.md`
 
 This vertical slice explores how CEP and CEE can provide **transparent,
 evidence-based explanations** for why certain facilities are **prioritized
@@ -46,9 +46,9 @@ See `about.yaml` for detailed user stories and data-source notes.
 ## Files in this vertical
 
 - Definition and intent:
-  - `docs/en/verticals/env/about.yaml`
-  - `docs/en/verticals/env/index.md` (this file)
-  - `docs/en/verticals/env/explanations.md`
+  - `docs/en/04_verticals/env/about.yaml`
+  - `docs/en/04_verticals/env/index.md` (this file)
+  - `docs/en/04_verticals/env/explanations.md`
 
 - Example data (planned structure):
   - `examples/environment/compliance/raw/`

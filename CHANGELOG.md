@@ -65,7 +65,7 @@ procurement).
 -   Vertical Slice Framework
 
     -   Added `about.yaml` governance schema (`schemas/governance/about.schema.json`).
-    -   Introduced five initial verticals under `docs/en/verticals/`:
+    -   Introduced five initial verticals under `docs/en/04_verticals/`:
         `community`, `edaccess`, `env`, `resilience`, and `sme`.
     -   Each vertical includes:
         -   `about.yaml` (schema-validated roadmap and modeling contract)

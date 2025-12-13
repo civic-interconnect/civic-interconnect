@@ -1,8 +1,8 @@
 # SME-Friendly Procurement Opportunities
 
 Vertical ID: `sme`  
-About file: `docs/en/verticals/sme/about.yaml`  
-Explanations: `docs/en/verticals/sme/explanations.md`
+About file: `docs/en/04_verticals/sme/about.yaml`  
+Explanations: `docs/en/04_verticals/sme/explanations.md`
 
 This vertical slice explores how CEP and CEE can identify and explain
 **public procurement opportunities that are friendly to small and medium
@@ -48,9 +48,9 @@ See `about.yaml` for detailed user stories and data-source notes.
 ## Files in this vertical
 
 - Definition and intent:
-  - `docs/en/verticals/sme/about.yaml`
-  - `docs/en/verticals/sme/index.md` (this file)
-  - `docs/en/verticals/sme/explanations.md`
+  - `docs/en/04_verticals/sme/about.yaml`
+  - `docs/en/04_verticals/sme/index.md` (this file)
+  - `docs/en/04_verticals/sme/explanations.md`
 
 - Example data (planned structure):
   - `examples/procurement/eu_sme/raw/`

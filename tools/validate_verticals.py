@@ -162,7 +162,7 @@ def main():
     about_files = find_about_yaml_files()
 
     if not about_files:
-        print("No about.yaml files found under docs/en/verticals/.")
+        print("No about.yaml files found under docs/en/04_verticals/.")
         return 0
 
     validator = load_about_validator()

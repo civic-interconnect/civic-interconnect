@@ -1,8 +1,8 @@
 # Community Assets and Local Access
 
 Vertical ID: `community`  
-About file: `docs/en/verticals/community/about.yaml`  
-Explanations: `docs/en/verticals/community/explanations.md`
+About file: `docs/en/04_verticals/community/about.yaml`  
+Explanations: `docs/en/04_verticals/community/explanations.md`
 
 This vertical slice explores how CEP and CEE can highlight **neighborhoods
 with limited access to community assets** such as parks, libraries, and
@@ -44,9 +44,9 @@ See `about.yaml` for detailed user stories and data-source notes.
 ## Files in this vertical
 
 - Definition and intent:
-  - `docs/en/verticals/community/about.yaml`
-  - `docs/en/verticals/community/index.md` (this file)
-  - `docs/en/verticals/community/explanations.md`
+  - `docs/en/04_verticals/community/about.yaml`
+  - `docs/en/04_verticals/community/index.md` (this file)
+  - `docs/en/04_verticals/community/explanations.md`
 
 - Example data (planned structure):
   - `examples/assets/community/raw/`

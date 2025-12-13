@@ -105,6 +105,7 @@ nav:
   - Home: en/index.md
   - Quick Start: en/quick-start.md
   - Schemas: en/schemas.md
+  - Overview: en/00_overview/README.md
 
   - Reference:
       - Overview: en/01_reference/README.md
@@ -134,6 +135,9 @@ nav:
           - Attestations: en/01_reference/04_assurance/01_attestations.md
 
   - Explanations:
+
+      - Overview: en/02_explanations/README.md
+
       - Design Principles: en/02_explanations/01_design_principles.md
       - Neutrality and Values: en/02_explanations/02_neutrality_and_values.md
       - Why Category Theory: en/02_explanations/03_why_category_theory.md
@@ -147,6 +151,7 @@ nav:
 
   - Implementation:
       - Overview: en/03_implementation/README.md
+
       - Components:
           - Overview: en/03_implementation/01_components/README.md
           - Component Map: en/03_implementation/01_components/01_component_map.md
