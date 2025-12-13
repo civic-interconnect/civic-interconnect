@@ -137,7 +137,7 @@ Supported mapping types: `exactMatch`, `broadMatch`, `narrowMatch`, `relatedMatc
 
 ## 5. File Placement and Structure
 
-All vocabulary files live under `vocabularies/`.
+All vocabulary files live under `vocabulary/`.
 
 
 

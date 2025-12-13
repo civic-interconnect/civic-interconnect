@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-"""Update CEP localization metadata (version, updatedTimestamp, configHash).
+"""Update CEP localization metadata (version, updated_timestamp, config_hash).
 
-Update version, updatedTimestamp, and configHash for all YAML configs
+Update version, updated_timestamp, and config_hash for all YAML configs
 under localization/.
 
 Usage examples:
@@ -33,10 +33,10 @@ def canonical_json_bytes(obj: Any) -> bytes:
 
 
 def compute_config_hash(config: dict[str, Any]) -> str:
-    """Compute SHA-256 hash of config dict, excluding the configHash field."""
+    """Compute SHA-256 hash of config dict, excluding the config_hash field."""
     config_copy = copy.deepcopy(config)
-    if "configHash" in config_copy:
-        del config_copy["configHash"]
+    if "config_hash" in config_copy:
+        del config_copy["config_hash"]
     data = canonical_json_bytes(config_copy)
     return hashlib.sha256(data).hexdigest()
 
@@ -93,12 +93,12 @@ def update_file(path: Path, bump: str) -> tuple[str, str, str]:
         return "SKIP", "?", "?"
 
     old_version = str(config.get("version") or "0.0.0")
-    old_hash = config.get("configHash")
+    old_hash = config.get("config_hash")
 
-    # Compute new hash without configHash
+    # Compute new hash without config_hash
     new_hash = compute_config_hash(config)
 
-    # If hash is unchanged and configHash exists, we can skip version bump
+    # If hash is unchanged and config_hash exists, we can skip version bump
     content_changed = old_hash != new_hash
 
     if content_changed:
@@ -116,10 +116,10 @@ def update_file(path: Path, bump: str) -> tuple[str, str, str]:
 
     # Always update timestamp when we run, so we know when metadata was refreshed
     now_utc = dt.datetime.now(dt.UTC).replace(microsecond=0)
-    config["updatedTimestamp"] = now_utc.strftime("%Y-%m-%dT%H:%M:%SZ")
+    config["updated_timestamp"] = now_utc.strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # Set configHash to the newly computed value
-    config["configHash"] = new_hash
+    # Set config_hash to the newly computed value
+    config["config_hash"] = new_hash
 
     # Write back
     try:

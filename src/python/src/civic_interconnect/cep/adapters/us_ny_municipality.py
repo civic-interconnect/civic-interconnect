@@ -7,11 +7,7 @@ records into normalized payloads for the CEP Entity builder.
 from typing import Any
 
 from civic_interconnect.cep.adapters.base import AdapterKey, JsonDict, SimpleEntityAdapter
-from civic_interconnect.cep.localization import (
-    LocalizationConfig,
-    load_localization,
-    normalize_name,
-)
+from civic_interconnect.cep.localization import apply_localization_name
 
 
 class UsNyMunicipalityAdapter(SimpleEntityAdapter):
@@ -32,12 +28,12 @@ class UsNyMunicipalityAdapter(SimpleEntityAdapter):
         legal_name = str(raw["legal_name"]).strip()
         jurisdiction_iso = str(raw.get("jurisdiction_iso", "US-NY")).strip()
 
-        loc_cfg: LocalizationConfig = load_localization(jurisdiction_iso)
-        normalized_name = normalize_name(legal_name, loc_cfg)
+        # Rust localization pre-normalization (jurisdiction-aware)
+        localized = apply_localization_name(legal_name, jurisdiction_iso)
 
         return {
             "legalName": legal_name,
-            "legalNameNormalized": normalized_name,
+            "legalNameNormalized": localized,
             "jurisdictionIso": jurisdiction_iso,
             "entityType": "municipality",
         }

@@ -1,0 +1,59 @@
+# CEP Localization Rules
+# Jurisdiction: EU/SE
+# Parent: EU
+#
+# Notes:
+# - Normalize common Swedish legal forms (AB, HB, KB) conservatively.
+jurisdiction: "eu/se"
+parent: "EU"
+version: "0.0.1"
+updated_timestamp: "2025-12-05T12:46:28Z"
+
+abbreviations:
+  eu: european union
+
+agency_names: {}
+
+entity_types: {}
+
+rules:
+  - pattern: ","
+    replacement: " "
+    is_regex: false
+
+  - pattern: "[,.;:]+\\s*$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "[-_]{2,}"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\s*&\\s*"
+    replacement: " & "
+    is_regex: true
+
+  # Swedish legal forms
+  - pattern: "\\bab\\b"
+    replacement: "ab"
+    is_regex: true
+
+  - pattern: "\\bhb\\b"
+    replacement: "hb"
+    is_regex: true
+
+  - pattern: "\\bkb\\b"
+    replacement: "kb"
+    is_regex: true
+
+stop_words: []
+
+config_hash: null

@@ -1,4 +1,17 @@
 {
+  "attestations": [
+    {
+      "anchorUri": null,
+      "attestationTimestamp": "1900-01-01T00:00:00Z",
+      "attestorId": "urn:ci:attestor:example",
+      "proofPurpose": "assertionMethod",
+      "proofType": "ManualAttestation",
+      "proofValue": "",
+      "sourceReference": "examples/entity/municipality/us_mn_01",
+      "sourceSystem": "state-municipal-registry",
+      "verificationMethodUri": "urn:ci:verification-method:manual"
+    }
+  ],
   "entityType": "municipality",
   "jurisdictionIso": "US-MN",
   "legalName": "City of Minneapolis",

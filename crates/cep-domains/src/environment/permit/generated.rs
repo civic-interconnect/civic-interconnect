@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Facilityref {
+pub struct PermitRecordFacilityRef {
     #[serde(rename = "facilityVerifiableId")]
     pub facility_verifiable_id: String,
 }
@@ -35,5 +35,5 @@ pub struct PermitRecord {
     pub jurisdiction_uri: Option<String>,
 
     #[serde(rename = "facilityRef")]
-    pub facility_ref: Option<Facilityref>,
+    pub facility_ref: Option<PermitRecordFacilityRef>,
 }

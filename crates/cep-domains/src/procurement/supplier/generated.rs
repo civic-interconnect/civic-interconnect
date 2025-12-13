@@ -34,4 +34,5 @@ pub struct SupplierRecord {
     pub jurisdiction_uri: Option<String>,
 
     pub identifiers: Option<Identifiers>,
+
 }

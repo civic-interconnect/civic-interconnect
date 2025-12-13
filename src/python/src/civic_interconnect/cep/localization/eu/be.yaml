@@ -1,0 +1,59 @@
+# CEP Localization Rules
+# Jurisdiction: EU/BE
+# Parent: EU
+#
+# Notes:
+# - Belgium has multiple official abbreviations; keep conservative.
+# - Include common modern forms (SRL, BV, NV/SA) without trying to translate.
+jurisdiction: "eu/be"
+parent: "EU"
+version: "0.0.1"
+updated_timestamp: "2025-12-05T12:46:28Z"
+
+abbreviations:
+  eu: european union
+
+agency_names: {}
+
+entity_types: {}
+
+rules:
+  - pattern: ","
+    replacement: " "
+    is_regex: false
+
+  - pattern: "[,.;:]+\\s*$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "[-_]{2,}"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\s*&\\s*"
+    replacement: " & "
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*a\\.?\\b|\\bn\\.?\\s*v\\.?\\b"
+    replacement: "sa"
+    is_regex: true
+
+  - pattern: "\\bb\\.?\\s*v\\.?\\b"
+    replacement: "bv"
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*r\\.?\\s*l\\.?\\b"
+    replacement: "srl"
+    is_regex: true
+
+stop_words: []
+
+config_hash: null

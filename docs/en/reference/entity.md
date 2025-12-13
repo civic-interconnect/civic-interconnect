@@ -76,7 +76,7 @@ This ensures:
 Entity type is resolved via the entity-type vocabulary:
 
 ```
-https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.v1.0.0.json#municipality
+https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-type.v1.0.0.json#municipality
 ```
 
 Adapters provide simple labels (`"municipality"`), and the builder expands them to the full URI.
@@ -88,9 +88,9 @@ Adapters provide simple labels (`"municipality"`), and the builder expands them 
 ```json
 {
   "schemaVersion": "1.0.0",
-  "recordSchemaUri": ".../schemas/cep.entity.schema.json",
+  "recordSchemaUri": ".../schemas/core/cep.entity.schema.json",
   "verifiableId": "cep-entity:snfei:34486b38...",
-  "entityTypeUri": ".../vocabularies/entity-type.v1.0.0.json#municipality",
+  "entityTypeUri": ".../vocabulary/core/entity-type.v1.0.0.json#municipality",
   "jurisdictionIso": "US-MN",
   "legalName": "City of Springfield",
   "legalNameNormalized": "city springfield",

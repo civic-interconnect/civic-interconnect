@@ -17,7 +17,7 @@
   },
   "legalName": "Springfield Public School District 123",
   "legalNameNormalized": "springfield public school district 123",
-  "entityTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#school-district",
+  "entityTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-type.json#school-district",
   "jurisdictionIso": "US-MN",
   "status": {
     "statusCode": "ACTIVE",

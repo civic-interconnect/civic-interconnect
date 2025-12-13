@@ -1,0 +1,63 @@
+# CEP Localization Rules
+# Jurisdiction: EU/ES
+# Parent: EU
+#
+# Notes:
+# - Normalize Spanish legal forms (S.A., S.L., UTE) conservatively.
+jurisdiction: "eu/es"
+parent: "EU"
+version: "0.0.1"
+updated_timestamp: "2025-12-05T12:46:28Z"
+
+abbreviations:
+  eu: european union
+
+agency_names: {}
+
+entity_types: {}
+
+rules:
+  - pattern: ","
+    replacement: " "
+    is_regex: false
+
+  - pattern: "[,.;:]+\\s*$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "[-_]{2,}"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\s*&\\s*"
+    replacement: " & "
+    is_regex: true
+
+  # Spanish legal forms
+  - pattern: "\\bs\\.?\\s*a\\.?\\b"
+    replacement: "sa"
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*l\\.?\\b"
+    replacement: "sl"
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*l\\.?\\s*u\\.?\\b"
+    replacement: "slu"
+    is_regex: true
+
+  - pattern: "\\bute\\b"
+    replacement: "ute"
+    is_regex: true
+
+stop_words: []
+
+config_hash: null

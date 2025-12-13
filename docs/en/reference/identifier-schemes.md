@@ -10,7 +10,7 @@ Identifier schemes define how these IDs are interpreted, validated, and transfor
 Scheme URI:
 
 ```
-.../vocabularies/entity-identifier-scheme.v1.0.0.json#snfei
+.../vocabulary/entity-identifier-scheme.v1.0.0.json#snfei
 ```
 
 Characteristics:

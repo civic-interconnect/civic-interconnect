@@ -15,7 +15,7 @@ fn main() {
     let repo_root = manifest_dir
         .parent()
         .and_then(|p| p.parent())
-        .expect("Expected cep-core at repo_root/src/rust/cep-core; could not find repo root");
+        .expect("Expected cep-core at repo_root/crates/cep-core; could not find repo root");
 
     let out_dir = PathBuf::from(env::var("OUT_DIR").expect("OUT_DIR not set"));
     let generated_path = out_dir.join("assets_generated.rs");
@@ -39,6 +39,15 @@ fn main() {
         &mut out,
         "vocabularies",
         "VOCABULARIES",
+    );
+
+    // localization -> LOCALIZATION_YAMLS (jurisdiction keys)
+    generate_yaml_group(
+        &repo_root,
+        &out_dir,
+        &mut out,
+        "localization",
+        "LOCALIZATION_YAMLS",
     );
 
     // test_vectors -> TEST_VECTORS (relative path without .json)
@@ -226,7 +235,7 @@ fn collect_json_recursive(dir: &Path, base: &Path, out: &mut Vec<PathBuf>) {
 /// Default key = relative path without `.json`, forward slashes.
 ///
 /// Example:
-///   vocabularies/entity-type.json       -> \"entity-type\"
+///   vocabulary/core/entity-type.json       -> \"entity-type\"
 ///   test_vectors/entity/minimal.json    -> \"entity/minimal\"
 fn default_key_for(rel: &Path) -> String {
     let mut key = rel.to_string_lossy().replace('\\', "/");
@@ -266,4 +275,128 @@ fn schema_key_for(rel: &Path) -> String {
     }
 
     default_key_for(rel)
+}
+
+/// Generate a YAML group where keys are jurisdiction-like strings derived from path.
+///
+/// Key rules:
+/// - localization/base.yaml      -> "base"
+/// - localization/us/base.yaml   -> "us"
+/// - localization/us/il.yaml     -> "us/il"
+fn generate_yaml_group(
+    repo_root: &Path,
+    out_dir: &Path,
+    out: &mut fs::File,
+    folder: &str,
+    static_name: &str,
+) {
+    let source_dir = repo_root.join(folder);
+    if !source_dir.is_dir() {
+        writeln!(out, "pub static {}: &[(&str, &str)] = &[];\n", static_name).unwrap();
+        return;
+    }
+
+    println!("cargo:rerun-if-changed={}", source_dir.display());
+
+    let rel_paths = collect_yaml_relative_paths(&source_dir);
+
+    let mut entries: Vec<(PathBuf, String)> = rel_paths
+        .into_iter()
+        .map(|rel| {
+            let key = localization_key_for(&rel);
+            (rel, key)
+        })
+        .collect();
+
+    // Deterministic order
+    entries.sort_by(|a, b| a.1.cmp(&b.1));
+
+    let group_out_dir = out_dir.join(folder);
+    fs::create_dir_all(&group_out_dir)
+        .unwrap_or_else(|error| panic!("Failed to create {}: {}", group_out_dir.display(), error));
+
+    writeln!(out, "pub static {}: &[(&str, &str)] = &[", static_name).unwrap();
+
+    for (rel_path, key) in entries {
+        let src_path = source_dir.join(&rel_path);
+        let dest_path = group_out_dir.join(&rel_path);
+
+        if let Some(parent) = dest_path.parent() {
+            fs::create_dir_all(parent)
+                .unwrap_or_else(|error| panic!("Failed to create {}: {}", parent.display(), error));
+        }
+
+        fs::copy(&src_path, &dest_path).unwrap_or_else(|error| {
+            panic!(
+                "Failed to copy {} to {}: {}",
+                src_path.display(),
+                dest_path.display(),
+                error
+            )
+        });
+
+        let rel_str = rel_path.to_string_lossy().replace('\\', "/");
+
+        writeln!(
+            out,
+            "    (\"{}\", include_str!(concat!(env!(\"OUT_DIR\"), \"/{}/{}\"))),",
+            key, folder, rel_str
+        )
+        .unwrap();
+    }
+
+    writeln!(out, "];\n").unwrap();
+}
+
+/// Recursively collect all `.yaml` and `.yml` files under `root`,
+/// returning paths relative to `root`.
+fn collect_yaml_relative_paths(root: &Path) -> Vec<PathBuf> {
+    let mut out_paths = Vec::new();
+    collect_yaml_recursive(root, root, &mut out_paths);
+    out_paths
+}
+
+fn collect_yaml_recursive(dir: &Path, base: &Path, out: &mut Vec<PathBuf>) {
+    let entries = match fs::read_dir(dir) {
+        Ok(entries) => entries,
+        Err(_) => return,
+    };
+
+    for entry in entries.flatten() {
+        let path = entry.path();
+        if path.is_dir() {
+            collect_yaml_recursive(&path, base, out);
+        } else {
+            let ext = path.extension().and_then(|e| e.to_str()).unwrap_or("");
+            if ext == "yaml" || ext == "yml" {
+                let rel = path
+                    .strip_prefix(base)
+                    .expect("strip_prefix failed")
+                    .to_owned();
+                out.push(rel);
+            }
+        }
+    }
+}
+
+/// Convert a relative YAML path into a jurisdiction-like key.
+///
+/// Rules:
+/// - "base.yaml" -> "base"
+/// - "us/base.yaml" -> "us"
+/// - "us/il.yaml" -> "us/il"
+fn localization_key_for(rel: &Path) -> String {
+    let mut key = rel.to_string_lossy().replace('\\', "/");
+
+    if key.ends_with(".yaml") {
+        key.truncate(key.len() - ".yaml".len());
+    } else if key.ends_with(".yml") {
+        key.truncate(key.len() - ".yml".len());
+    }
+
+    if key.ends_with("/base") {
+        key.truncate(key.len() - "/base".len());
+    }
+
+    key
 }

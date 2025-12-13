@@ -19,9 +19,9 @@ def _schema_version() -> str:
 
 # Map (name, version) to relative paths from repo root
 SCHEMA_CATALOG = {
-    ("entity", "1.0"): "schemas/cep.entity.schema.json",
-    ("exchange", "1.0"): "schemas/cep.exchange.schema.json",
-    ("relationship", "1.0"): "schemas/cep.relationship.schema.json",
+    ("entity", "1.0"): "schemas/core/cep.entity.schema.json",
+    ("exchange", "1.0"): "schemas/core/cep.exchange.schema.json",
+    ("relationship", "1.0"): "schemas/core/cep.relationship.schema.json",
     ("snfei", "1.0"): "test_vectors/schemas/v1.0/generation-vector-set.schema.json",
 }
 

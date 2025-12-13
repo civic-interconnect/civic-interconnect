@@ -38,7 +38,7 @@
               "schemeUri": {
                 "type": "string",
                 "format": "uri",
-                "x-cep-scheme": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.identifier-scheme.schema.json",
+                "x-cep-scheme": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.identifier-scheme.schema.json",
                 "description": "The URI defining the identifier scheme, restricted to the CEP Identifier Scheme Vocabulary."
               },
               "identifier": {

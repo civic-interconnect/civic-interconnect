@@ -1,31 +1,32 @@
 {
   "attestations": [
     {
-      "attestationTimestamp": "1900-01-01T00:00:00.000000Z",
-      "attestorId": "cep-entity:example:ingest",
+      "anchorUri": null,
+      "attestationTimestamp": "1900-01-01T00:00:00Z",
+      "attestorId": "urn:ci:attestor:example",
       "proofPurpose": "assertionMethod",
       "proofType": "ManualAttestation",
-      "proofValue": null,
-      "sourceReference": null,
-      "sourceSystem": null,
-      "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest"
+      "proofValue": "",
+      "sourceReference": "examples/entity/municipality/us_il_01",
+      "sourceSystem": "state-municipal-registry",
+      "verificationMethodUri": "urn:ci:verification-method:manual"
     }
   ],
   "ctags": null,
   "dissolutionDate": null,
-  "entityTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.v1.0.0.json#municipality",
-  "identifiers": {
-    "snfei": {
-      "value": "c95b9f9d41adcfd140c977024a4d03f0b6f21363cd477379182e9695d62b8ae9"
+  "identifiers": [
+    {
+      "identifier": "c95b9f9d41adcfd140c977024a4d03f0b6f21363cd477379182e9695d62b8ae9",
+      "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#snfei"
     }
-  },
+  ],
   "inceptionDate": null,
   "jurisdictionIso": "US-IL",
   "legalName": "City of Springfield",
   "legalNameNormalized": "city springfield",
   "recordKind": "entity",
-  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json",
-  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#municipality",
+  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.schema.json",
+  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-type.v1.0.0.json#municipality",
   "revisionNumber": 1,
   "schemaVersion": "1.0.0",
   "shortName": null,

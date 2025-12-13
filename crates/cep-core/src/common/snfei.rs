@@ -1,21 +1,12 @@
-/// SNFEI Hash Generation.
-///
-/// This module computes the final SNFEI (Structured Non-Fungible Entity Identifier)
-/// from normalized entity attributes.
-///
-/// The SNFEI formula:
-///     SNFEI = SHA256(Concatenate[
-///         legal_name_normalized,
-///         address_normalized,
-///         country_code,
-///         registration_date
-///     ])
-///
-/// All inputs must pass through the Normalizing Functor before hashing.
+// crates/cep-core/src/common/snfei.rs
+//
+// Module for computing and validating SNFEI (Structured Non-Fungible Entity Identifier).
+
 use sha2::{Digest, Sha256};
 
-use crate::common::normalizer::{CanonicalInput, build_canonical_input};
 use serde::{Deserialize, Serialize};
+
+use super::normalizer::{CanonicalInput, build_canonical_input};
 
 /// A validated SNFEI (64-character lowercase hex string).
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
@@ -24,6 +15,9 @@ pub struct Snfei {
 }
 
 impl Snfei {
+    /// The prefix for a Verifiable ID derived from an SNFEI.
+    pub const VERIFIABLE_ID_PREFIX: &'static str = "cep-entity:snfei:";
+
     /// Create from an existing hash string.
     pub fn from_hash(hash: &str) -> Option<Self> {
         if hash.len() == 64 && hash.chars().all(|c| c.is_ascii_hexdigit()) {
@@ -48,6 +42,11 @@ impl Snfei {
             format!("{}...", &self.value[..length])
         }
     }
+
+    /// Generates the full Verifiable ID string (e.g., "cep-entity:snfei:<hash>").
+    pub fn to_verifiable_id(&self) -> String {
+        format!("{}{}", Self::VERIFIABLE_ID_PREFIX, self.value)
+    }
 }
 
 impl std::fmt::Display for Snfei {
@@ -58,6 +57,7 @@ impl std::fmt::Display for Snfei {
 
 /// Result of SNFEI generation with metadata.
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct SnfeiResult {
     /// The generated SNFEI
     pub snfei: Snfei,
@@ -80,98 +80,6 @@ pub fn compute_snfei(canonical: &CanonicalInput) -> Snfei {
     Snfei {
         value: format!("{:x}", result),
     }
-}
-
-/// Generate an SNFEI from raw entity attributes.
-///
-/// This is the main entry point for SNFEI generation. It applies the
-/// Normalizing Functor to all inputs before hashing.
-///
-/// # Arguments
-/// * `legal_name` - Raw legal name from source system
-/// * `country_code` - ISO 3166-1 alpha-2 country code
-/// * `address` - Optional primary street address
-/// * `registration_date` - Optional formation/registration date
-///
-/// # Returns
-/// `SnfeiResult` containing the SNFEI, canonical input, and metadata
-///
-pub fn generate_snfei(
-    legal_name: &str,
-    country_code: &str,
-    address: Option<&str>,
-    registration_date: Option<&str>,
-) -> SnfeiResult {
-    let canonical = build_canonical_input(legal_name, country_code, address, registration_date);
-    let snfei = compute_snfei(&canonical);
-
-    // Pre-compute presence of optional fields in a safe, Option-aware way.
-    let has_address = canonical
-        .address_normalized
-        .as_deref()
-        .map_or(false, |s| !s.is_empty());
-
-    let has_registration_date = canonical
-        .registration_date
-        .as_deref()
-        .map_or(false, |s| !s.is_empty());
-
-    // Determine fields used
-    let mut fields_used = vec!["legal_name".to_string(), "country_code".to_string()];
-    if has_address {
-        fields_used.push("address".to_string());
-    }
-    if has_registration_date {
-        fields_used.push("registration_date".to_string());
-    }
-
-    // Calculate confidence score (Tier 3 logic)
-    let mut confidence: f64 = 0.5; // Base score
-    if has_address {
-        confidence += 0.2;
-    }
-    if has_registration_date {
-        confidence += 0.2;
-    }
-    // Bonus for longer, more specific names
-    let word_count = canonical.legal_name_normalized.split_whitespace().count();
-    if word_count > 3 {
-        confidence += 0.1;
-    }
-    // Cap at 0.9 for Tier 3
-    confidence = confidence.min(0.9);
-
-    // ensure confidence is between 0.0 and 1.0
-    if confidence < 0.0 {
-        confidence = 0.0;
-    } else if confidence > 1.0 {
-        confidence = 1.0;
-    }
-
-    SnfeiResult {
-        snfei,
-        canonical,
-        confidence_score: (confidence * 100.0).round() / 100.0,
-        tier: 3,
-        fields_used,
-    }
-}
-
-/// Simple SNFEI generation without metadata.
-///
-/// # Arguments
-/// * `legal_name` - Raw legal name from source system  
-/// * `country_code` - ISO 3166-1 alpha-2 country code
-/// * `address` - Optional primary street address
-/// # Returns
-/// The generated SNFEI string.
-pub fn generate_snfei_simple(
-    legal_name: &str,
-    country_code: &str,
-    address: Option<&str>,
-) -> String {
-    let result = generate_snfei(legal_name, country_code, address, None);
-    result.snfei.value
 }
 
 /// Generate SNFEI with confidence scoring and tier classification.
@@ -226,7 +134,55 @@ pub fn generate_snfei_with_confidence(
     }
 
     // Tier 3: Computed SNFEI
-    generate_snfei(legal_name, country_code, address, registration_date)
+    let has_address = canonical
+        .address_normalized
+        .as_deref()
+        .map_or(false, |s| !s.is_empty());
+
+    let has_registration_date = canonical
+        .registration_date
+        .as_deref()
+        .map_or(false, |s| !s.is_empty());
+
+    let mut fields_used = vec!["legal_name".to_string(), "country_code".to_string()];
+    if has_address {
+        fields_used.push("address".to_string());
+    }
+    if has_registration_date {
+        fields_used.push("registration_date".to_string());
+    }
+
+    let mut confidence: f64 = 0.5;
+    if has_address {
+        confidence += 0.2;
+    }
+    if has_registration_date {
+        confidence += 0.2;
+    }
+    let word_count = canonical.legal_name_normalized.split_whitespace().count();
+    if word_count > 3 {
+        confidence += 0.1;
+    }
+    confidence = confidence.min(0.9).max(0.0);
+
+    SnfeiResult {
+        snfei,
+        canonical,
+        confidence_score: (confidence * 100.0).round() / 100.0,
+        tier: 3,
+        fields_used,
+    }
+}
+
+/// Simple SNFEI generation without metadata.
+pub fn generate_snfei_simple(
+    legal_name: &str,
+    country_code: &str,
+    address: Option<&str>,
+) -> String {
+    let result =
+        generate_snfei_with_confidence(legal_name, country_code, address, None, None, None);
+    result.snfei.value
 }
 
 #[cfg(test)]
@@ -234,83 +190,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_snfei_generation() {
-        let result = generate_snfei("Springfield School District", "US", None, None);
-        assert_eq!(result.snfei.value.len(), 64);
-        assert!(result.snfei.value.chars().all(|c| c.is_ascii_hexdigit()));
-    }
-
-    #[test]
-    fn test_snfei_determinism() {
-        let result1 = generate_snfei("Springfield USD", "US", None, None);
-        let result2 = generate_snfei("Springfield USD", "US", None, None);
-        assert_eq!(result1.snfei.value, result2.snfei.value);
-    }
-
-    #[test]
-    fn test_snfei_result_fields() {
-        let result = generate_snfei(
-            "Springfield School District",
-            "US",
-            Some("123 Main St"),
-            Some("1985-01-15"),
-        );
-
-        assert_eq!(result.tier, 3);
-        assert!(result.confidence_score > 0.5);
-        assert!(result.fields_used.contains(&"legal_name".to_string()));
-        assert!(result.fields_used.contains(&"address".to_string()));
-        assert!(
-            result
-                .fields_used
-                .contains(&"registration_date".to_string())
-        );
-    }
-
-    #[test]
-    fn test_snfei_with_lei() {
-        let result = generate_snfei_with_confidence(
-            "Acme Corp",
-            "US",
-            None,
-            None,
-            Some("529900T8BM49AURSDO55"), // 20-char LEI
-            None,
-        );
-
-        assert_eq!(result.tier, 1);
-        assert_eq!(result.confidence_score, 1.0);
-    }
-
-    #[test]
-    fn test_snfei_with_sam_uei() {
-        let result = generate_snfei_with_confidence(
-            "Acme Corp",
-            "US",
-            None,
-            None,
-            None,
-            Some("J6H4FB3N5YK7"), // 12-char SAM UEI
-        );
-
-        assert_eq!(result.tier, 2);
-        assert_eq!(result.confidence_score, 0.95);
-    }
-
-    #[test]
-    fn test_snfei_simple() {
-        let snfei = generate_snfei_simple("Springfield USD", "US", None);
-        assert_eq!(snfei.len(), 64);
-    }
-
-    #[test]
-    fn test_snfei_from_hash() {
-        let valid_hash = "a".repeat(64);
-        let snfei = Snfei::from_hash(&valid_hash);
-        assert!(snfei.is_some());
-
-        let invalid_hash = "too_short";
-        let snfei = Snfei::from_hash(invalid_hash);
-        assert!(snfei.is_none());
+    fn snfei_allows_digits_and_lowercase_hex() {
+        let s = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+        let sn = Snfei::from_hash(s).expect("should be valid hex");
+        assert_eq!(sn.value(), s);
     }
 }

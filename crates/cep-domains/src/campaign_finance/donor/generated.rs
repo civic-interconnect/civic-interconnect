@@ -20,7 +20,7 @@ pub type Identifiers = Vec<Identifier>;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Address {
+pub struct DonorRecordAddress {
     pub street: Option<String>,
     pub city: Option<String>,
     #[serde(rename = "stateProvince")]
@@ -48,5 +48,5 @@ pub struct DonorRecord {
 
     pub identifiers: Option<Identifiers>,
 
-    pub address: Option<Address>,
+    pub address: Option<DonorRecordAddress>,
 }

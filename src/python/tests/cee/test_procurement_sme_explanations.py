@@ -42,7 +42,7 @@ def test_build_sme_evidence_reflects_value_threshold(amount, expected_flag):
     lot["estimatedValue"]["amount"] = amount
     context = _make_example_context()
 
-    # We assume the helper exposes build_sme_evidence; adjust if your API differs.
+    # Assume the helper exposes build_sme_evidence.
     assert hasattr(sme_explanations, "build_sme_evidence"), (
         "Expected build_sme_evidence in sme_explanations module."
     )
@@ -53,13 +53,13 @@ def test_build_sme_evidence_reflects_value_threshold(amount, expected_flag):
     assert isinstance(evidence, dict)
     assert "metrics" in evidence or "evidenceItems" in evidence
 
-    # We do not assume exact shape, but we expect the threshold to appear somewhere.
-    # If you have a fixed schema, tighten these assertions later.
+    # Do not assume exact shape, but expect the threshold to appear somewhere.
+    # TODO: May tighten these assertions.
     serialized = repr(evidence)
     assert "180000" in serialized or "300000" in serialized
     assert "250000" in serialized or "sme_value_threshold" in serialized
 
-    # Optional: if you include a boolean flag in the evidence, assert it.
+    # If a boolean flag is included in the evidence, assert it.
     if "isSmeFriendlyByValue" in evidence:
         assert evidence["isSmeFriendlyByValue"] is expected_flag
 

@@ -1,59 +1,137 @@
-/// Localization Functor - Jurisdiction-Specific Transforms.
-///
-/// The Localization Functor L transforms raw entity names using
-/// jurisdiction-specific rules before universal normalization:
-///
-/// ```markdown
-///     L: RawLocal → IntermediateCanonical
-///     N: IntermediateCanonical → FinalCanonical
-///
-///     SNFEI = Hash(N(L(raw_data)))
-/// ```
-///
-/// Dependencies required for the localization logic
-// Required for static initialization of the global config map
-use lazy_static::lazy_static;
-use regex::Regex;
+// File: crates/cep-core/src/common/localization.rs
+//
+// YAML-driven Localization Functor (no built-ins, no filesystem).
+//
+// L: RawLocal -> IntermediateCanonical
+// N: IntermediateCanonical -> FinalCanonical
+// SNFEI = Hash(N(L(raw_data)))
+//
+// This module loads localization configs from embedded YAML assets generated
+// by build.rs (LOCALIZATION_YAMLS), merges parent configs, and applies
+// transforms deterministically.
+//
+// NOTE: This module intentionally does not validate YAML against JSON Schema
+// at runtime. Schema validation is done in tooling/tests.
+
+use crate::common::assets::LOCALIZATION_YAMLS;
+use regex::{Regex, RegexBuilder};
+use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
-use std::io::ErrorKind;
-use std::path::PathBuf;
-use std::sync::Mutex;
+use std::sync::{Mutex, OnceLock};
+
+static GLOBAL_REGISTRY: OnceLock<Mutex<Result<LocalizationRegistry, String>>> = OnceLock::new();
+
+fn registry_mutex() -> &'static Mutex<Result<LocalizationRegistry, String>> {
+    GLOBAL_REGISTRY.get_or_init(|| Mutex::new(LocalizationRegistry::new()))
+}
+
+fn with_registry_mut<T>(
+    f: impl FnOnce(&mut LocalizationRegistry) -> Result<T, String>,
+) -> Result<T, String> {
+    let m = registry_mutex();
+    let mut guard = m
+        .lock()
+        .map_err(|_| "Localization registry mutex poisoned".to_string())?;
+
+    match guard.as_mut() {
+        Ok(reg) => f(reg),
+        Err(e) => Err(e.clone()),
+    }
+}
 
 // =============================================================================
-// DATA STRUCTURES
+// YAML FILE SHAPES
 // =============================================================================
 
-/// Represents a single localization transformation rule.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, Deserialize)]
+struct LocalizationRuleFile {
+    pattern: String,
+    replacement: String,
+
+    #[serde(default)]
+    is_regex: bool,
+
+    #[serde(default)]
+    scope: Option<String>,
+
+    #[serde(default)]
+    case_sensitive: bool,
+
+    #[serde(default = "default_rule_enabled")]
+    enabled: bool,
+
+    #[serde(default)]
+    order: Option<i64>,
+
+    #[serde(default)]
+    id: Option<String>,
+
+    #[serde(default)]
+    description: Option<String>,
+}
+
+fn default_rule_enabled() -> bool {
+    true
+}
+
+#[derive(Debug, Clone, Deserialize)]
+struct LocalizationConfigFile {
+    jurisdiction: String,
+
+    #[serde(default)]
+    parent: Option<String>,
+
+    #[serde(default)]
+    version: Option<String>,
+
+    #[serde(default)]
+    updated_timestamp: Option<String>,
+
+    #[serde(default)]
+    config_hash: Option<String>,
+
+    #[serde(default)]
+    abbreviations: HashMap<String, String>,
+
+    #[serde(default)]
+    agency_names: HashMap<String, String>,
+
+    #[serde(default)]
+    entity_types: HashMap<String, String>,
+
+    #[serde(default)]
+    rules: Vec<LocalizationRuleFile>,
+
+    #[serde(default)]
+    stop_words: Vec<String>,
+}
+
+// =============================================================================
+// RESOLVED / RUNTIME STRUCTS
+// =============================================================================
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct LocalizationRule {
     pub pattern: String,
     pub replacement: String,
     pub is_regex: bool,
-    // Context is used to restrict the rule application (e.g., "name", "address")
-    pub context: Option<String>,
+    pub scope: Option<String>,
+    pub case_sensitive: bool,
+    pub enabled: bool,
+    pub order: Option<i64>,
+    pub id: Option<String>,
+    pub description: Option<String>,
 }
 
-impl Default for LocalizationRule {
-    fn default() -> Self {
-        LocalizationRule {
-            pattern: String::new(),
-            replacement: String::new(),
-            is_regex: false,
-            context: None,
-        }
-    }
-}
-
-/// Configuration loaded for a specific jurisdiction, potentially merged from parents.
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct LocalizationConfig {
     pub jurisdiction: String,
     pub parent: Option<String>,
-    // Maps abbreviation -> full form
+    pub version: Option<String>,
+    pub updated_timestamp: Option<String>,
+    pub config_hash: Option<String>,
     pub abbreviations: HashMap<String, String>,
-    // Maps specific name -> canonical name
     pub agency_names: HashMap<String, String>,
-    // Maps raw type name -> canonical type code
     pub entity_types: HashMap<String, String>,
     pub rules: Vec<LocalizationRule>,
     pub stop_words: HashSet<String>,
@@ -61,9 +139,12 @@ pub struct LocalizationConfig {
 
 impl Default for LocalizationConfig {
     fn default() -> Self {
-        LocalizationConfig {
+        Self {
             jurisdiction: "unknown".to_string(),
             parent: None,
+            version: None,
+            updated_timestamp: None,
+            config_hash: None,
             abbreviations: HashMap::new(),
             agency_names: HashMap::new(),
             entity_types: HashMap::new(),
@@ -73,235 +154,299 @@ impl Default for LocalizationConfig {
     }
 }
 
-// =============================================================================
-// BUILT-IN CONFIGURATION (Emulating Python's BUILT_IN_CONFIGS constants)
-// =============================================================================
-
-/// Helper to convert array of pairs where elements implement AsRef<str> to HashMap<String, String>.
-/// This resolves the E0277 trait bound errors encountered with the previous generic bounds.
-fn map_from_pairs<T: AsRef<str>, U: AsRef<str>>(pairs: &[(T, U)]) -> HashMap<String, String> {
-    pairs
-        .iter()
-        // Use as_ref().to_string() to convert the referenced string-like type to an owned String.
-        .map(|(k, v)| (k.as_ref().to_string(), v.as_ref().to_string()))
-        .collect()
+#[derive(Debug, Clone, Serialize)]
+pub struct LocalizationApplyProvenance {
+    // Requested jurisdiction (normalized to internal key style)
+    pub requested_key: String,
+    // Which embedded YAML keys were used (after parent merge)
+    pub resolved_keys: Vec<String>,
+    // Config hashes (if present in YAML) in the same order as resolved_keys
+    pub resolved_config_hashes: Vec<Option<String>>,
 }
 
-fn create_us_base_config() -> LocalizationConfig {
+#[derive(Debug, Clone, Serialize)]
+pub struct LocalizationApplyResult {
+    pub output: String,
+    pub provenance: LocalizationApplyProvenance,
+}
+
+// Internal compiled form (avoid recompiling regex each call)
+#[derive(Debug, Clone)]
+struct CompiledRule {
+    rule: LocalizationRule,
+    regex: Option<Regex>,
+}
+
+#[derive(Debug, Clone)]
+pub struct CompiledConfig {
+    cfg: LocalizationConfig,
+    // agency_names + entity_types are word-boundary regex substitutions
+    agency_regexes: Vec<(Regex, String)>,
+    entity_type_regexes: Vec<(Regex, String)>,
+    compiled_rules: Vec<CompiledRule>,
+}
+
+// =============================================================================
+// KEY NORMALIZATION
+// =============================================================================
+
+fn normalize_key(input: &str) -> String {
+    let s = input.trim();
+
+    if s.eq_ignore_ascii_case("base") {
+        return "base".to_string();
+    }
+
+    // Allow ISO 3166-2 inputs like "US-IL" and also already-path-like "us/il".
+    // Normalize to lower with "/" separators.
+    let s = s.replace('-', "/");
+    s.to_lowercase()
+}
+
+// =============================================================================
+// PARSING AND MERGING
+// =============================================================================
+
+fn parse_yaml_to_config(key: &str, yaml_text: &str) -> Result<LocalizationConfig, String> {
+    let file_cfg: LocalizationConfigFile =
+        serde_yaml::from_str(yaml_text).map_err(|e| format!("YAML parse error for {key}: {e}"))?;
+
+    // Canonicalize parent/jurisdiction values to internal lookup keys.
+    let jurisdiction_key = normalize_key(&file_cfg.jurisdiction);
+    let parent_key = file_cfg.parent.as_ref().map(|p| normalize_key(p));
+
+    // Normalize maps/stop words to lowercase tokens.
+    let abbreviations = file_cfg
+        .abbreviations
+        .into_iter()
+        .map(|(k, v)| (k.to_lowercase(), v.to_lowercase()))
+        .collect();
+
+    let agency_names = file_cfg
+        .agency_names
+        .into_iter()
+        .map(|(k, v)| (k.to_lowercase(), v.to_lowercase()))
+        .collect();
+
+    let entity_types = file_cfg
+        .entity_types
+        .into_iter()
+        .map(|(k, v)| (k.to_lowercase(), v.to_lowercase()))
+        .collect();
+
+    let rules = file_cfg
+        .rules
+        .into_iter()
+        .map(|r| LocalizationRule {
+            pattern: r.pattern,
+            replacement: r.replacement,
+            is_regex: r.is_regex,
+            scope: r.scope,
+            case_sensitive: r.case_sensitive,
+            enabled: r.enabled,
+            order: r.order,
+            id: r.id,
+            description: r.description,
+        })
+        .collect();
+
+    let stop_words: HashSet<String> = file_cfg
+        .stop_words
+        .into_iter()
+        .map(|s| s.to_lowercase())
+        .collect();
+
+    Ok(LocalizationConfig {
+        jurisdiction: jurisdiction_key,
+        parent: parent_key,
+        version: file_cfg.version,
+        updated_timestamp: file_cfg.updated_timestamp,
+        config_hash: file_cfg.config_hash,
+        abbreviations,
+        agency_names,
+        entity_types,
+        rules,
+        stop_words,
+    })
+}
+
+fn merge_configs(child: &LocalizationConfig, parent: &LocalizationConfig) -> LocalizationConfig {
+    let mut merged_abbrevs = parent.abbreviations.clone();
+    merged_abbrevs.extend(child.abbreviations.clone());
+
+    let mut merged_agencies = parent.agency_names.clone();
+    merged_agencies.extend(child.agency_names.clone());
+
+    let mut merged_types = parent.entity_types.clone();
+    merged_types.extend(child.entity_types.clone());
+
+    // Rules: parent first then child
+    let mut merged_rules = parent.rules.clone();
+    merged_rules.extend(child.rules.clone());
+
+    let merged_stop_words: HashSet<String> = parent
+        .stop_words
+        .union(&child.stop_words)
+        .cloned()
+        .collect();
+
     LocalizationConfig {
-        jurisdiction: "US".to_string(),
-        parent: None,
-        abbreviations: map_from_pairs(&[
-            ("doj", "department of justice"),
-            ("dod", "department of defense"),
-            ("hhs", "department of health and human services"),
-            ("hud", "department of housing and urban development"),
-            ("doe", "department of energy"),
-            ("ed", "department of education"),
-            ("dot", "department of transportation"),
-            ("dhs", "department of homeland security"),
-            ("usda", "united states department of agriculture"),
-            ("epa", "environmental protection agency"),
-            ("fda", "food and drug administration"),
-            ("fcc", "federal communications commission"),
-            ("ftc", "federal trade commission"),
-            ("sec", "securities and exchange commission"),
-            ("irs", "internal revenue service"),
-            ("ssa", "social security administration"),
-            ("va", "veterans administration"),
-            ("nasa", "national aeronautics and space administration"),
-            ("fbi", "federal bureau of investigation"),
-            ("cia", "central intelligence agency"),
-            ("nsa", "national security agency"),
-        ]),
-        entity_types: map_from_pairs(&[
-            ("k-12", "kindergarten through twelfth grade"),
-            ("k12", "kindergarten through twelfth grade"),
-            ("501c3", "five oh one c three"),
-            ("501(c)(3)", "five oh one c three"),
-            ("501c4", "five oh one c four"),
-            ("501(c)(4)", "five oh one c four"),
-        ]),
-        // Python's US_BASE_CONFIG didn't include stop_words, so we omit them here to match the source.
-        ..Default::default()
+        jurisdiction: child.jurisdiction.clone(),
+        parent: child.parent.clone().or_else(|| parent.parent.clone()),
+        version: child.version.clone().or_else(|| parent.version.clone()),
+        updated_timestamp: child
+            .updated_timestamp
+            .clone()
+            .or_else(|| parent.updated_timestamp.clone()),
+        config_hash: child
+            .config_hash
+            .clone()
+            .or_else(|| parent.config_hash.clone()),
+        abbreviations: merged_abbrevs,
+        agency_names: merged_agencies,
+        entity_types: merged_types,
+        rules: merged_rules,
+        stop_words: merged_stop_words,
     }
 }
 
-// Global static map holding the built-in configurations
-lazy_static! {
-    // NOTE: This map stores ownership (LocalizationConfig) to be cloned into the registry cache.
-    pub static ref BUILT_IN_CONFIGS: HashMap<&'static str, LocalizationConfig> = {
-        let mut m = HashMap::new();
+// =============================================================================
+// APPLY LOGIC
+// =============================================================================
 
-        let us_base = create_us_base_config();
-        m.insert("us", us_base.clone());
-
-        m.insert("us/ca", LocalizationConfig {
-            jurisdiction: "us/ca".to_string(),
-            parent: Some("US".to_string()),
-            abbreviations: map_from_pairs(&[
-                ("caltrans", "california department of transportation"),
-                ("calpers", "california public employees retirement system"),
-                ("calstrs", "california state teachers retirement system"),
-                ("uc", "university of california"),
-                ("csu", "california state university"),
-                ("lausd", "los angeles unified school district"),
-                ("sfusd", "san francisco unified school district"),
-                ("ousd", "oakland unified school district"),
-            ]),
-            agency_names: map_from_pairs(&[
-                ("dmv", "department of motor vehicles"),
-                ("edd", "employment development department"),
-                ("ftb", "franchise tax board"),
-                ("boe", "board of equalization"),
-                ("cdcr", "california department of corrections and rehabilitation"),
-                ("chp", "california highway patrol"),
-            ]),
-            ..Default::default()
-        });
-
-        m.insert("us/ny", LocalizationConfig {
-            jurisdiction: "us/ny".to_string(),
-            parent: Some("US".to_string()),
-            abbreviations: map_from_pairs(&[
-                ("mta", "metropolitan transportation authority"),
-                ("nycha", "new york city housing authority"),
-                ("nypd", "new york police department"),
-                ("fdny", "fire department new york"),
-                ("suny", "state university of new york"),
-                ("cuny", "city university of new york"),
-                ("dot", "department of transportation"), // NY DOT
-                ("dec", "department of environmental conservation"),
-            ]),
-            agency_names: map_from_pairs(&[
-                ("port authority", "port authority of new york and new jersey"),
-                ("thruway", "new york state thruway authority"),
-                ("lirr", "long island rail road"),
-            ]),
-            ..Default::default()
-        });
-
-        let ca_base = LocalizationConfig {
-            jurisdiction: "CA".to_string(),
-            parent: None,
-            abbreviations: map_from_pairs(&[
-                ("rcmp", "royal canadian mounted police"),
-                ("cra", "canada revenue agency"),
-                ("cbsa", "canada border services agency"),
-            ]),
-            entity_types: map_from_pairs(&[
-                ("ltée", "limitee"), ("ltee", "limitee"),
-                ("inc", "incorporated"), ("enr", "enregistree"),
-            ]),
-            ..Default::default()
-        };
-        m.insert("ca", ca_base.clone());
-
-        m.insert("ca/on", LocalizationConfig {
-            jurisdiction: "ca/on".to_string(),
-            parent: Some("CA".to_string()),
-            abbreviations: map_from_pairs(&[
-                ("ttc", "toronto transit commission"),
-                ("omb", "ontario municipal board"),
-                ("wsib", "workplace safety and insurance board"),
-                ("lcbo", "liquor control board of ontario"),
-            ]),
-            ..Default::default()
-        });
-
-        m.insert("ca/qc", LocalizationConfig {
-            jurisdiction: "ca/qc".to_string(),
-            parent: Some("CA".to_string()),
-            abbreviations: map_from_pairs(&[
-                ("stm", "societe de transport de montreal"),
-                ("saaq", "societe de assurance automobile du quebec"),
-                ("hydro-quebec", "hydro quebec"),
-            ]),
-            entity_types: map_from_pairs(&[
-                ("limitée", "limitee"),
-                ("incorporée", "incorporated"),
-                ("société", "societe"),
-                ("compagnie", "company"),
-            ]),
-            rules: vec![
-                LocalizationRule { pattern: "é".to_string(), replacement: "e".to_string(), ..Default::default() },
-                LocalizationRule { pattern: "è".to_string(), replacement: "e".to_string(), ..Default::default() },
-                LocalizationRule { pattern: "ê".to_string(), replacement: "e".to_string(), ..Default::default() },
-                LocalizationRule { pattern: "à".to_string(), replacement: "a".to_string(), ..Default::default() },
-                LocalizationRule { pattern: "â".to_string(), replacement: "a".to_string(), ..Default::default() },
-                LocalizationRule { pattern: "ô".to_string(), replacement: "o".to_string(), ..Default::default() },
-                LocalizationRule { pattern: "û".to_string(), replacement: "u".to_string(), ..Default::default() },
-                LocalizationRule { pattern: "ç".to_string(), replacement: "c".to_string(), ..Default::default() },
-            ],
-            ..Default::default()
-        });
-        m
-    };
+fn collapse_whitespace(s: &str) -> String {
+    s.split_whitespace().collect::<Vec<&str>>().join(" ")
 }
 
-// =============================================================================
-// LOCALIZATION FUNCTOR IMPLEMENTATION
-// =============================================================================
+fn compile_config(cfg: LocalizationConfig) -> Result<CompiledConfig, String> {
+    // Precompile agency_name substitutions with word boundaries and case-insensitive matching.
+    let mut agency_regexes = Vec::with_capacity(cfg.agency_names.len());
+    for (k, v) in cfg.agency_names.iter() {
+        let escaped = regex::escape(k);
+        let pat = format!(r"\b{}\b", escaped);
+        let re = RegexBuilder::new(&pat)
+            .case_insensitive(true)
+            .build()
+            .map_err(|e| format!("Failed compiling agency_names regex {pat}: {e}"))?;
+        agency_regexes.push((re, v.clone()));
+    }
 
-impl LocalizationConfig {
-    /// Apply jurisdiction-specific transformations to a name.
-    /// Matches the Python implementation `apply_to_name`.
-    pub fn apply_to_name(&self, name: &str) -> String {
+    // Precompile entity_type substitutions similarly.
+    let mut entity_type_regexes = Vec::with_capacity(cfg.entity_types.len());
+    for (k, v) in cfg.entity_types.iter() {
+        let escaped = regex::escape(k);
+        let pat = format!(r"\b{}\b", escaped);
+        let re = RegexBuilder::new(&pat)
+            .case_insensitive(true)
+            .build()
+            .map_err(|e| format!("Failed compiling entity_types regex {pat}: {e}"))?;
+        entity_type_regexes.push((re, v.clone()));
+    }
+
+    // Respect optional explicit order; stable sort by (order, original_index).
+    let mut rules_indexed: Vec<(usize, LocalizationRule)> =
+        cfg.rules.iter().cloned().enumerate().collect();
+    rules_indexed.sort_by(|(ia, ra), (ib, rb)| {
+        let oa = ra.order.unwrap_or(i64::MAX);
+        let ob = rb.order.unwrap_or(i64::MAX);
+        oa.cmp(&ob).then(ia.cmp(ib))
+    });
+
+    let mut compiled_rules = Vec::with_capacity(rules_indexed.len());
+    for (_idx, rule) in rules_indexed.into_iter() {
+        if !rule.enabled {
+            compiled_rules.push(CompiledRule { rule, regex: None });
+            continue;
+        }
+
+        if rule.is_regex {
+            let re = RegexBuilder::new(&rule.pattern)
+                .case_insensitive(!rule.case_sensitive)
+                .build()
+                .map_err(|e| format!("Failed compiling rule regex {}: {e}", rule.pattern))?;
+            compiled_rules.push(CompiledRule {
+                rule,
+                regex: Some(re),
+            });
+        } else {
+            compiled_rules.push(CompiledRule { rule, regex: None });
+        }
+    }
+
+    Ok(CompiledConfig {
+        cfg,
+        agency_regexes,
+        entity_type_regexes,
+        compiled_rules,
+    })
+}
+
+impl CompiledConfig {
+    fn apply_to_name(&self, name: &str) -> String {
+        // Start by lowercasing.
+        // All rules/maps are case-insensitive or normalized to lowercase.
         let mut result = name.to_lowercase();
 
-        // 1. Agency name expansions (Word boundary matching)
-        for (abbrev, full) in &self.agency_names {
-            // Python: pattern = r"\b" + re.escape(abbrev.lower()) + r"\b"
-            // Since `abbrev` is already lowercased in the static map definition, we can use it directly.
-            let escaped_abbrev = regex::escape(abbrev);
-            let pattern = format!(r"\b{}\b", escaped_abbrev);
-
-            // Note: In production, these Regex objects should be compiled once, outside the loop.
-            if let Ok(re) = Regex::new(&pattern) {
-                result = re.replace_all(&result, full.as_str()).to_string();
-            }
+        // 1) Agency names (word boundary, case-insensitive)
+        for (re, full) in self.agency_regexes.iter() {
+            result = re.replace_all(&result, full.as_str()).to_string();
         }
+        result = collapse_whitespace(&result);
 
-        // 2. Abbreviations (Tokenization)
+        // 2) Abbreviations (token-based expansion)
         let tokens: Vec<&str> = result.split_whitespace().collect();
-        let expanded: Vec<String> = tokens
-            .iter()
-            .map(|token| {
-                // Look up in the map (keys are already lowercase)
-                if let Some(expanded_form) = self.abbreviations.get(*token) {
-                    expanded_form.clone() // Value is already lowercased in the map
-                } else {
-                    token.to_string()
-                }
-            })
-            .collect();
-        result = expanded.join(" ");
-
-        // 3. Entity types (Word boundary matching)
-        for (local_type, canonical_type) in &self.entity_types {
-            // Python: pattern = r"\b" + re.escape(local_type.lower()) + r"\b"
-            let escaped_type = regex::escape(local_type);
-            let pattern = format!(r"\b{}\b", escaped_type);
-
-            if let Ok(re) = Regex::new(&pattern) {
-                result = re.replace_all(&result, canonical_type.as_str()).to_string();
+        let mut expanded = Vec::with_capacity(tokens.len());
+        for tok in tokens.iter() {
+            if let Some(v) = self.cfg.abbreviations.get(*tok) {
+                expanded.push(v.as_str());
+            } else {
+                expanded.push(*tok);
             }
         }
+        result = expanded.join(" ");
+        result = collapse_whitespace(&result);
 
-        // 4. Custom rules
-        for rule in &self.rules {
-            if rule.is_regex {
-                // Python uses re.IGNORECASE, but input is already lowercased.
-                if let Ok(re) = Regex::new(&rule.pattern) {
-                    // Replacement is already lowercased in the rule definition
+        // 3) Entity types (word boundary, case-insensitive)
+        for (re, canonical) in self.entity_type_regexes.iter() {
+            result = re.replace_all(&result, canonical.as_str()).to_string();
+        }
+        result = collapse_whitespace(&result);
+
+        // 4) Custom rules (ordered; regex or literal)
+        for cr in self.compiled_rules.iter() {
+            if !cr.rule.enabled {
+                continue;
+            }
+
+            if cr.rule.is_regex {
+                if let Some(re) = cr.regex.as_ref() {
                     result = re
-                        .replace_all(&result, rule.replacement.as_str())
+                        .replace_all(&result, cr.rule.replacement.as_str())
                         .to_string();
                 }
             } else {
-                // Simple replace (pattern and replacement are lowercased)
-                result = result.replace(&rule.pattern, &rule.replacement);
+                // Literal replace. If rule is case_sensitive, apply to the original casing would matter,
+                // but at this stage we are already in lowercase. This matches typical CEP behavior.
+                result = result.replace(
+                    &cr.rule.pattern.to_lowercase(),
+                    &cr.rule.replacement.to_lowercase(),
+                );
             }
+
+            result = collapse_whitespace(&result);
+        }
+
+        // 5) Stop words (token removal)
+        if !self.cfg.stop_words.is_empty() {
+            let tokens: Vec<&str> = result.split_whitespace().collect();
+            let mut kept = Vec::with_capacity(tokens.len());
+            for tok in tokens.iter() {
+                if !self.cfg.stop_words.contains(*tok) {
+                    kept.push(*tok);
+                }
+            }
+            result = kept.join(" ");
+            result = collapse_whitespace(&result);
         }
 
         result
@@ -309,235 +454,219 @@ impl LocalizationConfig {
 }
 
 // =============================================================================
-// LOCALIZATION REGISTRY (Matching Python Logic)
+// REGISTRY (embedded assets, cached resolved configs)
 // =============================================================================
 
-/// Registry for loading and caching localization configurations.
 #[derive(Debug)]
 pub struct LocalizationRegistry {
-    /// Optional path to localization YAML files
-    pub config_dir: Option<PathBuf>,
-    /// Cache of loaded configs, including merged ones
-    cache: HashMap<String, LocalizationConfig>,
+    // Base configs loaded from embedded YAML by key, e.g. "us", "us/il", "base"
+    base_by_key: HashMap<String, LocalizationConfig>,
+    // Compiled + merged cache for requested jurisdiction keys
+    compiled_cache: HashMap<String, CompiledConfig>,
+    // For provenance: keep parent chain resolution keys
+    resolved_key_chains: HashMap<String, Vec<String>>,
 }
 
 impl LocalizationRegistry {
-    /// Initialize the registry, pre-populating the cache with built-in configurations.
-    pub fn new(config_dir: Option<PathBuf>) -> Self {
-        // Initialize cache with a clone of the static BUILT_IN_CONFIGS
-        let cache = BUILT_IN_CONFIGS
-            .iter()
-            .map(|(k, v)| (k.to_string(), v.clone()))
-            .collect();
+    pub fn new() -> Result<Self, String> {
+        let mut base_by_key: HashMap<String, LocalizationConfig> = HashMap::new();
 
-        Self { config_dir, cache }
-    }
+        for (key, yaml_text) in LOCALIZATION_YAMLS.iter() {
+            let k = normalize_key(key);
+            let cfg = parse_yaml_to_config(&k, yaml_text)?;
 
-    /// Load config from YAML file. Simulates Python's `_load_yaml`.
-    fn load_yaml(&mut self, jurisdiction: &str) -> Option<LocalizationConfig> {
-        if self.config_dir.is_none() {
-            return None;
+            // Sanity: if YAML says jurisdiction "US" but key is "us", normalize and accept.
+            base_by_key.insert(k, cfg);
         }
 
-        // --- Python-matching logic for path derivation ---
-        let config_path = {
-            // For a real implementation, we would need to safely unwrap or handle the PathBuf
-            let config_dir = self.config_dir.as_ref().unwrap();
+        Ok(Self {
+            base_by_key,
+            compiled_cache: HashMap::new(),
+            resolved_key_chains: HashMap::new(),
+        })
+    }
 
-            if jurisdiction.contains('/') {
-                // Region-level: us/ca -> us/ca.yaml
-                let parts: Vec<&str> = jurisdiction.split('/').collect();
-                if parts.len() == 2 {
-                    config_dir.join(parts[0]).join(format!("{}.yaml", parts[1]))
-                } else {
-                    return None;
+    fn get_base(&self, key: &str) -> Option<&LocalizationConfig> {
+        self.base_by_key.get(key)
+    }
+
+    fn resolve_chain(&self, requested_key: &str) -> Vec<String> {
+        // Preferred: follow parent field if present.
+        // Fallback: if missing and contains '/', fall back to truncation.
+        // Final fallback: "base" if present.
+        let mut chain: Vec<String> = Vec::new();
+        let mut current = requested_key.to_string();
+
+        let mut safety = 0;
+        while safety < 50 {
+            safety += 1;
+
+            if let Some(cfg) = self.get_base(&current) {
+                // Add this key and then walk parent if present
+                chain.push(current.clone());
+
+                if let Some(parent) = cfg.parent.as_ref() {
+                    let parent_key = normalize_key(parent);
+                    if parent_key == current {
+                        break;
+                    }
+                    current = parent_key;
+                    continue;
                 }
-            } else {
-                // Country-level: us -> us/base.yaml
-                config_dir.join(jurisdiction).join("base.yaml")
+                break;
             }
-        };
 
-        // If the file exists, we would attempt to load and parse the YAML here.
-        // Rust's File::open() and yaml::from_str() would be used.
-        // We simulate the logic by checking existence and logging failure.
+            // No config at this key; path fallback
+            if current.contains('/') {
+                current = current.rsplit('/').nth(1).unwrap_or("").to_string();
+                continue;
+            }
 
-        // Simulating the file existence check and logging failure
-        // NOTE: PathBuf::exists() might not work correctly in all environments,
-        // but we keep the logic to match the Python intent.
-        if config_path.exists() {
-            // Placeholder: Assume successful load and parsing.
-            let loaded_config = LocalizationConfig {
-                jurisdiction: jurisdiction.to_string(),
-                parent: if jurisdiction.contains('/') {
-                    jurisdiction.split('/').next().map(|s| s.to_string())
-                } else {
-                    None
-                },
-                // In a real impl, this would be populated from the file.
+            // Try global base last
+            if current != "base" && self.get_base("base").is_some() {
+                current = "base".to_string();
+                continue;
+            }
+
+            break;
+        }
+
+        // We built from child->parent; we want merge order parent->child.
+        chain.reverse();
+        chain
+    }
+
+    fn merged_config_for_chain(&self, chain: &[String], requested_key: &str) -> LocalizationConfig {
+        // If chain is empty, return empty config with the requested_key.
+        if chain.is_empty() {
+            return LocalizationConfig {
+                jurisdiction: requested_key.to_string(),
                 ..Default::default()
             };
-            self.cache
-                .insert(jurisdiction.to_string(), loaded_config.clone());
-            Some(loaded_config)
-        } else {
-            // Simulating "Warning: Failed to load localization YAML..." log
-            // We use PathBuf::to_string_lossy() to match Python's f-string printing behavior
-            println!(
-                "Warning: Failed to load localization YAML {}: {}",
-                config_path.to_string_lossy(),
-                ErrorKind::NotFound
-            );
-            None
         }
-    }
 
-    /// Merge child config with parent (child overrides parent). Matches Python's `merge_configs`.
-    fn merge_configs(
-        child: &LocalizationConfig,
-        parent: &LocalizationConfig,
-    ) -> LocalizationConfig {
-        // 1-3. Maps: Child overrides parent (extend)
-        let mut merged_abbrevs = parent.abbreviations.clone();
-        merged_abbrevs.extend(child.abbreviations.clone());
-
-        let mut merged_agencies = parent.agency_names.clone();
-        merged_agencies.extend(child.agency_names.clone());
-
-        let mut merged_types = parent.entity_types.clone();
-        merged_types.extend(child.entity_types.clone());
-
-        // 4. Rules: Parent rules come first, then child rules (concatenate)
-        let mut merged_rules = parent.rules.clone();
-        merged_rules.extend(child.rules.clone());
-
-        // 5. Stop Words: Union of both sets
-        let merged_stop_words = parent
-            .stop_words
-            .union(&child.stop_words)
+        // Start from first (parent-most) then merge down to child-most
+        let mut merged = self
+            .get_base(&chain[0])
             .cloned()
-            .collect();
+            .unwrap_or_else(|| LocalizationConfig {
+                jurisdiction: requested_key.to_string(),
+                ..Default::default()
+            });
 
-        LocalizationConfig {
-            jurisdiction: child.jurisdiction.clone(),
-            // Use parent's jurisdiction as the parent identifier (Python implementation detail)
-            parent: Some(parent.jurisdiction.clone()),
-            abbreviations: merged_abbrevs,
-            agency_names: merged_agencies,
-            entity_types: merged_types,
-            rules: merged_rules,
-            stop_words: merged_stop_words,
-        }
-    }
-
-    /// Get localization config for a jurisdiction, with merging and fallback.
-    /// Matches Python's `get_config`. Requires `&mut self` because the cache is mutated.
-    pub fn get_config(&mut self, jurisdiction: &str) -> LocalizationConfig {
-        // 1. Normalize to lowercase
-        let jurisdiction = jurisdiction.to_lowercase();
-
-        // 2. Check if we have a merged config cached
-        let cache_key = format!("_merged_{}", jurisdiction);
-        if self.cache.contains_key(&cache_key) {
-            // MUST clone since the Python version returns a new object
-            return self.cache.get(&cache_key).unwrap().clone();
-        }
-
-        // 3. Try to get the base config for this jurisdiction
-        let config = if self.cache.contains_key(&jurisdiction) {
-            // Found in built-in or previously loaded base cache
-            Some(self.cache.get(&jurisdiction).unwrap().clone())
-        } else if self.config_dir.is_some() {
-            // Attempt to load from YAML file (calls self.load_yaml)
-            self.load_yaml(&jurisdiction)
-        } else {
-            // Cannot load and not in cache
-            None
-        };
-
-        let config = match config {
-            Some(c) => c,
-            None => {
-                // 4. If no config found:
-                if jurisdiction.contains('/') {
-                    // Region-level localization must be explicitly defined
-                    // (either as a built-in or via a YAML file).
-                    panic!(
-                        "Missing localization config for jurisdiction '{}'. \
-To localize this jurisdiction, add the associated YAML file under the localization/ directory.",
-                        jurisdiction
-                    );
-                }
-
-                // 5. For top-level jurisdictions with no config, return an empty config
-                // as a last resort. This allows truly generic cases like "eu" or "xx"
-                // to still function, but region-specific codes must be explicit.
-                return LocalizationConfig {
-                    jurisdiction: jurisdiction,
-                    parent: None,
-                    ..Default::default()
-                };
+        for key in chain.iter().skip(1) {
+            if let Some(child) = self.get_base(key) {
+                merged = merge_configs(child, &merged);
             }
-        };
-
-        // 6. If config has a parent, merge with parent config
-        if let Some(parent_code) = &config.parent.clone() {
-            // Clone parent_code to own it
-            // Note: The Python code expects the parent code to be title-cased in the config
-            // struct but lowercased for the registry lookup.
-            // We use the parent code from the config structure directly for the next lookup.
-            let parent_config = self.get_config(parent_code);
-            let merged = Self::merge_configs(&config, &parent_config);
-
-            // Cache the merged result
-            self.cache.insert(cache_key, merged.clone());
-            return merged;
         }
 
-        // 7. If no parent, return the base config
-        config
+        merged.jurisdiction = requested_key.to_string();
+        merged
+    }
+
+    pub fn get_compiled(
+        &mut self,
+        jurisdiction_input: &str,
+    ) -> Result<(CompiledConfig, LocalizationApplyProvenance), String> {
+        let requested_key = normalize_key(jurisdiction_input);
+
+        if let Some(existing) = self.compiled_cache.get(&requested_key) {
+            let chain = self
+                .resolved_key_chains
+                .get(&requested_key)
+                .cloned()
+                .unwrap_or_else(|| vec![]);
+
+            let hashes = chain
+                .iter()
+                .map(|k| self.get_base(k).and_then(|c| c.config_hash.clone()))
+                .collect::<Vec<_>>();
+
+            return Ok((
+                existing.clone(),
+                LocalizationApplyProvenance {
+                    requested_key,
+                    resolved_keys: chain,
+                    resolved_config_hashes: hashes,
+                },
+            ));
+        }
+
+        let chain = self.resolve_chain(&requested_key);
+        let merged = self.merged_config_for_chain(&chain, &requested_key);
+        let compiled = compile_config(merged)?;
+
+        self.compiled_cache.insert(requested_key.clone(), compiled);
+        self.resolved_key_chains
+            .insert(requested_key.clone(), chain.clone());
+
+        let hashes = chain
+            .iter()
+            .map(|k| self.get_base(k).and_then(|c| c.config_hash.clone()))
+            .collect::<Vec<_>>();
+
+        let compiled_ref = self
+            .compiled_cache
+            .get(&requested_key)
+            .expect("compiled cache just inserted");
+
+        Ok((
+            compiled_ref.clone(),
+            LocalizationApplyProvenance {
+                requested_key,
+                resolved_keys: chain,
+                resolved_config_hashes: hashes,
+            },
+        ))
     }
 }
 
 // =============================================================================
-// GLOBAL REGISTRY AND CONVENIENCE FUNCTIONS
+// PUBLIC API
 // =============================================================================
 
-// Mock implementation of _find_localization_dir, as filesystem access is outside this scope
-fn find_localization_dir() -> Option<PathBuf> {
-    // In a real Rust project, this would search for the 'localization' folder.
-    None
+pub fn apply_localization_name(name: &str, jurisdiction: &str) -> Result<String, String> {
+    with_registry_mut(|reg| {
+        let (compiled, _prov) = reg.get_compiled(jurisdiction)?;
+        Ok(compiled.apply_to_name(name))
+    })
 }
 
-// Global registry instance (mutable via get_config, similar to Python's class instance)
-lazy_static! {
-    static ref GLOBAL_REGISTRY: Mutex<LocalizationRegistry> = {
-        let localization_dir = find_localization_dir();
-        Mutex::new(LocalizationRegistry::new(localization_dir))
-    };
+pub fn apply_localization_name_detailed(
+    name: &str,
+    jurisdiction: &str,
+) -> Result<LocalizationApplyResult, String> {
+    with_registry_mut(|reg| {
+        let (compiled, prov) = reg.get_compiled(jurisdiction)?;
+        Ok(LocalizationApplyResult {
+            output: compiled.apply_to_name(name),
+            provenance: prov,
+        })
+    })
 }
 
-/// Get localization config for a jurisdiction (convenience function).
-pub fn get_localization_config(jurisdiction: &str) -> LocalizationConfig {
-    // Must lock the mutex because the internal cache is mutated
-    GLOBAL_REGISTRY.lock().unwrap().get_config(jurisdiction)
+// Convenience: JSON for FFI
+pub fn apply_localization_name_detailed_json(
+    name: &str,
+    jurisdiction: &str,
+) -> Result<String, String> {
+    let res = apply_localization_name_detailed(name, jurisdiction)?;
+    serde_json::to_string(&res).map_err(|e| e.to_string())
 }
 
-/// Apply localization transforms to a name.
-/// This is the Localization Functor L. Matches Python's `apply_localization`.
-pub fn apply_localization(name: &str, jurisdiction: &str) -> String {
-    let config = get_localization_config(jurisdiction);
-    config.apply_to_name(name)
-}
+// =============================================================================
+// TESTS
+// =============================================================================
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    #[should_panic(expected = "Missing localization config for jurisdiction")]
-    fn missing_region_localization_panics() {
-        // Use a fake region code that we will never define (us/zz)
-        let _ = apply_localization("Example Name", "us/zz");
+    fn key_normalization_accepts_us_il() {
+        assert_eq!(normalize_key("US-IL"), "us/il");
+        assert_eq!(normalize_key("us/il"), "us/il");
+        assert_eq!(normalize_key("US"), "us");
+        assert_eq!(normalize_key("BASE"), "base");
     }
 }

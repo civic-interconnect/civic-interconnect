@@ -1,0 +1,59 @@
+# CEP Localization Rules
+# Jurisdiction: EU/DK
+# Parent: EU
+#
+# Notes:
+# - Normalize common Danish legal forms (A/S, ApS, I/S) conservatively.
+jurisdiction: "eu/dk"
+parent: "EU"
+version: "0.0.1"
+updated_timestamp: "2025-12-05T12:46:28Z"
+
+abbreviations:
+  eu: european union
+
+agency_names: {}
+
+entity_types: {}
+
+rules:
+  - pattern: ","
+    replacement: " "
+    is_regex: false
+
+  - pattern: "[,.;:]+\\s*$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "[-_]{2,}"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\s*&\\s*"
+    replacement: " & "
+    is_regex: true
+
+  # Danish legal forms
+  - pattern: "\\ba\\s*/\\s*s\\b"
+    replacement: "as"
+    is_regex: true
+
+  - pattern: "\\bap\\s*/\\s*s\\b"
+    replacement: "aps"
+    is_regex: true
+
+  - pattern: "\\bi\\s*/\\s*s\\b"
+    replacement: "is"
+    is_regex: true
+
+stop_words: []
+
+config_hash: null

@@ -1,7 +1,7 @@
 # Domain-Specific Vocabularies in CEP
 
 Domain-specific vocabularies extend the **core CEP vocabulary layer** with additional semantic detail for particular civic and regulatory domains.  
-They provide structured, stable identifiers for the concepts that matter within a domain while remaining compatible with CEP’s shared graph model.
+They provide structured, stable identifiers for the concepts that matter within a domain while remaining compatible with CEP's shared graph model.
 
 These vocabularies do **not** redefine CEP data structures.  
 Instead, they supply *specialized labels* that domain adapters, schemas, and analysis tools can use to describe:
@@ -46,7 +46,7 @@ Each domain term maps back to a **parent core term**, which ensures:
 - unified search, analytics, and reasoning across datasets  
 - compatibility with shared identity resolution frameworks
 
-This “refinement but not divergence” structure is central to CEP’s ability to unify heterogeneous civic data ecosystems.
+This “refinement but not divergence” structure is central to CEP's ability to unify heterogeneous civic data ecosystems.
 
 ---
 

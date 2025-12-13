@@ -102,7 +102,7 @@ Schema annotations (`x-cep-*`) indicate vocabulary-backed fields, ID references,
 
 ```text
 schemas/          # JSON Schemas (source of truth)
-vocabularies/     # Controlled vocabularies
+vocabulary/       # Controlled vocabularies
 tools/            # Codegen and helper tools
 crates/           # Rust crates (core logic and bindings)
 src/python/       # Python packages (ci-cep, ci-ctag, adapters)
@@ -113,7 +113,7 @@ src/python/       # Python packages (ci-cep, ci-ctag, adapters)
 Official schemas live under **/schemas** and are published with stable URLs such as:
 
 ```text
-https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json
+https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.schema.json
 ```
 
 Documentation includes a browser-embedded validator using Ajv.
@@ -152,19 +152,20 @@ builder (Python facade -> Rust FFI) -> validator -> CEP record
 
 Prepares raw source data by:
 
-- cleaning and mapping source fields  
-- applying localization rules  
-- producing a minimal **normalized payload**                         |
+-   cleaning and mapping source fields
+-   applying localization rules
+-   producing a minimal **normalized payload** |
 
 ### Rust Builder (FFI Boundary)
+
 Rust performs:
 
-- canonical normalization (legal name, address, registration date)  
-- SNFEI generation  
-- record assembly using generated types  
-- schema validation  
+-   canonical normalization (legal name, address, registration date)
+-   SNFEI generation
+-   record assembly using generated types
+-   schema validation
 
-The result is returned as a **validated CEP dict**.                                              |
+The result is returned as a **validated CEP dict**.
 
 ## Status
 

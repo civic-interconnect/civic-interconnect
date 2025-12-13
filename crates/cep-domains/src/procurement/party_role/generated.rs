@@ -27,4 +27,5 @@ pub struct PartyRoleRecord {
 
     #[serde(rename = "contractId")]
     pub contract_id: Option<String>,
+
 }

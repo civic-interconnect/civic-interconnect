@@ -27,4 +27,5 @@ pub struct ProcedureRecord {
 
     #[serde(rename = "jurisdictionUri")]
     pub jurisdiction_uri: Option<String>,
+
 }

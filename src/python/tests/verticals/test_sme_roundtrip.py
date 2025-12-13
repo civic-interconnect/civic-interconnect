@@ -45,7 +45,7 @@ def test_example_explanation_links_to_lot_and_has_core_fields() -> None:
     # Linkage: explanation must point at the lot entity.
     assert bundle["subjectEntityId"] == lot["id"]
 
-    # Core CEE shape checks (adapt keys as your CEE schema finalizes).
+    # Core CEE shape checks (adapt keys as CEE schema finalizes).
     assert bundle.get("explanationType") == "SME_FRIENDLY_PROCUREMENT"
     assert "evidenceSet" in bundle, "ExplanationBundle should include an evidenceSet"
     assert "attributionSet" in bundle, "ExplanationBundle should include an attributionSet"

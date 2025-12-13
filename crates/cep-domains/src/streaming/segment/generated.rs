@@ -27,4 +27,5 @@ pub struct SegmentRecord {
 
     #[serde(rename = "endTime")]
     pub end_time: Option<String>,
+
 }

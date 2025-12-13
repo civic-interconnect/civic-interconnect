@@ -1,0 +1,62 @@
+# CEP Localization Rules
+# Jurisdiction: EU/AT
+# Parent: EU
+#
+# Notes:
+# - Austria overlaps heavily with DE (GmbH, AG, OG, KG). Keep conservative.
+jurisdiction: "eu/at"
+parent: "EU"
+version: "0.0.1"
+updated_timestamp: "2025-12-05T12:46:28Z"
+
+abbreviations:
+  eu: european union
+
+agency_names: {}
+
+entity_types: {}
+
+rules:
+  - pattern: ","
+    replacement: " "
+    is_regex: false
+
+  - pattern: "[,.;:]+\\s*$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "[-_]{2,}"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\s*&\\s*"
+    replacement: " & "
+    is_regex: true
+
+  - pattern: "\\bg\\.?\\s*m\\.?\\s*b\\.?\\s*h\\.?\\b"
+    replacement: "gmbh"
+    is_regex: true
+
+  - pattern: "\\ba\\.?\\s*g\\.?\\b"
+    replacement: "ag"
+    is_regex: true
+
+  - pattern: "\\bo\\.?\\s*g\\.?\\b"
+    replacement: "og"
+    is_regex: true
+
+  - pattern: "\\bk\\.?\\s*g\\.?\\b"
+    replacement: "kg"
+    is_regex: true
+
+stop_words: []
+
+config_hash: null

@@ -1,31 +1,32 @@
 {
   "attestations": [
     {
-      "attestationTimestamp": "1900-01-01T00:00:00.000000Z",
-      "attestorId": "cep-entity:example:ingest",
+      "anchorUri": null,
+      "attestationTimestamp": "1900-01-01T00:00:00Z",
+      "attestorId": "urn:ci:attestor:example",
       "proofPurpose": "assertionMethod",
       "proofType": "ManualAttestation",
-      "proofValue": null,
-      "sourceReference": null,
-      "sourceSystem": null,
-      "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest"
+      "proofValue": "",
+      "sourceReference": "examples/entity/school_district/us_mn_01",
+      "sourceSystem": "minnesota-education-dept",
+      "verificationMethodUri": "urn:ci:verification-method:manual"
     }
   ],
   "ctags": null,
   "dissolutionDate": null,
-  "entityTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.v1.0.0.json#school-district",
-  "identifiers": {
-    "snfei": {
-      "value": "5dababc102e57910284849d9f63b6ac7b34b018c32b17fbf3d00c53cb53725da"
+  "identifiers": [
+    {
+      "identifier": "5dababc102e57910284849d9f63b6ac7b34b018c32b17fbf3d00c53cb53725da",
+      "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#snfei"
     }
-  },
+  ],
   "inceptionDate": null,
   "jurisdictionIso": "US-MN",
   "legalName": "Minnesota School District 01",
   "legalNameNormalized": "minnesota school district 01",
   "recordKind": "entity",
-  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json",
-  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#school_district",
+  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.schema.json",
+  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-type.v1.0.0.json#school-district",
   "revisionNumber": 1,
   "schemaVersion": "1.0.0",
   "shortName": null,

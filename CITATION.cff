@@ -1,0 +1,50 @@
+cff-version: "1.2.0"
+message: "If you use this repository or any of its components, please cite it as described below."
+
+title: "civic-interconnect"
+version: "0.1.0"
+date-released: "2025-01-01"
+
+authors:
+  - name: "Civic Interconnect Contributors"
+    orcid: "N/A"
+
+abstract: >
+  Civic Interconnect is an open-source specification and implementation
+  of the Civic Exchange Protocol (CEP), including schemas, vocabularies,
+  canonicalization rules, adapters, and identity mechanisms (SNFEI/EFS).
+  It provides a reusable, versioned framework for transforming heterogeneous
+  civic datasets into canonical CEP records with strong provenance and
+  explanation layers (CEE).
+
+repository-code: "https://github.com/civic-interconnect/civic-interconnect"
+license: "Apache-2.0"
+
+keywords:
+  - civic data
+  - canonicalization
+  - entity resolution
+  - provenance
+  - transparency
+  - data pipelines
+  - schema governance
+
+preferred-citation:
+  type: article
+  title: "The Civic Exchange Protocol (CEP): A Canonical Framework for Civic Data Interoperability"
+  authors:
+    - name: "Civic Interconnect Contributors"
+  year: 2025
+  journal: "Working draft"
+  url: "https://github.com/civic-interconnect/civic-interconnect"
+
+references:
+  # Example external datasets used in development, testing, or demonstrations.
+  - type: dataset
+    title: "City of Chicago Contracts Dataset"
+    authors:
+      - name: "City of Chicago"
+    year: 2025
+    url: "https://data.cityofchicago.org/Administration-Finance/Contracts/rsxa-ify5"
+    notes: "Used for testing CEP adapters, canonicalization, and identity normalization. Public Domain."
+

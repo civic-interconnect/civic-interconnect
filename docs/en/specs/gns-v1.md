@@ -40,7 +40,7 @@ Each node has:
   - `activity`  
   - `agent`  
   - `envelope` (optional, for packaging)  
-- `payload`: a CEC-compatible JSON object containing the node’s attributes
+- `payload`: a CEC-compatible JSON object containing the node's attributes
 
 Entity nodes should carry their `verifiableId` (from EFS) in the payload.
 
@@ -112,7 +112,7 @@ No relabeling is required for entity nodes.
 
 Non-entity nodes may not have globally stable IDs. For such nodes, GNS defines a canonical local ID computed from:
 
-- The node’s type  
+- The node's type  
 - A deterministic summary of its payload  
 - The multiset of incident edges (types + endpoint identifiers)  
 - Optional timestamps where present  

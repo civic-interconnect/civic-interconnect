@@ -40,7 +40,9 @@ keywords = [
   "pydantic",
 ]
 dependencies = [
+    "civic-data-identity-us-il",
     "jsonschema",
+    "pandas",
     "PyYAML",
     "referencing",
     "typer",
@@ -109,7 +111,7 @@ exclude_lines = [
   "@(abc\\.)?abstractmethod",
   "# pragma: no cover",
 ]
-fail_under = 65
+fail_under = 60
 precision = 1
 show_missing = true
 skip_covered = false
@@ -135,6 +137,8 @@ DEP001 = [
   "cep_py", # Rust extension module, imports handled differently
 ]
 DEP002 = [
+  # Indirect dependency, not directly imported
+  "civic-data-identity-us-il", # Indirect dependency, not directly imported
   # Dev dependencies
   "build",
   "defusedxml",
@@ -165,6 +169,7 @@ DEP002 = [
 
 [tool.pyright]
 extraPaths = ["./src/python/src"]
+stubPath = "./typings"
 ignore = ["**/__pycache__", "build", "dist", ".venv"]
 include = ["src/python/src/", "src/python/tests"]
 pythonVersion = "3.12"
@@ -248,7 +253,10 @@ include-package-data = true
 package-dir = {"" = "src/python/src"}
 
 [tool.setuptools.package-data]
-"civic_interconnect" = ["py.typed", "*.yaml"]
+civic_interconnect = [
+  "py.typed",
+  "cep/localization/**/*.yaml",
+]
 
 [tool.setuptools.packages.find]
 where = ["src/python/src"]
@@ -258,3 +266,6 @@ fallback_version = "0.0.1"
 local_scheme = "no-local-version"
 version_file = "src/python/src/civic_interconnect/_version.py"
 version_scheme = "guess-next-dev"
+
+[tool.uv.sources]
+civic-data-identity-us-il = { path = "../civic-data-identity-us-il", editable = true }

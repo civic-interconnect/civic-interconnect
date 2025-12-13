@@ -60,7 +60,7 @@ Examples:
 - `cep.graph.schema.json`
 
 Filenames describe **what** the schema is.  
-The directory path describes **where** the schema belongs within CEP’s structure.  
+The directory path describes **where** the schema belongs within CEP's structure.  
 These concerns remain independent so that schemas may relocate without requiring filename changes.
 
 ---

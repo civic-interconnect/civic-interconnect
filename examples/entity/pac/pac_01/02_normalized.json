@@ -1,4 +1,17 @@
 {
+  "attestations": [
+    {
+      "anchorUri": null,
+      "attestationTimestamp": "1900-01-01T00:00:00Z",
+      "attestorId": "urn:ci:attestor:example",
+      "proofPurpose": "assertionMethod",
+      "proofType": "ManualAttestation",
+      "proofValue": "",
+      "sourceReference": "examples/entity/pac/pac_01",
+      "sourceSystem": "fec-filing",
+      "verificationMethodUri": "urn:ci:verification-method:manual"
+    }
+  ],
   "entityType": "PAC",
   "jurisdictionIso": "US-FED",
   "legalName": "Citizens for Good Government PAC",

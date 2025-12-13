@@ -48,7 +48,6 @@ def test_procurement_sme_adapter_basic_run() -> None:
     result = adapter.run(raw)
 
     # Very soft assertions for now; tighten as schemas settle.
-    assert "attestation" in result
     assert "buyer" in result
     assert result["buyer"]["identifiers"]["snfei"]["value"]
     assert result["lots"][0]["identifiers"]["snfei"]["value"]

@@ -1,0 +1,77 @@
+# CEP Localization Rules
+# Jurisdiction: EU/DE
+# Parent: EU
+#
+# Notes:
+# - Conservative German legal-form normalization (keeps legal form tokens, just standardizes spelling).
+# - Avoids removing words like "bank", "universitaet", etc. (too identity-bearing).
+jurisdiction: "eu/de"
+parent: "EU"
+version: "0.0.1"
+updated_timestamp: "2025-12-05T12:46:28Z"
+
+abbreviations:
+  eu: european union
+
+agency_names: {}
+
+entity_types: {}
+
+rules:
+  # Tokenization stability
+  - pattern: ","
+    replacement: " "
+    is_regex: false
+
+  - pattern: "[,.;:]+\\s*$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "[-_]{2,}"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\s*&\\s*"
+    replacement: " & "
+    is_regex: true
+
+  # German legal forms (normalize punctuation/spacing)
+  - pattern: "\\bg\\.?\\s*m\\.?\\s*b\\.?\\s*h\\.?\\b"
+    replacement: "gmbh"
+    is_regex: true
+
+  - pattern: "\\bgg\\.?\\s*m\\.?\\s*b\\.?\\s*h\\.?\\b"
+    replacement: "ggmbh"
+    is_regex: true
+
+  - pattern: "\\baktiengesellschaft\\b|\\ba\\.?\\s*g\\.?\\b"
+    replacement: "ag"
+    is_regex: true
+
+  - pattern: "\\bunternehmergesellschaft\\s*\\(\\s*haftungsbeschraenkt\\s*\\)\\b|\\bug\\s*\\(\\s*haftungsbeschraenkt\\s*\\)\\b|\\bug\\b"
+    replacement: "ug"
+    is_regex: true
+
+  - pattern: "\\bkommanditgesellschaft\\b|\\bk\\.?\\s*g\\.?\\b"
+    replacement: "kg"
+    is_regex: true
+
+  - pattern: "\\boffene\\s+handelsgesellschaft\\b|\\bo\\.?\\s*h\\.?\\s*g\\.?\\b"
+    replacement: "ohg"
+    is_regex: true
+
+  - pattern: "\\be\\.?\\s*v\\.?\\b"
+    replacement: "ev"
+    is_regex: true
+
+stop_words: []
+
+config_hash: null

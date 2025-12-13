@@ -2,18 +2,20 @@ use std::collections::{HashMap, HashSet};
 
 use chrono::NaiveDate;
 use regex::Regex;
+use serde::{Deserialize, Serialize};
 use unicode_normalization::UnicodeNormalization;
 
 /// Detects Unicode combining marks (accents) after NFD decomposition.
-/// We strip these so that "é" → "e", "ñ" → "n", etc.
+/// We strip these so that accented Latin letters lose diacritics.
+/// Non-Latin scripts are preserved (Greek, Cyrillic, etc.).
 fn is_combining_mark(c: char) -> bool {
     matches!(
         c,
-        '\u{0300}'..='\u{036F}' |
-        '\u{1AB0}'..='\u{1AFF}' |
-        '\u{1DC0}'..='\u{1DFF}' |
-        '\u{20D0}'..='\u{20FF}' |
-        '\u{FE20}'..='\u{FE2F}'
+        '\u{0300}'..='\u{036F}'
+            | '\u{1AB0}'..='\u{1AFF}'
+            | '\u{1DC0}'..='\u{1DFF}'
+            | '\u{20D0}'..='\u{20FF}'
+            | '\u{FE20}'..='\u{FE2F}'
     )
 }
 
@@ -21,221 +23,247 @@ fn is_combining_mark(c: char) -> bool {
 // UNIVERSAL EXPANSION MAPS (using lazy_static for global static HashMaps)
 // =============================================================================
 
-// We use `lazy_static` for complex static initializations like HashMaps.
-// Note: Rust often prefers `phf` crate for faster, compile-time perfect hash maps,
-// but for simplicity, we'll use `lazy_static` with standard `HashMap`.
+//
+// Notes:
+// - All keys are lowercase and intended to be matched on token boundaries.
+// - The pipeline strips punctuation before token expansion, so dotted variants
+//   (e.g. "inc.") should generally be handled by pre-pass normalization below,
+//   not by adding dotted keys everywhere.
+// - We alphabetize keys and detect duplicates at init time to prevent silent
+//   overrides.
+//
+
 lazy_static::lazy_static! {
-    /// Legal entity suffixes: ALWAYS expand to full form
+    /// Dotted / spaced legal-form normalizations performed before punctuation stripping.
+    ///
+    /// These reduce multi-token forms like "l.l.c." or "s.a." into a single token
+    /// so they can be expanded reliably by LEGAL_SUFFIX_EXPANSIONS.
+    static ref DOTTED_LEGAL_FORM_REWRITES: Vec<(Regex, &'static str)> = {
+        let mut v: Vec<(Regex, &'static str)> = Vec::new();
+
+        // Keep patterns ASCII-only in source by using \u{...} escapes when needed.
+        // (?i) makes them case-insensitive.
+        v.push((Regex::new(r"(?i)\bb\s*\.\s*v\s*\.?\b").unwrap(), "bv"));
+        v.push((Regex::new(r"(?i)\bg\s*\.\s*p\s*\.?\b").unwrap(), "gp"));
+        v.push((Regex::new(r"(?i)\bl\s*\.\s*l\s*\.\s*c\s*\.?\b").unwrap(), "llc"));
+        v.push((Regex::new(r"(?i)\bl\s*\.\s*l\s*\.\s*p\s*\.?\b").unwrap(), "llp"));
+        v.push((Regex::new(r"(?i)\bl\s*\.\s*p\s*\.?\b").unwrap(), "lp"));
+        v.push((Regex::new(r"(?i)\bn\s*\.\s*v\s*\.?\b").unwrap(), "nv"));
+        v.push((Regex::new(r"(?i)\bp\s*\.\s*a\s*\.?\b").unwrap(), "pa"));
+        v.push((Regex::new(r"(?i)\bp\s*\.\s*c\s*\.?\b").unwrap(), "pc"));
+        v.push((Regex::new(r"(?i)\bp\s*\.\s*l\s*\.\s*c\s*\.?\b").unwrap(), "plc"));
+        v.push((Regex::new(r"(?i)\bp\s*\.\s*l\s*\.\s*l\s*\.\s*c\s*\.?\b").unwrap(), "pllc"));
+        v.push((Regex::new(r"(?i)\bs\s*\.\s*a\s*\.?\b").unwrap(), "sa"));
+
+        // Common spaced form "s a" (seen in some datasets).
+        v.push((Regex::new(r"(?i)\bs\s+a\b").unwrap(), "sa"));
+
+        v
+    };
+
+    /// Legal entity suffixes and legal forms: ALWAYS expand to full form.
     static ref LEGAL_SUFFIX_EXPANSIONS: HashMap<&'static str, &'static str> = {
-        let mut m = HashMap::new();
-        // Corporations
-        m.insert("inc", "incorporated");
-        m.insert("inc.", "incorporated");
-        m.insert("incorp", "incorporated");
-        m.insert("corp", "corporation");
-        m.insert("corp.", "corporation");
-        // Limited Liability
-        m.insert("llc", "limited liability company");
-        m.insert("l.l.c.", "limited liability company");
-        m.insert("l.l.c", "limited liability company");
-        m.insert("llp", "limited liability partnership");
-        m.insert("l.l.p.", "limited liability partnership");
-        m.insert("lp", "limited partnership");
-        m.insert("l.p.", "limited partnership");
-        // Limited
-        m.insert("ltd", "limited");
-        m.insert("ltd.", "limited");
-        m.insert("ltda", "limitada");    // Spanish/Portuguese
-        m.insert("ltee", "limitee");     // French (will be ASCII-ified)
-        // Professional
-        m.insert("pc", "professional corporation");
-        m.insert("p.c.", "professional corporation");
-        m.insert("pllc", "professional limited liability company");
-        m.insert("p.l.l.c.", "professional limited liability company");
-        m.insert("pa", "professional association");
-        m.insert("p.a.", "professional association");
-        // Company
-        m.insert("co", "company");
-        m.insert("co.", "company");
-        m.insert("cos", "companies");
-        // Partnership
-        m.insert("gp", "general partnership");
-        m.insert("g.p.", "general partnership");
-        // Recognize "s a" as "sa" when tokenizing legal forms
-        m.insert("sa", "societe anonyme");
-        m.insert("s.a.", "societe anonyme");
-        m.insert("s a", "societe anonyme");
-        m.insert("plc", "public limited company");
-        m.insert("p.l.c.", "public limited company");
-        m.insert("ag", "aktiengesellschaft");  // German
-        m.insert("gmbh", "gesellschaft mit beschrankter haftung"); // German
-        m.insert("bv", "besloten vennootschap"); // Dutch
-        m.insert("b.v.", "besloten vennootschap");
-        m.insert("nv", "naamloze vennootschap");  // Dutch
-        m.insert("n.v.", "naamloze vennootschap");
-        m.insert("pty", "proprietary");       // Australian
-        m.insert("pty.", "proprietary");
+        let mut m: HashMap<&'static str, &'static str> = HashMap::new();
+
+        // Keys must be lowercase; keep sorted by key.
+        let entries: [(&'static str, &'static str); 22] = [
+            ("ag",   "aktiengesellschaft"),
+            ("bv",   "besloten vennootschap"),
+            ("co",   "company"),
+            ("corp", "corporation"),
+            ("cos",  "companies"),
+            ("gmbh", "gesellschaft mit beschrankter haftung"),
+            ("gp",   "general partnership"),
+            ("inc",  "incorporated"),
+            ("incorp","incorporated"),
+            ("llc",  "limited liability company"),
+            ("llp",  "limited liability partnership"),
+            ("lp",   "limited partnership"),
+            ("ltd",  "limited"),
+            ("ltda", "limitada"),
+            ("ltee", "limitee"),
+            ("na",   "national association"),
+            ("nv",   "naamloze vennootschap"),
+            ("pa",   "professional association"),
+            ("pc",   "professional corporation"),
+            ("plc",  "public limited company"),
+            ("pllc", "professional limited liability company"),
+            ("sa",   "societe anonyme"),
+        ];
+
+        for (k, v) in entries.iter() {
+            if m.insert(*k, *v).is_some() {
+                panic!("Duplicate LEGAL_SUFFIX_EXPANSIONS key: {}", k);
+            }
+        }
+
         m
     };
 
-    /// Common abbreviations: ALWAYS expand
+ /// Common abbreviations: ALWAYS expand (non-legal).
     static ref COMMON_ABBREVIATIONS: HashMap<&'static str, &'static str> = {
-        let mut m = HashMap::new();
- // Organizational
-    m.insert("assn", "association");
-    m.insert("assoc", "association");
-    m.insert("dept", "department");
-    m.insert("div", "division");
-    m.insert("grp", "group");
-    m.insert("org", "organization");
-    m.insert("inst", "institute");
-    m.insert("ctr", "center");
-    m.insert("ctre", "centre");
-    m.insert("comm", "commission");
-    m.insert("auth", "authority");
-    m.insert("admin", "administration");
-    m.insert("svcs", "services");
-    m.insert("svc", "service");
-    m.insert("mgmt", "management");
-    m.insert("mgt", "management");
+        let mut m: HashMap<&'static str, &'static str> = HashMap::new();
 
-    // Geographic (directional are intentionally omitted here, handled in address)
-    m.insert("natl", "national");
-    m.insert("intl", "international");
-    m.insert("regl", "regional");
-    m.insert("govt", "government");
-    m.insert("fed", "federal");
-    m.insert("muni", "municipal");
-    m.insert("metro", "metropolitan");
+        // Keys sorted by key.
+        let entries: [(&'static str, &'static str); 62] = [
+            ("acad",  "academy"),
+            ("admin", "administration"),
+            ("assn",  "association"),
+            ("assoc", "association"),
+            ("auth",  "authority"),
+            ("bd",    "board"),
+            ("bio",   "biological"),
+            ("boro",  "borough"),
+            ("bros",  "brothers"),
+            ("chem",  "chemical"),
+            ("coll",  "college"),
+            ("comm",  "commission"),
+            ("ctr",   "center"),
+            ("ctre",  "centre"),
+            ("cty",   "county"),
+            ("dept",  "department"),
+            ("dist",  "district"),
+            ("div",   "division"),
+            ("elec",  "electric"),
+            ("elem",  "elementary"),
+            ("ent",   "enterprises"),
+            ("fed",   "federal"),
+            ("fin",   "financial"),
+            ("ft",    "fort"),
+            ("govt",  "government"),
+            ("grp",   "group"),
+            ("hlth",  "health"),
+            ("hldgs", "holdings"),
+            ("ind",   "industries"),
+            ("inds",  "industries"),
+            ("ins",   "insurance"),
+            ("inst",  "institute"),
+            ("intl",  "international"),
+            ("inv",   "investment"),
+            ("invs",  "investments"),
+            ("isd",   "independent school district"),
+            ("jr",    "junior"),
+            ("med",   "medical"),
+            ("mfg",   "manufacturing"),
+            ("mgmt",  "management"),
+            ("mgt",   "management"),
+            ("mfr",   "manufacturer"),
+            ("metro", "metropolitan"),
+            ("mt",    "mount"),
+            ("muni",  "municipal"),
+            ("natl",  "national"),
+            ("org",   "organization"),
+            ("pharm", "pharmaceutical"),
+            ("props", "properties"),
+            ("pt",    "point"),
+            ("regl",  "regional"),
+            ("sch",   "school"),
+            ("sr",    "senior"),
+            ("svc",   "service"),
+            ("svcs",  "services"),
+            ("sys",   "systems"),
+            ("tech",  "technology"),
+            ("twp",   "township"),
+            ("univ",  "university"),
+            ("usd",   "unified school district"),
+            ("util",  "utilities"),
+            ("vlg",   "village"),
+        ];
 
-    // Educational
-    m.insert("univ", "university");
-    m.insert("coll", "college");
-    m.insert("acad", "academy");
-    m.insert("sch", "school");
-    m.insert("elem", "elementary");
-    m.insert("dist", "district");
-    m.insert("usd", "unified school district");
-    m.insert("isd", "independent school district");
+        for (k, v) in entries.iter() {
+            if m.insert(*k, *v).is_some() {
+                panic!("Duplicate COMMON_ABBREVIATIONS key: {}", k);
+            }
+        }
 
-    // Geographic features, directional are intentionally omitted, handled in address
-    m.insert("st", "saint");
-    m.insert("ste", "sainte");
-    m.insert("mt", "mount");
-    m.insert("ft", "fort");
-    m.insert("pt", "point");
-    m.insert("cty", "county");
-    m.insert("twp", "township");
-    m.insert("vlg", "village");
-    m.insert("boro", "borough");
-
-    // Business
-    m.insert("mfg", "manufacturing");
-    m.insert("mfr", "manufacturer");
-    m.insert("bros", "brothers");
-    m.insert("sys", "systems");
-    m.insert("tech", "technology");
-    m.insert("ind", "industries");
-    m.insert("inds", "industries");
-    m.insert("ent", "enterprises");
-    m.insert("hldgs", "holdings");
-    m.insert("props", "properties");
-    m.insert("invs", "investments");
-    m.insert("inv", "investment");
-    m.insert("fin", "financial");
-    m.insert("ins", "insurance");
-    m.insert("med", "medical");
-    m.insert("hlth", "health");
-    m.insert("pharm", "pharmaceutical");
-    m.insert("bio", "biological");
-    m.insert("chem", "chemical");
-    m.insert("elec", "electric");
-    m.insert("util", "utilities");
-    m.insert("jr", "junior");
-    m.insert("sr", "senior");
         m
     };
 
-    /// Stop words to remove (after normalization)
+    /// Stop words to remove (after normalization). Keys sorted.
     static ref STOP_WORDS: HashSet<&'static str> = {
-        let mut s = HashSet::new();
-        s.insert("the");
-        s.insert("of");
-        s.insert("a");
-        s.insert("an");
-        s.insert("and");
-        s.insert("for");
-        s.insert("in");
-        s.insert("on");
-        s.insert("at");
-        s.insert("to");
-        s.insert("by");
+        let mut s: HashSet<&'static str> = HashSet::new();
+        let entries: [&'static str; 11] = [
+            "a",
+            "an",
+            "and",
+            "at",
+            "by",
+            "for",
+            "in",
+            "of",
+            "on",
+            "the",
+            "to",
+        ];
+        for w in entries.iter() {
+            s.insert(*w);
+        }
         s
     };
 
-    /// US Postal abbreviations (USPS standard)
+    /// US Postal abbreviations (subset of common USPS expansions). Keys sorted.
     static ref US_ADDRESS_EXPANSIONS: HashMap<&'static str, &'static str> = {
-        let mut m = HashMap::new();
-        // Street types
-        m.insert("st", "street");
-        m.insert("st.", "street");
-        m.insert("ave", "avenue");
-        m.insert("ave.", "avenue");
-        // ... (All other US_ADDRESS_EXPANSIONS from Python code)
-        m.insert("blvd", "boulevard");
-        m.insert("blvd.", "boulevard");
-        m.insert("dr", "drive");
-        m.insert("dr.", "drive");
-        m.insert("rd", "road");
-        m.insert("rd.","road");
-        m.insert("ln", "lane");
-        m.insert("ln.", "lane");
-        m.insert("ct", "court");
-        m.insert("ct.","court");
-        m.insert("cir", "circle");
-        m.insert("cir.","circle");
-        m.insert("pl", "place");
-        m.insert("pl.","place");
-        m.insert("sq", "square");
-        m.insert("sq.","square");
-        m.insert("pkwy", "parkway");
-        m.insert("hwy", "highway");
-        m.insert("trl", "trail");
-        m.insert("way", "way");
-        m.insert("ter", "terrace");
-        m.insert("ter.", "terrace");
-        // Directionals
-        m.insert("n", "north");
-        m.insert("n.", "north");
-        m.insert("s", "south");
-        m.insert("s.", "south");
-        m.insert("e", "east");
-        m.insert("e.","east");
-        m.insert("w", "west");
-        m.insert("w.","west");
-        m.insert("ne", "northeast");
-        m.insert("nw", "northwest");
-        m.insert("se", "southeast");
-        m.insert("sw", "southwest");
+        let mut m: HashMap<&'static str, &'static str> = HashMap::new();
+
+        let entries: [(&'static str, &'static str); 31] = [
+            ("ave",  "avenue"),
+            ("blvd", "boulevard"),
+            ("cir",  "circle"),
+            ("ct",   "court"),
+            ("dr",   "drive"),
+            ("e",    "east"),
+            ("expy", "expressway"),
+            ("hwy",  "highway"),
+            ("ln",   "lane"),
+            ("n",    "north"),
+            ("ne",   "northeast"),
+            ("nw",   "northwest"),
+            ("pkwy", "parkway"),
+            ("pl",   "place"),
+            ("rd",   "road"),
+            ("s",    "south"),
+            ("se",   "southeast"),
+            ("sq",   "square"),
+            ("st",   "street"),
+            ("sw",   "southwest"),
+            ("ter",  "terrace"),
+            ("trl",  "trail"),
+            ("w",    "west"),
+            ("way",  "way"),
+            // TODO: Review extras that occur frequently:
+            ("ctr",  "center"),
+            ("ctrs", "centers"),
+            ("ste",  "suite"),
+            ("fl",   "floor"),
+            ("bldg", "building"),
+            ("apt",  "apartment"),
+            ("rm",   "room"),
+        ];
+
+        for (k, v) in entries.iter() {
+            if m.insert(*k, *v).is_some() {
+                panic!("Duplicate US_ADDRESS_EXPANSIONS key: {}", k);
+            }
+        }
+
         m
     };
 
-    /// Regex for secondary unit designators to REMOVE (apartment, suite, etc.)
+    /// Regex for secondary unit designators to remove (apartment, suite, etc.).
     static ref SECONDARY_UNIT_REGEX: Regex = {
-        let patterns = vec![
+        let patterns: [&'static str; 11] = [
             r"\bapt\.?\s*#?\s*\w+",
-            r"\bsuite\s*#?\s*\w+",
-            r"\bste\.?\s*#?\s*\w+",
-            r"\bunit\s*#?\s*\w+",
+            r"\bapartment\s*#?\s*\w+",
+            r"\bbldg\.?\s*#?\s*\w+",
+            r"\bbuilding\s*#?\s*\w+",
+            r"\bfl\.?\s*#?\s*\d+",
+            r"\bfloor\s*#?\s*\d+",
             r"\b#\s*\d+\w*",
-            r"\bfloor\s*\d+",
-            r"\bfl\.?\s*\d+",
-            r"\broom\s*\d+",
-            r"\brm\.?\s*\d+",
-            r"\bbldg\.?\s*\w+",
-            r"\bbuilding\s*\w+",
+            r"\brm\.?\s*#?\s*\w+",
+            r"\broom\s*#?\s*\w+",
+            r"\bste\.?\s*#?\s*\w+",
+            r"\bsuite\s*#?\s*\w+",
         ];
-        // Combine all patterns into one OR-separated regex
         let full_pattern = format!("(?i){}", patterns.join("|"));
         Regex::new(&full_pattern).unwrap()
     };
@@ -245,59 +273,64 @@ lazy_static::lazy_static! {
 // NORMALIZATION PIPELINE
 // =============================================================================
 
-/// Normalize Unicode and strip accents where safe.
+/// Normalize Unicode and strip diacritics where safe.
 ///
-/// - Decompose characters (NFD)
-/// - Remove combining marks (accents) so é → e, ñ → n, etc. for Latin script
-/// - Apply a few explicit replacements for ligatures and special letters
-/// - Preserve non-Latin scripts (Greek, Cyrillic, Han, etc.)
+/// Steps:
+/// - NFD decomposition
+/// - remove combining marks (diacritics)
+/// - replace a small set of punctuation-like Unicode chars with ASCII
+/// - remove control characters
+///
+/// This does NOT transliterate non-Latin scripts to ASCII. They are preserved.
+/// Only Latin letters lose diacritics.
 fn normalize_unicode_basic(text: &str) -> String {
-    // 1. NFD normalization and removal of combining marks (accents)
-    let mut normalized_text: String = text.nfd().filter(|c| !is_combining_mark(*c)).collect();
+    // 1) NFD and strip combining marks
+    let mut s: String = text.nfd().filter(|c| !is_combining_mark(*c)).collect();
 
-    // 2. Custom replacements for punctuation / ligatures etc.
-    // Note: all non-ASCII chars are expressed with \u{...} escapes
-    // so the source file itself stays ASCII-only.
-    let replacements = [
-        // Ligatures / special letters
-        ('\u{00E6}', "ae"), // æ
-        ('\u{0153}', "oe"), // œ
-        ('\u{00F8}', "o"),  // ø
-        ('\u{00DF}', "ss"), // ß
-        ('\u{00F0}', "d"),  // ð
-        ('\u{00FE}', "th"), // þ
-        // Quotes and dashes
-        ('\u{2018}', ""),    // ‘
-        ('\u{2019}', ""),    // ’
-        ('\u{201C}', ""),    // “
-        ('\u{201D}', ""),    // ”
-        ('\u{2013}', "-"),   // –
-        ('\u{2014}', "-"),   // —
-        ('\u{2026}', "..."), // …
+    // 2) Targeted Unicode punctuation normalization (ASCII-only replacements).
+    // Use \u{...} escapes so the source file stays ASCII-only.
+    let replacements: [(char, &'static str); 9] = [
+        ('\u{2018}', ""),    // left single quote
+        ('\u{2019}', ""),    // right single quote
+        ('\u{201C}', ""),    // left double quote
+        ('\u{201D}', ""),    // right double quote
+        ('\u{2013}', "-"),   // en dash
+        ('\u{2014}', "-"),   // em dash
+        ('\u{2212}', "-"),   // minus sign
+        ('\u{2026}', "..."), // ellipsis
+        ('\u{00A0}', " "),   // non-breaking space
     ];
 
     for (old, new) in replacements.iter() {
-        normalized_text = normalized_text.replace(*old, new);
+        s = s.replace(*old, new);
     }
 
-    // 3. Preserve non-ASCII; just drop control characters.
-    normalized_text
-        .chars()
-        .filter(|c| !c.is_control())
-        .collect()
+    // 3) Drop control chars, keep everything else (including non-ASCII letters).
+    s.chars().filter(|c| !c.is_control()).collect()
 }
 
-/// Remove all punctuation from text.
+/// Normalize dotted and spaced legal forms before punctuation stripping.
 ///
-/// Only alphanumeric and spaces remain. Punctuation is replaced by a space
-/// to maintain word boundaries.
+/// This helps cases like:
+/// - "L.L.C." -> "llc"
+/// - "S.A."   -> "sa"
+fn normalize_dotted_legal_forms(text: &str) -> String {
+    let mut out = text.to_string();
+    for (re, replacement) in DOTTED_LEGAL_FORM_REWRITES.iter() {
+        out = re.replace_all(&out, *replacement).to_string();
+    }
+    out
+}
+
+/// Replace punctuation with spaces to preserve word boundaries.
+/// Keeps letters/digits (including non-ASCII alphanumerics) and whitespace.
 fn remove_punctuation(text: &str) -> String {
     text.chars()
         .map(|c| {
             if c.is_alphanumeric() || c.is_whitespace() {
                 c
             } else {
-                ' ' // Replace punctuation with space
+                ' '
             }
         })
         .collect()
@@ -312,12 +345,9 @@ fn collapse_whitespace(text: &str) -> String {
 fn expand_token(token: &str) -> String {
     let lower = token.to_lowercase();
 
-    // 1. Check legal suffixes first
     if let Some(expansion) = LEGAL_SUFFIX_EXPANSIONS.get(lower.as_str()) {
         return expansion.to_string();
     }
-
-    // 2. Check common abbreviations
     if let Some(expansion) = COMMON_ABBREVIATIONS.get(lower.as_str()) {
         return expansion.to_string();
     }
@@ -327,33 +357,31 @@ fn expand_token(token: &str) -> String {
 
 /// Expand all abbreviations in the text.
 fn expand_abbreviations(text: &str) -> String {
-    let tokens: Vec<&str> = text.split_whitespace().collect();
-    let expanded: Vec<String> = tokens.iter().map(|&t| expand_token(t)).collect();
-    expanded.join(" ")
+    text.split_whitespace()
+        .map(expand_token)
+        .collect::<Vec<String>>()
+        .join(" ")
 }
 
 /// Remove stop words from text.
 fn remove_stop_words(text: &str, preserve_initial: bool) -> String {
     let tokens: Vec<&str> = text.split_whitespace().collect();
     if tokens.is_empty() {
-        return "".to_string();
+        return String::new();
     }
 
-    let mut result = Vec::with_capacity(tokens.len());
+    let mut out: Vec<&str> = Vec::with_capacity(tokens.len());
     for (i, token) in tokens.iter().enumerate() {
-        // If it's a stop word...
         if STOP_WORDS.contains(token) {
-            // ...preserve if it's the first word and flag is set
             if i == 0 && preserve_initial {
-                result.push(*token);
+                out.push(*token);
             }
-            // Otherwise, skip (don't push to result)
-        } else {
-            result.push(*token);
+            continue;
         }
+        out.push(*token);
     }
 
-    result.join(" ")
+    out.join(" ")
 }
 
 pub fn normalize_legal_name(
@@ -362,36 +390,33 @@ pub fn normalize_legal_name(
     preserve_initial_stop: bool,
 ) -> String {
     if name.is_empty() {
-        return "".to_string();
+        return String::new();
     }
 
-    // 1. Lowercase (done implicitly during token expansion, but better upfront)
+    // 1) Lowercase early
     let mut text = name.to_lowercase();
 
-    // 1b. Normalize dotted legal forms like "S.A." into "sa"
-    // so they survive punctuation stripping and hit LEGAL_SUFFIX_EXPANSIONS.
-    // This is narrowly scoped on purpose.
-    text = text.replace(" s.a.", " sa ");
-    text = text.replace(" s a ", " sa ");
+    // 2) Pre-pass for dotted/spaced legal forms (llc, sa, pllc, etc.)
+    text = normalize_dotted_legal_forms(&text);
 
-    // 2. ASCII-ish normalization (accent stripping etc.)
+    // 3) Unicode normalization (strip diacritics, normalize some punctuation)
     text = normalize_unicode_basic(&text);
 
-    // 3. Remove punctuation
+    // 4) Punctuation to spaces
     text = remove_punctuation(&text);
 
-    // 4. Collapse whitespace
+    // 5) Collapse whitespace
     text = collapse_whitespace(&text);
 
-    // 5. Expand abbreviations
+    // 6) Expand abbreviations (legal + common)
     text = expand_abbreviations(&text);
 
-    // 6. Remove stop words
+    // 7) Optional stop-word removal
     if remove_stop_words_flag {
         text = remove_stop_words(&text, preserve_initial_stop);
     }
 
-    // 7. Final collapse and trim
+    // 8) Final collapse
     collapse_whitespace(&text)
 }
 
@@ -400,83 +425,75 @@ pub fn normalize_legal_name(
 // =============================================================================
 
 fn expand_address_abbreviations(text: &str) -> String {
-    let tokens: Vec<&str> = text.split_whitespace().collect();
-    let expanded: Vec<String> = tokens
-        .iter()
-        .map(|&t| {
-            // Check US postal abbreviations first, then fall back to the token itself
-            if let Some(expansion) = US_ADDRESS_EXPANSIONS.get(t) {
+    text.split_whitespace()
+        .map(|t| {
+            let lower = t.to_lowercase();
+            if let Some(expansion) = US_ADDRESS_EXPANSIONS.get(lower.as_str()) {
                 expansion.to_string()
             } else {
-                t.to_string()
+                lower
             }
         })
-        .collect();
-    expanded.join(" ")
+        .collect::<Vec<String>>()
+        .join(" ")
 }
 
 pub fn normalize_address(address: &str, remove_secondary: bool) -> String {
     if address.is_empty() {
-        return "".to_string();
+        return String::new();
     }
 
-    // 1. Lowercase
+    // 1) Lowercase
     let mut text = address.to_lowercase();
 
-    // 2. ASCII transliteration
+    // 2) Unicode normalization
     text = normalize_unicode_basic(&text);
 
-    // 3. Remove secondary unit designators using the combined Regex
+    // 3) Remove secondary unit designators
     if remove_secondary {
         text = SECONDARY_UNIT_REGEX.replace_all(&text, " ").to_string();
     }
 
-    // 4. Remove punctuation
+    // 4) Punctuation to spaces
     text = remove_punctuation(&text);
 
-    // 5. Collapse whitespace
+    // 5) Collapse whitespace
     text = collapse_whitespace(&text);
 
-    // 6. Expand postal abbreviations
+    // 6) Expand address abbreviations
     text = expand_address_abbreviations(&text);
 
-    // 7. Final trim
-    text.trim().to_string()
+    // 7) Final collapse
+    collapse_whitespace(&text)
 }
 
 // =============================================================================
 // REGISTRATION DATE NORMALIZATION
 // =============================================================================
 
-/// Normalize a registration date to ISO 8601 format (YYYY-MM-DD).
-///
-/// Returns None if date cannot be parsed.
 pub fn normalize_registration_date(date_str: &str) -> Option<String> {
-    if date_str.is_empty() {
+    let s = date_str.trim();
+    if s.is_empty() {
         return None;
     }
 
-    let date_str = date_str.trim();
-
-    // Try to parse using a list of common formats
-    let patterns = [
-        "%Y-%m-%d", // ISO format
-        "%m/%d/%Y", // US format
-        "%m-%d-%Y", // US format (dashes)
-        "%d/%m/%Y", // European format
+    let patterns: [&'static str; 4] = [
+        "%Y-%m-%d", // ISO
+        "%m/%d/%Y", // US
+        "%m-%d-%Y", // US dashes
+        "%d/%m/%Y", // common EU
     ];
 
     for fmt in patterns.iter() {
-        if let Ok(dt) = NaiveDate::parse_from_str(date_str, fmt) {
+        if let Ok(dt) = NaiveDate::parse_from_str(s, fmt) {
             return Some(dt.format("%Y-%m-%d").to_string());
         }
     }
 
-    // Handle Year only format
-    if let Ok(year) = date_str.parse::<i32>() {
-        if year >= 1000 && year <= 9999 {
-            // Year only - use January 1
-            return Some(format!("{}-01-01", date_str));
+    // Year only
+    if let Ok(year) = s.parse::<i32>() {
+        if (1000..=9999).contains(&year) {
+            return Some(format!("{:04}-01-01", year));
         }
     }
 
@@ -487,8 +504,7 @@ pub fn normalize_registration_date(date_str: &str) -> Option<String> {
 // CANONICAL INPUT BUILDER
 // =============================================================================
 
-/// Normalized input for SNFEI hashing.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CanonicalInput {
     pub legal_name_normalized: String,
     pub address_normalized: Option<String>,
@@ -497,50 +513,26 @@ pub struct CanonicalInput {
 }
 
 impl CanonicalInput {
-    /// Generate the concatenated string for hashing.
-    ///
-    /// Format: `legal_name_normalized|address_normalized|country_code|registration_date`
-    /// Empty/None fields are included as empty strings to maintain consistent field positions.
     pub fn to_hash_string(&self) -> String {
         format!(
             "{}|{}|{}|{}",
             self.legal_name_normalized,
-            self.address_normalized.as_deref().unwrap_or(""), // Option<String> to &str, default ""
+            self.address_normalized.as_deref().unwrap_or(""),
             self.country_code,
             self.registration_date.as_deref().unwrap_or(""),
         )
     }
-
-    /// Alternative format that omits empty fields.
-    pub fn to_hash_string_v2(&self) -> String {
-        let mut parts = vec![self.legal_name_normalized.clone()];
-
-        if let Some(addr) = &self.address_normalized {
-            parts.push(addr.clone());
-        }
-
-        parts.push(self.country_code.clone());
-
-        if let Some(date) = &self.registration_date {
-            parts.push(date.clone());
-        }
-
-        parts.join("|")
-    }
 }
 
-/// Build a canonical input structure from raw entity data.
 pub fn build_canonical_input(
     legal_name: &str,
     country_code: &str,
     address: Option<&str>,
     registration_date: Option<&str>,
 ) -> CanonicalInput {
-    // Rust typically uses `&str` for inputs and `String` for owned, mutated/returned data.
     CanonicalInput {
         legal_name_normalized: normalize_legal_name(legal_name, true, false),
         address_normalized: address.and_then(|a| {
-            // Only normalize if the address string is not empty after trimming
             let normalized = normalize_address(a, true);
             if normalized.is_empty() {
                 None
@@ -549,24 +541,28 @@ pub fn build_canonical_input(
             }
         }),
         country_code: country_code.to_uppercase(),
-        registration_date: registration_date.and_then(|d| normalize_registration_date(d)),
+        registration_date: registration_date.and_then(normalize_registration_date),
     }
 }
+
 #[cfg(test)]
 mod normalizer_tests {
     use super::*;
+
     #[test]
-    fn legal_name_normalization_matches_python_example() {
-        let s = normalize_legal_name(
-            "The Springfield Unified Sch. Dist., Inc.",
-            true,  // remove_stop_words_flag
-            false, // preserve_initial_stop
-        );
+    fn legal_name_normalization_matches_example() {
+        let s = normalize_legal_name("The Springfield Unified Sch. Dist., Inc.", true, false);
         assert_eq!(s, "springfield unified school district incorporated");
     }
 
     #[test]
-    fn address_normalization_matches_python_example() {
+    fn legal_name_dotted_llc_is_recognized() {
+        let s = normalize_legal_name("Acme L.L.C.", true, false);
+        assert_eq!(s, "acme limited liability company");
+    }
+
+    #[test]
+    fn address_normalization_matches_example() {
         let s = normalize_address("123 N. Main St., Suite 400", true);
         assert_eq!(s, "123 north main street");
     }

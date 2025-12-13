@@ -8,7 +8,7 @@ They are:
 - Append-only
 - Vocabulary-driven
 - Non-canonical (do not affect SNFEI or verifiableId)
-- Attested (you always know who applied them, when, and why)
+- Attested (always know who applied them, when, and why)
 
 CTags live next to a record, not inside the payload.
 
@@ -29,8 +29,8 @@ They do not have a clean place for:
 - Cluster membership and similarity-based hints
 - Interpretive statements by analysts or oversight bodies
 
-If you put these inside the payload, they pollute the domain model and can change semantics.  
-If you try to squeeze them into provenance metadata, they become awkward and hard to query.
+If put inside the payload, they pollute the domain model and can change semantics.  
+If added to provenance metadata, they become awkward and hard to query.
 
 CTags solve this by creating a **third layer**:
 
@@ -93,7 +93,7 @@ Key points:
 
 - `tagTypeUri` and `code` tie the tag to a controlled vocabulary term.
 - `appliedBy` and `appliedAt` make the tag attributable and auditable.
-- `scope` and `targetPath` let you aim the tag at a full record, a particular field, or an inferred relationship.
+- `scope` and `targetPath` enable aiming the tag at a full record, a particular field, or an inferred relationship.
 - `confidence` is optional but encouraged for ML-inferred tags.
 
 ---

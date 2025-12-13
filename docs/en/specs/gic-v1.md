@@ -44,7 +44,7 @@ Every entity MUST have exactly one `verifiableId`, produced via:
 
 ## 2.2 Stability Under Attribute Change
 
-An entity’s `verifiableId` MUST remain unchanged if:
+An entity's `verifiableId` MUST remain unchanged if:
 
 -   addresses change
 -   phone/email change
@@ -76,7 +76,7 @@ No relationship may point to a:
 
 ## 3.2 Type Consistency
 
-A relationship’s `relationshipTypeUri` MUST be compatible with the types of the
+A relationship's `relationshipTypeUri` MUST be compatible with the types of the
 referenced entities.  
 For example:
 

@@ -34,4 +34,5 @@ pub struct BuyerRecord {
     pub jurisdiction_uri: Option<String>,
 
     pub identifiers: Option<Identifiers>,
+
 }

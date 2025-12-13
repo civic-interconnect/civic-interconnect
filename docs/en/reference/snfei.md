@@ -26,7 +26,11 @@ SNFEI introduces a **consistent, transparent, and reproducible identifier** that
 
 An SNFEI is defined as:
 
-> **SHA-256 hash of (normalized legal name + jurisdiction).**
+SHA-256 hash of the canonical input string:
+
+`legalNameNormalized|addressNormalized|countryCode|registrationDate`
+
+Empty/None fields are included as empty strings to keep positions stable.
 
 This produces a **fixed, deterministic identifier** using inputs that are:
 
@@ -48,7 +52,7 @@ For an entity with:
 The SNFEI is the SHA-256 hash of:
 
 ```
-example school district 123 + us-mn
+example school district 123||US|
 ```
 
 Example output:

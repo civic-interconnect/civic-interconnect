@@ -1,4 +1,17 @@
 {
+  "attestations": [
+    {
+      "anchorUri": null,
+      "attestationTimestamp": "1900-01-01T00:00:00Z",
+      "attestorId": "urn:ci:attestor:example",
+      "proofPurpose": "assertionMethod",
+      "proofType": "ManualAttestation",
+      "proofValue": "",
+      "sourceReference": "examples/entity/school_district/us_ny_01",
+      "sourceSystem": "new-york-education-dept",
+      "verificationMethodUri": "urn:ci:verification-method:manual"
+    }
+  ],
   "entityType": "school_district",
   "jurisdictionIso": "US-NY",
   "legalName": "New York School District 01",

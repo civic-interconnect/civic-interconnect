@@ -19,11 +19,7 @@ is responsible for:
 from typing import Any
 
 from civic_interconnect.cep.adapters.base import Adapter, AdapterKey, JsonDict
-from civic_interconnect.cep.localization import (
-    LocalizationConfig,
-    load_localization,
-    normalize_name,
-)
+from civic_interconnect.cep.localization import apply_localization_name
 
 # ---------------------------------------------------------------------
 # Adapter Definition
@@ -69,20 +65,17 @@ class StatePortalExampleAdapter(Adapter):
         program_name = str(raw["program_name"]).strip()
         jurisdiction_iso = str(raw["jurisdiction_iso"]).strip()
 
-        # Load localization config
-        loc_cfg: LocalizationConfig = load_localization(jurisdiction_iso)
-
-        normalized_name = normalize_name(program_name, loc_cfg)
+        # Rust localization pre-normalization (jurisdiction-aware)
+        localized = apply_localization_name(program_name, jurisdiction_iso)
 
         canonical: JsonDict = {
             "legalName": program_name,
-            "legalNameNormalized": normalized_name,
+            "legalNameNormalized": localized,
             "jurisdictionIso": jurisdiction_iso,
-            # Adjust entityType to match your vocab; "organization" is a safe default.
             "entityType": "organization",
         }
 
-        # Optionally pass through extra fields for later mapping
+        # Pass through extra fields for later mapping
         if "portal_id" in raw:
             canonical["portalId"] = str(raw["portal_id"]).strip()
         if "category" in raw:

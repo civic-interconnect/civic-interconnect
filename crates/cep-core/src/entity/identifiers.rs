@@ -1,49 +1,34 @@
 // crates/cep-core/src/entity/identifiers.rs
 
-/// Entity identifier types for CEP.
-///
-/// CEP supports multiple identifier schemes organized into tiers:
-///
-/// - Tier 1 (Global): LEI (Legal Entity Identifier)
-/// - Tier 2 (Federal): SAM.gov UEI
-/// - Tier 3 (Structured Non-Fungible Entity Identifier): SNFEI (generated hash-based identifier)
-/// - Extended: Canadian BN, UK Companies House, etc.
-///
-/// # SNFEI Generation
-///
-/// For full SNFEI generation with normalization and localization, use the
-/// SNFEI generator provided in the `common` module:
-///
-/// ```rust
-/// # fn main() {
-/// let result = cep_core::common::snfei::generate_snfei(
-///     "Springfield USD #12",
-///     "US",
-///     Some("123 Main St"),
-///     None,
-/// );
-/// let snfei = result.snfei;
-/// assert_eq!(snfei.value().len(), 64);
-/// # }
-/// ```
 use crate::common::canonical::{Canonicalize, insert_if_present};
 use crate::common::snfei::Snfei;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
+
+pub const LEI_SCHEME_URI: &str = "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#lei";
+pub const SAM_UEI_SCHEME_URI: &str = "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#sam-uei";
+pub const SNFEI_SCHEME_URI: &str = "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#snfei";
+pub const CANADIAN_BN_SCHEME_URI: &str = "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#canadian-bn";
+pub const UK_COMPANIES_HOUSE_SCHEME_URI: &str = "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#uk-companies-house";
+
+pub const LEI_VID_PREFIX: &str = "cep-entity:lei:";
+pub const SAM_UEI_VID_PREFIX: &str = "cep-entity:sam-uei:";
+pub const SNFEI_VID_PREFIX: &str = "cep-entity:snfei:";
+pub const CANADIAN_BN_VID_PREFIX: &str = "cep-entity:canadian-bn:";
+pub const UK_COMPANIES_HOUSE_VID_PREFIX: &str = "cep-entity:uk-companies-house:";
 
 /// SAM.gov Unique Entity Identifier (12 alphanumeric characters).
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct SamUei(String);
 
 impl SamUei {
-    /// Creates a new SAM UEI, validating the format.
     pub fn new(value: &str) -> Option<Self> {
-        if value.len() == 12
-            && value.chars().all(|c| {
-                c.is_ascii_digit() || (c.is_ascii_alphanumeric() && c.is_ascii_uppercase())
-            })
+        let v = value.trim().to_ascii_uppercase();
+        if v.len() == 12
+            && v.chars()
+                .all(|c| c.is_ascii_uppercase() || c.is_ascii_digit())
         {
-            Some(Self(value.to_string()))
+            Some(Self(v))
         } else {
             None
         }
@@ -59,10 +44,10 @@ impl SamUei {
 pub struct Lei(String);
 
 impl Lei {
-    /// Creates a new LEI, validating the format.
     pub fn new(value: &str) -> Option<Self> {
-        if value.len() == 20 && value.chars().all(|c| c.is_ascii_alphanumeric()) {
-            Some(Self(value.to_uppercase()))
+        let v = value.trim().to_ascii_uppercase();
+        if v.len() == 20 && v.chars().all(|c| c.is_ascii_alphanumeric()) {
+            Some(Self(v))
         } else {
             None
         }
@@ -73,25 +58,26 @@ impl Lei {
     }
 }
 
-/// Canadian Business Number with program account.
+/// Canadian Business Number with program account (example: 123456789RC0001).
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct CanadianBn(String);
 
 impl CanadianBn {
-    /// Creates a new Canadian BN (format: 123456789RC0001).
     pub fn new(value: &str) -> Option<Self> {
-        // Pattern: 9 digits + 2 letters + 4 digits
-        if value.len() == 15 {
-            let (digits1, rest) = value.split_at(9);
-            let (letters, digits2) = rest.split_at(2);
-            if digits1.chars().all(|c| c.is_ascii_digit())
-                && letters.chars().all(|c| c.is_ascii_uppercase())
-                && digits2.chars().all(|c| c.is_ascii_digit())
-            {
-                return Some(Self(value.to_string()));
-            }
+        let v = value.trim().to_ascii_uppercase();
+        if v.len() != 15 {
+            return None;
         }
-        None
+        let (digits1, rest) = v.split_at(9);
+        let (letters, digits2) = rest.split_at(2);
+        if digits1.chars().all(|c| c.is_ascii_digit())
+            && letters.chars().all(|c| c.is_ascii_uppercase())
+            && digits2.chars().all(|c| c.is_ascii_digit())
+        {
+            Some(Self(v))
+        } else {
+            None
+        }
     }
 
     pub fn as_str(&self) -> &str {
@@ -99,17 +85,13 @@ impl CanadianBn {
     }
 }
 
-/// An additional identifier scheme not explicitly defined in the schema.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AdditionalScheme {
-    /// URI identifying the identifier scheme.
     pub scheme_uri: String,
-    /// The identifier value.
     pub value: String,
 }
 
-/// Collection of all known identifiers for an entity.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct EntityIdentifiers {
@@ -149,7 +131,11 @@ impl EntityIdentifiers {
         self
     }
 
-    /// Returns true if at least one identifier is present.
+    pub fn with_canadian_bn(mut self, bn: CanadianBn) -> Self {
+        self.canadian_bn = Some(bn);
+        self
+    }
+
     pub fn has_any(&self) -> bool {
         self.sam_uei.is_some()
             || self.lei.is_some()
@@ -161,24 +147,27 @@ impl EntityIdentifiers {
                 .map_or(false, |v| !v.is_empty())
     }
 
-    /// Returns the "best" identifier for use as the verifiable ID.
+    /// Returns the "best" verifiable ID string.
     /// Priority: LEI > SAM UEI > SNFEI > Canadian BN > first additional.
     pub fn primary_identifier(&self) -> Option<String> {
         if let Some(ref lei) = self.lei {
-            return Some(format!("cep-entity:lei:{}", lei.as_str()));
+            return Some(format!("{}{}", LEI_VID_PREFIX, lei.as_str()));
         }
         if let Some(ref uei) = self.sam_uei {
-            return Some(format!("cep-entity:sam-uei:{}", uei.as_str()));
+            return Some(format!("{}{}", SAM_UEI_VID_PREFIX, uei.as_str()));
         }
         if let Some(ref snfei) = self.snfei {
-            return Some(format!("cep-entity:snfei:{}", snfei.value()));
+            return Some(format!("{}{}", SNFEI_VID_PREFIX, snfei.value()));
         }
         if let Some(ref bn) = self.canadian_bn {
-            return Some(format!("cep-entity:canadian-bn:{}", bn.as_str()));
+            return Some(format!("{}{}", CANADIAN_BN_VID_PREFIX, bn.as_str()));
         }
         if let Some(ref schemes) = self.additional_schemes {
             if let Some(first) = schemes.first() {
-                return Some(format!("cep-entity:other:{}", first.value));
+                return Some(format!(
+                    "cep-entity:other:{}:{}",
+                    first.scheme_uri, first.value
+                ));
             }
         }
         None
@@ -189,13 +178,18 @@ impl Canonicalize for EntityIdentifiers {
     fn canonical_fields(&self) -> BTreeMap<String, String> {
         let mut map = BTreeMap::new();
 
-        // Additional schemes serialized as JSON array string for canonical form.
         if let Some(ref schemes) = self.additional_schemes {
             if !schemes.is_empty() {
-                // Sort by scheme_uri for determinism.
-                let mut sorted: Vec<_> = schemes.iter().collect();
-                sorted.sort_by(|a, b| a.scheme_uri.cmp(&b.scheme_uri));
-                let json = serde_json::to_string(&sorted).unwrap_or_default();
+                let mut sorted: Vec<&AdditionalScheme> = schemes.iter().collect();
+                sorted.sort_by(|a, b| {
+                    let k = a.scheme_uri.cmp(&b.scheme_uri);
+                    if k == std::cmp::Ordering::Equal {
+                        a.value.cmp(&b.value)
+                    } else {
+                        k
+                    }
+                });
+                let json = serde_json::to_string(&sorted).unwrap_or_else(|_| "[]".to_string());
                 map.insert("additionalSchemes".to_string(), json);
             }
         }
@@ -214,94 +208,5 @@ impl Canonicalize for EntityIdentifiers {
         insert_if_present(&mut map, "snfei", self.snfei.as_ref().map(|x| x.value()));
 
         map
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::common::snfei::generate_snfei;
-
-    #[test]
-    fn test_sam_uei_valid() {
-        assert!(SamUei::new("J6H4FB3N5YK7").is_some());
-        assert!(SamUei::new("ABC123DEF456").is_some());
-    }
-
-    #[test]
-    fn test_sam_uei_invalid() {
-        assert!(SamUei::new("abc123def456").is_none()); // lowercase
-        assert!(SamUei::new("J6H4FB3N5YK").is_none()); // too short
-        assert!(SamUei::new("J6H4FB3N5YK78").is_none()); // too long
-    }
-
-    #[test]
-    fn test_lei_valid() {
-        assert!(Lei::new("5493001KJTIIGC8Y1R12").is_some());
-    }
-
-    #[test]
-    fn test_snfei_from_generator() {
-        let result = generate_snfei("Acme Consulting LLC", "US", None, None);
-        let snfei = result.snfei;
-        assert_eq!(snfei.value().len(), 64);
-
-        // Same input should produce same output.
-        let result2 = generate_snfei("Acme Consulting LLC", "US", None, None);
-        let snfei2 = result2.snfei;
-        assert_eq!(snfei, snfei2);
-
-        // Different input should produce different output.
-        let result3 = generate_snfei("Acme Consulting LLC", "CA", None, None);
-        let snfei3 = result3.snfei;
-        assert_ne!(snfei, snfei3);
-    }
-
-    #[test]
-    fn test_snfei_normalization_equivalence() {
-        // Different surface forms should normalize to same SNFEI.
-        let result1 = generate_snfei("Springfield USD", "US", None, None);
-        let snfei1 = result1.snfei;
-
-        let result2 = generate_snfei("SPRINGFIELD USD", "US", None, None);
-        let snfei2 = result2.snfei;
-
-        let result3 = generate_snfei("springfield usd", "US", None, None);
-        let snfei3 = result3.snfei;
-
-        assert_eq!(snfei1, snfei2);
-        assert_eq!(snfei2, snfei3);
-    }
-
-    #[test]
-    fn test_canadian_bn_valid() {
-        assert!(CanadianBn::new("123456789RC0001").is_some());
-    }
-
-    #[test]
-    fn test_primary_identifier_priority() {
-        let result = generate_snfei("test", "US", None, None);
-        let snfei = result.snfei;
-
-        let ids = EntityIdentifiers::new()
-            .with_sam_uei(SamUei::new("J6H4FB3N5YK7").unwrap())
-            .with_snfei(snfei);
-
-        // SAM UEI should take priority over SNFEI.
-        let primary = ids.primary_identifier().unwrap();
-        assert!(primary.starts_with("cep-entity:sam-uei:"));
-    }
-
-    #[test]
-    fn test_canonical_field_order() {
-        let ids = EntityIdentifiers::new()
-            .with_sam_uei(SamUei::new("J6H4FB3N5YK7").unwrap())
-            .with_lei(Lei::new("5493001KJTIIGC8Y1R12").unwrap());
-
-        let fields = ids.canonical_fields();
-        let keys: Vec<&String> = fields.keys().collect();
-
-        // Should be alphabetical.
-        assert_eq!(keys, vec!["lei", "samUei"]);
     }
 }

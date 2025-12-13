@@ -16,7 +16,7 @@ Education data often comes from a wide range of systems—K–12 districts, univ
 - facilitate data **interoperability** between jurisdictions and institutions  
 - give adapters a consistent set of target terms for normalization
 
-Each vocabulary in this folder is machine-readable and follows CEP’s versioning and governance rules.
+Each vocabulary in this folder is machine-readable and follows CEP's versioning and governance rules.
 
 ---
 
@@ -49,7 +49,7 @@ Mappings to global CEP vocabularies are included where appropriate.
 
 ## Education Entity Types
 
-The Education domain refines CEP’s global `entity-type` vocabulary to represent institutions, programs, roles, and learning artifacts with precision across K–12 and higher education systems.
+The Education domain refines CEP's global `entity-type` vocabulary to represent institutions, programs, roles, and learning artifacts with precision across K–12 and higher education systems.
 
 The vocabulary file:
 
@@ -88,7 +88,7 @@ Key relationships include:
 - **ED_HOLDS_CREDENTIAL** — person → credential  
 - **ED_ACCREDITED_BY** — institution → accreditation body  
 
-These specialize CEP’s core relationships (e.g., `PARTICIPATION`, `EMPLOYMENT`, `ACCREDITATION`) while honoring the structural differences across education systems.
+These specialize CEP's core relationships (e.g., `PARTICIPATION`, `EMPLOYMENT`, `ACCREDITATION`) while honoring the structural differences across education systems.
 
 Adapters should use these to emit consistent education graphs.
 
@@ -110,7 +110,7 @@ Adapters should reference the term URIs in these vocabulary files and document a
 
 ## Versioning and Governance
 
-All vocabulary files follow CEP’s standard versioning model:
+All vocabulary files follow CEP's standard versioning model:
 
 - filenames include the version (`v1.0.0`, etc.)  
 - vocabularies are immutable once released  
@@ -128,6 +128,6 @@ Contributions are welcome and should include:
 - rationale for new terms or refinements  
 - references to regulatory or institutional definitions when available  
 - examples of real-world usage  
-- compatibility considerations with CEP’s core vocabularies  
+- compatibility considerations with CEP's core vocabularies  
 
 All changes are reviewed under CEP governance.

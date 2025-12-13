@@ -1,0 +1,67 @@
+# CEP Localization Rules
+# Jurisdiction: EU/IT
+# Parent: EU
+#
+# Notes:
+# - Normalize Italian legal forms (S.p.A., S.r.l., etc.) conservatively.
+jurisdiction: "eu/it"
+parent: "EU"
+version: "0.0.1"
+updated_timestamp: "2025-12-05T12:46:28Z"
+
+abbreviations:
+  eu: european union
+
+agency_names: {}
+
+entity_types: {}
+
+rules:
+  - pattern: ","
+    replacement: " "
+    is_regex: false
+
+  - pattern: "[,.;:]+\\s*$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "[-_]{2,}"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\s*&\\s*"
+    replacement: " & "
+    is_regex: true
+
+  # Italian legal forms
+  - pattern: "\\bs\\.?\\s*p\\.?\\s*a\\.?\\b"
+    replacement: "spa"
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*r\\.?\\s*l\\.?\\b|\\bsrl\\b"
+    replacement: "srl"
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*n\\.?\\s*c\\.?\\b"
+    replacement: "snc"
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*a\\.?\\s*s\\.?\\b"
+    replacement: "sas"
+    is_regex: true
+
+  - pattern: "\\bsoc\\.?\\s*coop\\.?\\b|\\bcooperativa\\b"
+    replacement: "coop"
+    is_regex: true
+
+stop_words: []
+
+config_hash: null

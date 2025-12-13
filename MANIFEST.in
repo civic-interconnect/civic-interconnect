@@ -1,0 +1,4 @@
+# MANIFEST.in
+# Include localization YAML files in source distributions
+recursive-include localization *.yaml
+recursive-include src/python/src/civic_interconnect/cep/localization *.yaml

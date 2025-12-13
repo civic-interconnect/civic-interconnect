@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Evidenceitem {
+pub struct EvidenceSetRecordEvidenceItem {
     pub name: String,
     pub value: Option<serde_json::Value>,
     #[serde(rename = "sourceStreamId")]
@@ -28,5 +28,6 @@ pub struct EvidenceSetRecord {
     #[serde(rename = "windowId")]
     pub window_id: Option<String>,
 
-    pub evidence: Vec<Evidenceitem>,
+    pub evidence: Vec<EvidenceSetRecordEvidenceItem>,
+
 }

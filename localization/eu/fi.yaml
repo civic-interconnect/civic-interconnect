@@ -1,0 +1,63 @@
+# CEP Localization Rules
+# Jurisdiction: EU/FI
+# Parent: EU
+#
+# Notes:
+# - Normalize common Finnish legal forms (Oy, Oyj, Ky, Ay) conservatively.
+jurisdiction: "eu/fi"
+parent: "EU"
+version: "0.0.1"
+updated_timestamp: "2025-12-05T12:46:28Z"
+
+abbreviations:
+  eu: european union
+
+agency_names: {}
+
+entity_types: {}
+
+rules:
+  - pattern: ","
+    replacement: " "
+    is_regex: false
+
+  - pattern: "[,.;:]+\\s*$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "[-_]{2,}"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\s*&\\s*"
+    replacement: " & "
+    is_regex: true
+
+  # Finnish legal forms
+  - pattern: "\\boyj\\b"
+    replacement: "oyj"
+    is_regex: true
+
+  - pattern: "\\boy\\b"
+    replacement: "oy"
+    is_regex: true
+
+  - pattern: "\\bky\\b"
+    replacement: "ky"
+    is_regex: true
+
+  - pattern: "\\bay\\b"
+    replacement: "ay"
+    is_regex: true
+
+stop_words: []
+
+config_hash: null

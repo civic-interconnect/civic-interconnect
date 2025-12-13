@@ -19,12 +19,20 @@ This is the minimal normalized payload an adapter or ETL process would emit:
 }
 ```
 
-The SNFEI here is the SHA-256 hash of:
+The SNFEI here is the SHA-256 hash of the canonical input string:
 
-```
-normalized legal name + jurisdiction
-example school district 123 + us-mn
-```
+`legalNameNormalized|addressNormalized|countryCode|registrationDate`
+
+Empty/None fields are included as empty strings to keep positions stable.
+
+Example (no address, no registration date):
+
+`example school district 123||US|`
+
+Example (with address, no registration date):
+
+`new york school district 01|200 learning street|US|`
+
 
 ---
 
@@ -35,12 +43,12 @@ After running this normalized input through the CEP builder, the resulting `Enti
 ```json
 {
     "recordKind": "entity",
-    "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json",
+    "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.schema.json",
     "schemaVersion": "1.0.0",
     "revisionNumber": 1,
 
     "verifiableId": "cep-entity:snfei:34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3",
-    "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#educational-institution",
+    "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-type.json#educational-institution",
 
     "status": {
         "statusCode": "ACTIVE",
@@ -104,7 +112,7 @@ Even in a minimal example, CEP includes:
 
 -   envelope metadata (`recordKind`, `schemaVersion`)
 -   timestamps
--   a default attestation block
+-   an attestation block
 -   status envelope
 
 ---

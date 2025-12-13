@@ -61,7 +61,7 @@ Because vocabulary terms are globally known and versioned, normalized data becom
 - comparable across datasets  
 - durable over time  
 
-This is essential for CEP’s multi-domain crosswalking and identity-resolution capabilities.
+This is essential for CEP's multi-domain crosswalking and identity-resolution capabilities.
 
 ---
 
@@ -85,7 +85,7 @@ Domain schemas remain concise because semantics live in the vocabularies, not in
 
 ## 6. Domain Vocabularies and Canonicalization
 
-CEP’s canonicalization rules (CEC, GNS, EFS, GIC, etc.) rely on stable term URIs.  
+CEP's canonicalization rules (CEC, GNS, EFS, GIC, etc.) rely on stable term URIs.  
 Domain vocabularies support canonicalization by:
 
 - constraining allowable entity and relationship types  

@@ -12,7 +12,7 @@ def test_us_fec_adapter_basic_pipeline():
 
     result = adapter.run(raw)
 
-    assert "attestation" in result
+    assert "attestations" in result
     assert "identifiers" in result
     assert "snfei" in result["identifiers"]
     assert result["identifiers"]["snfei"]["value"]

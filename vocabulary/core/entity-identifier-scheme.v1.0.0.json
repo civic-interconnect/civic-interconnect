@@ -127,7 +127,7 @@
       "termUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#snfei",
       "code": "snfei",
       "label": "Structured Non-Fungible Entity Identifier Scheme",
-      "definition": "Identifier scheme for the Structured Non-Fungible Entity Identifier (SNFEI), defined as a SHA-256 hash of normalized name plus jurisdiction, providing an open, recomputable bridging identifier for entities lacking UEI or LEI coverage.",
+      "definition": "Identifier scheme for the Structured Non-Fungible Entity Identifier (SNFEI), defined as a SHA-256 hash of a canonical input string: legalNameNormalized|addressNormalized|countryCode|registrationDate (with empty strings for missing optional fields). SNFEI provides an open, recomputable bridging identifier for entities lacking UEI or LEI coverage.",
       "parentTermUri": null,
       "seeAlso": [],
       "status": "active",

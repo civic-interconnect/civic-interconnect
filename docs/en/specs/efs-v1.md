@@ -192,7 +192,7 @@ The fingerprint MUST be:
 
 Example:
 
-If a municipality changes its address or mayor, the entity’s fingerprint stays the same.
+If a municipality changes its address or mayor, the entity's fingerprint stays the same.
 
 ---
 

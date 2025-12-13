@@ -1,0 +1,71 @@
+# CEP Localization Rules
+# Jurisdiction: EU/FR
+# Parent: EU
+#
+# Notes:
+# - Normalize common French legal forms (SA, SAS, SARL, etc.) without removing them.
+jurisdiction: "eu/fr"
+parent: "EU"
+version: "0.0.1"
+updated_timestamp: "2025-12-05T12:46:28Z"
+
+abbreviations:
+  eu: european union
+
+agency_names: {}
+
+entity_types: {}
+
+rules:
+  - pattern: ","
+    replacement: " "
+    is_regex: false
+
+  - pattern: "[,.;:]+\\s*$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "[-_]{2,}"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\s*&\\s*"
+    replacement: " & "
+    is_regex: true
+
+  # French legal forms
+  - pattern: "\\bs\\.?\\s*a\\.?\\b"
+    replacement: "sa"
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*a\\.?\\s*s\\.?\\b|\\bs\\.?\\s*a\\.?\\s*s\\.?\\s*u\\.?\\b"
+    replacement: "sas"
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*a\\.?\\s*r\\.?\\s*l\\.?\\b|\\bs\\.?\\s*\\x{00E0}\\.?\\s*r\\.?\\s*l\\.?\\b|\\bs\\.?\\s*a\\.?\\s*rl\\b"
+    replacement: "sarl"
+    is_regex: true
+
+  - pattern: "\\be\\.?\\s*u\\.?\\s*r\\.?\\s*l\\.?\\b"
+    replacement: "eurl"
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*n\\.?\\s*c\\.?\\b"
+    replacement: "snc"
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*c\\.?\\s*i\\.?\\b"
+    replacement: "sci"
+    is_regex: true
+
+stop_words: []
+
+config_hash: null

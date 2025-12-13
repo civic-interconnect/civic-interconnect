@@ -17,7 +17,7 @@ CTags are:
 - vocabulary-governed  
 - non-destructive  
 - independent of canonicalization  
-- safe to add, modify, or remove without altering the record’s semantics  
+- safe to add, modify, or remove without altering the record's semantics  
 
 This document defines how CTags integrate with CEP record envelopes.
 

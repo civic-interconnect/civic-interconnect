@@ -8,14 +8,14 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Facilityref {
+pub struct InspectionRecordFacilityRef {
     #[serde(rename = "facilityVerifiableId")]
     pub facility_verifiable_id: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Regulatoragencyref {
+pub struct InspectionRecordRegulatorAgencyRef {
     #[serde(rename = "agencyVerifiableId")]
     pub agency_verifiable_id: Option<String>,
 }
@@ -36,8 +36,8 @@ pub struct InspectionRecord {
     pub jurisdiction_uri: Option<String>,
 
     #[serde(rename = "facilityRef")]
-    pub facility_ref: Facilityref,
+    pub facility_ref: InspectionRecordFacilityRef,
 
     #[serde(rename = "regulatorAgencyRef")]
-    pub regulator_agency_ref: Option<Regulatoragencyref>,
+    pub regulator_agency_ref: Option<InspectionRecordRegulatorAgencyRef>,
 }

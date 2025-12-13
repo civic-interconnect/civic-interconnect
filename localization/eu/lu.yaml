@@ -1,0 +1,54 @@
+# CEP Localization Rules
+# Jurisdiction: EU/LU
+# Parent: EU
+#
+# Notes:
+# - Luxembourg commonly uses S.A., S.à r.l.; keep conservative.
+jurisdiction: "eu/lu"
+parent: "EU"
+version: "0.0.1"
+updated_timestamp: "2025-12-05T12:46:28Z"
+
+abbreviations:
+  eu: european union
+
+agency_names: {}
+
+entity_types: {}
+
+rules:
+  - pattern: ","
+    replacement: " "
+    is_regex: false
+
+  - pattern: "[,.;:]+\\s*$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "[-_]{2,}"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\s*&\\s*"
+    replacement: " & "
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*a\\.?\\b"
+    replacement: "sa"
+    is_regex: true
+
+  - pattern: "\\bs\\.?\\s*\\x{00E0}\\s*r\\.?\\s*l\\.?\\b|\\bs\\.?\\s*a\\.?\\s*r\\.?\\s*l\\.?\\b"
+    replacement: "sarl"
+    is_regex: true
+
+stop_words: []
+
+config_hash: null

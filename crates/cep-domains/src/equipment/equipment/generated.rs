@@ -30,4 +30,5 @@ pub struct EquipmentRecord {
     pub status_code: Option<String>,
 
     pub metadata: Option<serde_json::Value>,
+
 }

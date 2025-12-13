@@ -1,6 +1,8 @@
 // Module for computing and validating SNFEI
 // (Structured Non-Fungible Entity Identifier)
 
+// path: crates/cep-core/src/common/entity/resolver.rs
+
 use sha2::{Digest, Sha256};
 
 // Import structs and functions from the sibling normalizer module

@@ -1,0 +1,6 @@
+cluster_id,jurisdiction_iso,raw_name,source
+mn-v-0001,US-MN,"ACME PLUMBING, INC.","mn_contracts_2020"
+mn-v-0001,US-MN,"Acme Plumbing Inc","mn_contracts_2021"
+mn-v-0001,US-MN,"ACME PLUMBING","mn_contracts_2021"
+mn-v-0002,US-MN,"CITY OF MINNEAPOLIS","mn_contracts_2020"
+mn-v-0002,US-MN,"Minneapolis, City of","mn_contracts_2021"

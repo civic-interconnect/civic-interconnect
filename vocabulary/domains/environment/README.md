@@ -16,7 +16,7 @@ Environmental data can differ significantly between agencies and regulatory fram
 - support integration of data from environmental agencies, monitoring networks, and permitting authorities  
 - give adapters consistent target terms for normalization
 
-Each vocabulary in this folder is machine-readable and versioned according to CEP’s governance rules.
+Each vocabulary in this folder is machine-readable and versioned according to CEP's governance rules.
 
 ---
 
@@ -37,7 +37,7 @@ These vocabularies may expand over time as environmental reporting domains are b
 
 ## Relationship to Core CEP Vocabularies
 
-These vocabularies extend CEP’s global vocabulary suite by:
+These vocabularies extend CEP's global vocabulary suite by:
 
 - providing environmental-specific **entity types** (sites, permits, processes)  
 - defining **relationship types** relevant to regulatory oversight and monitoring  
@@ -87,7 +87,7 @@ Key relationships include:
 - **ENV_MEASUREMENT_BY_ASSET** — measurement series → monitoring asset  
 - **ENV_ENFORCEMENT_AGAINST** — enforcement action → entity  
 
-These refine CEP’s core relationships (e.g., `CONTROL`, `GOVERNED_BY`, `OBSERVATION_OF`, `SANCTION`) and support cross-dataset integration across regulatory or scientific monitoring systems.
+These refine CEP's core relationships (e.g., `CONTROL`, `GOVERNED_BY`, `OBSERVATION_OF`, `SANCTION`) and support cross-dataset integration across regulatory or scientific monitoring systems.
 
 Adapters should produce environmental graphs using these relationship types.
 
@@ -108,7 +108,7 @@ Adapters should reference the term URIs defined here when normalizing source-sys
 
 ## Versioning and Governance
 
-All vocabulary files here follow CEP’s versioning and governance rules:
+All vocabulary files here follow CEP's versioning and governance rules:
 
 - filenames include the vocabulary version (e.g., `v1.0.0`)  
 - vocabularies are immutable once published  
@@ -126,6 +126,6 @@ Contributions should include:
 - justification for new terms  
 - references to regulatory definitions or environmental standards  
 - examples of usage from real data sources  
-- consideration of cross-domain alignment with CEP’s core vocabularies
+- consideration of cross-domain alignment with CEP's core vocabularies
 
 All proposals are reviewed under CEP governance.

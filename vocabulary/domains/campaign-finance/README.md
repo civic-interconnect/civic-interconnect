@@ -16,7 +16,7 @@ Campaign finance data varies widely across federal, state, and local reporting f
 -   enable **cross-walking** between heterogeneous systems (e.g., FEC, state agencies, local filings)
 -   give adapters a clear target space for normalization and enrichment
 
-Each file in this directory is a **machine-readable vocabulary** in CEP’s standard format, versioned according to the Vocabulary Governance Specification (VGS).
+Each file in this directory is a **machine-readable vocabulary** in CEP's standard format, versioned according to the Vocabulary Governance Specification (VGS).
 
 ---
 
@@ -53,7 +53,7 @@ This layered approach allows the CF domain to remain interoperable with other CE
 
 ## Campaign Finance Entity Types
 
-This domain defines a set of **campaign-finance-specific entity types** that refine CEP’s global `entity-type` vocabulary. These types allow adapters to represent committees, contributors, filings, and transactions with consistent semantics across jurisdictions.
+This domain defines a set of **campaign-finance-specific entity types** that refine CEP's global `entity-type` vocabulary. These types allow adapters to represent committees, contributors, filings, and transactions with consistent semantics across jurisdictions.
 
 The vocabulary file:
 
@@ -92,7 +92,7 @@ Key relationships include:
 -   **CF_OFFICE_SOUGHT_BY** — candidate → office
 -   **CF_PARTY_AFFILIATION** — committee or person → party
 
-These refine CEP’s core relationships (e.g., `TRANSFER`, `PARTICIPATION`, `RESPONSIBLE_FOR`) while supporting jurisdictional differences in reporting formats.
+These refine CEP's core relationships (e.g., `TRANSFER`, `PARTICIPATION`, `RESPONSIBLE_FOR`) while supporting jurisdictional differences in reporting formats.
 
 Adapters should use these relationships when emitting normalized CF graphs.
 
@@ -114,7 +114,7 @@ Adapters should reference the **term URIs** defined in these JSON files and, whe
 
 ## Versioning and Governance
 
-All vocabulary files here follow CEP’s standard versioning model:
+All vocabulary files here follow CEP's standard versioning model:
 
 -   filenames include the version number (e.g., `v1.0.0`)
 -   vocabularies are immutable once published
@@ -135,4 +135,4 @@ Proposed changes should include:
 -   examples of real-world usage
 -   compatibility considerations with global CEP vocabularies
 
-All contributions are reviewed under CEP’s governance process.
+All contributions are reviewed under CEP's governance process.

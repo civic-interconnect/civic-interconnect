@@ -1,0 +1,75 @@
+# CEP Localization Rules
+# Jurisdiction: EU/GR
+# Parent: EU
+#
+# Notes:
+# - Conservative Greek legal-form normalization (keep legal form tokens; standardize spelling).
+# - Greek strings often include tonos; do not try to strip accents here (that is a higher-risk policy choice).
+# - If later accent folding is desired, do it explicitly in a separate, well-tested rule set.
+jurisdiction: "eu/gr"
+parent: "EU"
+version: "0.0.1"
+updated_timestamp: "2025-12-05T12:46:28Z"
+
+abbreviations:
+  eu: european union
+
+agency_names: {}
+
+entity_types: {}
+
+rules:
+  # Tokenization stability
+  - pattern: ","
+    replacement: " "
+    is_regex: false
+
+  - pattern: "[,.;:]+\\s*$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "[-_]{2,}"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\s*&\\s*"
+    replacement: " & "
+    is_regex: true
+
+  # Greek legal forms (common)
+  # AE / A.E. (S.A.)
+  - pattern: "\\bα\\.?\\s*ε\\.?\\b|\\bae\\b|\\ba\\.?\\s*e\\.?\\b"
+    replacement: "ae"
+    is_regex: true
+
+  # EPE / E.P.E. (Ltd.)
+  - pattern: "\\bε\\.?\\s*π\\.?\\s*ε\\.?\\b|\\bepe\\b|\\be\\.?\\s*p\\.?\\s*e\\.?\\b"
+    replacement: "epe"
+    is_regex: true
+
+  # IKE / I.K.E. (Private company)
+  - pattern: "\\bι\\.?\\s*κ\\.?\\s*ε\\.?\\b|\\bike\\b|\\bi\\.?\\s*k\\.?\\s*e\\.?\\b"
+    replacement: "ike"
+    is_regex: true
+
+  # OE / O.E. (General partnership)
+  - pattern: "\\bο\\.?\\s*ε\\.?\\b|\\boe\\b|\\bo\\.?\\s*e\\.?\\b"
+    replacement: "oe"
+    is_regex: true
+
+  # EE / E.E. (Limited partnership)
+  - pattern: "\\bε\\.?\\s*ε\\.?\\b|\\bee\\b|\\be\\.?\\s*e\\.?\\b"
+    replacement: "ee"
+    is_regex: true
+
+stop_words: []
+
+config_hash: null

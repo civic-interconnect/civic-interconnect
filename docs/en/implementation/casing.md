@@ -23,7 +23,7 @@ Required:
   - legalName, legalNameNormalized, statusEffectiveDate, firstSeenAt
 - Enum values:
 - Use SCREAMING_SNAKE_CASE where they represent codes (e.g. ACTIVE, INACTIVE).
-- $defs object keys: camelCase or lowerCamelCase (your choice, but consistent).
+- $defs object keys: lowerCamelCase.
 - No snake_case in public JSON unless it is an external standard we are mirroring (document any exceptions).
 
 ## Rust

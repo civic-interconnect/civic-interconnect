@@ -1,20 +1,19 @@
-// crates/cep-core/src/exchange/manual.rs
+// Module for manual construction of exchange records
+// Path: crates/cep-core/src/exchange/manual.rs
+//
+// Contract:
+// - cep-core does NOT manufacture default attestations.
+// - Builders MUST reject missing or empty attestations.
+// - Attestations are created upstream (adapter/ingest/CLI) and passed in.
 
-// Pull in the generated types.
+use crate::common::attestations::deserialize_nonempty_vec;
+use crate::common::errors::{CepResult, map_json_input_error};
+use serde::Deserialize;
+
 use crate::exchange::generated::{
-    ExchangeRecord, Exchangestatus, Recipiententity, Sourceentity, Value,
+    Attestation, ExchangeRecord, ExchangeRecordExchangeStatus, ExchangeRecordRecipientEntity,
+    ExchangeRecordSourceEntity, ExchangeRecordValue,
 };
-
-use crate::common::errors::CepResult;
-
-// Ergonomic type aliases so downstream code can use nicer names if desired.
-pub type SourceEntity = Sourceentity;
-pub type RecipientEntity = Recipiententity;
-pub type ExchangeValue = Value;
-pub type ExchangeStatusLite = Exchangestatus;
-
-// Re-export commonly used generated types so callers can just use `exchange::manual::*`.
-pub use crate::exchange::generated::Attestation as GeneratedAttestation;
 
 // Add ergonomic helpers on the generated ExchangeRecord.
 impl ExchangeRecord {
@@ -24,32 +23,40 @@ impl ExchangeRecord {
         &self.occurred_timestamp[..10]
     }
 
-    /// Strongly-typed access to the source entity.
-    pub fn source_entity_typed(&self) -> &SourceEntity {
+    pub fn source_entity_typed(&self) -> &ExchangeRecordSourceEntity {
         &self.source_entity
     }
 
-    /// Strongly-typed access to the recipient entity.
-    pub fn recipient_entity_typed(&self) -> &RecipientEntity {
+    pub fn recipient_entity_typed(&self) -> &ExchangeRecordRecipientEntity {
         &self.recipient_entity
     }
 
-    /// Strongly-typed access to the value block.
-    pub fn value_typed(&self) -> &ExchangeValue {
+    pub fn value_typed(&self) -> &ExchangeRecordValue {
         &self.value
     }
 
-    /// Strongly-typed access to the exchange status.
-    pub fn exchange_status_typed(&self) -> &ExchangeStatusLite {
+    pub fn exchange_status_typed(&self) -> &ExchangeRecordExchangeStatus {
         &self.exchange_status
     }
 }
 
-/// Temporary stub builder for exchanges.
-/// For now this is a passthrough; future work can:
-/// - validate against the schema
-/// - hydrate into `ExchangeRecord`
-/// - attach attestations / hashes, etc.
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct NormalizedExchangeInput {
+    // Enforce: present and non-empty.
+    // Missing field => serde error "missing field `attestations`".
+    // Empty array => custom error from deserialize_nonempty_vec.
+    #[serde(deserialize_with = "deserialize_nonempty_vec")]
+    attestations: Vec<Attestation>,
+}
+
+/// Temporary stub builder.
+///
+/// Today: validates input and enforces non-empty attestations, then passes through.
+/// TODO: build a fully validated CEP exchange record (envelope + payload).
 pub fn build_exchange_from_normalized_json(input_json: &str) -> CepResult<String> {
+    let _normalized: NormalizedExchangeInput =
+        serde_json::from_str(input_json).map_err(map_json_input_error)?;
+    let _attestations = &_normalized.attestations;
     Ok(input_json.to_string())
 }

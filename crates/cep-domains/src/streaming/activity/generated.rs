@@ -27,4 +27,5 @@ pub struct ActivityRecord {
 
     #[serde(rename = "endedAt")]
     pub ended_at: Option<String>,
+
 }

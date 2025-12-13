@@ -8,6 +8,8 @@
 /// ```
 /// Where N preserves identity (same entity always maps to same canonical form)
 /// and composition (N(L(x)) = N ∘ L(x) where L is the localization functor).
+///
+/// Path: crates/cep-core/src/common/normalizer.rs
 use lazy_static::lazy_static;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
@@ -61,6 +63,13 @@ lazy_static! {
     /// Common abbreviations: ALWAYS expand
     static ref COMMON_ABBREVIATIONS: HashMap<&'static str, &'static str> = {
         let mut m = HashMap::new();
+
+        // Joint venture and nonprofit shorthands that occur in names
+        m.insert("jv", "joint venture");
+        m.insert("ajv", "joint venture");
+        m.insert("nfp", "not for profit");
+        m.insert("dba", "doing business as");
+
         // Organizational
         m.insert("assn", "association");
         m.insert("assoc", "association");

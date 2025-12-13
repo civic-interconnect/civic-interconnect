@@ -18,11 +18,11 @@ vocabulary/
   domains/
 ```
 
-Each subdirectory serves a distinct purpose within CEP’s vocabulary system.
+Each subdirectory serves a distinct purpose within CEP's vocabulary system.
 
 ### `core/`
 Contains vocabularies intrinsic to CEP itself.  
-These vocabularies define concepts that are structural to CEP’s data model, such as:
+These vocabularies define concepts that are structural to CEP's data model, such as:
 
 - entity types  
 - relationship types  

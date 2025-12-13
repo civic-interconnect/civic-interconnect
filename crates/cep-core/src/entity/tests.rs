@@ -14,7 +14,16 @@ fn build_entity_from_normalized_json_produces_entity_record() {
         "legalName": "Example School District 123",
         "legalNameNormalized": "example school district 123",
         "snfei": "34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3",
-        "entityType": "educational-institution"
+        "entityType": "educational-institution",
+        "attestations": [
+        {
+            "attestationTimestamp": "1900-01-01T00:00:00.000000Z",
+            "attestorId": "cep-entity:example:ingest",
+            "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest",
+            "proofType": "ManualAttestation",
+            "proofPurpose": "assertionMethod"
+        }
+        ]
     }"#;
 
     let out_json = build_entity_from_normalized_json(input_json).expect("builder should succeed");
@@ -27,9 +36,7 @@ fn build_entity_from_normalized_json_produces_entity_record() {
     assert!(matches!(record.record_kind, RecordKind::Entity));
     assert_eq!(
         record.record_schema_uri,
-        "https://raw.githubusercontent.com/\
-civic-interconnect/civic-interconnect/main/\
-schemas/cep.entity.schema.json"
+        "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.schema.json"
     );
     assert_eq!(record.schema_version, "1.0.0");
     assert_eq!(record.revision_number, 1);
@@ -41,14 +48,15 @@ schemas/cep.entity.schema.json"
     );
     assert_eq!(
         record.record_type_uri,
-        "https://raw.githubusercontent.com/\
-civic-interconnect/civic-interconnect/main/\
-vocabularies/entity-type.json#educational-institution"
+        "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-type.v1.0.0.json#educational-institution"
     );
 
     // Domain fields
     assert_eq!(record.jurisdiction_iso, "US-MN");
     assert_eq!(record.legal_name, "Example School District 123");
+
+    // Attestations are required and preserved (Option A)
+    assert!(!record.attestations.is_empty());
 
     // identifiers must contain an SNFEI entry with the expected value.
     let ids = record
@@ -70,15 +78,27 @@ vocabularies/entity-type.json#educational-institution"
     );
 }
 
-/// Timestamps and attestation defaults are at least present and non-empty where required.
+/// Timestamps defaults are present; attestations are required (Option A) and must be provided upstream.
 #[test]
 fn build_entity_sets_basic_envelope_defaults() {
     let input_json = r#"{
         "jurisdictionIso": "US-MN",
         "legalName": "Minimal Entity",
         "legalNameNormalized": "minimal entity",
-        "snfei": "abc123",
-        "entityType": "federal-agency"
+        "snfei": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entityType": "federal-agency",
+        "attestations": [
+            {
+                "attestationTimestamp": "1900-01-01T00:00:00.000000Z",
+                "attestorId": "cep-entity:example:ingest",
+                "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest",
+                "proofType": "ManualAttestation",
+                "proofPurpose": "assertionMethod",
+                "proofValue": null,
+                "sourceSystem": null,
+                "sourceReference": null
+            }
+        ]
     }"#;
 
     let out_json = build_entity_from_normalized_json(input_json).expect("builder should succeed");
@@ -95,7 +115,7 @@ fn build_entity_sets_basic_envelope_defaults() {
     assert!(!record.timestamps.last_updated_at.is_empty());
     assert!(!record.timestamps.valid_from.is_empty());
 
-    // Attestations: at least one default attestation
+    // Attestations: required and present (provided by input)
     assert!(!record.attestations.is_empty());
 }
 
@@ -129,10 +149,6 @@ fn normalize_german_legal_form_gmbh() {
     let raw = "GmbH & Co. KG";
     let normalized = normalize_legal_name(raw, true, false);
 
-    // Given LEGAL_SUFFIX_EXPANSIONS has:
-    //   "gmbh" -> "gesellschaft mit beschrankter haftung"
-    // and COMMON_ABBREVIATIONS / STOP_WORDS as in normalizer.rs,
-    // we expect:
     assert_eq!(
         normalized,
         "gesellschaft mit beschrankter haftung company kg"

@@ -13,7 +13,7 @@ This guide shows how to:
 
 ## 1. Install the CEP Toolkit
 
-You can install the CLI and Python API from PyPI:
+Install the CLI and Python API from PyPI:
 
 ```
 uv pip install civic-interconnect
@@ -82,14 +82,23 @@ This is the best way to understand the transformation pipeline.
 You can construct SNFEI values and full EntityRecords programmatically.
 
 ```python
-from civic_interconnect.cep.snfei import compute_snfei
-from civic_interconnect.cep.entity import build_entity_from_raw
+from civic_interconnect.cep.snfei import generate_snfei_detailed
+from civic_interconnect.cep.entity.api import build_entity_from_raw
+
+res = generate_snfei_detailed(
+    legal_name="City of Springfield",
+    country_code="US",
+    address="123 Lincoln Ave",
+    registration_date=None,
+    lei=None,
+    sam_uei=None,
+)
 
 raw = {
     "jurisdictionIso": "US-MN",
     "legalName": "City of Springfield",
-    "legalNameNormalized": "city springfield",
-    "snfei": compute_snfei("city springfield", "US-MN"),
+    "legalNameNormalized": res["canonical"]["legalNameNormalized"],
+    "snfei": res["snfei"]["value"],
     "entityType": "municipality",
 }
 
@@ -97,7 +106,7 @@ entity = build_entity_from_raw(raw)
 print(entity["verifiableId"])
 ```
 
-If Rust bindings are installed, CEP uses them automatically; otherwise, it falls back to the pure-Python implementation.
+Rust bindings are required and contain the core logic, CEP uses them automatically.
 
 ---
 

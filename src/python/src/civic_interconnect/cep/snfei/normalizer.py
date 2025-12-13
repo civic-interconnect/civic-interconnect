@@ -69,14 +69,17 @@ def build_canonical_input(
 ) -> CanonicalInput:
     """Build a canonical snapshot via the Rust SNFEI pipeline.
 
+    TODO: Implement a dedicated Rust function to build just the canonical
+    snapshot without computing the SNFEI hash.
+
     For now, we reuse the Rust SNFEI pipeline and extract its `canonical`
     section. This guarantees that:
 
     - Canonicalization happens exactly once (in Rust).
     - The canonical shape matches what SNFEI actually uses.
 
-    If you only care about normalization (and not the hash), this is still
-    safe; it just does a bit more work under the hood.
+    For normalization (without the hash), this is still
+    safe because SNFEI does not mutate the canonical fields; it only reads them.
 
     Returns:
         CanonicalInput dict with the normalized fields.
@@ -92,7 +95,7 @@ def build_canonical_input(
         lei=None,
         sam_uei=None,
     )
-    # Trust Rust’s canonical structure; we only type it.
+    # Trust Rust's canonical structure; we only type it.
     return detailed["canonical"]  # type: ignore[return-value]
 
 

@@ -42,6 +42,7 @@
     },
     "attestations": {
       "type": "array",
+      "minItems": 1,
       "items": {
         "$ref": "#/$defs/attestation"
       },
@@ -51,7 +52,7 @@
       "type": "array",
       "description": "Optional Context Tags (CTags) attached to this record. CTags express interpretive, analytic, or contextual facts about the record without changing its canonical identity or payload.",
       "items": {
-        "$ref": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.ctag.schema.json"
+        "$ref": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.ctag.schema.json"
       }
     }
   },
@@ -153,6 +154,10 @@
         "sourceReference": {
           "type": "string",
           "description": "Identifier for the record in the upstream source (filing id, row id, URL, etc.)."
+        },
+        "anchorUri": {
+          "anyOf": [{ "type": "string", "format": "uri" }, { "type": "null" }],
+          "description": "Optional URI that anchors this attestation externally (transparency log entry, archived doc URL, IPFS URI, ledger tx, etc.)."
         }
       },
       "required": [

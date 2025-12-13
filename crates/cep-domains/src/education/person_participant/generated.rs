@@ -22,7 +22,7 @@ pub type Identifiers = Vec<Identifier>;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Rolesitem {
+pub struct PersonParticipantRecordRolesItem {
     #[serde(rename = "roleTypeUri")]
     pub role_type_uri: String,
     #[serde(rename = "contextType")]
@@ -58,5 +58,6 @@ pub struct PersonParticipantRecord {
 
     pub identifiers: Option<Identifiers>,
 
-    pub roles: Option<Vec<Rolesitem>>,
+    pub roles: Option<Vec<PersonParticipantRecordRolesItem>>,
+
 }

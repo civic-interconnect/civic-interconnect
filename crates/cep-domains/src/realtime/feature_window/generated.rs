@@ -26,4 +26,5 @@ pub struct FeatureWindowRecord {
     pub end_time: String,
 
     pub features: Option<serde_json::Value>,
+
 }

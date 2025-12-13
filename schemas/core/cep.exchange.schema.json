@@ -226,10 +226,6 @@
           }
         },
 
-        "attestation": {
-          "$ref": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.record-envelope.schema.json#/$defs/attestation"
-        },
-
         "previousRecordHash": {
           "type": ["string", "null"],
           "pattern": "^[a-f0-9]{64}$",
@@ -244,8 +240,7 @@
         "recipientEntity",
         "value",
         "occurredTimestamp",
-        "exchangeStatus",
-        "attestation"
+        "exchangeStatus"
       ],
       "additionalProperties": true
     }

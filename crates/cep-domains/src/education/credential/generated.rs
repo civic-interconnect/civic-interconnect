@@ -52,4 +52,5 @@ pub struct CredentialRecord {
     pub date_awarded: String,
 
     pub identifiers: Option<Identifiers>,
+
 }

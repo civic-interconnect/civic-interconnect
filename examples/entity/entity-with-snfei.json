@@ -1,12 +1,12 @@
 {
   "recordKind": "entity",
-  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json",
+  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.schema.json",
   "schemaVersion": "1.0.0",
   "revisionNumber": 1,
 
   "verifiableId": "cep-entity:snfei:34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3",
 
-  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.json#educational-institution",
+  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-type.json#educational-institution",
 
   "status": {
     "statusCode": "ACTIVE",

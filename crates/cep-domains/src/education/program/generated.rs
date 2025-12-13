@@ -20,7 +20,7 @@ pub type Identifiers = Vec<Identifier>;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Delivery {
+pub struct ProgramRecordDelivery {
     #[serde(rename = "modalityUri")]
     pub modality_uri: Option<String>,
     #[serde(rename = "programLevelUri")]
@@ -47,5 +47,5 @@ pub struct ProgramRecord {
 
     pub identifiers: Option<Identifiers>,
 
-    pub delivery: Option<Delivery>,
+    pub delivery: Option<ProgramRecordDelivery>,
 }

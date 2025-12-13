@@ -63,7 +63,10 @@ Create a local environment and install dependencies.
 ```shell
 uv python pin 3.12
 uv venv
-uv activate
+
+.venv\Scripts\activate # Windows
+# source .venv/bin/activate  # Mac/Linux/WSL
+
 uv sync --extra dev --extra docs --upgrade
 uvx pre-commit install
 ```
@@ -80,10 +83,13 @@ git pull origin main
 # after changing about.yaml files (for vertical slice examples)
 uv run python tools/validate_verticals.py  
 
+# after changing localization/ yaml files
+uv run python tools/sync_localization_assets.py
+
 # after changing schemas or vocabs, revalidate
 uv run python tools/validate_schemas.py  
 
-# after changing schemas, regenerate rust
+# regenerate rust
 uv run python tools/codegen_rust.py
 
 # build and install cep_py for cx commands
@@ -106,6 +112,7 @@ cargo fix --lib -p cep-py --allow-dirty --allow-staged
 # build crates
 cargo build -p cep-core
 cargo build -p cep-domains
+cargo build -p cep-py
 cargo build
 
 # run tests
@@ -115,6 +122,9 @@ cargo test -- --nocapture -q
 
 # regenerate example records
 uv run cx generate-example examples/entity --overwrite
+
+# test the chicago identity localization
+uv run pytest src/python/tests/identity/test_us_il_vendor_snfei.py -s
 
 # Python quality checks
 git add .

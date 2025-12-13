@@ -31,17 +31,17 @@ fn default_catalog() -> Vec<CatalogEntry> {
         CatalogEntry {
             name: "entity".to_string(),
             version: "1.0".to_string(),
-            relative_path: "schemas/cep.entity.schema.json",
+            relative_path: "schemas/core/cep.entity.schema.json",
         },
         CatalogEntry {
             name: "exchange".to_string(),
             version: "1.0".to_string(),
-            relative_path: "schemas/cep.exchange.schema.json",
+            relative_path: "schemas/core/cep.exchange.schema.json",
         },
         CatalogEntry {
             name: "relationship".to_string(),
             version: "1.0".to_string(),
-            relative_path: "schemas/cep.relationship.schema.json",
+            relative_path: "schemas/core/cep.relationship.schema.json",
         },
         CatalogEntry {
             name: "snfei".to_string(),

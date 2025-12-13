@@ -25,8 +25,8 @@ Files:
 
 This example illustrates nonprofit-specific details:
 
-- Shows CEP’s handling of **nonprofit legal names** and their normalized variants.
-- Demonstrates how a nonprofit’s identifier inputs feed into SNFEI-based identity.
+- Shows CEP's handling of **nonprofit legal names** and their normalized variants.
+- Demonstrates how a nonprofit's identifier inputs feed into SNFEI-based identity.
 - Applies the nonprofit `entityTypeUri`.
 - Contains a simple first-revision record with no amendment history.
 - Displays how minimal upstream data can still produce a valid, attested CEP EntityRecord.

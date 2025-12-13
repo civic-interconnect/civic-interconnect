@@ -16,7 +16,7 @@ Procurement data structures and terminology vary widely between local, national,
 - facilitate data integration from procurement portals, transparency platforms, and regulatory systems  
 - provide adapters with a consistent normalization target
 
-Each vocabulary follows CEP’s standard machine-readable format and governance model.
+Each vocabulary follows CEP's standard machine-readable format and governance model.
 
 ---
 
@@ -38,7 +38,7 @@ The set of vocabularies may expand as procurement use cases develop within CEP.
 
 ## Relationship to Core CEP Vocabularies
 
-These vocabularies extend CEP’s global categories by:
+These vocabularies extend CEP's global categories by:
 
 - specializing **entity types** for procurement records (buyers, suppliers, tenders, contracts)  
 - defining **relationship types** that capture procurement flows (awards, contracts, frameworks)  
@@ -51,7 +51,7 @@ Term mappings may be provided for interoperability across standards.
 
 ## Public Procurement Entity Types
 
-This domain defines a set of **procurement-specific entity types** that refine CEP’s global `entity-type` vocabulary. These types allow adapters and schemas to represent procurement structures using stable, domain-appropriate categories.
+This domain defines a set of **procurement-specific entity types** that refine CEP's global `entity-type` vocabulary. These types allow adapters and schemas to represent procurement structures using stable, domain-appropriate categories.
 
 The vocabulary file:
 
@@ -112,7 +112,7 @@ Adapters should normalize to the term URIs defined in these vocabulary files.
 
 ## Versioning and Governance
 
-All vocabulary files follow CEP’s governance process:
+All vocabulary files follow CEP's governance process:
 
 - filenames include a version number (e.g., `v1.0.0`)  
 - released vocabularies are immutable  

@@ -31,4 +31,5 @@ pub struct SensorRecord {
     pub sampling_frequency_hz: Option<f64>,
 
     pub metadata: Option<serde_json::Value>,
+
 }

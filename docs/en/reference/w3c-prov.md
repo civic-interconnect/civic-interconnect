@@ -84,7 +84,7 @@ Semantic frameworks like PROV-O, for when provenance needs to interoperate on th
 ### 4. W3C Verifiable Credentials (VC)
 
 Where attestation comes in.
-When we attach provenance and add cryptographic signatures, you get VCs.
+When we attach provenance and add cryptographic signatures, we get VCs.
 The CEP attestation field is parallel to this, just simplified.
 
 ### 5. PROV extensions used in scientific computing

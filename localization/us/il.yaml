@@ -1,0 +1,105 @@
+# Illinois Localization Rules (Chicago procurement/vendor focused)
+# Jurisdiction: US-IL
+# Parent: US
+#
+# Notes:
+# - Keys under "abbreviations" should be single tokens (no spaces) because expansion is token-based.
+# - Multi-word aliases belong under "agency_names" or "rules".
+# - "rules" are applied in order (or by explicit "order" if present).
+
+jurisdiction: "US-IL"
+parent: "US"
+version: "1.0.0"
+updated_timestamp: "2025-12-11T12:00:00Z"
+
+abbreviations:
+  coa: city of chicago
+
+  co chic: city of chicago
+  cdph: chicago department of public health
+  cpd: chicago police department
+  cfd: chicago fire department
+  dps: department of procurement services
+  dss: department of streets and sanitation
+  dot: department of transportation
+  idot: illinois department of transportation
+  idph: illinois department of public health
+  ihda: illinois housing development authority
+  ihs: illinois health services
+  cps: chicago public schools
+  cta: chicago transit authority
+  metra: metra
+  rta: regional transportation authority
+  mwr: metropolitan water reclamation district
+  mwrd: metropolitan water reclamation district
+  cook co: cook county
+  dupage co: dupage county
+  lake co: lake county
+  will co: will county
+  kane co: kane county
+  mwr-co: metropolitan water reclamation district
+  dba: doing business as
+  nfp: not for profit
+  jv: joint venture
+  ajv: joint venture
+
+agency_names:
+  city of chicago: city of chicago
+  chicago: city of chicago
+  chicago public schools: chicago public schools
+  cps: chicago public schools
+  cook county: cook county
+  state of illinois: state of illinois
+  illinois: state of illinois
+  idot: illinois department of transportation
+  illinois department of transportation: illinois department of transportation
+  mwrd: metropolitan water reclamation district
+  metropolitan water reclamation district: metropolitan water reclamation district
+
+entity_types: {}
+
+rules:
+  # 1. Normalize corporate suffix punctuation variants at end of string
+  - pattern: "\\binc\\.?\\s*$"
+    replacement: "inc"
+    is_regex: true
+
+  - pattern: "\\bllc\\.?\\s*$"
+    replacement: "llc"
+    is_regex: true
+
+  - pattern: "\\bcorp\\.?\\s*$"
+    replacement: "corp"
+    is_regex: true
+
+  - pattern: "\\bco\\.?\\s*$"
+    replacement: "company"
+    is_regex: true
+
+  # 2. Strip Chicago dataset "cleaned-up" markers, including the bar
+  #    Examples: "mcdermott center|cleaned-up" -> "mcdermott center"
+  - pattern: "\\|\\s*cleaned-up"
+    replacement: ""
+    is_regex: true
+
+  # 3. Strip trailing 2-digit codes (01, 02, 06) when they appear as a final token
+  #    This duplicates the US base NN rule but is fine for now.
+  - pattern: "\\s0?[0-9]{1,2}\\s*$"
+    replacement: ""
+    is_regex: true
+
+  # 4. Optionally normalize literal "joint venture" spelling if variants appear
+  - pattern: "joint venture"
+    replacement: "joint venture"
+    is_regex: false
+
+stop_words:
+  - the
+  - llc
+  - inc
+  - corporation
+  - company
+  - nfp
+  - dba
+
+config_hash: "f3a4d80a0ef41ae901b57ed32fa8879a8f59d0158e0f8844d07ba690c67d61ce"

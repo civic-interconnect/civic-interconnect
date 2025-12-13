@@ -13,11 +13,12 @@ mod generated {
 mod generated {
     pub static SCHEMAS: &[(&str, &str)] = &[];
     pub static VOCABULARIES: &[(&str, &str)] = &[];
+    pub static LOCALIZATION_YAMLS: &[(&str, &str)] = &[];
     pub static TEST_VECTORS: &[(&str, &str)] = &[];
 }
 
 // Re-export raw tables in case advanced callers want them.
-pub use generated::{SCHEMAS, TEST_VECTORS, VOCABULARIES};
+pub use generated::{LOCALIZATION_YAMLS, SCHEMAS, TEST_VECTORS, VOCABULARIES};
 
 /// Get a JSON Schema by key.
 ///
@@ -37,9 +38,9 @@ pub fn get_schema(key: &str) -> Option<&'static str> {
 
 /// Get a vocabulary JSON document by key.
 ///
-/// Keys are the relative paths under `vocabularies/` without `.json`.
+/// Keys are the relative paths under `vocabulary/` without `.json`.
 /// Example:
-/// - `vocabularies/entity-type.json` -> "entity-type"
+/// - `vocabulary/core/entity-type.json` -> "entity-type"
 pub fn get_vocab(key: &str) -> Option<&'static str> {
     VOCABULARIES
         .iter()

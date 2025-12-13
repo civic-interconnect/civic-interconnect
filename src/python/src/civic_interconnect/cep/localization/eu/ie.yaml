@@ -1,0 +1,59 @@
+# CEP Localization Rules
+# Jurisdiction: EU/IE
+# Parent: EU
+#
+# Notes:
+# - Irish/UK-style legal forms appear; keep conservative and normalize punctuation only.
+jurisdiction: "eu/ie"
+parent: "EU"
+version: "0.0.1"
+updated_timestamp: "2025-12-05T12:46:28Z"
+
+abbreviations:
+  eu: european union
+
+agency_names: {}
+
+entity_types: {}
+
+rules:
+  - pattern: ","
+    replacement: " "
+    is_regex: false
+
+  - pattern: "[,.;:]+\\s*$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "\\s+"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "^\\s+|\\s+$"
+    replacement: ""
+    is_regex: true
+
+  - pattern: "[-_]{2,}"
+    replacement: " "
+    is_regex: true
+
+  - pattern: "\\s*&\\s*"
+    replacement: " & "
+    is_regex: true
+
+  # Common legal forms
+  - pattern: "\\bp\\.?\\s*l\\.?\\s*c\\.?\\b"
+    replacement: "plc"
+    is_regex: true
+
+  - pattern: "\\bltd\\.?\\b"
+    replacement: "ltd"
+    is_regex: true
+
+  - pattern: "\\bclg\\b"
+    replacement: "clg"
+    is_regex: true
+
+stop_words: []
+
+config_hash: null

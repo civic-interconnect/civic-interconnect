@@ -91,6 +91,9 @@ pub struct Attestation {
 
     #[serde(rename = "sourceReference")]
     pub source_reference: Option<String>,
+
+    #[serde(rename = "anchorUri")]
+    pub anchor_uri: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -104,6 +107,31 @@ pub struct Identifier {
 }
 
 pub type Identifiers = Vec<Identifier>;
+
+/// Context Tags (CTags) capture interpretive, analytic, or contextual facts about a record, without changing its canonical identity or payload. They are optional, append-only, and vocabulary-driven.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct EntityRecordCtagsItem {
+    #[serde(rename = "ctagId")]
+    pub ctag_id: Option<String>,
+    #[serde(rename = "tagTypeUri")]
+    pub tag_type_uri: String,
+    pub code: Option<String>,
+    pub value: Option<serde_json::Value>,
+    #[serde(rename = "appliedBy")]
+    pub applied_by: String,
+    #[serde(rename = "appliedAt")]
+    pub applied_at: String,
+    pub scope: Option<String>,
+    #[serde(rename = "targetPath")]
+    pub target_path: Option<String>,
+    pub confidence: Option<f64>,
+    #[serde(rename = "sourceRunId")]
+    pub source_run_id: Option<String>,
+    pub note: Option<String>,
+    #[serde(rename = "provActivityUri")]
+    pub prov_activity_uri: Option<String>,
+}
 
 /// Record describing an entity (organization, person, district, etc.) in CEP.
 
@@ -134,7 +162,7 @@ pub struct EntityRecord {
 
     pub attestations: Vec<Attestation>,
 
-    pub ctags: Option<Vec<serde_json::Value>>,
+    pub ctags: Option<Vec<EntityRecordCtagsItem>>,
 
     #[serde(rename = "jurisdictionIso")]
     pub jurisdiction_iso: String,

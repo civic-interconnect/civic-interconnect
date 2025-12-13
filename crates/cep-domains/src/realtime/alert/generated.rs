@@ -28,4 +28,5 @@ pub struct AlertRecord {
     pub detected_at: String,
 
     pub context: Option<serde_json::Value>,
+
 }

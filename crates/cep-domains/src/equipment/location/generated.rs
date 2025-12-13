@@ -26,4 +26,5 @@ pub struct LocationRecord {
     pub elevation_meters: Option<f64>,
 
     pub address: Option<String>,
+
 }

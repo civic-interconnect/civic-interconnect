@@ -1,31 +1,32 @@
 {
   "attestations": [
     {
-      "attestationTimestamp": "1900-01-01T00:00:00.000000Z",
-      "attestorId": "cep-entity:example:ingest",
+      "anchorUri": null,
+      "attestationTimestamp": "1900-01-01T00:00:00Z",
+      "attestorId": "urn:ci:attestor:example",
       "proofPurpose": "assertionMethod",
       "proofType": "ManualAttestation",
-      "proofValue": null,
-      "sourceReference": null,
-      "sourceSystem": null,
-      "verificationMethodUri": "urn:cep:attestor:cep-entity:example:ingest"
+      "proofValue": "",
+      "sourceReference": "examples/entity/school_district/us_ca_01",
+      "sourceSystem": "california-education-dept",
+      "verificationMethodUri": "urn:ci:verification-method:manual"
     }
   ],
   "ctags": null,
   "dissolutionDate": null,
-  "entityTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.v1.0.0.json#school-district",
-  "identifiers": {
-    "snfei": {
-      "value": "2ce37abefa4cfd91eac2c613fbfb87c38a6e6c54493eac61eb80250a1e3bcc55"
+  "identifiers": [
+    {
+      "identifier": "2ce37abefa4cfd91eac2c613fbfb87c38a6e6c54493eac61eb80250a1e3bcc55",
+      "schemeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-identifier-scheme.v1.0.0.json#snfei"
     }
-  },
+  ],
   "inceptionDate": null,
   "jurisdictionIso": "US-CA",
   "legalName": "Springfield Unified School District",
   "legalNameNormalized": "springfield unified school district",
   "recordKind": "entity",
-  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json",
-  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabularies/entity-type.json#school_district",
+  "recordSchemaUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.schema.json",
+  "recordTypeUri": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-type.v1.0.0.json#school-district",
   "revisionNumber": 1,
   "schemaVersion": "1.0.0",
   "shortName": null,

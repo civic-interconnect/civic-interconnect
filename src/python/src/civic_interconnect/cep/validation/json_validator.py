@@ -15,9 +15,9 @@ from jsonschema import Draft202012Validator
 from jsonschema import ValidationError as JsonSchemaError
 
 SCHEMA_MAP = {
-    "entity": "schemas/cep.entity.schema.json",
-    "exchange": "schemas/cep.exchange.schema.json",
-    "relationship": "schemas/cep.relationship.schema.json",
+    "entity": "schemas/core/cep.entity.schema.json",
+    "exchange": "schemas/core/cep.exchange.schema.json",
+    "relationship": "schemas/core/cep.relationship.schema.json",
     "snfei": "test_vectors/schemas/v1.0/generation-vector-set.schema.json",
 }
 

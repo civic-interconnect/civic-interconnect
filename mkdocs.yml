@@ -137,6 +137,7 @@ nav:
       - CTag Integration: en/implementation/ctag-integration.md
       - Casing: en/implementation/casing.md
       - New Connector: en/implementation/new-connector.md
+      - New Data Source: en/implementation/new-data-source.md
       - Record Envelopes: en/implementation/record-envelopes.md
       - Profiles: en/implementation/profiles.md
 
@@ -190,5 +191,10 @@ nav:
       - Reference Projects: en/reference/reference-projects.md
       - W3CProv: en/reference/w3c-prov.md
 
+  - Provenance:
+      - Overview: en/provenance/README.md
+      - Chicago Contracts Dataset PROV-YAML: en/provenance/chicago_contracts.prov.yaml
+
   - API Reference: en/api.md
   - CLI Reference: en/cli.md
+  - DATA_SOURCES.md: en/DATA_SOURCES.md

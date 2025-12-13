@@ -30,4 +30,5 @@ pub struct RelationshipRecord {
 
     #[serde(rename = "validTo")]
     pub valid_to: Option<String>,
+
 }

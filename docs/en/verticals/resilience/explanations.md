@@ -10,7 +10,7 @@ disaster preparedness or emergency response context.
 
 Evidence components may include:
 
-- Population served by the shelter or facility’s catchment
+- Population served by the shelter or facility's catchment
 - Proximity to hazard zones (flood, wildfire, seismic, etc.)
 - Redundancy and network centrality of evacuation routes
 - Capacity relative to expected demand
