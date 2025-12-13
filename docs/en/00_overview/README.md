@@ -1,50 +1,69 @@
-# Overview: How These Parts Fit Together
+# How These Pieces Fit Together
 
-This documentation set describes a layered framework for representing, normalizing, and reasoning about civic data in a way that is durable, auditable, and interoperable across domains and jurisdictions.
+This documentation describes a layered framework for representing, exchanging, and interpreting civic data in a way that is durable, interoperable, and auditable over long time horizons.
 
-The material is organized to separate concerns that are often conflated: raw description of civic facts, structural exchange formats, contextual explanation, and downstream assurance. Each layer can be used independently, but they are designed to compose in a predictable way.
+The framework is composed of three primary layers:
 
-## The Layers
+CAE (Civic Accountable Entities)
+CEP (Civic Exchange Protocol)
+CEE (Contextual Evidence and Explanations)
 
-At the base is **CAE (Civic Activity Entities)**.  
-CAE defines how real-world civic actors, roles, and authorities are represented as entities. It concerns itself only with describing what exists and how it is identified, without assuming any exchange format, explanatory model, or evaluative claim.
+Each layer has a distinct purpose and a clear boundary. The layers are designed to compose, but not to collapse into one another.
 
-Above that is **CEP (Civic Exchange Protocol)**.  
-CEP defines how entities and relationships are bundled into records, exchanges, and envelopes that can move between systems. It specifies structure, canonicalization, and validation rules, but does not interpret meaning or outcomes.
+The intent is not to prescribe applications, policy outcomes, or analytic conclusions. It is to define stable structural contracts that many systems can share, even when they disagree about interpretation, values, or goals.
 
-Above CEP is **CEE (Contextual Evidence and Explanations)**.  
-CEE provides a way to attach observations, explanations, models, and interpretations to CEP records. It enables reasoning about why something happened, what it implies, or how it should be understood, without changing the underlying facts.
+---
 
-Alongside these is **Assurance**.  
-Assurance concerns attestations, audits, and claims made about data, processes, or outcomes. It depends on the lower layers for structure and provenance, but remains conceptually separate from explanation and exchange.
+## Direction of Dependence
 
-## How They Relate
+The layers are ordered from most foundational to most interpretive.
 
-Information flows upward.
+CAE defines a stable object universe for civic representation.
+CEP defines how civic entities and relationships are exchanged and validated.
+CEE defines how observations and explanations are expressed over exchanged records.
 
-CAE entities may appear inside CEP records.  
-CEP records may be referenced by CEE explanations.  
-Assurance artifacts may refer to any of the above.
+Dependencies flow upward only.
 
-The reverse is intentionally not true.  
-Lower layers do not depend on higher ones, and they do not assume the existence of explanations, evaluations, or guarantees.
+Lower layers do not assume the existence of higher layers. Higher layers may rely on lower layers but must not retroactively redefine them.
 
-This separation allows systems to exchange data without agreeing on interpretation, and to reason about interpretation without rewriting history.
+This one-way dependency supports long-term stability. It allows foundational representations to remain valid even as explanatory models, regulatory regimes, and analytic methods change.
 
-## How to Read These Docs
+---
 
-If you are defining or consuming civic entities, start with the CAE reference.
+## CAE
 
-If you are building systems that exchange civic data, focus on the CEP reference and implementation sections.
+CAE defines the object universe: what kinds of civic things exist and what kinds of relationships are admissible between them.
 
-If you are modeling outcomes, impacts, or interpretations, read the CEE reference and explanations.
+CAE is intentionally conservative. It does not prescribe exchange formats, evidence models, or evaluative claims. It provides the stable entity partition and relationship constraints that higher layers build upon.
 
-If you are evaluating trust, claims, or compliance, refer to the Assurance section.
+---
 
-Each section is written to stand on its own. Cross-references are minimal by design.
+## CEP
 
-## Stability
+CEP defines exchange structure: entities, relationships, exchanges, and record envelopes, along with validation and canonicalization rules.
 
-The layering and responsibilities described here are intended to remain stable over time.
+CEP is value-neutral with respect to interpretation. It specifies what was asserted, in what form, and under what structural constraints. It assumes the CAE object universe and does not redefine it.
 
-Details may be refined, terminology may be clarified, and additional material may be added. The separation of concerns described in this overview reflects deliberate design choices and is expected to remain a reliable foundation as the project evolves.
+---
+
+## CEE
+
+CEE defines interpretation structure: observations, explanations, models, assumptions, and claims expressed over exchanged records.
+
+CEE is pluralistic. Multiple, even conflicting, explanations may coexist over the same underlying CEP records.
+
+CEE depends on CEP, and transitively on CAE, but does not redefine either.
+
+---
+
+## Where to Find Implementations and Examples
+
+These docs describe specifications and contracts.
+
+Concrete examples, datasets, adapters, and test vectors are maintained in the repository alongside the code that consumes them. This avoids duplication and reduces documentation drift.
+
+Refer to the repository structure for current implementations and examples.
+
+---
+
+This page is intentionally minimal. It exists to establish orientation before introducing the individual layers in detail.

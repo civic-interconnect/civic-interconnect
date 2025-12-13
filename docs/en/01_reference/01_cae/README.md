@@ -1,121 +1,49 @@
-# How These Pieces Fit Together
+# CAE Overview
 
-This documentation describes a layered framework for representing, exchanging,
-and interpreting civic data in a way that is durable, interoperable, and auditable
-over long time horizons.
+Civic Accountable Entities (CAE) defines the foundational object universe for the broader framework.
 
-The framework is composed of three primary layers:
+CAE provides:
 
-- Civic Actor Environment (CAE)
-- Civic Exchange Protocol (CEP)
-- Contextual Evidence and Explanations (CEE)
+- A disjoint partition of civic entities into a small set of kinds.
+- Admissible relationship families between those kinds.
+- A stable basis for reference and longitudinal reasoning.
 
-Each layer has a distinct purpose and a clearly defined boundary. The layers are
-designed to compose, but not to collapse into one another.
-
-The intent of this framework is not to prescribe applications, policy outcomes,
-or analytic conclusions. It is to define stable structural contracts that many
-systems can share, even when they disagree about interpretation, values, or goals.
+CAE does not define exchange formats, evidence models, explanations, or evaluative claims. It is designed to stand alone.
 
 ---
 
-## Direction of Dependence
+## The Entity Partition
 
-The layers are ordered from most foundational to most interpretive.
+CAE partitions entities into six disjoint kinds:
 
-CAE defines what civic actors are.  
-CEP defines how civic facts are exchanged.  
-CEE defines how civic facts are interpreted and explained.
+Actors (A)
+Sites (S)
+Instruments (I)
+Events (E)
+Jurisdictions (J)
+Observables (O)
 
-Dependencies flow upward only.
+Disjoint means an entity instance is classified into exactly one of these kinds within CAE.
 
-Lower layers do not assume the existence of higher layers. Higher layers may rely
-on lower layers but must not retroactively redefine them.
-
-This one-way dependency is essential for long-term stability. It allows
-foundational representations to remain valid even as explanatory models,
-regulatory regimes, and analytic methods change.
+The partition is structural. It is not a moral or legal taxonomy, and it does not attempt to capture all real-world nuance. The purpose is to provide a stable basis for interoperability and accountability reasoning.
 
 ---
 
-## Civic Actor Environment (CAE)
+## What CAE Is For
 
-CAE defines the minimal structure required to talk about civic actors at all.
+CAE exists to make accountability-bearing structure explicit.
 
-It is concerned with the existence, identity, and roles of actors that participate
-in civic systems. This includes, but is not limited to, individuals, organizations,
-public bodies, and collective entities.
-
-CAE answers questions such as:
-
-- What kinds of civic actors exist?
-- What roles or authorities can an actor hold?
-- How are identities referenced and compared?
-- What does it mean for two records to refer to the same actor?
-
-CAE does not define data exchange formats, transactions, contracts, or outcomes.
-It does not assume the existence of schemas, APIs, or explanatory models.
-
-CAE stands alone. It does not refer to CEP or CEE.
+Higher layers may express exchanges over CAE entities, and may attach evidence and explanation to CAE-grounded records. But those layers must not change the entity partition or reinterpret what kinds of things CAE permits.
 
 ---
 
-## Civic Exchange Protocol (CEP)
+## What CAE Does Not Do
 
-CEP defines how civic data is exchanged between systems in a structured,
-verifiable way.
+CAE does not:
 
-It introduces formal structures for entities, relationships, exchanges, and
-record envelopes, along with validation and canonicalization rules.
+- Determine whether two records refer to the same real-world thing.
+- Validate legality, legitimacy, or authority claims.
+- Encode causal claims, policy judgments, or outcomes.
+- Provide domain-specific enumerations of all civic entity types.
 
-CEP is intentionally value-neutral. It does not explain why something occurred,
-whether it was appropriate, or what should happen next. It only specifies what
-was asserted, in what form, by whom, and under what structural constraints.
-
-CEP assumes the existence of civic actors as defined by CAE, but does not assume
-any particular explanatory or evaluative framework.
-
----
-
-## Contextual Evidence and Explanations (CEE)
-
-CEE defines how civic data is interpreted, explained, and evaluated in context.
-
-It introduces mechanisms for attaching observations, explanations, models,
-assumptions, and evaluative claims to CEP records without altering the underlying
-exchange layer.
-
-CEE is explicitly pluralistic. Multiple, even conflicting, explanations may
-coexist over the same underlying data.
-
-CEE depends on CEP, and transitively on CAE, but does not redefine either.
-
----
-
-## Stability and Change
-
-Each layer has a different stability horizon.
-
-CAE is expected to change very slowly.  
-CEP evolves through versioned specifications and governance processes.  
-CEE is expected to evolve rapidly as analytic methods, norms, and policies change.
-
-This separation allows innovation at the interpretive layer without destabilizing
-foundational representations.
-
----
-
-## Where to Find Implementations and Examples
-
-This documentation describes specifications and contracts, not tutorials.
-
-Concrete examples, datasets, adapters, and test vectors are maintained in the
-repository alongside the code that consumes them. This avoids duplication and
-reduces the risk of documentation drift.
-
-Refer to the repository structure for current implementations and examples.
-
----
-
-This page is intentionally minimal. It exists to establish shared orientation
-before introducing the individual layers in detail.
+CAE defines the structural vocabulary needed for systems to refer to civic entities and reason about their relationships over time.

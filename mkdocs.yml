@@ -113,8 +113,6 @@ nav:
       - CAE:
           - Overview: en/01_reference/01_cae/README.md
           - Entities: en/01_reference/01_cae/01_entities.md
-          - Roles and Authority: en/01_reference/01_cae/02_roles_and_authority.md
-          - Identity: en/01_reference/01_cae/03_identity.md
 
       - CEP:
           - Overview: en/01_reference/02_cep/README.md
