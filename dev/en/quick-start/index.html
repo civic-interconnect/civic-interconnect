@@ -1390,6 +1390,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../implementation/new-data-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Data Source
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../implementation/record-envelopes/" class="md-nav__link">
         
   
@@ -3120,6 +3148,123 @@
   
   
   
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Provenance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Provenance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../provenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../provenance/chicago_contracts.prov.yaml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chicago Contracts Dataset PROV-YAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../api/" class="md-nav__link">
         
@@ -3156,6 +3301,33 @@
     
   
     CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DATA_SOURCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DATA_SOURCES.md
   
 
     
@@ -3280,7 +3452,7 @@
 </ol>
 <hr />
 <h2 id="1-install-the-cep-toolkit">1. Install the CEP Toolkit<a class="headerlink" href="#1-install-the-cep-toolkit" title="Permanent link">&para;</a></h2>
-<p>You can install the CLI and Python API from PyPI:</p>
+<p>Install the CLI and Python API from PyPI:</p>
 <div class="highlight"><pre><span></span><code>uv pip install civic-interconnect
 </code></pre></div>
 <p>Or add to an existing environment:</p>
@@ -3322,21 +3494,30 @@ cx validate --schema exchange path/to/my-exchange.json
 <hr />
 <h2 id="4-build-an-entity-using-python">4. Build an Entity Using Python<a class="headerlink" href="#4-build-an-entity-using-python" title="Permanent link">&para;</a></h2>
 <p>You can construct SNFEI values and full EntityRecords programmatically.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">civic_interconnect.cep.snfei</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_snfei</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">civic_interconnect.cep.entity</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_entity_from_raw</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">civic_interconnect.cep.snfei</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_snfei_detailed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">civic_interconnect.cep.entity.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_entity_from_raw</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">generate_snfei_detailed</span><span class="p">(</span>
+    <span class="n">legal_name</span><span class="o">=</span><span class="s2">&quot;City of Springfield&quot;</span><span class="p">,</span>
+    <span class="n">country_code</span><span class="o">=</span><span class="s2">&quot;US&quot;</span><span class="p">,</span>
+    <span class="n">address</span><span class="o">=</span><span class="s2">&quot;123 Lincoln Ave&quot;</span><span class="p">,</span>
+    <span class="n">registration_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">lei</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sam_uei</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">raw</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;jurisdictionIso&quot;</span><span class="p">:</span> <span class="s2">&quot;US-MN&quot;</span><span class="p">,</span>
     <span class="s2">&quot;legalName&quot;</span><span class="p">:</span> <span class="s2">&quot;City of Springfield&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;legalNameNormalized&quot;</span><span class="p">:</span> <span class="s2">&quot;city springfield&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;snfei&quot;</span><span class="p">:</span> <span class="n">compute_snfei</span><span class="p">(</span><span class="s2">&quot;city springfield&quot;</span><span class="p">,</span> <span class="s2">&quot;US-MN&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;legalNameNormalized&quot;</span><span class="p">:</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;canonical&quot;</span><span class="p">][</span><span class="s2">&quot;legalNameNormalized&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;snfei&quot;</span><span class="p">:</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;snfei&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">],</span>
     <span class="s2">&quot;entityType&quot;</span><span class="p">:</span> <span class="s2">&quot;municipality&quot;</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">entity</span> <span class="o">=</span> <span class="n">build_entity_from_raw</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">entity</span><span class="p">[</span><span class="s2">&quot;verifiableId&quot;</span><span class="p">])</span>
 </code></pre></div>
-<p>If Rust bindings are installed, CEP uses them automatically; otherwise, it falls back to the pure-Python implementation.</p>
+<p>Rust bindings are required and contain the core logic, CEP uses them automatically.</p>
 <hr />
 <h2 id="5-next-steps">5. Next Steps<a class="headerlink" href="#5-next-steps" title="Permanent link">&para;</a></h2>
 <ul>

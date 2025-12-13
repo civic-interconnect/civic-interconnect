@@ -1545,6 +1545,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../implementation/new-data-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Data Source
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../implementation/record-envelopes/" class="md-nav__link">
         
   
@@ -3275,6 +3303,123 @@
   
   
   
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Provenance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Provenance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../provenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../provenance/chicago_contracts.prov.yaml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chicago Contracts Dataset PROV-YAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../api/" class="md-nav__link">
         
@@ -3311,6 +3456,33 @@
     
   
     CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DATA_SOURCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DATA_SOURCES.md
   
 
     
@@ -3613,7 +3785,7 @@ Purpose: Define a deterministic normal form for CEP graphs so that equivalent gr
 <li><code>activity</code>  </li>
 <li><code>agent</code>  </li>
 <li><code>envelope</code> (optional, for packaging)  </li>
-<li><code>payload</code>: a CEC-compatible JSON object containing the node’s attributes</li>
+<li><code>payload</code>: a CEC-compatible JSON object containing the node's attributes</li>
 </ul>
 <p>Entity nodes should carry their <code>verifiableId</code> (from EFS) in the payload.</p>
 <h3 id="22-edges">2.2 Edges<a class="headerlink" href="#22-edges" title="Permanent link">&para;</a></h3>
@@ -3664,7 +3836,7 @@ The normalized graph can be CEC-serialized and hashed to yield a stable graph-le
 <h3 id="42-non-entity-nodes-activities-agents-relationships-envelopes">4.2 Non-Entity Nodes (Activities, Agents, Relationships, Envelopes)<a class="headerlink" href="#42-non-entity-nodes-activities-agents-relationships-envelopes" title="Permanent link">&para;</a></h3>
 <p>Non-entity nodes may not have globally stable IDs. For such nodes, GNS defines a canonical local ID computed from:</p>
 <ul>
-<li>The node’s type  </li>
+<li>The node's type  </li>
 <li>A deterministic summary of its payload  </li>
 <li>The multiset of incident edges (types + endpoint identifiers)  </li>
 <li>Optional timestamps where present  </li>

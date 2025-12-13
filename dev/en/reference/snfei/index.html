@@ -1288,6 +1288,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../implementation/new-data-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Data Source
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../implementation/record-envelopes/" class="md-nav__link">
         
   
@@ -3120,6 +3148,123 @@
   
   
   
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Provenance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Provenance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../provenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../provenance/chicago_contracts.prov.yaml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chicago Contracts Dataset PROV-YAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../api/" class="md-nav__link">
         
@@ -3156,6 +3301,33 @@
     
   
     CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DATA_SOURCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DATA_SOURCES.md
   
 
     
@@ -3288,9 +3460,9 @@ As a result:</p>
 <hr />
 <h2 id="how-snfei-is-computed">How SNFEI Is Computed<a class="headerlink" href="#how-snfei-is-computed" title="Permanent link">&para;</a></h2>
 <p>An SNFEI is defined as:</p>
-<blockquote>
-<p><strong>SHA-256 hash of (normalized legal name + jurisdiction).</strong></p>
-</blockquote>
+<p>SHA-256 hash of the canonical input string:</p>
+<p><code>legalNameNormalized|addressNormalized|countryCode|registrationDate</code></p>
+<p>Empty/None fields are included as empty strings to keep positions stable.</p>
 <p>This produces a <strong>fixed, deterministic identifier</strong> using inputs that are:</p>
 <ul>
 <li>already present in nearly all civic datasets,</li>
@@ -3306,7 +3478,7 @@ As a result:</p>
 <li>jurisdiction = <code>US-MN</code></li>
 </ul>
 <p>The SNFEI is the SHA-256 hash of:</p>
-<div class="highlight"><pre><span></span><code>example school district 123 + us-mn
+<div class="highlight"><pre><span></span><code>example school district 123||US|
 </code></pre></div>
 <p>Example output:</p>
 <div class="highlight"><pre><span></span><code>34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3

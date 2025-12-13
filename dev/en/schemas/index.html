@@ -1298,6 +1298,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../implementation/new-data-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Data Source
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../implementation/record-envelopes/" class="md-nav__link">
         
   
@@ -3028,6 +3056,123 @@
   
   
   
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Provenance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Provenance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../provenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../provenance/chicago_contracts.prov.yaml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chicago Contracts Dataset PROV-YAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../api/" class="md-nav__link">
         
@@ -3064,6 +3209,33 @@
     
   
     CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DATA_SOURCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DATA_SOURCES.md
   
 
     
@@ -3162,7 +3334,7 @@ This includes canonical graph encoding, fingerprinting, provenance, versioning r
 <li><code>cep.graph.schema.json</code></li>
 </ul>
 <p>Filenames describe <strong>what</strong> the schema is.<br />
-The directory path describes <strong>where</strong> the schema belongs within CEP’s structure.<br />
+The directory path describes <strong>where</strong> the schema belongs within CEP's structure.<br />
 These concerns remain independent so that schemas may relocate without requiring filename changes.</p>
 <hr />
 <h2 id="id-and-ref-conventions"><code>$id</code> and <code>$ref</code> Conventions<a class="headerlink" href="#id-and-ref-conventions" title="Permanent link">&para;</a></h2>
@@ -3191,23 +3363,23 @@ Individual schemas provide further detail on the structures and rules they defin
 </thead>
 <tbody>
 <tr>
-<td><a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json">cep.entity.schema.json</a></td>
+<td><a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.schema.json">cep.entity.schema.json</a></td>
 <td>Entity records</td>
 </tr>
 <tr>
-<td><a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.identifier-scheme.schema.json">cep.entity.identifier-scheme.schema.json</a></td>
+<td><a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.identifier-scheme.schema.json">cep.entity.identifier-scheme.schema.json</a></td>
 <td>Identifier scheme metadata</td>
 </tr>
 <tr>
-<td><a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.relationship.schema.json">cep.relationship.schema.json</a></td>
+<td><a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.relationship.schema.json">cep.relationship.schema.json</a></td>
 <td>Relationship records</td>
 </tr>
 <tr>
-<td><a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.exchange.schema.json">cep.exchange.schema.json</a></td>
+<td><a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.exchange.schema.json">cep.exchange.schema.json</a></td>
 <td>Exchange records</td>
 </tr>
 <tr>
-<td><a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.record-envelope.schema.json">cep.record-envelope.schema.json</a></td>
+<td><a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.record-envelope.schema.json">cep.record-envelope.schema.json</a></td>
 <td>Core envelope shared by all record families</td>
 </tr>
 <tr>
@@ -3215,7 +3387,7 @@ Individual schemas provide further detail on the structures and rules they defin
 <td>Vocabulary definition meta-schema</td>
 </tr>
 <tr>
-<td><a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.ctag.schema.json">cep.ctag.schema.json</a></td>
+<td><a href="https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.ctag.schema.json">cep.ctag.schema.json</a></td>
 <td>Per-post tagging model</td>
 </tr>
 <tr>
@@ -3228,10 +3400,10 @@ Individual schemas provide further detail on the structures and rules they defin
 <p>Schemas are expected to change less often than vocabularies and the versioning is handled differently.</p>
 <ul>
 <li>
-<p>Schema URIs are found from the file names <code>schemas/cep.entity.schema.json</code>, etc. Schemas are unversioned at the path, and the <code>schemaVersion</code> field provides the version.</p>
+<p>Schema URIs are found from the file names <code>schemas/core/cep.entity.schema.json</code>, etc. Schemas are unversioned at the path, and the <code>schemaVersion</code> field provides the version.</p>
 </li>
 <li>
-<p>Vocabulary URIs are found in <code>vocabularies/&lt;name&gt;.v1.0.0.json#&lt;code&gt;</code>.</p>
+<p>Vocabulary URIs are found in <code>vocabulary/&lt;name&gt;.v1.0.0.json#&lt;code&gt;</code>.</p>
 </li>
 </ul>
 

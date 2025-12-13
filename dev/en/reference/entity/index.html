@@ -1288,6 +1288,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../implementation/new-data-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Data Source
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../implementation/record-envelopes/" class="md-nav__link">
         
   
@@ -3159,6 +3187,123 @@
   
   
   
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Provenance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Provenance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../provenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../provenance/chicago_contracts.prov.yaml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chicago Contracts Dataset PROV-YAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../api/" class="md-nav__link">
         
@@ -3195,6 +3340,33 @@
     
   
     CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DATA_SOURCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DATA_SOURCES.md
   
 
     
@@ -3433,16 +3605,16 @@ It is the foundation for linking civic data across domains such as campaign fina
 <hr />
 <h2 id="3-entitytypeuri">3. entityTypeUri<a class="headerlink" href="#3-entitytypeuri" title="Permanent link">&para;</a></h2>
 <p>Entity type is resolved via the entity-type vocabulary:</p>
-<div class="highlight"><pre><span></span><code>https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-type.v1.0.0.json#municipality
+<div class="highlight"><pre><span></span><code>https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-type.v1.0.0.json#municipality
 </code></pre></div>
 <p>Adapters provide simple labels (<code>"municipality"</code>), and the builder expands them to the full URI.</p>
 <hr />
 <h2 id="4-example-entityrecord">4. Example EntityRecord<a class="headerlink" href="#4-example-entityrecord" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;schemaVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;recordSchemaUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.../schemas/cep.entity.schema.json&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;recordSchemaUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.../schemas/core/cep.entity.schema.json&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;verifiableId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cep-entity:snfei:34486b38...&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;entityTypeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.../vocabularies/entity-type.v1.0.0.json#municipality&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;entityTypeUri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.../vocabulary/core/entity-type.v1.0.0.json#municipality&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;jurisdictionIso&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;US-MN&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;legalName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;City of Springfield&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;legalNameNormalized&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;city springfield&quot;</span><span class="p">,</span>

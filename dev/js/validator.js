@@ -3,18 +3,18 @@
 // Canonical schema URLs (production)
 const SCHEMA_URLS = {
   entity:
-    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.entity.schema.json",
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.schema.json",
   relationship:
-    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.relationship.schema.json",
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.relationship.schema.json",
   exchange:
-    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/cep.exchange.schema.json",
+    "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.exchange.schema.json",
 };
 
 // Optional: local paths for offline / localhost testing
 const LOCAL_SCHEMA_PATHS = {
-  entity: "../../../schemas/cep.entity.schema.json",
-  relationship: "../../../schemas/cep.relationship.schema.json",
-  exchange: "../../../schemas/cep.exchange.schema.json",
+  entity: "../../../schemas/core/cep.entity.schema.json",
+  relationship: "../../../schemas/core/cep.relationship.schema.json",
+  exchange: "../../../schemas/core/cep.exchange.schema.json",
 };
 
 const isLocal =

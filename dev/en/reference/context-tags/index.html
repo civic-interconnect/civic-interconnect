@@ -1288,6 +1288,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../implementation/new-data-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Data Source
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../implementation/record-envelopes/" class="md-nav__link">
         
   
@@ -3153,6 +3181,123 @@
   
   
   
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Provenance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Provenance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../provenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../provenance/chicago_contracts.prov.yaml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chicago Contracts Dataset PROV-YAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../api/" class="md-nav__link">
         
@@ -3189,6 +3334,33 @@
     
   
     CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DATA_SOURCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DATA_SOURCES.md
   
 
     
@@ -3343,7 +3515,7 @@
 <li>Append-only</li>
 <li>Vocabulary-driven</li>
 <li>Non-canonical (do not affect SNFEI or verifiableId)</li>
-<li>Attested (you always know who applied them, when, and why)</li>
+<li>Attested (always know who applied them, when, and why)</li>
 </ul>
 <p>CTags live next to a record, not inside the payload.</p>
 <hr />
@@ -3361,8 +3533,8 @@
 <li>Cluster membership and similarity-based hints</li>
 <li>Interpretive statements by analysts or oversight bodies</li>
 </ul>
-<p>If you put these inside the payload, they pollute the domain model and can change semantics.<br />
-If you try to squeeze them into provenance metadata, they become awkward and hard to query.</p>
+<p>If put inside the payload, they pollute the domain model and can change semantics.<br />
+If added to provenance metadata, they become awkward and hard to query.</p>
 <p>CTags solve this by creating a <strong>third layer</strong>:</p>
 <ol>
 <li>Envelope (identity, timestamps, attestations)</li>
@@ -3424,7 +3596,7 @@ If you try to squeeze them into provenance metadata, they become awkward and har
 <ul>
 <li><code>tagTypeUri</code> and <code>code</code> tie the tag to a controlled vocabulary term.</li>
 <li><code>appliedBy</code> and <code>appliedAt</code> make the tag attributable and auditable.</li>
-<li><code>scope</code> and <code>targetPath</code> let you aim the tag at a full record, a particular field, or an inferred relationship.</li>
+<li><code>scope</code> and <code>targetPath</code> enable aiming the tag at a full record, a particular field, or an inferred relationship.</li>
 <li><code>confidence</code> is optional but encouraged for ML-inferred tags.</li>
 </ul>
 <hr />

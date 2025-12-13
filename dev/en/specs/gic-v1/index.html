@@ -1298,6 +1298,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../implementation/new-data-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    New Data Source
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../implementation/record-envelopes/" class="md-nav__link">
         
   
@@ -3028,6 +3056,123 @@
   
   
   
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Provenance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Provenance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../provenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../provenance/chicago_contracts.prov.yaml" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chicago Contracts Dataset PROV-YAML
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../api/" class="md-nav__link">
         
@@ -3064,6 +3209,33 @@
     
   
     CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DATA_SOURCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DATA_SOURCES.md
   
 
     
@@ -3147,7 +3319,7 @@ invalid adapter output, or corrupted graph.</p>
 </ol>
 <p><code>verifiableId</code> MUST be globally unique for entities with distinct fingerprints.</p>
 <h2 id="22-stability-under-attribute-change">2.2 Stability Under Attribute Change<a class="headerlink" href="#22-stability-under-attribute-change" title="Permanent link">&para;</a></h2>
-<p>An entity’s <code>verifiableId</code> MUST remain unchanged if:</p>
+<p>An entity's <code>verifiableId</code> MUST remain unchanged if:</p>
 <ul>
 <li>addresses change</li>
 <li>phone/email change</li>
@@ -3172,7 +3344,7 @@ No relationship may point to a:</p>
 <li>non-existent entity</li>
 </ul>
 <h2 id="32-type-consistency">3.2 Type Consistency<a class="headerlink" href="#32-type-consistency" title="Permanent link">&para;</a></h2>
-<p>A relationship’s <code>relationshipTypeUri</code> MUST be compatible with the types of the
+<p>A relationship's <code>relationshipTypeUri</code> MUST be compatible with the types of the
 referenced entities.<br />
 For example:</p>
 <p>committeeRepresentsCandidate(Committee, Candidate)</p>

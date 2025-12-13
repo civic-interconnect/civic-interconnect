@@ -1,0 +1,19 @@
+entity:
+  chicago_contracts_dataset:
+    prov:type: "prov:Entity"
+    dct:title: "City of Chicago Contracts Dataset"
+    dct:publisher: "City of Chicago"
+    dct:identifier: "https://data.cityofchicago.org/Administration-Finance/Contracts/rsxa-ify5"
+    dct:license: "Public Domain (Chicago Open Data Portal)"
+
+agent:
+  city_of_chicago:
+    prov:type: "prov:Agent"
+    foaf:name: "City of Chicago, Department of Procurement Services"
+
+activity:
+  retrieve_chicago_contracts_2025_12_11:
+    prov:type: "prov:Activity"
+    prov:startedAtTime: "2025-12-11T00:00:00Z"
+    prov:wasAssociatedWith: city_of_chicago
+    prov:used: chicago_contracts_dataset
