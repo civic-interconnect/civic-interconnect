@@ -103,6 +103,10 @@ if ($LASTEXITCODE -ne 0) { throw "Python tests failed" }
 uv run python -m zensical build --strict
 if ($LASTEXITCODE -ne 0) { throw "Zensical build failed" }
 
+# Format Python code.
+uv run ruff format .
+if ($LASTEXITCODE -ne 0) { throw "Ruff formatting failed" }
+
 # Show any tracked-file changes.
 git status --short
 if ($LASTEXITCODE -ne 0) { throw "git status failed" }
