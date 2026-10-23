@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Update CEP localization metadata (version, updated_timestamp, config_hash).
 
 Update version, updated_timestamp, and config_hash for all YAML configs

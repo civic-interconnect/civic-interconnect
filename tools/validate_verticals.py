@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-r"""Validate YAML about files for vertical slices.
+"""Validate YAML about files for vertical slices.
 
 - Validates all about.yaml files under docs/en/04_verticals/ against
   the schemas/governance/about.schema.json schema.

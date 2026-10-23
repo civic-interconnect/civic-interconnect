@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Sync protocol localization assets into the Python package tree.
 
 Source of truth:

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Validate JSON schema files and vocabulary instances.
 
 - Validates all *.schema.json files under schemas/ and vocabulary/ as JSON Schemas

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Audit identity collisions for jurisdictional name localization.
 
 Primary use:
