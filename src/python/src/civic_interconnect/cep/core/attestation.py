@@ -62,7 +62,7 @@ class Attestation(Canonicalize):
         proof_type: str,
         proof_value: str,
         verification_method_uri: str,
-    ) -> "Attestation":
+    ) -> Attestation:
         """Create a new Attestation with required fields."""
         return cls(
             attestor_id=attestor_id,
@@ -72,7 +72,7 @@ class Attestation(Canonicalize):
             verification_method_uri=verification_method_uri,
         )
 
-    def with_purpose(self, purpose: ProofPurpose) -> "Attestation":
+    def with_purpose(self, purpose: ProofPurpose) -> Attestation:
         """Return a new Attestation with the specified proof purpose."""
         return Attestation(
             attestor_id=self.attestor_id,
@@ -84,7 +84,7 @@ class Attestation(Canonicalize):
             anchor_uri=self.anchor_uri,
         )
 
-    def with_anchor(self, uri: str) -> "Attestation":
+    def with_anchor(self, uri: str) -> Attestation:
         """Return a new Attestation with the specified anchor URI."""
         return Attestation(
             attestor_id=self.attestor_id,

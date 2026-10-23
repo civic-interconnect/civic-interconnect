@@ -4,7 +4,6 @@ All CEP hashes are SHA-256, represented as lowercase hexadecimal strings.
 """
 
 import hashlib
-from typing import Optional
 
 
 class CanonicalHash:
@@ -28,7 +27,7 @@ class CanonicalHash:
         self._hex = hex_value.lower()
 
     @classmethod
-    def from_canonical_string(cls, canonical: str) -> "CanonicalHash":
+    def from_canonical_string(cls, canonical: str) -> CanonicalHash:
         """Compute the SHA-256 hash of the given canonical string.
 
         Args:
@@ -42,7 +41,7 @@ class CanonicalHash:
         return cls(hasher.hexdigest())
 
     @classmethod
-    def from_hex(cls, hex_value: str) -> Optional["CanonicalHash"]:
+    def from_hex(cls, hex_value: str) -> CanonicalHash | None:
         """Create a CanonicalHash from a pre-computed hex string.
 
         Args:
