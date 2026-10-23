@@ -105,7 +105,8 @@ if ($LASTEXITCODE -ne 0) { throw "Zensical build failed" }
 
 # Format Python code.
 uv run ruff format .
-if ($LASTEXITCODE -ne 0) { throw "Ruff formatting failed" }
+uvx prek run --all-files
+if ($LASTEXITCODE -ne 0) { throw "Final formatting or checks failed" }
 
 # Show any tracked-file changes.
 git status --short
