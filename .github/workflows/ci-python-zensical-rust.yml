@@ -1,0 +1,131 @@
+# ============================================================
+# .github/workflows/ci-python-zensical-rust.yml (CUSTOM)
+# ============================================================
+# Updated: 2026-10-23
+#
+# WHAT: Validate the Python and Rust implementation and Zensical documentation.
+#
+# WHEN: Use for this repository, which requires a compiled Rust Python extension.
+#
+# REQ: Repository MUST contain .python-version and uv.lock.
+# REQ: CI MUST NOT introduce rules that are not reproducible locally.
+# REQ: CI MUST validate only; it never persists file changes or deploys docs.
+# ============================================================
+
+name: CI (Python + Zensical + Rust)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-python-zensical-rust-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUNBUFFERED: "1"
+  UV_FROZEN: "1"
+
+jobs:
+  ci:
+    name: Python, Rust, and Zensical checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      # ============================================================
+      # A) ASSEMBLE: Checkout code and set up environment
+      # ============================================================
+
+      - name: A1) Checkout repository code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: A2) Install uv (with caching and uv.lock awareness)
+        uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: A3) Install project Python
+        run: uv python install
+
+      - name: A4) Install dependencies from committed lockfile
+        run: uv sync --frozen
+
+      - name: A5) Show tool versions
+        run: |
+          uv --version
+          uv run --no-sync python --version
+          rustc --version
+          cargo --version
+          if [ -f "zensical.toml" ]; then
+            uv run --no-sync python -m zensical --version
+          fi
+
+      - name: A6) Build and install Rust Python extension
+        working-directory: src/rust/cep-py
+        run: uv run --no-sync maturin develop --release
+        # WHY: Python tests require the compiled cep_py extension.
+        # OBS: Ubuntu runners include the Rust toolchain.
+
+      - name: A7) Install local EU TED eForms adapter
+        run: uv pip install -e adapters/eu/ted_eforms/python
+        # WHY: Adapter tests import the separately packaged ci_adapters module.
+
+      - name: A8) Verify required Python imports
+        run: |
+          uv run --no-sync python -c "import cep_py; print(cep_py.__file__)"
+          uv run --no-sync python -c "from ci_adapters.eu.ted_eforms.adapter import TedEformsAdapter"
+
+      - name: A9) Run repository hooks on all files (prek)
+        run: uvx prek run --all-files
+        # WHY: Run the same hooks used locally.
+        # REQ: Committed files MUST pass without modifications.
+
+      # ============================================================
+      # B) BASELINE CHECKS: Tools not covered by hooks
+      # ============================================================
+
+      - name: B1) Validate pyproject.toml schema
+        run: uvx "validate-pyproject[all]" pyproject.toml
+
+      - name: B2) Run ty type checker
+        run: uv run --no-sync ty check
+        # WHY: Check the installed extension and Python source together.
+        # REQ: Match the blocking type check in rel.ps1.
+
+      # ============================================================
+      # C) COVERAGE & TESTING: Rust and Python tests
+      # ============================================================
+
+      - name: C1) Run Rust tests
+        run: cargo test --locked --workspace
+
+      - name: C2) Run Python tests
+        run: >
+          uv run --no-sync python -m pytest
+          --deselect
+          src/python/tests/identity/test_us_il_vendor_snfei.py::test_snfei_chicago_vendors_subset
+        # WHY: Match the test selection in rel.ps1.
+        # OBS: The excluded test can overwrite a tracked sample CSV.
+
+      # ============================================================
+      # D) DOCS: Build documentation without deployment
+      # ============================================================
+
+      - name: D1) Build documentation with Zensical
+        run: |
+          if [ -f "zensical.toml" ]; then
+            uv run --no-sync python -m zensical build
+          else
+            echo "No zensical.toml found; skipping docs build."
+          fi
+        # WHY: Validate documentation without deployment.
