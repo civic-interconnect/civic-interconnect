@@ -43,7 +43,7 @@ CEP records are:
 - Extensible across jurisdictions and data ecosystems
 - Designed for cross-system interoperability
 
-Documentation: <https://civic-interconnect.github.io/civic-interconnect/>
+See [Documentation Site](https://civic-interconnect.github.io/civic-interconnect/).
 
 ## Quick Start
 
@@ -81,9 +81,7 @@ record = Entity.model_validate_json("""
 print(record.verifiableId)
 ```
 
-See full documentation:
-
-<https://civic-interconnect.github.io/civic-interconnect/>
+See [Documentation Site](https://civic-interconnect.github.io/civic-interconnect/).
 
 ## Core Concepts
 
