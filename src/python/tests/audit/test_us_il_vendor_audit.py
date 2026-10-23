@@ -49,7 +49,10 @@ def _import_audit_module():
 
 
 @pytest.mark.parametrize("limit", [int(os.environ.get("CEP_AUDIT_LIMIT", "2000"))])
-def test_us_il_vendor_identity_audit_produces_collisions_csv(tmp_path: Path, limit: int) -> None:
+def test_us_il_vendor_identity_audit_produces_collisions_csv(
+    tmp_path: Path, limit: int
+) -> None:
+    """Test that the US-IL vendor identity audit produces a well-formed collisions CSV."""
     audit = _import_audit_module()
 
     out_dir = tmp_path / "audit" / "us_il_vendor"
@@ -82,7 +85,9 @@ def test_us_il_vendor_identity_audit_produces_collisions_csv(tmp_path: Path, lim
 
         required = ["normalized", "count", "raw_variants_joined"]
         missing = [c for c in required if c not in fieldnames]
-        assert not missing, f"collisions.csv missing columns: {missing} (found: {fieldnames})"
+        assert not missing, (
+            f"collisions.csv missing columns: {missing} (found: {fieldnames})"
+        )
 
 
 def main(argv: list[str] | None = None) -> None:

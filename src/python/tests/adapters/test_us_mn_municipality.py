@@ -1,7 +1,10 @@
+"""Tests for the US MN Municipality adapter."""
+
 from civic_interconnect.cep.adapters.us_mn_municipality import UsMnMunicipalityAdapter
 
 
 def test_us_mn_municipality_basic_pipeline() -> None:
+    """Test the basic pipeline of the US MN Municipality adapter."""
     adapter = UsMnMunicipalityAdapter()
 
     raw = {

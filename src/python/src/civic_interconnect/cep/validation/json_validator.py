@@ -84,7 +84,9 @@ def _load_schema_from_repo_root(schema_name: str) -> dict:
     schema_path = repo_root / schema_rel_path
 
     if not schema_path.is_file():
-        raise FileNotFoundError(f"Schema file not found for {schema_name!r}: {schema_path}")
+        raise FileNotFoundError(
+            f"Schema file not found for {schema_name!r}: {schema_path}"
+        )
 
     with schema_path.open("r", encoding="utf-8") as f:
         return json.load(f)
@@ -137,14 +139,20 @@ def validate_json_path(
             with json_path.open("r", encoding="utf-8") as f:
                 data = json.load(f)
         except json.JSONDecodeError as exc:
-            errors.append(f"Invalid JSON at line {exc.lineno}, column {exc.colno}: {exc.msg}")
-            results.append(FileValidationResult(path=json_path, ok=False, errors=errors))
+            errors.append(
+                f"Invalid JSON at line {exc.lineno}, column {exc.colno}: {exc.msg}"
+            )
+            results.append(
+                FileValidationResult(path=json_path, ok=False, errors=errors)
+            )
             continue
 
         # 2) Schema validation errors
         for err in validator.iter_errors(data):
             errors.append(_format_schema_error(err))
 
-        results.append(FileValidationResult(path=json_path, ok=not errors, errors=errors))
+        results.append(
+            FileValidationResult(path=json_path, ok=not errors, errors=errors)
+        )
 
     return ValidationSummary(results=results)

@@ -1,7 +1,16 @@
-from civic_interconnect.cep.adapters.us_fec_campaign_finance import UsFecCampaignFinanceAdapter
+"""Tests for the US FEC campaign finance adapter.
+
+This module validates that the adapter converts FEC-style campaign finance
+records into the expected attestations and identifier payloads.
+"""
+
+from civic_interconnect.cep.adapters.us_fec_campaign_finance import (
+    UsFecCampaignFinanceAdapter,
+)
 
 
 def test_us_fec_adapter_basic_pipeline():
+    """Test the basic pipeline of the US FEC Campaign Finance adapter."""
     adapter = UsFecCampaignFinanceAdapter()
 
     raw = {

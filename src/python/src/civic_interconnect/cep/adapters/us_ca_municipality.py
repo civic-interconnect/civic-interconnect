@@ -6,7 +6,11 @@ records into normalized payloads for the CEP Entity builder.
 
 from typing import Any
 
-from civic_interconnect.cep.adapters.base import AdapterKey, JsonDict, SimpleEntityAdapter
+from civic_interconnect.cep.adapters.base import (
+    AdapterKey,
+    JsonDict,
+    SimpleEntityAdapter,
+)
 from civic_interconnect.cep.localization import apply_localization_name
 
 

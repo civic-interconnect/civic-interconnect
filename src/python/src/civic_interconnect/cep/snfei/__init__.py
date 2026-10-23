@@ -108,9 +108,9 @@ def normalize_registration_date(value: str) -> str | None:
 
 __all__ = [
     "generate_snfei",
-    "generate_snfei_detailed_json",
     "generate_snfei_detailed",
-    "normalize_legal_name",
+    "generate_snfei_detailed_json",
     "normalize_address",
+    "normalize_legal_name",
     "normalize_registration_date",
 ]

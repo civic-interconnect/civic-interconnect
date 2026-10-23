@@ -1,0 +1,13 @@
+# ============================================================
+# .gitignore_must_be_custom (CUSTOM FROM ALL-PY-SRC-REPOS)
+# ============================================================
+# Updated: 2026-10-23: CUSTOM: add ignore
+# entries for Rust and temporary Python verification output
+
+# === CUSTOM RUST AND VERIFICATION OUTPUT ===
+
+# Ignore compiled Rust artifacts.
+/target/
+
+# Ignore temporary Python 3.14 verification artifacts.
+/.verify-py314/

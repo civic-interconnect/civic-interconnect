@@ -1,170 +1,378 @@
-# This project .gitignore file
-# Lists content that does NOT need to be tracked for project history.
+# ============================================================
+# .gitignore (ALL-REPOS)
+# ============================================================
+# Updated: 2026-10-11
+#
+# WHAT: A Git configuration file that identifies files and directories
+#       that should not be included in the repository's version history.
+#       Git uses this file to determine which untracked files to ignore.
+#
+# WHEN: Use in professional repositories managed with Git.
+#       Git automatically applies these rules when working with files.
+#
+# WHY: Version the files we create and maintain for this project.
+#      Avoid tracking downloaded dependencies, generated output,
+#      temporary files, local settings, and sensitive information.
+#      Other projects maintain the source code and version history
+#      of their own dependencies.
+#
+# HOW: List file and directory patterns below.
+#      Patterns work across different languages, tools, and project types.
+#      Sections are organized by purpose for easier maintenance.
+#
+#      In VS Code, open the 'Outline view' in the Explorer sidebar to
+#      see and navigate the different sections of this file.
+#      Requires the recommended 'Comment Section Outline' extension
+#      (see .vscode/extensions.json).
+#
+# TOOLS: Git tracks changes to project files and maintains version history.
+#        .gitignore controls which untracked files Git ignores.
+#
+# SKILLS: Git, version control, repository management,
+#         file patterns, dependency management, and project maintenance.
+#
+# REQ: All professional GitHub project repositories MUST include .gitignore.
+# REQ: Never commit secrets or private credentials.
+#
+# OBS: .gitignore does not remove files already tracked by Git.
+# OBS: Dependency manifests and lockfiles should generally be committed
+#      even when downloaded dependencies are ignored.
+# OBS: Patterns for unused tools or languages are generally harmless.
+#
+# ALT: Repositories may customize ignores while preserving safety rules.
+# CUSTOM: Delete sections that are not needed for the project.
+# CUSTOM: Add project-specific patterns when necessary.
+#
+# ============================================================
+# === INTRO: How .gitignore patterns work ===
+# ============================================================
+# NOTE: .gitignore uses glob-style patterns, not regular expressions.
+#
+# /name
+# WHY: A leading slash anchors the pattern to the directory containing this
+# .gitignore file. In a repository-root .gitignore, /name matches only name
+# at the repository root.
+# EXAMPLE: /pyproject.toml.ruff ignores only the root-level temporary fragment.
+#
+# name/
+# WHY: A trailing slash means the pattern matches directories, not files.
+# EXAMPLE: bin/ ignores directories named bin and their contents.
+#
+# *.ext
+# WHY: An asterisk (*) matches any number of characters within one path component.
+# EXAMPLE: *.log ignores files ending in .log.
+#
+# **
+# WHY: A double asterisk (**) can match across directory levels.
+# EXAMPLE: **/src/**/_version.py matches generated _version.py files inside
+# src trees regardless of repository depth or package name.
+#
+# ?
+# WHY: A question mark (?) matches exactly one character within a path component.
+# EXAMPLE: temp?.txt matches temp1.txt and tempa.txt, but not temp10.txt.
+#
+# [abc]
+# WHY: Square brackets match one character from the listed set or range.
+# EXAMPLE: file[0-9].txt matches file0.txt through file9.txt.
+#
+# !pattern
+# WHY: An exclamation point (!) negates an earlier ignore rule and re-includes
+# a matching file when its parent directory has not itself been excluded.
+# EXAMPLE: !.env.example keeps the safe example file even though .env.* is ignored.
+#
+# # text
+# WHY: A leading # makes the line a comment unless the # is escaped.
+#
+# NOTE: Prefer the narrowest pattern that expresses the intent.
+# Anchored patterns such as /name are safer when
+# only a repository-root file should be ignored.
+# ============================================================
 
-# ----------------------------------------
-# VS Code (special case)
-# ----------------------------------------
-# Ignore all VS Code folder content by default
-.vscode/*
+# ============================================================
+# === SECTION: UNIVERSAL ===
+# ============================================================
 
-# ----------------------------------------
-# macOS and Windows system files
-# ----------------------------------------
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon\r
-._*
-.Spotlight-V100/
-.Trashes
-ehthumbs.db
-Thumbs.db
-desktop.ini
+# === Environment variables and secrets ===
 
-# ----------------------------------------
-# Editors / IDEs
-# ----------------------------------------
-.idea/
-*.code-workspace
-
-# ----------------------------------------
-# Environment variables and secrets
-# ----------------------------------------
+# WHY: Never commit credentials or environment-specific configuration.
+*.env
 .env
 .env.*
-*.env
 
-# ----------------------------------------
-# Python: bytecode, build artifacts
-# ----------------------------------------
-.venv/
-venv/
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.ipynb_checkpoints/
+# WHY: Commit .env.example as a safe template showing which variables to set.
+# NOTE: Copy .env.example to .env locally and customize the local copy.
+!.env.example
 
-# Packaging / distribution
-build/
-dist/
-.eggs/
-*.egg-info/
-*.egg
-*.whl
 
-# ----------------------------------------
-# Testing / coverage / linters
-# ----------------------------------------
-.pytest_cache/
-.coverage
-.coverage.*
-htmlcov/
-.ruff_cache/
+# === Private notes and local-only files ===
 
-# ----------------------------------------
-# Documentation (MkDocs) — build output
-# ----------------------------------------
-site/
+# WHY: Private working notes should remain local unless intentionally published.
+PRIVATE-NOTES.md
+PRIVATE_NOTES.md
 
-# Schemas copied for docs build
-docs/schemas/
+# WHY: The root-level refs directory holds local reference papers and source
+# materials that should be cited or linked to rather than committed.
+# NOTE: The leading slash limits this rule to the repository-root refs directory.
+# ALT: Commit only reference material that is intentionally redistributable and
+# appropriate to include in the repository.
+/refs/
 
-# ----------------------------------------
-# Additional caches and temp files
-# ----------------------------------------
-.tox/
-.mypy_cache/
-.pytype/
+
+# === Operating-system files ===
+
+# WHY: OS-generated metadata files are machine-specific and should not be tracked.
+.AppleDouble
+.DS_Store
+.LSOverride
+.Spotlight-V100/
+.Trashes
+._*
+Icon\r
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+
+# === Editors and IDEs ===
+
+# WHY: IDE metadata is generally machine-local and should not be tracked.
+*.code-workspace
+.idea/
+
+
+# === VS Code ===
+
+# WHY: Ignore editor state by default while allowing shared project configuration.
+# NOTE: Use .vscode/* (contents), not .vscode/ (directory). Git will not
+# re-include a file whose parent directory is excluded.
+.vscode/*
+!.vscode/ABOUT_THIS_FOLDER.md
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/*.code-snippets
+
+
+# === Temporary, lock, and swap files ===
+
+# WHY: Temporary and swap files are machine-local noise and create meaningless diffs.
+*.swo
+*.swp
+*.tmp
+*~
+
+# WHY: Microsoft Office creates temporary owner/lock files beside open documents.
+# NOTE: These patterns cover Word, Excel, and PowerPoint temporary files without
+# ignoring the actual Office documents.
+~$*.doc*
+~$*.xls*
+~$*.ppt*
+
+# WHY: LibreOffice and OpenOffice create temporary lock files beside open documents.
+.~lock.*#
+
+
+# === Logs and generated runtime output ===
+
+# WHY: Ignore logs and runtime output by default.
+# ALT: Explicitly re-include a specific log only when it is intentionally used
+# as project evidence.
+*.log
+logs/
+# !/project.log
+
+
+# === Generic caches ===
+
+# WHY: Generic caches are machine-local and should not be tracked.
 .cache/
 
-# ----------------------------------------
-# Generated artifacts
-# ----------------------------------------
-logs/
-reports/
-coverage.xml
 
-# generated by setuptools-scm
-src/python/src/civic_exchange_protocol/_version.py
+# === Generic bin (binary) folder ===
 
-# ----------------------------------------
-# Storage (runtime pulled data snapshots)
-# ----------------------------------------
-storage/
+# WHY: The root-level bin directory contains generated executable or build output.
+# NOTE: The leading slash limits this rule to the repository-root bin directory
+# and avoids ignoring a nested source directory that happens to be named bin.
+/bin/
 
-# ----------------------------------------
-# General temp / system files
-# ----------------------------------------
-*.swp
-*.bak
-*.tmp
-*.log
-tmp/
-.github/workflows/__pycache__/
 
-# ----------------------------------------
-# Ignore local .pypirc if placed in repo by mistake
-# ----------------------------------------
-# This file is used to configure PyPI credentials for publishing packages.
-# It should not be tracked in the repository for security reasons.
-# On Linux and macOS, this file is typically located at ~/.pypirc.
-# On Windows, it can be placed in the user's home directory, e.g., C:\Users\<username>\
-.pypirc
+# ============================================================
+# === SECTION: PROJECT DOCS ===
+# ============================================================
 
-# ----------------------------------------
-# Ignore uv.lock - prefer staying current for now
-# ----------------------------------------
-# Dependency lock file for the 'uv' package manager.
-uv.lock
+# WHY: Static site build output is generated from the documentation source.
+# NOTE: Zensical uses site/ as the generated site output directory.
+site/
 
-# ----------------------------------------
-# Rust build output (Cargo)
-# ----------------------------------------
-target/
+# ============================================================
+# === SECTION: PYTHON ===
+# ============================================================
 
-# ----------------------------------------
-# Node / JS tooling (for validator, frontends, adapters)
-# ----------------------------------------
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-pnpm-lock.yaml
-.DS_store
+# === Python environments ===
 
-# ----------------------------------------
-# Java / JVM artifacts
-# ----------------------------------------
-*.class
-*.jar
-*.war
-*.ear
-*.iml
-.gradle/
+# WHY: Virtual environments are machine-local and reproducible from project files.
+.venv/
+venv/
+
+
+# === Python project state ===
+
+# REQ: Do NOT git ignore .python-version.
+# WHY: Commit .python-version to declare the Python version used by the project.
+
+# REQ: Do NOT git ignore uv.lock.
+# WHY: Commit uv.lock to preserve the resolved dependency environment and use it
+# in CI/CD pipelines.
+
+# WHY: Generated SCM version modules should not be tracked.
+# NOTE: This recursive pattern works regardless of repository depth or package name.
+**/src/**/_version.py
+
+
+# === Python bytecode ===
+
+# WHY: Python bytecode is generated automatically and is machine-specific.
+*.pyc
+*.pyd
+*.pyo
+__pycache__/
+
+
+# === Python build and packaging artifacts ===
+
+# WHY: Build and packaging artifacts are generated from project source.
+*.egg
+*.egg-info/
+*.whl
+.eggs/
 build/
+dist/
 
-# ----------------------------------------
-# C# / .NET artifacts
-# ----------------------------------------
-bin/
-obj/
-*.user
-*.suo
-*.csproj.user
 
-# ----------------------------------------
-# Temporary language servers (multi-language monorepo)
-# ----------------------------------------
+# === Python testing and coverage output ===
+
+# WHY: Test and coverage reports are generated and can be reproduced.
+.coverage
+.coverage.*
+.pytest_cache/
+htmlcov/
+coverage.xml
+coverage.json
+coverage.lcov
+
+
+# === Python tooling caches ===
+
+# WHY: Tooling caches improve local performance but should not be tracked.
+.mypy_cache/
+.pytype/
+.ruff_cache/
+.tox/
+
+
+# === Python notebooks and marimo ===
+
+# WHY: Jupyter notebook checkpoint state is generated.
+.ipynb_checkpoints/
+
+# REQ: Do NOT git ignore layouts/ when using marimo custom layouts.
+# WHY: Marimo layout files are project source and should be version controlled.
+
+# REQ: Do NOT git ignore public/ when it contains source assets or data
+# used by marimo or WASM applications.
+# WHY: These files may be required to reproduce or publish the application.
+
+
+# ============================================================
+# === SECTION: NODE ===
+# ============================================================
+# Some tooling and projects require Node.js and its dependencies.
+
+# WHY: Node dependencies are restored from package-lock.json with npm ci.
+node_modules/
+
+# REQ: Do NOT git ignore package-lock.json.
+# WHY: Commit package-lock.json to preserve reproducible Node dependency
+# resolution and use it in CI/CD pipelines.
+
+
+# === Node package-manager caches ===
+
+# WHY: Package-manager caches are machine-local and should not be tracked.
+.npm/
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# ============================================================
+# === SECTION: TYPESCRIPT AND JAVASCRIPT ===
+# ============================================================
+
+# === TypeScript and JavaScript build output ===
+
+# WHY: Compiled JavaScript output is generated from TypeScript source.
+out/
+
+# WHY: TypeScript incremental build metadata is generated.
 *.tsbuildinfo
-.lsp/
 
 
+# === TypeScript and JavaScript tooling caches ===
 
-# -------------------------------------------------
-# Examples: KEEP canonical and entity records
-# Exclude only scratch files or notebooks
-# -------------------------------------------------
-# Only ignore ephemeral scratch files or notebooks
-*.ipynb_checkpoints/
+# WHY: Tooling caches and generated coverage output should not be tracked.
+.eslintcache
+.nyc_output/
+coverage/
+
+
+# === VS Code extension test and package output ===
+
+# WHY: VS Code extension test-host files are generated by @vscode/test-electron.
+.vscode-test/
+
+# WHY: VSIX packages are generated release artifacts.
+*.vsix
+
+# ============================================================
+# === SECTION: COMPUTER-CHECKED MATHEMATICAL PROOFS (LEAN) ===
+# ============================================================
+
+# === Lean ===
+
+# WHAT: Lean is a programming language and proof assistant used to
+#       express mathematical definitions, theorems, and proofs.
+#       It can also verify properties of software and logical systems.
+#       Lean checks whether formal proofs satisfy their stated rules.
+#
+# WHY: Lake, Lean's project and build tool, generates build files
+#      and downloads dependencies that do not need to be committed.
+.lake/
+lake-packages/
+/docbuild/
+
+
+# ============================================================
+# === SECTION: CUSTOM GENERATED ARTIFACTS ===
+# ============================================================
+
+# === Generated files for supported repositories ===
+
+# WHY: Generated analytics and guide-context artifacts should be rebuilt rather
+# than committed.
+# NOTE: These entries are harmless in repositories that do not generate them.
+docs/assets/data/view-analytics.json
+docs/assets/data/guide-context.json
+# marimo WASM export; built at deploy time, not committed
+docs/app/
+
+
+# === CUSTOM RUST AND VERIFICATION OUTPUT ===
+
+# Ignore compiled Rust artifacts.
+/target/
+
+# Ignore temporary Python 3.14 verification artifacts.
+/.verify-py314/

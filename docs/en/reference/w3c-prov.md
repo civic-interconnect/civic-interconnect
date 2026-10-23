@@ -44,7 +44,7 @@ A PROV-compliant layer would formalize:
 
 ### PROV-DM
 
-Data Model. 
+Data Model.
 The ontology that defines the conceptual graph (entity, activity, agent, and their relations).
 
 ### PROV-N
@@ -96,4 +96,4 @@ Used to describe complex multi-step pipelines.
 
 Metadata catalogs that can store PROV graphs about datasets.
 When publishing dataset metadata, DCAT is the companion standard.
-[CKAN](https://ckan.org/) is an open source data management system used by US [data.gov](https://data.gov/), the government of Canada, and more. 
+[CKAN](https://ckan.org/) is an open source data management system used by US [data.gov](https://data.gov/), the government of Canada, and more.

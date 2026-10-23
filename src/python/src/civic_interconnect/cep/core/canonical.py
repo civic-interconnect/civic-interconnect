@@ -36,7 +36,6 @@ class Canonicalize(ABC):
         Returns:
             A dictionary of field names to string values.
         """
-        pass
 
     def to_canonical_string(self) -> str:
         """Generate the canonical string representation for hashing.

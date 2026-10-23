@@ -75,6 +75,7 @@ In the final stage, Python calls into the Rust `cep_core` builder:
 
 ```python
 from cep_py import build_entity_json
+
 record = build_entity_json(normalized_input)
 ```
 

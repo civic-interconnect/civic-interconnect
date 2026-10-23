@@ -252,4 +252,3 @@ Best practices:
 - Adding, removing, or modifying CTags does not affect canonicalization or identity.  
 - CTags support analytics, data quality, workflows, and narrative reporting.  
 - CTag infrastructure unifies annotation across all CEP record families.
-

@@ -34,30 +34,30 @@ from .version import SCHEMA_VERSION, __version__
 __all__ = [
     # Version
     "SCHEMA_VERSION",
-    "__version__",
-    # Timestamp
-    "CanonicalTimestamp",
-    # Hash
-    "CanonicalHash",
-    # Canonical
-    "Canonicalize",
-    "format_amount",
-    "insert_if_present",
-    "insert_required",
     # Attestation
     "Attestation",
-    "ProofPurpose",
-    # Schema Registry
-    "get_schema",
-    "get_registry",
-    "list_schemas",
+    # Hash
+    "CanonicalHash",
+    # Timestamp
+    "CanonicalTimestamp",
+    # Canonical
+    "Canonicalize",
     # Errors
     "CepError",
-    "InvalidTimestampError",
+    "HashMismatchError",
     "InvalidHashError",
     "InvalidIdentifierError",
+    "InvalidTimestampError",
     "MissingFieldError",
-    "UnsupportedVersionError",
-    "HashMismatchError",
+    "ProofPurpose",
     "RevisionChainError",
+    "UnsupportedVersionError",
+    "__version__",
+    "format_amount",
+    "get_registry",
+    # Schema Registry
+    "get_schema",
+    "insert_if_present",
+    "insert_required",
+    "list_schemas",
 ]

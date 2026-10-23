@@ -133,4 +133,3 @@ Proposals for changes follow the **CEP Evolution Policy**, including:
 - review by editors,
 - version increment (minor/patch/major),
 - publication to the specs directory.
-

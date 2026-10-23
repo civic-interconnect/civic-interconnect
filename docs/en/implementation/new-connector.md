@@ -74,4 +74,3 @@ Add a couple of property tests or fuzz tests for deserialization.
 3. Update `build_identifiers_snfei` (or associated build function) in associatied manual.rs.
 4. Update the Python fallback builder in the Python `api.py`.
 5. Update all references to associated .json files and tests.
-   

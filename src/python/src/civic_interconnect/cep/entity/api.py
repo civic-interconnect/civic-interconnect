@@ -87,8 +87,8 @@ def _validate_minimal_raw_payload(raw: dict[str, Any]) -> None:
 
     attestations = raw.get("attestations")
     if not isinstance(attestations, list) or len(attestations) < 1:
-        raise ValueError("'attestations' must be a non-empty list.")
+        raise TypeError("'attestations' must be a non-empty list.")
 
     for i, a in enumerate(attestations):
         if not isinstance(a, dict):
-            raise ValueError(f"'attestations[{i}]' must be an object (dict).")
+            raise TypeError(f"'attestations[{i}]' must be an object (dict).")

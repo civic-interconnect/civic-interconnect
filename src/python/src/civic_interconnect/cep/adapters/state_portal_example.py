@@ -108,7 +108,9 @@ class StatePortalExampleAdapter(Adapter):
 
         # Optionally map extra fields into standard slots or extensions
         if "portalId" in canonical:
-            aligned.setdefault("externalIds", {})["statePortalId"] = canonical["portalId"]
+            aligned.setdefault("externalIds", {})["statePortalId"] = canonical[
+                "portalId"
+            ]
         if "category" in canonical:
             aligned["category"] = canonical["category"]
         if "url" in canonical:

@@ -1,7 +1,7 @@
 # Related Research Domains
 
-This standard operates at the intersection of three major, yet often separate, academic research domains: 
-- Formal Entity Resolution (CS), 
+This standard operates at the intersection of three major, yet often separate, academic research domains:
+- Formal Entity Resolution (CS),
 - Campaign Finance/Policy Analysis (Political Science), and
 - Global Data Standards (Information Systems).
 

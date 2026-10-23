@@ -14,6 +14,7 @@ from pathlib import Path
 import sys
 
 from jsonschema import Draft202012Validator, ValidationError
+from jsonschema.exceptions import SchemaError
 
 EXPECTED_META = "https://json-schema.org/draft/2020-12/schema"
 
@@ -64,7 +65,7 @@ def validate_schema(schema):
 
     try:
         Draft202012Validator.check_schema(schema)
-    except Exception as exc:
+    except (SchemaError, TypeError) as exc:
         return f"Invalid schema structure: {exc}"
 
     return None
@@ -103,7 +104,7 @@ def run_schema_validation(schema_files):
 
         try:
             raw = path.read_text(encoding="utf-8")
-        except Exception as exc:
+        except (OSError, UnicodeDecodeError) as exc:
             parse_errors.append((path_str, f"Failed to read file: {exc}"))
             continue
 
@@ -113,7 +114,7 @@ def run_schema_validation(schema_files):
 
         try:
             schema = json.loads(raw)
-        except Exception as exc:
+        except (json.JSONDecodeError, TypeError) as exc:
             parse_errors.append((path_str, f"JSON parse error: {exc}"))
             continue
 
@@ -147,7 +148,7 @@ def run_vocab_validation(vocab_files, vocab_validator):
 
         try:
             raw = path.read_text(encoding="utf-8")
-        except Exception as exc:
+        except (OSError, UnicodeDecodeError) as exc:
             vocab_parse_errors.append((path_str, f"Failed to read file: {exc}"))
             continue
 
@@ -157,14 +158,16 @@ def run_vocab_validation(vocab_files, vocab_validator):
 
         try:
             instance = json.loads(raw)
-        except Exception as exc:
+        except (json.JSONDecodeError, TypeError) as exc:
             vocab_parse_errors.append((path_str, f"JSON parse error: {exc}"))
             continue
 
         try:
             vocab_validator.validate(instance)
         except ValidationError as exc:
-            vocab_invalid_files.append((path_str, f"Vocabulary validation error: {exc.message}"))
+            vocab_invalid_files.append(
+                (path_str, f"Vocabulary validation error: {exc.message}")
+            )
 
     return vocab_parse_errors, vocab_invalid_files
 
@@ -226,7 +229,9 @@ def main():
         )
 
     empty_files, parse_errors, invalid_schemas = run_schema_validation(schema_files)
-    vocab_parse_errors, vocab_invalid_files = run_vocab_validation(vocab_files, vocab_validator)
+    vocab_parse_errors, vocab_invalid_files = run_vocab_validation(
+        vocab_files, vocab_validator
+    )
 
     print_schema_summary(schema_files, empty_files, parse_errors, invalid_schemas)
     print_vocab_summary(vocab_files, vocab_parse_errors, vocab_invalid_files)

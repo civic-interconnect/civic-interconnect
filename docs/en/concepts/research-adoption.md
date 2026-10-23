@@ -110,4 +110,3 @@ It summarizes **why** each community might engage, **where skepticism might aris
 | **Entity Resolution** | Formal categorical model, canonical identity layer | Not a novel algorithm, governance concerns | Publish formal proof, provide benchmarks |
 | **Policy / Campaign Finance** | Cross-silo linking, automated flow tracing | Loss of granularity, existing IDs | Show mappings, demos, wrappers |
 | **Open Data Standards** | Interoperability, provenance, extensibility | No mandate, perceived complexity | Provide profiles, pilots, vocabularies |
-

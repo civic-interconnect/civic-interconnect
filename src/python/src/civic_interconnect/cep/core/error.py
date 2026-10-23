@@ -4,8 +4,6 @@
 class CepError(Exception):
     """Base exception for CEP operations."""
 
-    pass
-
 
 class InvalidTimestampError(CepError):
     """Invalid timestamp format."""

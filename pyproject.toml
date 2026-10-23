@@ -1,15 +1,24 @@
-# pyproject.toml
-[build-system]
-build-backend = "setuptools.build_meta"
-requires = ["setuptools>=77", "setuptools-scm>=8"]
+# ============================================================
+# pyproject.toml (Python project configuration)
+# ============================================================
+# Updated: 2026-10-16
+#
+# REQ: All Python src/ projects SHOULD include pyproject.toml.
+# WHAT: Defines project identity, dependencies, and build configuration.
+# WHY: Keeps Python project metadata and package requirements together.
+# CUSTOM: Update project identity, dependencies, and package paths.
+
+# ============================================================
+# === SECTION: PROJECT IDENTITY ===
+# ============================================================
 
 [project]
 name = "civic-interconnect" # PyPi Package name
 dynamic = ["version"]  # Using setuptools_scm
 description = "Civic Interconnect: Civic Exchange Protocol schemas, validators, and tools for Python workflows"
 readme = "README.md"
-requires-python = ">=3.12"
-license = "Apache-2.0"
+requires-python = ">=3.14"
+license = "MIT"
 authors = [
     { name="Civic Interconnect", email="info@civic-interconnect.org" }
 ]
@@ -22,8 +31,7 @@ classifiers = [
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Topic :: Software Development :: Libraries :: Python Modules",
   "Topic :: Scientific/Engineering :: Information Analysis",
   "Typing :: Typed",
@@ -39,6 +47,11 @@ keywords = [
   "jsonschema",
   "pydantic",
 ]
+
+# ============================================================
+# === SECTION: PROJECT RUNTIME DEPENDENCIES ===
+# ============================================================
+
 dependencies = [
     "civic-data-identity-us-il",
     "jsonschema",
@@ -48,31 +61,29 @@ dependencies = [
     "typer",
 ]
 
-[project.optional-dependencies]
-dev = [  # Add all to deptry ignores
-  "build",
-  "defusedxml",
-  "maturin",
-  "pre-commit",
-  "pyright",
-  "pytest",
-  "pytest-asyncio",
-  "pytest-cov",
-  "pytest-env",
-  "twine",
-  "validate-pyproject",
+# ============================================================
+# === SECTION: DEVELOPMENT AND DOCUMENTATION DEPENDENCIES ===
+# ============================================================
+# These packages support developing, testing, and documenting the project.
+# They are not required to execute the project code.
+
+[dependency-groups]
+# WHY: Development and documentation tools support maintaining, validating,
+#      and documenting the project without becoming runtime dependencies.
+
+dev = [
+    # REQ.DEV.DEPS: Standard tools for Python development and validation.
+    "defusedxml",
+    "maturin",
+    "pytest",     # WHY: Run automated tests.
+    "pytest-cov", # WHY: Measure and report test coverage.
+    "ruff",       # WHY: Lint and format Python code.
+    "ty",         # WHY: Check Python types using static analysis.
 ]
-docs = [  # Add all to deptry ignores
-  "mike",
-  "mkdocs",
-  "mkdocs-gen-files",
-  "mkdocs-git-revision-date-localized-plugin",
-  "mkdocs-include-markdown-plugin",
-  "mkdocs-literate-nav",
-  "mkdocs-material",
-  "mkdocs-static-i18n",
-  "mkdocstrings[python]>=0.18",
-  "ruff", # required for mkdocstrings
+docs = [
+    # REQ.DOCS.DEPS: Standard tools for generating project documentation.
+    "mkdocstrings[python]", # WHY: Generate API documentation from Python docstrings.
+    "zensical",             # WHY: Build the project documentation website.
 ]
 
 [project.urls]
@@ -84,188 +95,49 @@ docs = [  # Add all to deptry ignores
 [project.scripts]
 cx = "civic_interconnect.cli.cli:app"
 
-[tool.bandit]
-exclude_dirs = ["tests", ".venv"]
-skips = ["B101"]  # B101: assert statements
+# ============================================================
+# === SECTION: TOOL CONFIGURATION ===
+# ============================================================
 
-[tool.coverage.html]
-directory = "htmlcov"
+# === UV (PYTHON ENVIRONMENT AND DEPENDENCY MANAGEMENT) ===
 
-[tool.coverage.paths]
-source = [
-  "src/python/src",
-  "*/site-packages/",
-]
+[tool.uv]
+# WHY: Install all dependency groups with the canonical uv sync.
+default-groups = "all"
 
-[tool.coverage.report]
-exclude_lines = [
-  "pragma: no cover",
-  "def __repr__",
-  "if self.debug:",
-  "if settings.DEBUG",
-  "raise AssertionError",
-  "raise NotImplementedError",
-  "if 0:",
-  "if __name__ == .__main__.:",
-  "class .*\\bProtocol\\):",
-  "@(abc\\.)?abstractmethod",
-  "# pragma: no cover",
-]
-fail_under = 60
-precision = 1
-show_missing = true
-skip_covered = false
+# WHY: Give a bit of time to find hijacked releases before installing.
+# CUSTOM: Should match `uv run prek update --freeze --cooldown-days 7`
+exclude-newer = "7 days"
 
-[tool.coverage.run]
-branch = true
-omit = [
-  "*/tests/*",
-  "*/test_*",
-  "*/__pycache__/*",
-]
-source = ["src/python/src/", "tools/"]
+# ============================================================
+# === SECTION: BUILD SYSTEM ===
+# ============================================================
+#
+# WHAT: Defines how the project's Python package is built and installed.
+# WHY: Hatchling enables uv to install the local src/ package so
+#      Python modules and tests can import project code consistently.
+# REQ: All importable project code MUST live under src/.
+# CUSTOM: Match the package directory under src/ exactly.
 
-[tool.coverage.xml]
-output = "coverage.xml"
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling", "hatch-vcs"]
 
-[tool.deptry]
-known_first_party = [
-  "civic_interconnect",
-  "ci_adapters",
-]
-package_module_name_map = {PyYAML = "yaml"  }
+[tool.hatch.build.hooks.vcs]
+# WHY: Writes computed version into src/*/_version.py at build time.
+# CUSTOM: Must match src/ folders.
+version-file = "src/python/src/civic_interconnect/_version.py"
 
-[tool.deptry.per_rule_ignores]
-DEP001 = [
-  "cep_py", # Rust extension module, imports handled differently
-]
-DEP002 = [
-  # Indirect dependency, not directly imported
-  "civic-data-identity-us-il", # Indirect dependency, not directly imported
-  # Dev dependencies
-  "build",
-  "defusedxml",
-  "maturin",
-  "pre-commit",
-  "pyright",
-  "pytest",
-  "pytest-asyncio",
-  "pytest-cov",
-  "pytest-env",
-  "twine",
-  "validate-pyproject",
-  # Docs dependencies
-  "mike",
-  "mkdocs",
-  "mkdocs-gen-files",
-  "mkdocs-git-revision-date-localized-plugin",
-  "mkdocs-include-markdown-plugin",
-  "mkdocs-literate-nav",
-  "mkdocs-material",
-  "mkdocs-static-i18n",
-  "mkdocstrings",  
-  "ruff",
-  # Main dependencies that might not be directly imported
-  "requests",  # If not actually used in code
-  "rich",      # Used by typer for CLI output
-]
+[tool.hatch.build.targets.wheel]
+# CUSTOM: Must match src/ folders.
+packages = ["src/python/src/civic_interconnect"]
 
-[tool.pyright]
-extraPaths = ["./src/python/src"]
-stubPath = "./typings"
-ignore = ["**/__pycache__", "build", "dist", ".venv"]
-include = ["src/python/src/", "src/python/tests"]
-pythonVersion = "3.12"
-reportMissingTypeStubs = "warning"
-typeCheckingMode = "basic" # or "strict"
-# reportReturnType = "none"
+[tool.hatch.version]
+# WHY: Version is derived from git tags.
+source = "vcs"
+tag-pattern = "^(?:v)?(?P<version>\\d+\\.\\d+\\.\\d+)$"
 
-[tool.pytest]
-addopts = [
-  "-ra",  # show extra test summary info for skipped, failed, etc.
-  "--strict-markers",  # enforce marker usage
-  "--cov=src",  # measure coverage for files in src
-  "--cov-report=term-missing",  # term-missing:skip-covered is typical
-  "--cov-report=xml:coverage.xml",  # output coverage in XML format
-  "--cov-report=html:htmlcov",  # output coverage in HTML format
-  "-v",  # verbose output
-  "--tb=short",  # short traceback format
-]
-minversion = "9.0"
-pythonpath = ["./", "./src/python/src","./typings"]
-testpaths = ["src/python/tests"]
-
-[tool.ruff]
-exclude = [".venv", ".ruff_cache", "build", "dist", "*.egg-info", ".eggs", "__pycache__"]
-fix = true
-line-length = 100
-preview = false
-target-version = "py312"
-unsafe-fixes = false
-
-[tool.ruff.lint]
-select = [
-  "F",     # Pyflakes rules
-  "W",     # PyCodeStyle warnings
-  "E",     # PyCodeStyle errors
-  "I",     # Sort imports properly
-  "UP",    # Newer Python features
-  "C4",    # Catch incorrect use of comprehensions, dict, list, etc
-  "C408",  # unnecessary comprehension
-  "D",     # Docstring conventions
-  "D401",  # Missing argument descriptions in the docstring
-  "D417",  # First line should be in imperative mood
-  "Q",     # flake8-quotes
-  "S",     # Security issues
-  "C90",   # McCabe complexity
-  "N",     # Naming conventions
-  "B",     # Bugbear
-  "A",     # flake8-annotations
-  "PTH",   # Use pathlib instead of os.path
-  "RET",   # Good return practices
-  "SIM",   # flake8-simplify
-  "TC",    # flake8-type-checking for type checking imports
-  "TID",   # flake8-tidy-imports for project conventions
-]
-ignore = [
-  "E501",  # line length handled by formatter
-  "D203",  # 1 blank line before class docstring (conflicts with D211)
-  "D213",  # Multi-line docstring summary should start at the second line
-  "S101",  # assert statements (handled by bandit)
-]
-
-[tool.ruff.lint.isort]
-force-sort-within-sections = true
-
-[tool.ruff.lint.pydocstyle]
-convention = "google"
-
-[tool.ruff.format]
-docstring-code-format = true
-line-ending = "lf"
-quote-style = "preserve"
-
-[tool.ruff.lint.per-file-ignores]
-"src/python/src/**/__init__.py" = ["D104", "F401"]  # F401 for re-exports
-"src/python/tests/**/*.py" = ["TID251", "TID252", "S101", "D", "PLR2004"]  # PLR2004 for magic values
-"src/python/src/**/_version.py" = ["ALL"] 
-"typings/cep_py/__init__.pyi" = ["F403", "F405"]
-
-[tool.setuptools]
-include-package-data = true
-package-dir = {"" = "src/python/src"}
-
-[tool.setuptools.package-data]
-civic_interconnect = [
-  "py.typed",
-  "cep/localization/**/*.yaml",
-]
-
-[tool.setuptools.packages.find]
-where = ["src/python/src"]
-
-[tool.setuptools_scm]
-fallback_version = "0.0.1"
-local_scheme = "no-local-version"
-version_file = "src/python/src/civic_interconnect/_version.py"
-version_scheme = "guess-next-dev"
+[tool.hatch.version.raw-options]
+# WHY: Allow hatch-vcs to find the Git root when built from a subdirectory,
+# temporary build directory, or isolated build environment.
+search_parent_directories = true

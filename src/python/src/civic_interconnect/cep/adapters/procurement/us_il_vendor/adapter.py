@@ -21,7 +21,11 @@ Path: src/python/src/civic_interconnect/cep/adapters/procurement/us_il_vendor/ad
 
 from typing import Any
 
-from civic_interconnect.cep.adapters.base import AdapterKey, JsonDict, SimpleEntityAdapter
+from civic_interconnect.cep.adapters.base import (
+    AdapterKey,
+    JsonDict,
+    SimpleEntityAdapter,
+)
 
 
 class UsIlVendorAdapter(SimpleEntityAdapter):
@@ -69,13 +73,15 @@ class UsIlVendorAdapter(SimpleEntityAdapter):
                 break
 
         if not legal_name:
-            raise ValueError(f"raw must contain a vendor name under one of: {', '.join(name_keys)}")
+            raise ValueError(
+                f"raw must contain a vendor name under one of: {', '.join(name_keys)}"
+            )
 
         jurisdiction_iso = str(raw.get("jurisdiction_iso", "US-IL")).strip() or "US-IL"
 
         try:
             normalized_name = self.apply_localization_name(legal_name, jurisdiction_iso)
-        except Exception:
+        except TypeError, ValueError:
             normalized_name = " ".join(legal_name.lower().split())
 
         return {

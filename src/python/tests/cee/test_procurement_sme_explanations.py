@@ -1,4 +1,4 @@
-# src/python/tests/cee/test_procurement_sme_explanations.py
+"""Tests for procurement SME explanations in the CEE module."""
 
 from civic_interconnect.cee.procurement import sme_explanations
 import pytest

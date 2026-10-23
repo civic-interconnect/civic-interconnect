@@ -92,7 +92,7 @@ When adding examples:
 -   Update SNFEI expected hashes if canonicalization rules change
 -   Maintain consistent naming (camelCase externally, snake_case in SDKs)
 -   Include the full envelope structure (`timestamps`, `status`, `attestations`, etc.)
-  
+
 When adding a new domain or adapter, include at least:
 
 - 1-2 entity examples
@@ -106,5 +106,4 @@ When adding a new domain or adapter, include at least:
 
 ## License
 
-All examples are licensed under Apache 2.0, consistent with the rest of the project.
-
+All examples are licensed under MIT.

@@ -19,7 +19,11 @@ one of the following keys:
 
 from typing import Any
 
-from civic_interconnect.cep.adapters.base import AdapterKey, JsonDict, SimpleEntityAdapter
+from civic_interconnect.cep.adapters.base import (
+    AdapterKey,
+    JsonDict,
+    SimpleEntityAdapter,
+)
 from civic_interconnect.cep.localization import apply_localization_name
 
 
@@ -68,7 +72,9 @@ class UsIlVendorAdapter(SimpleEntityAdapter):
                 break
 
         if not legal_name:
-            raise ValueError(f"raw must contain a vendor name under one of: {', '.join(name_keys)}")
+            raise ValueError(
+                f"raw must contain a vendor name under one of: {', '.join(name_keys)}"
+            )
 
         jurisdiction_iso = str(raw.get("jurisdiction_iso", "US-IL")).strip() or "US-IL"
 

@@ -27,7 +27,7 @@ def main() -> None:
 
     try:
         entity = build_entity_from_raw(raw)
-    except Exception as exc:
+    except (TypeError, ValueError, KeyError) as exc:
         print(
             "[build_entity_from_raw] ERROR: Failed to build entity.\n"
             f"Reason: {exc!r}\n"

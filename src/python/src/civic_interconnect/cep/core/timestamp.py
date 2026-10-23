@@ -34,12 +34,12 @@ class CanonicalTimestamp:
             self._dt = dt.astimezone(UTC)
 
     @classmethod
-    def now(cls) -> "CanonicalTimestamp":
+    def now(cls) -> CanonicalTimestamp:
         """Return the current UTC time as a CanonicalTimestamp."""
         return cls(datetime.now(UTC))
 
     @classmethod
-    def parse(cls, s: str) -> "CanonicalTimestamp":
+    def parse(cls, s: str) -> CanonicalTimestamp:
         """Parse an ISO 8601 timestamp string.
 
         Accepts formats:
@@ -71,12 +71,12 @@ class CanonicalTimestamp:
         try:
             # Remove timezone for parsing, then add back
             if "+" in s:
-                base, tz = s.rsplit("+", 1)
+                base, _tz = s.rsplit("+", 1)
                 dt = datetime.fromisoformat(base)
                 dt = dt.replace(tzinfo=UTC)
                 return cls(dt)
             if s.count("-") > 2:  # Has negative offset
-                base, tz = s.rsplit("-", 1)
+                base, _tz = s.rsplit("-", 1)
                 dt = datetime.fromisoformat(base)
                 dt = dt.replace(tzinfo=UTC)
                 return cls(dt)
@@ -112,25 +112,25 @@ class CanonicalTimestamp:
             return self._dt == other._dt
         return NotImplemented
 
-    def __lt__(self, other: "CanonicalTimestamp") -> bool:
+    def __lt__(self, other: CanonicalTimestamp) -> bool:
         """Check if this timestamp is less than another."""
         if isinstance(other, CanonicalTimestamp):
             return self._dt < other._dt
         return NotImplemented
 
-    def __le__(self, other: "CanonicalTimestamp") -> bool:
+    def __le__(self, other: CanonicalTimestamp) -> bool:
         """Check if this timestamp is less than or equal to another."""
         if isinstance(other, CanonicalTimestamp):
             return self._dt <= other._dt
         return NotImplemented
 
-    def __gt__(self, other: "CanonicalTimestamp") -> bool:
+    def __gt__(self, other: CanonicalTimestamp) -> bool:
         """Check if this timestamp is greater than another."""
         if isinstance(other, CanonicalTimestamp):
             return self._dt > other._dt
         return NotImplemented
 
-    def __ge__(self, other: "CanonicalTimestamp") -> bool:
+    def __ge__(self, other: CanonicalTimestamp) -> bool:
         """Check if this timestamp is greater than or equal to another."""
         if isinstance(other, CanonicalTimestamp):
             return self._dt >= other._dt

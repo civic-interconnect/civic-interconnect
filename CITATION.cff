@@ -1,13 +1,30 @@
+# ============================================================
+# CITATION.cff (How to cite this project)
+# ============================================================
+# REQ.UNIVERSAL: Professional open projects SHOULD include this file.
+# May reference upstream dependencies, but must not refer to downstream.
+# USAGE: See https://citation-file-format.github.io/ for details.
+# check with:
+# uvx cffconvert --validate
+
 cff-version: "1.2.0"
-message: "If you use this repository or any of its components, please cite it as described below."
+message: "If you use this work, please cite it using the metadata in CITATION.cff."
+type: software
 
 title: "civic-interconnect"
-version: "0.1.0"
-date-released: "2025-01-01"
+version: "0.0.7"
+date-released: "2026-10-23"
 
 authors:
-  - name: "Civic Interconnect Contributors"
-    orcid: "N/A"
+  - family-names: Case
+    given-names: Denise M.
+    orcid: "https://orcid.org/0000-0001-6165-7389"
+    affiliation: "Northwest Missouri State University, School of Computer Science and Information Systems, Maryville, MO, USA"
+
+repository-code: "https://github.com/civic-interconnect/civic-interconnect"
+url: "https://github.com/civic-interconnect/civic-interconnect"
+
+license: MIT
 
 abstract: >
   Civic Interconnect is an open-source specification and implementation
@@ -16,9 +33,6 @@ abstract: >
   It provides a reusable, versioned framework for transforming heterogeneous
   civic datasets into canonical CEP records with strong provenance and
   explanation layers (CEE).
-
-repository-code: "https://github.com/civic-interconnect/civic-interconnect"
-license: "Apache-2.0"
 
 keywords:
   - civic data
@@ -29,22 +43,12 @@ keywords:
   - data pipelines
   - schema governance
 
-preferred-citation:
-  type: article
-  title: "The Civic Exchange Protocol (CEP): A Canonical Framework for Civic Data Interoperability"
-  authors:
-    - name: "Civic Interconnect Contributors"
-  year: 2025
-  journal: "Working draft"
-  url: "https://github.com/civic-interconnect/civic-interconnect"
-
 references:
   # Example external datasets used in development, testing, or demonstrations.
-  - type: dataset
+  - type: data
     title: "City of Chicago Contracts Dataset"
     authors:
       - name: "City of Chicago"
     year: 2025
     url: "https://data.cityofchicago.org/Administration-Finance/Contracts/rsxa-ify5"
     notes: "Used for testing CEP adapters, canonicalization, and identity normalization. Public Domain."
-

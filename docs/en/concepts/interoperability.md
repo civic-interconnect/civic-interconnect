@@ -1,12 +1,12 @@
 # Interoperability
 
-CEP is designed to integrate with: 
+CEP is designed to integrate with:
 
-- Popolo - the entity + political relationships backbone of nearly every open civics project worldwide (OCD, OpenStates, etc.) includes models for Person, Organization, Membership, 
+- Popolo - the entity + political relationships backbone of nearly every open civics project worldwide (OCD, OpenStates, etc.) includes models for Person, Organization, Membership,
 Post / Role, Area, Event, Motion / Vote, Legislative Activity and works for elected officials, models boards, committees, councils, includes membership graph.
 - Open Civic Data
 - Open Contracting Data Standard (OCDS) - international standard for public procurement, contracts, tenders, awards, suppliers, implementation and milestone tracking.
-- Schema.org - includes Organization, Person, Place, GovernmentOrganization, Grant, MonetaryGrant, 
+- Schema.org - includes Organization, Person, Place, GovernmentOrganization, Grant, MonetaryGrant,
 Legislation, VoteAction and enables interoperability with Google datasets, machine readability.
 - Financial Taxonomies (XBRL) - good for financial reporting, auditing, interoperability with Treasury and state finance systems
 - W3C PROV - good for academics and auditors, PROV guides revision chains, attestation blocks, canonical timestamps, and hash-based integrity. CEP attestation maps to PROV wasGeneratedBy, wasAttributedTo, wasDerivedFrom and CEP previousRecordHash maps to PROV wasRevisionOf.

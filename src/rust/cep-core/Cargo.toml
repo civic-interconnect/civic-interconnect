@@ -2,7 +2,7 @@
 name = "cep-core"
 version = "0.1.0"
 edition = "2024"
-license = "Apache-2.0"
+license = "MIT"
 description = "Civic Interconnect core Rust library (Entity, Relationship, Exchange, CTag)."
 repository = "https://github.com/civic-interconnect/civic-interconnect"
 readme = "../../../README.md"
@@ -24,4 +24,3 @@ serde_yaml = { workspace = true }
 sha2 = { workspace = true }
 thiserror = { workspace = true }
 unicode-normalization = { workspace = true }
-

@@ -53,7 +53,15 @@ def main() -> int:
     """Sync localization assets into the Python package tree."""
     repo_root = find_repo_root(Path(__file__).parent)
     src = repo_root / "localization"
-    dst = repo_root / "src" / "python" / "src" / "civic_interconnect" / "cep" / "localization"
+    dst = (
+        repo_root
+        / "src"
+        / "python"
+        / "src"
+        / "civic_interconnect"
+        / "cep"
+        / "localization"
+    )
 
     sync_tree(src, dst)
 

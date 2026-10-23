@@ -1,12 +1,18 @@
 # Civic Interconnect
 
 [![PyPI](https://img.shields.io/pypi/v/civic-interconnect.svg)](https://pypi.org/project/civic-interconnect/)
-[![Python versions](https://img.shields.io/pypi/pyversions/civic-interconnect.svg)](https://pypi.org/project/civic-interconnect/)
-[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![CI Status](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/ci-python.yml/badge.svg)](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/ci-python.yml)
-[![Docs](https://img.shields.io/badge/docs-mkdocs--material-blue)](https://civic-interconnect.github.io/civic-interconnect/)
+[![Docs Site](https://img.shields.io/badge/docs-site-blue?logo=github)](https://civic-interconnect.github.io/civic-interconnect/)
+[![Repo](https://img.shields.io/badge/repo-GitHub-black?logo=github)](https://github.com/civic-interconnect/civic-interconnect)
+[![Python 3.14](https://img.shields.io/badge/python-3.14%2B-blue?logo=python)](./pyproject.toml)
+[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](./LICENSE)
+
+[![CI](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/ci-python-zensical.yml/badge.svg?branch=main)](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/ci-python-zensical.yml)
+[![Docs-Deploy](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/deploy-zensical.yml/badge.svg?branch=main)](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/deploy-zensical.yml)
+[![Pre-Release](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/pre-release.yml/badge.svg?branch=main)](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/pre-release.yml)
+[![Release](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/release-pypi.yml/badge.svg)](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/release-pypi.yml)
+[![Links](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/links.yml/badge.svg?branch=main)](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/links.yml)
+[![Dependabot](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg)](https://github.com/civic-interconnect/civic-interconnect/security)
 [![Security Policy](https://img.shields.io/badge/security-policy-orange)](SECURITY.md)
-[![Link Check](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/weekly_link_checker.yml/badge.svg)](https://github.com/civic-interconnect/civic-interconnect/actions/workflows/weekly_link_checker.yml)
 
 > Interoperable data standards for describing entities, relationships, and value exchanges across civic systems.
 
@@ -15,27 +21,27 @@ It includes the Civic Exchange Protocol (CEP), which defines a set of reusable r
 
 This repository is a monorepo that contains:
 
--   JSON Schemas and vocabularies that define Civic Interconnect records
--   A Rust core library that implements builders, validators, and shared logic
--   Python bindings and packages for working with Civic Interconnect in data workflows
--   Tools for generating code from schemas (code that writes code)
--   Documentation including a browser-embedded validator using Ajv
+- JSON Schemas and vocabularies that define Civic Interconnect records
+- A Rust core library that implements builders, validators, and shared logic
+- Python bindings and packages for working with Civic Interconnect in data workflows
+- Tools for generating code from schemas (code that writes code)
+- Documentation including a browser-embedded validator using Ajv
 
 ## Overview
 
 The Civic Exchange Protocol defines a coherent, verifiable way to describe:
 
--   **Entities** (organizations, agencies, districts, people)
--   **Relationships** (grant awards, contracts, reporting relationships)
--   **Exchanges** of value (payments, disbursements, transfers)
+- **Entities** (organizations, agencies, districts, people)
+- **Relationships** (grant awards, contracts, reporting relationships)
+- **Exchanges** of value (payments, disbursements, transfers)
 
 CEP records are:
 
--   JSON Schema–validated
--   Fully typed
--   Deterministic and versioned
--   Extensible across jurisdictions and data ecosystems
--   Designed for cross-system interoperability
+- JSON Schema–validated
+- Fully typed
+- Deterministic and versioned
+- Extensible across jurisdictions and data ecosystems
+- Designed for cross-system interoperability
 
 Documentation: <https://civic-interconnect.github.io/civic-interconnect/>
 
@@ -44,7 +50,7 @@ Documentation: <https://civic-interconnect.github.io/civic-interconnect/>
 Install the Civic Interconnect package:
 
 ```bash
-pip install civic-interconnect
+uv add civic-interconnect
 ```
 
 Validate a record or directory of records:
@@ -81,20 +87,14 @@ See full documentation:
 
 ## Core Concepts
 
-Civic Interconnect is built around three primary record families:
-
--   **Entity**: Describes people, organizations, districts, facilities, and other civic actors or units.
--   **Relationship**: Describes how entities are connected (affiliation, control, governance, containment, membership, etc.).
--   **Exchange**: Describes flows between entities (funds, services, messages, events).
-
 All record families share a common envelope that owns IDs, attestation, status, and revisioning:
 
--   stable `verifiableId`
--   `recordKind` and vocabulary-backed `recordTypeUri`
--   `schemaVersion` and `revisionNumber`
--   shared timestamps (`firstSeenAt`, `lastUpdatedAt`, `validFrom`, `validTo`)
--   attestations describing who asserted the facts and how
--   optional **ctags** (contextual annotations)
+- stable `verifiableId`
+- `recordKind` and vocabulary-backed `recordTypeUri`
+- `schemaVersion` and `revisionNumber`
+- shared timestamps (`firstSeenAt`, `lastUpdatedAt`, `validFrom`, `validTo`)
+- attestations describing who asserted the facts and how
+- optional **ctags** (contextual annotations)
 
 Schema annotations (`x-cep-*`) indicate vocabulary-backed fields, ID references, money types, jurisdiction fields, and extension surfaces.
 
@@ -120,19 +120,19 @@ Documentation includes a browser-embedded validator using Ajv.
 
 Schemas are used to:
 
--   generate Rust types
--   generate Python models
--   validate data
--   anchor long-term stability and cross-system interoperability
+- generate Rust types
+- generate Python models
+- validate data
+- anchor long-term stability and cross-system interoperability
 
 ## Rust Core
 
 The Rust core is organized by domain:
 
--   entity/
--   relationship/
--   exchange/
--   ctag/
+- entity/
+- relationship/
+- exchange/
+- ctag/
 
 Each has generated types plus manual logic for rules, normalization, resolution, and ID creation (SNFEI).
 
@@ -152,31 +152,33 @@ builder (Python facade -> Rust FFI) -> validator -> CEP record
 
 Prepares raw source data by:
 
--   cleaning and mapping source fields
--   applying localization rules
--   producing a minimal **normalized payload** |
+- cleaning and mapping source fields
+- applying localization rules
+- producing a minimal **normalized payload** |
 
 ### Rust Builder (FFI Boundary)
 
 Rust performs:
 
--   canonical normalization (legal name, address, registration date)
--   SNFEI generation
--   record assembly using generated types
--   schema validation
+- canonical normalization (legal name, address, registration date)
+- SNFEI generation
+- record assembly using generated types
+- schema validation
 
 The result is returned as a **validated CEP dict**.
 
 ## Status
 
-Active early development.  
+Active early development.
 APIs, schemas, and vocabularies are stabilizing.
 
-## Security Policy
+## Changelog
 
-We support responsible disclosure through GitHub's **Private Vulnerability Report** feature.
+[CHANGELOG.md](CHANGELOG.md)
 
-See: [SECURITY.md](SECURITY.md)
+## Citation
+
+[CITATION.cff](CITATION.cff)
 
 ## Contributions
 
@@ -184,8 +186,16 @@ Contributions are welcome once the early structure is stable.
 
 See `CONTRIBUTING.md`.
 
+## Documentation
+
+[Documentation Site](https://civic-interconnect.github.io/civic-interconnect/)
+
 ## License
 
-Licensed under the Apache License, Version 2.0.
+[MIT](./LICENSE) file for full text.
 
-See the [`LICENSE`](./LICENSE) file for full text.
+## Security Policy
+
+We support responsible disclosure through GitHub's **Private Vulnerability Report** feature.
+
+See: [SECURITY.md](SECURITY.md)

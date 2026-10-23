@@ -53,7 +53,9 @@ def get_output_mapping() -> dict[Path, Path]:
     for schema_file, module in core_schemas.items():
         schema_path = SCHEMAS / "core" / schema_file
         if schema_path.exists():
-            mapping[schema_path] = RUST_ROOT / "cep-core" / "src" / module / "generated.rs"
+            mapping[schema_path] = (
+                RUST_ROOT / "cep-core" / "src" / module / "generated.rs"
+            )
 
     # Domain schemas -> cep-domains/src/{domain}/{name}/generated.rs
     domains_dir = SCHEMAS / "domains"
@@ -73,7 +75,12 @@ def get_output_mapping() -> dict[Path, Path]:
                 module_name = parts[-1].replace("-", "_") if parts else stem
 
                 output = (
-                    RUST_ROOT / "cep-domains" / "src" / domain_name / module_name / "generated.rs"
+                    RUST_ROOT
+                    / "cep-domains"
+                    / "src"
+                    / domain_name
+                    / module_name
+                    / "generated.rs"
                 )
                 mapping[schema_file] = output
 
@@ -103,7 +110,7 @@ def main() -> None:
         try:
             write_generated_rust(schema_path, record_name, output_path)
             generated += 1
-        except Exception as e:
+        except (FileNotFoundError, OSError, RuntimeError, TypeError, ValueError) as e:
             print(f"    ERROR: {e}")
             skipped += 1
             continue

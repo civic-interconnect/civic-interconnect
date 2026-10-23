@@ -296,4 +296,3 @@ GNS v1 defines:
 - a graph-level CTag mechanism  
 
 These together provide a stable foundation for provenance, merges, cross-source entity graphs, and higher-level CEP reasoning.
-

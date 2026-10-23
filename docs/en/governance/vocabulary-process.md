@@ -101,7 +101,7 @@ Upon approval:
 - CI validates JSON format, unique URIs, and mapping integrity
 - The vocabulary is merged into `main`
 - A new tag is created:
-  
+
   `vocab/<name>/vMAJOR.MINOR.PATCH`
 
 ### Step 5 — Deprecation Notices
@@ -160,5 +160,3 @@ Each file follows the canonical `cep.vocabulary.schema.json`.
 ## 7. Guiding Objective
 
 The primary objective of CEP vocabulary governance is to **stabilize meaning**, **maximize interoperability**, and **ensure backward compatibility** while allowing the ecosystem to grow with new policy types, relationship structures, data standards, and domain models.
-
-

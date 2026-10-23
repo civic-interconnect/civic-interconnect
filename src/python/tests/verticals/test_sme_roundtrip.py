@@ -1,3 +1,5 @@
+"""Tests for SME vertical roundtrip examples."""
+
 import json
 from pathlib import Path
 
@@ -5,6 +7,7 @@ EXAMPLES_DIR = Path("examples/verticals/sme")
 
 
 def test_example_files_exist() -> None:
+    """Test that all required example files exist."""
     paths = [
         EXAMPLES_DIR / "raw" / "sample_ocds_release.json",
         EXAMPLES_DIR / "cep" / "lot.entity.json",
@@ -15,6 +18,7 @@ def test_example_files_exist() -> None:
 
 
 def test_raw_release_is_valid_json() -> None:
+    """Test that the raw release example is valid JSON."""
     raw_path = EXAMPLES_DIR / "raw" / "sample_ocds_release.json"
     if not raw_path.exists():
         # If the example is missing, let the existence test fail instead of this one.
@@ -30,6 +34,7 @@ def test_raw_release_is_valid_json() -> None:
 
 
 def test_example_explanation_links_to_lot_and_has_core_fields() -> None:
+    """Test that the example explanation links to the lot and has core fields."""
     cee_path = EXAMPLES_DIR / "cee" / "explanation_bundle.sme_friendly.example.json"
     lot_path = EXAMPLES_DIR / "cep" / "lot.entity.json"
 
@@ -48,4 +53,6 @@ def test_example_explanation_links_to_lot_and_has_core_fields() -> None:
     # Core CEE shape checks (adapt keys as CEE schema finalizes).
     assert bundle.get("explanationType") == "SME_FRIENDLY_PROCUREMENT"
     assert "evidenceSet" in bundle, "ExplanationBundle should include an evidenceSet"
-    assert "attributionSet" in bundle, "ExplanationBundle should include an attributionSet"
+    assert "attributionSet" in bundle, (
+        "ExplanationBundle should include an attributionSet"
+    )

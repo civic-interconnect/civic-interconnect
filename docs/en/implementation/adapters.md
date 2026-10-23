@@ -277,4 +277,3 @@ docs/en/implementation/adapters/
 -   [ ] Add debug logging for rewrite steps
 -   [ ] Document edge cases
 -   [ ] Add CTag suggestions for low-quality data
-

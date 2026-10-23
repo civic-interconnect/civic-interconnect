@@ -53,7 +53,7 @@ At a high level, core normalization does:
 
 ### 2.1 Unicode Normalization and Case Folding
 
-Core normalization applies Unicode normalization and converts text to a stable lowercase form. 
+Core normalization applies Unicode normalization and converts text to a stable lowercase form.
 
 We use Normalization Form Compatibility Decomposition (NFKD) for the SNFEI canonicalization path.
 

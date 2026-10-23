@@ -53,7 +53,10 @@ def _build_global_registry() -> tuple[Registry, dict]:
         schema_id = schema.get("$id", f"urn:cep:{name}:{version}")
         schemas[(name, version)] = schema
         resources.append(
-            (schema_id, Resource.from_contents(schema, default_specification=DRAFT202012))
+            (
+                schema_id,
+                Resource.from_contents(schema, default_specification=DRAFT202012),
+            )
         )
 
     registry = Registry().with_resources(resources)

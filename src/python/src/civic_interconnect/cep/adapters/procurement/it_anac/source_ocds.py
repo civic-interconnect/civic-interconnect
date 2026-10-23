@@ -87,7 +87,9 @@ def iter_spine_bundles_from_path(
                 try:
                     obj = json.loads(s)
                 except json.JSONDecodeError as e:
-                    raise ValueError(f"Invalid JSON on line {line_no} of {path}: {e}") from e
+                    raise ValueError(
+                        f"Invalid JSON on line {line_no} of {path}: {e}"
+                    ) from e
                 yield from iter_spine_bundles_from_obj(
                     obj,
                     jurisdiction_iso=jurisdiction_iso,
@@ -211,21 +213,34 @@ def _release_to_spine_bundle(
     parties_list: list[JsonObj] = parties if isinstance(parties, list) else []
 
     buyer_payload = _extract_buyer_payload(
-        release, parties_list, jurisdiction_iso=jurisdiction_iso, source_system=source_system
+        release,
+        parties_list,
+        jurisdiction_iso=jurisdiction_iso,
+        source_system=source_system,
     )
     supplier_payloads = _extract_supplier_payloads(
-        release, parties_list, jurisdiction_iso=jurisdiction_iso, source_system=source_system
+        release,
+        parties_list,
+        jurisdiction_iso=jurisdiction_iso,
+        source_system=source_system,
     )
 
-    tender_obj = release.get("tender") if isinstance(release.get("tender"), dict) else None
+    tender_obj = (
+        release.get("tender") if isinstance(release.get("tender"), dict) else None
+    )
     tender_payload = _normalize_tender(
-        tender_obj, ref=ref, jurisdiction_iso=jurisdiction_iso, source_system=source_system
+        tender_obj,
+        ref=ref,
+        jurisdiction_iso=jurisdiction_iso,
+        source_system=source_system,
     )
 
     awards_raw = release.get("awards")
     awards_list: list[Any] = awards_raw if isinstance(awards_raw, list) else []
     award_payloads = [
-        _normalize_award(a, ref=ref, jurisdiction_iso=jurisdiction_iso, source_system=source_system)
+        _normalize_award(
+            a, ref=ref, jurisdiction_iso=jurisdiction_iso, source_system=source_system
+        )
         for a in awards_list
         if isinstance(a, dict)
     ]
@@ -295,7 +310,9 @@ def _extract_buyer_payload(
     # Otherwise, find a party with role "buyer".
     for p in parties:
         roles = p.get("roles")
-        if isinstance(roles, list) and any(isinstance(r, str) and r == "buyer" for r in roles):
+        if isinstance(roles, list) and any(
+            isinstance(r, str) and r == "buyer" for r in roles
+        ):
             return _normalize_party(
                 party=p,
                 role="buyer",
@@ -340,7 +357,9 @@ def _extract_supplier_payloads(
     # Secondary source: parties with role "supplier"
     for p in parties:
         roles = p.get("roles")
-        if isinstance(roles, list) and any(isinstance(r, str) and r == "supplier" for r in roles):
+        if isinstance(roles, list) and any(
+            isinstance(r, str) and r == "supplier" for r in roles
+        ):
             suppliers.append(
                 _normalize_party(
                     party=p,
@@ -387,14 +406,20 @@ def _normalize_party(
     name = party.get("name") if isinstance(party.get("name"), str) else None
 
     # OCDS parties can include identifiers/address/contactPoint
-    identifiers = party.get("identifier") if isinstance(party.get("identifier"), dict) else None
+    identifiers = (
+        party.get("identifier") if isinstance(party.get("identifier"), dict) else None
+    )
     additional_ids = (
         party.get("additionalIdentifiers")
         if isinstance(party.get("additionalIdentifiers"), list)
         else []
     )
     address = party.get("address") if isinstance(party.get("address"), dict) else None
-    contact = party.get("contactPoint") if isinstance(party.get("contactPoint"), dict) else None
+    contact = (
+        party.get("contactPoint")
+        if isinstance(party.get("contactPoint"), dict)
+        else None
+    )
 
     return {
         "kind": "party",
@@ -405,7 +430,9 @@ def _normalize_party(
         "party_id": pid,
         "legal_name": name,
         "identifier": identifiers,
-        "additional_identifiers": [x for x in (additional_ids or []) if isinstance(x, dict)],
+        "additional_identifiers": [
+            x for x in (additional_ids or []) if isinstance(x, dict)
+        ],
         "address": address,
         "contact_point": contact,
     }
@@ -432,7 +459,9 @@ def _normalize_tender(
         "description": tender.get("description")
         if isinstance(tender.get("description"), str)
         else None,
-        "status": tender.get("status") if isinstance(tender.get("status"), str) else None,
+        "status": tender.get("status")
+        if isinstance(tender.get("status"), str)
+        else None,
         "procurement_method": tender.get("procurementMethod")
         if isinstance(tender.get("procurementMethod"), str)
         else None,
@@ -472,7 +501,9 @@ def _normalize_award(
         "status": award.get("status") if isinstance(award.get("status"), str) else None,
         "date": award.get("date") if isinstance(award.get("date"), str) else None,
         "value": award.get("value") if isinstance(award.get("value"), dict) else None,
-        "suppliers": award.get("suppliers") if isinstance(award.get("suppliers"), list) else [],
+        "suppliers": award.get("suppliers")
+        if isinstance(award.get("suppliers"), list)
+        else [],
         "items": award.get("items") if isinstance(award.get("items"), list) else [],
         "related_lots": award.get("relatedLots")
         if isinstance(award.get("relatedLots"), list)
@@ -493,15 +524,27 @@ def _normalize_contract(
         "jurisdiction_iso": jurisdiction_iso,
         "ocid": ref.ocid,
         "release_id": ref.release_id,
-        "contract_id": contract.get("id") if isinstance(contract.get("id"), str) else None,
-        "award_id": contract.get("awardID") if isinstance(contract.get("awardID"), str) else None,
-        "title": contract.get("title") if isinstance(contract.get("title"), str) else None,
+        "contract_id": contract.get("id")
+        if isinstance(contract.get("id"), str)
+        else None,
+        "award_id": contract.get("awardID")
+        if isinstance(contract.get("awardID"), str)
+        else None,
+        "title": contract.get("title")
+        if isinstance(contract.get("title"), str)
+        else None,
         "description": contract.get("description")
         if isinstance(contract.get("description"), str)
         else None,
-        "status": contract.get("status") if isinstance(contract.get("status"), str) else None,
-        "period": contract.get("period") if isinstance(contract.get("period"), dict) else None,
-        "value": contract.get("value") if isinstance(contract.get("value"), dict) else None,
+        "status": contract.get("status")
+        if isinstance(contract.get("status"), str)
+        else None,
+        "period": contract.get("period")
+        if isinstance(contract.get("period"), dict)
+        else None,
+        "value": contract.get("value")
+        if isinstance(contract.get("value"), dict)
+        else None,
         "date_signed": contract.get("dateSigned")
         if isinstance(contract.get("dateSigned"), str)
         else None,

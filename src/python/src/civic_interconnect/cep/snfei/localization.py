@@ -128,7 +128,9 @@ def apply_localization_name_detailed_json(name: str, jurisdiction: str) -> str:
     return json.dumps(raw2, sort_keys=True)
 
 
-def apply_localization_name_detailed(name: str, jurisdiction: str) -> LocalizationApplyResult:
+def apply_localization_name_detailed(
+    name: str, jurisdiction: str
+) -> LocalizationApplyResult:
     """Apply Rust localization and return a parsed dict with provenance.
 
     Implementation detail:

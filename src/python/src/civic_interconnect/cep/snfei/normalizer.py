@@ -102,7 +102,7 @@ def build_canonical_input(
 __all__ = [
     "CanonicalInput",
     "build_canonical_input",
-    "normalize_legal_name",
     "normalize_address",
+    "normalize_legal_name",
     "normalize_registration_date",
 ]

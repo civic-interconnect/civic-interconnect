@@ -25,7 +25,7 @@ from typing import TYPE_CHECKING, Any
 
 try:
     import pandas as pd
-except Exception:  # pragma: no cover
+except ImportError:  # pragma: no cover
     pd = None  # type: ignore[assignment]
 
 if TYPE_CHECKING:
@@ -349,7 +349,7 @@ def _parse_args(argv: Sequence[str] | None) -> argparse.Namespace:
     return parser.parse_args(argv)
 
 
-def main(argv: Sequence[str] | None = None) -> int:  # noqa: C901
+def main(argv: Sequence[str] | None = None) -> int:
     """Run audit and write outputs.
 
     Returns an exit code (0 success; 2 policy failure; 3 missing FFI).

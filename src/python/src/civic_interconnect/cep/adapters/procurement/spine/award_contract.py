@@ -113,7 +113,9 @@ def award_build_request(award: JsonObj, *, ocds_ref: JsonObj) -> JsonObj:
             else [],
             "items": award.get("items") if isinstance(award.get("items"), list) else [],
             # Raw supplier references (OCDS); do not resolve here.
-            "suppliers": award.get("suppliers") if isinstance(award.get("suppliers"), list) else [],
+            "suppliers": award.get("suppliers")
+            if isinstance(award.get("suppliers"), list)
+            else [],
         },
         "source": {
             "sourceSystem": source_system,
@@ -268,7 +270,9 @@ def _index_awards_by_award_id(award_requests: list[JsonObj]) -> dict[str, JsonOb
     return out
 
 
-def _iter_contract_award_pairs(contract_requests: list[JsonObj]) -> list[tuple[JsonObj, str]]:
+def _iter_contract_award_pairs(
+    contract_requests: list[JsonObj],
+) -> list[tuple[JsonObj, str]]:
     """Return list of (contract_request, award_id) for contracts that reference an award."""
     out: list[tuple[JsonObj, str]] = []
     for c in contract_requests:

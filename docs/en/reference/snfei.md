@@ -98,4 +98,3 @@ identifiers[].schemeUri
 ```
 
 SNFEI is versioned, openly described, and governed under the CEP Vocabulary Process.
-

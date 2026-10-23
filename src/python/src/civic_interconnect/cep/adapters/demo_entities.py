@@ -78,7 +78,9 @@ class ExampleEntityInputs:
     registration_date: str | None
 
 
-def extract_example_entity_inputs(raw: dict[str, Any], slice_dir: Path) -> ExampleEntityInputs:
+def extract_example_entity_inputs(
+    raw: dict[str, Any], slice_dir: Path
+) -> ExampleEntityInputs:
     """Map messy raw shapes from example slices into normalized inputs.
 
     This is intentionally simple and example-focused. It supports the

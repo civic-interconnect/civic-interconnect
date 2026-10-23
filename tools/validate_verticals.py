@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 import sys
 
-from jsonschema import Draft202012Validator, ValidationError
+from jsonschema import Draft202012Validator, SchemaError, ValidationError
 import yaml
 
 EXPECTED_META = "https://json-schema.org/draft/2020-12/schema"
@@ -29,9 +29,7 @@ def find_about_yaml_files():
     if not root.exists():
         return []
 
-    files = []
-    for path in root.rglob("about.yaml"):
-        files.append(path)
+    files = list(root.rglob("about.yaml"))
     return sorted(files)
 
 
@@ -51,7 +49,7 @@ def load_about_validator():
 
     try:
         raw = ABOUT_SCHEMA_PATH.read_text(encoding="utf-8")
-    except Exception as exc:
+    except (OSError, UnicodeError) as exc:
         print(
             f"Error: failed to read about schema at {ABOUT_SCHEMA_PATH.as_posix()}: {exc}",
             file=sys.stderr,
@@ -60,7 +58,7 @@ def load_about_validator():
 
     try:
         schema = json.loads(raw)
-    except Exception as exc:
+    except json.JSONDecodeError as exc:
         print(
             f"Error: about schema is not valid JSON: {exc}",
             file=sys.stderr,
@@ -77,7 +75,7 @@ def load_about_validator():
 
     try:
         Draft202012Validator.check_schema(schema)
-    except Exception as exc:
+    except SchemaError as exc:
         print(
             f"Error: about schema structure is invalid: {exc}",
             file=sys.stderr,
@@ -108,7 +106,7 @@ def validate_about_files(about_files, validator):
 
         try:
             raw = path.read_text(encoding="utf-8")
-        except Exception as exc:
+        except (OSError, UnicodeError) as exc:
             parse_errors.append((path_str, f"Failed to read file: {exc}"))
             continue
 
@@ -118,13 +116,15 @@ def validate_about_files(about_files, validator):
 
         try:
             instance = yaml.safe_load(raw)
-        except Exception as exc:
+        except yaml.YAMLError as exc:
             parse_errors.append((path_str, f"YAML parse error: {exc}"))
             continue
 
         # Require a mapping at the top level
         if not isinstance(instance, dict):
-            invalid_instances.append((path_str, "Top-level YAML value must be a mapping (object)."))
+            invalid_instances.append(
+                (path_str, "Top-level YAML value must be a mapping (object).")
+            )
             continue
 
         try:
@@ -170,7 +170,9 @@ def main():
         print("\nAbout.yaml validation failed (schema not available or invalid).")
         return 1
 
-    empty_files, parse_errors, invalid_instances = validate_about_files(about_files, validator)
+    empty_files, parse_errors, invalid_instances = validate_about_files(
+        about_files, validator
+    )
 
     print_summary(about_files, empty_files, parse_errors, invalid_instances)
 

@@ -1,8 +1,8 @@
 # Code Generator
 
-This uses Python to read the schema and create the Rust generated.rs files that reflect that shape. 
+This uses Python to read the schema and create the Rust generated.rs files that reflect that shape.
 
-For example, the code parses the record envelope the same for entity, relationship, and exchange. 
+For example, the code parses the record envelope the same for entity, relationship, and exchange.
 
 It converts to enums, and merges the properties.
 
@@ -44,7 +44,7 @@ special_types["status.statusCode"] = "ExchangeStatusCode"
 
 Example 2
 
-We turn URI-style termUri strings into Rust enum variants. 
+We turn URI-style termUri strings into Rust enum variants.
 We get the trailing fragment / slug and provide that.
 
 So:
@@ -69,7 +69,7 @@ So:
 | ValueType          | ❌ on purpose | Option<String>         |
 
 
-## Value Type Enums 
+## Value Type Enums
 
 Vocab-driven ValueType enums are kept as Option<String> for flexibility.
 

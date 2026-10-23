@@ -130,7 +130,7 @@ We can form a composite adapter:
 defined by:
 
 ```text
-(B ∘ A)(x) = 
+(B ∘ A)(x) =
     match A(x) with
       | Ok(y)    -> B(y)
       | Error(e) -> Error(e)

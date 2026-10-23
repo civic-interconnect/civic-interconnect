@@ -210,7 +210,9 @@ def _map_raw_github_ref_to_local_path(ref: str, repo_root: Path) -> Path | None:
     return candidate if candidate.exists() else None
 
 
-def _resolve_any_ref(ref: str, root: dict[str, Any], schema_path: Path) -> dict[str, Any]:
+def _resolve_any_ref(
+    ref: str, root: dict[str, Any], schema_path: Path
+) -> dict[str, Any]:
     """Resolve local (#/...) or repo-mappable remote refs into a schema dict."""
     if ref.startswith("#/"):
         return _resolve_ref(ref, root)
@@ -293,7 +295,11 @@ def _type_from_anyof_oneof(
     root: dict[str, Any],
 ) -> str | None:
     """Handle anyOf/oneOf unions, including nullable shapes."""
-    key = "anyOf" if "anyOf" in prop_schema else ("oneOf" if "oneOf" in prop_schema else None)
+    key = (
+        "anyOf"
+        if "anyOf" in prop_schema
+        else ("oneOf" if "oneOf" in prop_schema else None)
+    )
     if key is None:
         return None
 
@@ -398,7 +404,12 @@ def _type_from_simple_type(
                 else _to_pascal_case(field_name)
             )
             nested_struct = _generate_nested_struct(
-                struct_name, prop_schema, nested_structs, schema_path, root, parent_name=struct_name
+                struct_name,
+                prop_schema,
+                nested_structs,
+                schema_path,
+                root,
+                parent_name=struct_name,
             )
             nested_structs.append(nested_struct)
             return struct_name
@@ -538,7 +549,9 @@ def _merge_schema(target: dict[str, Any], source: dict[str, Any]) -> None:
                 required.append(name)
 
 
-def _flatten_schema(schema: dict[str, Any], root: dict[str, Any], out: dict[str, Any]) -> None:
+def _flatten_schema(
+    schema: dict[str, Any], root: dict[str, Any], out: dict[str, Any]
+) -> None:
     """Populate out with a flattened view of properties/required via allOf and local refs."""
     _merge_schema(out, schema)
 
@@ -593,7 +606,9 @@ def _field_line(
         attrs.append('#[serde(rename = "' + name + '")]')
 
     if attrs:
-        return "\n    " + "\n    ".join(attrs) + "\n    pub " + rust_name + ": " + ty + ","
+        return (
+            "\n    " + "\n    ".join(attrs) + "\n    pub " + rust_name + ": " + ty + ","
+        )
 
     return "\n    pub " + rust_name + ": " + ty + ","
 
@@ -823,7 +838,9 @@ def generate_rust_struct(schema_path: Path, struct_name: str) -> str:
         lines.append(record_kind_enum)
         special_types["recordKind"] = "RecordKind"
 
-    envelope_items = _generate_envelope_items(root, special_types, nested_structs, schema_path)
+    envelope_items = _generate_envelope_items(
+        root, special_types, nested_structs, schema_path
+    )
     if envelope_items:
         lines.append(envelope_items)
 
@@ -861,8 +878,7 @@ def generate_rust_struct(schema_path: Path, struct_name: str) -> str:
             )
 
     # Emit nested structs before the main struct
-    for nested in nested_structs:
-        lines.append(nested)
+    lines.extend(nested_structs)
 
     # Emit the main record struct
     if description:

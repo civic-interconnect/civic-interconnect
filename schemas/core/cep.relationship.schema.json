@@ -15,12 +15,6 @@
           "const": "relationship",
           "description": "Record kind discriminator for CEP Relationship records."
         },
-        "recordSchemaUri": {
-          "type": "string",
-          "format": "uri",
-          "const": "https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.relationship.schema.json",
-          "description": "URI of this relationship schema. Implementations MAY use this to route validation and builders."
-        },
         "schemaVersion": {
           "type": "string",
           "const": "1.0.0",

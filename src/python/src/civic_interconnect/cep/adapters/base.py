@@ -85,7 +85,9 @@ class Adapter(ABC):
     def attach_attestation(self, record: JsonDict) -> JsonDict:
         """Attach an attestation block using the adapter's key and context."""
         attestation: JsonDict = {
-            "attestationTimestamp": self.context.now().isoformat().replace("+00:00", "Z"),
+            "attestationTimestamp": self.context.now()
+            .isoformat()
+            .replace("+00:00", "Z"),
             "attestorId": self.context.attestor_id,
             "verificationMethodUri": self.context.verification_method_uri,
             "proofType": self.context.proof_type,
@@ -129,7 +131,9 @@ class Adapter(ABC):
             ) from e
         return cep_py
 
-    def apply_localization_name(self, name: str, jurisdiction: str | None = None) -> str:
+    def apply_localization_name(
+        self, name: str, jurisdiction: str | None = None
+    ) -> str:
         """Apply YAML-driven localization to a name (fast path).
 
         Rust-only. Raises RuntimeError if cep_py is missing or does not expose the function.
@@ -137,9 +141,13 @@ class Adapter(ABC):
         j = (jurisdiction or self.key.jurisdiction).strip() or self.key.jurisdiction
         cep_py = self._require_cep_py()
 
-        fn: Callable[[str, str], str] | None = getattr(cep_py, "apply_localization_name", None)
+        fn: Callable[[str, str], str] | None = getattr(
+            cep_py, "apply_localization_name", None
+        )
         if fn is None:
-            raise RuntimeError("cep_py.apply_localization_name is missing (FFI not exposed).")
+            raise RuntimeError(
+                "cep_py.apply_localization_name is missing (FFI not exposed)."
+            )
 
         return fn(name, j)
 
@@ -167,7 +175,9 @@ class Adapter(ABC):
         self, name: str, jurisdiction: str | None = None
     ) -> JsonDict:
         """Apply localization and return parsed JSON (output + provenance)."""
-        return json.loads(self.apply_localization_name_detailed_json(name, jurisdiction))
+        return json.loads(
+            self.apply_localization_name_detailed_json(name, jurisdiction)
+        )
 
 
 # Optional: a very small registry for wiring things up --------------------
@@ -184,11 +194,15 @@ class AdapterRegistry:
         """Register an adapter class by its AdapterKey."""
         key = adapter_cls.key  # type: ignore[attr-defined]
         if not isinstance(key, AdapterKey):
-            raise TypeError("Adapter class must define a class attribute 'key' of type AdapterKey.")
+            raise TypeError(
+                "Adapter class must define a class attribute 'key' of type AdapterKey."
+            )
         triple = (key.domain, key.jurisdiction, key.source_system)
         self._registry[triple] = adapter_cls
 
-    def get(self, domain: str, jurisdiction: str, source_system: str) -> type[Adapter] | None:
+    def get(
+        self, domain: str, jurisdiction: str, source_system: str
+    ) -> type[Adapter] | None:
         """Look up an adapter class by (domain, jurisdiction, source_system)."""
         return self._registry.get((domain, jurisdiction, source_system))
 

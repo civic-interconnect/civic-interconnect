@@ -1,0 +1,30 @@
+# ============================================================
+# .pytest.toml_must_be_custom (CUSTOM FROM ALL-PY-SRC-REPOS)
+# ============================================================
+# Updated: 2026-10-22: CUSTOM: paths are different
+
+# === TEST DISCOVERY ===
+
+# WHY: Require pytest 9 or later for native TOML configuration.
+minversion = "9.0"
+
+# CUSTOM: Define the test discovery paths and Python import paths for the project.
+testpaths = [
+    "src/python/tests",
+    "adapters/eu/ted_eforms/python/tests",
+]
+
+# CUSTOM: Define the Python import paths for the project.
+pythonpath = [
+    "src/python/src",
+    "adapters/eu/ted_eforms/python/src",
+]
+
+
+# === TEST EXECUTION AND COVERAGE ===
+
+addopts = [
+    "--cov=src",                 # CUSTOM
+    "--cov-fail-under=20",       # WHY: Establish a minimum coverage threshold.
+    "--cov-report=term-missing", # WHY: Report lines not exercised by tests.
+]

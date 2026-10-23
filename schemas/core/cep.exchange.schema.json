@@ -21,6 +21,24 @@
           "description": "Verifiable ID of the CEP Relationship under which this exchange occurs. Links the exchange to its contractual, grant, loan, or other legal basis and aligns with OCDS award/contract identifiers or campaign finance reporting relationships when those are modeled as CEP Relationships."
         },
 
+        "dependsOnExchangeIds": {
+          "type": ["array", "null"],
+          "description": "Optional explicit dependencies on upstream CEP Exchanges. This exchange is valid only if all referenced exchanges are valid under the same evaluation context.",
+          "items": { "type": "string" }
+        },
+
+        "requiresConsentIds": {
+          "type": ["array", "null"],
+          "description": "Optional explicit consent prerequisites. This exchange is valid only if all referenced consents are active (not withdrawn) at evaluation time.",
+          "items": { "type": "string" }
+        },
+
+        "requiresInstrumentIds": {
+          "type": ["array", "null"],
+          "description": "Optional explicit instrument prerequisites (e.g., contract, policy, permit, authorization). This exchange is valid only if all referenced instruments are active and applicable at evaluation time.",
+          "items": { "type": "string" }
+        },
+
         "exchangeTypeUri": {
           "type": "string",
           "format": "uri",
@@ -112,7 +130,13 @@
           "properties": {
             "statusCode": {
               "type": "string",
-              "enum": ["PENDING", "COMPLETED", "REVERSED", "CANCELED", "DISPUTED"],
+              "enum": [
+                "PENDING",
+                "COMPLETED",
+                "REVERSED",
+                "CANCELED",
+                "DISPUTED"
+              ],
               "description": "Current status of the exchange (for example, PENDING authorization, COMPLETED payment, REVERSED due to error, CANCELED, or DISPUTED by a party)."
             },
             "statusEffectiveTimestamp": {

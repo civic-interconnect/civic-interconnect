@@ -99,7 +99,7 @@ def _example_attestations(raw: dict[str, Any], slice_dir: Path) -> list[dict[str
 
     try:
         source_ref = slice_dir.relative_to(Path.cwd()).as_posix()
-    except Exception:
+    except ValueError:
         source_ref = slice_dir.as_posix()
 
     return [
@@ -117,7 +117,9 @@ def _example_attestations(raw: dict[str, Any], slice_dir: Path) -> list[dict[str
     ]
 
 
-def _get_first(mapping: dict[str, Any], keys: Iterable[str], default: Any = None) -> Any:
+def _get_first(
+    mapping: dict[str, Any], keys: Iterable[str], default: Any = None
+) -> Any:
     for k in keys:
         if k in mapping:
             return mapping[k]
@@ -132,7 +134,9 @@ def _snfei_value_from_result(snfei_result: dict[str, Any]) -> str:
             return v
     if isinstance(snfei_obj, str) and snfei_obj:
         return snfei_obj
-    raise ValueError("SNFEI result missing expected field: snfei.value (or snfei string)")
+    raise ValueError(
+        "SNFEI result missing expected field: snfei.value (or snfei string)"
+    )
 
 
 def _write_json(path: Path, data: Any) -> None:
@@ -231,7 +235,9 @@ def generate_example(
         f04 = slice_dir / "04_entity_record.json"
 
         if not overwrite and f02.exists() and f03.exists() and f04.exists():
-            typer.echo("  - 02/03/04 already exist, skipping (use --overwrite to regenerate)")
+            typer.echo(
+                "  - 02/03/04 already exist, skipping (use --overwrite to regenerate)"
+            )
             continue
 
         try:
@@ -285,7 +291,9 @@ def generate_example(
 @app.command("snfei")
 def snfei_cmd(
     legal_name: str = typer.Argument(..., help="Raw legal name"),
-    country_code: str = typer.Option("US", "--country-code", "-c", help="ISO country code"),
+    country_code: str = typer.Option(
+        "US", "--country-code", "-c", help="ISO country code"
+    ),
 ) -> None:
     """Generate an SNFEI for an entity name and country."""
     result = generate_snfei_detailed(

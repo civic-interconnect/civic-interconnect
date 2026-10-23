@@ -1,5 +1,4 @@
-"""
-Tests for SNFEI identity normalization of US-IL vendor names.
+"""Tests for SNFEI identity normalization of US-IL vendor names.
 
 Run with:
     uv run pytest src/python/tests/identity/test_us_il_vendor_snfei.py -s
@@ -16,7 +15,7 @@ from civic_interconnect.cep.localization import (
 )
 import pandas as pd
 
-DEBUG = True  # Set False in CI if needed
+DEBUG = False  # Set to True to regenerate out/us_il_normalized_sample.csv as needed
 
 CHICAGO_SAMPLE_URL = (
     "https://raw.githubusercontent.com/"
@@ -26,14 +25,22 @@ CHICAGO_SAMPLE_URL = (
 
 
 def test_debug_loaded_modules_and_paths() -> None:
+    """Diagnostic: print loaded module paths for debugging."""
     import civic_interconnect
     import civic_interconnect.cep
     import civic_interconnect.cep.localization as loc
 
     print("\nPython package paths:")
-    print("civic_interconnect.__file__ =", getattr(civic_interconnect, "__file__", None))
-    print("civic_interconnect.cep.__file__ =", getattr(civic_interconnect.cep, "__file__", None))
-    print("civic_interconnect.cep.localization.__file__ =", getattr(loc, "__file__", None))
+    print(
+        "civic_interconnect.__file__ =", getattr(civic_interconnect, "__file__", None)
+    )
+    print(
+        "civic_interconnect.cep.__file__ =",
+        getattr(civic_interconnect.cep, "__file__", None),
+    )
+    print(
+        "civic_interconnect.cep.localization.__file__ =", getattr(loc, "__file__", None)
+    )
 
     # If you have a compiled extension module, it will typically be a .pyd on Windows.
     # Try a couple common names; adjust if yours differs.
@@ -45,7 +52,7 @@ def test_debug_loaded_modules_and_paths() -> None:
     for name in candidates:
         try:
             mod = __import__(name, fromlist=["*"])
-        except Exception as e:
+        except ImportError as e:
             print(f"{name} import: {type(e).__name__}: {e}")
             continue
         print(f"{name}.__file__ = {getattr(mod, '__file__', None)}")
@@ -61,9 +68,7 @@ def _get_localization_provenance(input_name: str, jurisdiction_iso: str) -> dict
 
 
 def test_localization_assets_present_and_nonempty_for_us_il() -> None:
-    """
-    Diagnostic: prove that the Rust crate actually loaded localization YAML
-    assets and resolved at least one config for US-IL.
+    """Diagnostic: prove that the Rust crate actually loaded localization YAML assets and resolved at least one config for US-IL.
 
     If this fails, build.rs likely did not embed/copy localization assets,
     or repo_root resolution is wrong, or the runtime resolver can't see them.
@@ -89,7 +94,9 @@ def test_localization_assets_present_and_nonempty_for_us_il() -> None:
 
     # Stronger: require that some resolved key looks like it targets US and IL.
     lowered = [str(k).lower() for k in resolved_keys]
-    assert any(k in {"us/il", "us-il", "us_il"} or k.endswith("/il") for k in lowered), (
+    assert any(
+        k in {"us/il", "us-il", "us_il"} or k.endswith("/il") for k in lowered
+    ), (
         f"Resolved keys did not include an IL-specific entry. resolved_keys={resolved_keys}"
     )
 
@@ -100,7 +107,8 @@ def test_localization_assets_present_and_nonempty_for_us_il() -> None:
 
 
 def test_localization_rule_effect_is_observable_in_output() -> None:
-    """
+    """Test that at least one localization rule actually changed the string in a way we expect (marker removal), not just 'resolved something'.
+
     Diagnostic: verify that at least one rule actually changed the string
     in a way we expect (marker removal), not just 'resolved something'.
     """
@@ -118,7 +126,8 @@ def test_localization_rule_effect_is_observable_in_output() -> None:
 
 
 def test_localization_detailed_json_has_minimum_expected_fields() -> None:
-    """
+    """Test that the detailed JSON output from localization contains the minimum expected fields.
+
     Diagnostic: makes failures clearer by asserting the provenance payload contains
     the fields we depend on for debugging asset loading.
     """
@@ -131,18 +140,19 @@ def test_localization_detailed_json_has_minimum_expected_fields() -> None:
 
     # requested_key should be jurisdiction-ish
     req = prov.get("requested_key")
-    assert isinstance(req, str) and req, f"requested_key must be a non-empty string: {req!r}"
+    assert isinstance(req, str) and req, (
+        f"requested_key must be a non-empty string: {req!r}"
+    )
 
     if DEBUG:
         print(
-            "\nPinned localization detailed JSON:\n" + json.dumps(obj, indent=2, ensure_ascii=False)
+            "\nPinned localization detailed JSON:\n"
+            + json.dumps(obj, indent=2, ensure_ascii=False)
         )
 
 
 def test_us_il_localization_known_case_cleaned_up_marker_removed_via_adapter() -> None:
-    """
-    End-to-end pin: adapter.canonicalize() must apply US-IL localization rules.
-    """
+    """End-to-end pin: adapter.canonicalize() must apply US-IL localization rules."""
     adapter = UsIlVendorAdapter()
 
     raw = {"vendor_name": "MCDERMOTT CENTER|CLEANED-UP", "jurisdiction_iso": "US-IL"}
@@ -153,17 +163,13 @@ def test_us_il_localization_known_case_cleaned_up_marker_removed_via_adapter() -
 
 
 def test_us_il_localization_known_case_cleaned_up_marker_removed_via_ffi() -> None:
-    """
-    Direct pin: Rust FFI fast path must remove Chicago dataset cleaned-up marker.
-    """
+    """Direct pin: Rust FFI fast path must remove Chicago dataset cleaned-up marker."""
     out = apply_localization_name("MCDERMOTT CENTER|CLEANED-UP", "US-IL")
     assert out == "mcdermott center"
 
 
 def test_us_il_localization_known_case_provenance_json_shape() -> None:
-    """
-    Audit pin: Rust FFI detailed JSON must return output + provenance fields.
-    """
+    """Audit pin: Rust FFI detailed JSON must return output + provenance fields."""
     detailed_json = apply_localization_name_detailed_json(
         "MCDERMOTT CENTER|CLEANED-UP",
         "US-IL",
@@ -183,10 +189,14 @@ def test_us_il_localization_known_case_provenance_json_shape() -> None:
     assert isinstance(prov.get("resolved_config_hashes"), list)
 
     if DEBUG:
-        print("\nPinned localization provenance:\n" + json.dumps(obj, indent=2, ensure_ascii=False))
+        print(
+            "\nPinned localization provenance:\n"
+            + json.dumps(obj, indent=2, ensure_ascii=False)
+        )
 
 
 def test_snfei_chicago_vendors_subset() -> None:
+    """Test a subset of Chicago vendors for US-IL localization and SNFEI identity."""
     adapter = UsIlVendorAdapter()
 
     df = pd.read_csv(CHICAGO_SAMPLE_URL, dtype=str)

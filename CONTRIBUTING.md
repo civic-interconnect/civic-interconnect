@@ -1,9 +1,7 @@
 # Contributing
 
-This document describes the recommended workflow for developing in this Civic Interconnect repository.  
-It applies to our schemas, Rust rust, Python packages, adapters, and tools.
-
----
+This document describes the recommended workflow for developing in this Civic Interconnect repository.
+It applies to our schemas, Rust, Python packages, adapters, and tools.
 
 ## 1. Prerequisites
 
@@ -11,36 +9,68 @@ Install the following.
 
 ### Required
 
--   **Git** (configure `user.name` and `user.email`)
--   **uv** – Python environment + package manager
--   **Rust toolchain** (`rustc --version`)
--   **VS Code** (recommended)
+- **Git** (configure `user.name` and `user.email`)
+- **uv** Python environment + package manager
+- **Rust toolchain** (`rustc --version`)
+- **VS Code** (recommended)
 
-### Recommended VS Code Extensions
+### Rust Install/Update for Windows PowerShell
 
--   charliermarsh.ruff - Python linting/formatting
--   fill-labs.dependi - check dependencies
--   ms-python.python - Python support
--   ms-python.vscode-pylance - Fast, strict language server
--   rust-lang.rust-analyzer – Rust language support
--   streetsidesoftware.code-spell-checker – Spell checking in code/docs
--   tamasfe.even-better-toml – TOML editing (pyproject, config)
--   usernamehw.errorlens – Inline diagnostics (optional, but helpful)
+Important: Accept the default MSVC toolchain.
+If the installer prompts for Microsoft C++ build tools,
+install them, including the Desktop development with C++ workload
+and Windows SDK.
+This provides the native linker needed to compile Rust extensions on Windows.
 
-You can see your installed extensions by running: `code.cmd --list-extensions`
+```pwsh
+# Install the official Rust toolchain manager.
+winget install --id Rustlang.Rustup --exact
+
+# After installation, open a NEW PowerShell terminal.
+
+# Verify Rust and Cargo are available.
+rustup --version
+rustc --version
+cargo --version
+
+# Verify the active toolchain.
+rustup show active-toolchain
+
+# Install Microsoft C++ Build Tools with the required workload.
+winget install --id Microsoft.VisualStudio.2022.BuildTools --exact --override "--passive --wait --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"
+
+# Open a new terminal and run existing project checks.
+.\rel.ps1
+
+# Periodically: Update the installed Rust toolchains.
+rustup update
+```
+
+### Rust Install/Update for mac and Linux
+
+```bash
+# Install the official Rust toolchain manager.
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Verify the installation in a new terminal.
+rustup --version
+rustc --version
+cargo --version
+
+# Periodically: Update the installed Rust toolchains.
+rustup update
+```
 
 ### Optional (if building wrappers)
 
 C# Wrapper
 
--   [Build Tools for VS 2022 (as needed)](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)
--   [C# dev kit by Microsoft](https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-visual-studio-code)
+- [Build Tools for VS 2022 (as needed)](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022)
+- [C# dev kit by Microsoft](https://learn.microsoft.com/en-us/dotnet/core/install/windows#install-with-visual-studio-code)
 
 Java Wrapper
 
--   JDK
-
----
+- JDK
 
 ## 2. Fork and Clone
 
@@ -54,28 +84,19 @@ cd civic-interconnect
 
 Open the repo in VS Code.
 
----
-
 ## 3. One-Time Setup
 
 Create a local environment and install dependencies.
 
 ```shell
-uv python pin 3.12
-uv venv
-
-.venv\Scripts\activate # Windows
-# source .venv/bin/activate  # Mac/Linux/WSL
-
-uv sync --extra dev --extra docs --upgrade
-uvx pre-commit install
+uv sync
 ```
-
----
 
 ## 4. Validate Changes
 
-Before committing, pull code, run Python checks, run Rust checks.
+Run the commands relevant to the changes being made.
+Some commands validate existing work;
+others regenerate files, update datasets, or perform maintenance.
 
 ```shell
 git pull origin main
@@ -137,7 +158,6 @@ uv run pytest src/python/tests/audit/test_us_il_vendor_audit.py -s
 # src/python/tests/data/procurement/it_anac/ocds_sample.jsonl
 uv run python tools/fetch_procurement_it_anac_sample.py
 
-
 # install adapters and test
 uv pip install -e adapters/eu/ted_eforms/python
 
@@ -146,32 +166,23 @@ uv run pytest adapters/eu/ted_eforms/python/tests -s
 
 uv run python -c "from ci_adapters.eu.ted_eforms import TedEformsAdapter; a=TedEformsAdapter(); r=a.adapt_records([{'notice_id':'N1'}]); print(r.envelopes[0])"
 
+# set up and run git hooks
+uvx prek install --force
+uvx prek update
+git add -A
+uvx prek run --all-files
+# repeat if changes were made
+uvx prek run --all-files
 
-
-# Python quality checks
-git add .
-uvx ruff check . --fix
-uvx ruff format .
-uvx deptry .
-uv run pyright
-uv run pytest
-uvx pre-commit autoupdate
-uvx pre-commit run --all-files
+# run common chores
+uv run ruff format .
+uv run ruff check . --fix
+uv run ty check
+uv run python -m pytest
+uv run python -m zensical build
 ```
 
----
-
-## 5. Build Package and Docs
-
-```shell
-uv build
-uv run mkdocs build --strict
-uv run mkdocs serve
-```
-
----
-
-## 6. Commit and Push
+## 5. Commit and Push
 
 ```shell
 git add .
@@ -179,24 +190,18 @@ git commit -m "Your message"
 git push -u origin main
 ```
 
----
-
-## 7. Open a Pull Request
+## 6. Open a Pull Request
 
 Open a PR from your fork to the `main` branch of the target repository.
 
 Guidelines for good PRs are here: `REF_PULL_REQUESTS.md`
 
----
-
 ## Licensing
 
-This project is licensed under the Apache License, Version 2.0.  
-By submitting a pull request, issue, or other contribution to this repository, you agree that your contribution will be licensed under the Apache License, Version 2.0.
+This project is licensed under the MIT License.
+By submitting a pull request, issue, or other contribution to this repository, you agree that your contribution will be licensed under the MIT License.
 
 This ensures that all schemas, vocabularies, code, documentation, and other materials in the Civic Interconnect ecosystem can be freely used, extended, and implemented by governments, nonprofits, researchers, companies, and individuals.
-
----
 
 ## Questions
 

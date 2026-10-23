@@ -98,6 +98,7 @@ Or manually:
 
 ```python
 from cep_py import build_entity_json
+
 entity_record = build_entity_json(normalized_json)
 ```
 

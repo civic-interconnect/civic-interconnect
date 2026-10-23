@@ -11,7 +11,9 @@ if TYPE_CHECKING:
     from collections.abc import Mapping
 
 
-def map_record_to_minimal_envelope(record: Mapping[str, Any], adapter_id: str) -> Mapping[str, Any]:
+def map_record_to_minimal_envelope(
+    record: Mapping[str, Any], adapter_id: str
+) -> Mapping[str, Any]:
     """Map a normalized record into a minimal envelope-like dict.
 
     Replace with core envelope builder once integrated.

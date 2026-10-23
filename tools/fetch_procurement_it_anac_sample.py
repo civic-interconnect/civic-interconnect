@@ -1,5 +1,4 @@
 # tools/fetch_procurement_it_anac_sample.py
-#!/usr/bin/env python3
 """Fetch a small, reproducible OCDS JSONL sample for Italy ANAC (via OCP Data Registry).
 
 and write it into the repo as a CI-safe fixture.
@@ -48,7 +47,9 @@ import urllib.request
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-DEFAULT_URL = "https://data.open-contracting.org/en/publication/117/download?name=2022.jsonl.gz"
+DEFAULT_URL = (
+    "https://data.open-contracting.org/en/publication/117/download?name=2022.jsonl.gz"
+)
 
 
 class HashLike(Protocol):
@@ -78,7 +79,9 @@ def _validate_url_for_download(url: str) -> None:
     """
     parsed = urlparse(url)
     if parsed.scheme not in ("https", "http"):
-        raise ValueError(f"Unsupported URL scheme: {parsed.scheme!r}. Only https/http allowed.")
+        raise ValueError(
+            f"Unsupported URL scheme: {parsed.scheme!r}. Only https/http allowed."
+        )
     if not parsed.netloc:
         raise ValueError("URL must include a network location (host).")
     if parsed.username or parsed.password:
@@ -107,7 +110,7 @@ def _download_file(url: str, dest: Path, *, force: bool) -> tuple[str, int]:
     h = hashlib.sha256()
     n = 0
 
-    req = urllib.request.Request(  # noqa: S310
+    req = urllib.request.Request(
         url,
         headers={
             # Some hosts reject default Python UA.
@@ -120,7 +123,7 @@ def _download_file(url: str, dest: Path, *, force: bool) -> tuple[str, int]:
     # NOTE: urlopen is safe here because we validated scheme/netloc above in _validate_url_for_download.
     # The URL is guaranteed to be http/https only, with no credentials or custom schemes.
     # S310 is suppressed because _validate_url_for_download ensures only http/https schemes are allowed.
-    with urllib.request.urlopen(req, timeout=300) as resp, dest.open("wb") as out:  # noqa: S310
+    with urllib.request.urlopen(req, timeout=300) as resp, dest.open("wb") as out:
         while True:
             chunk = resp.read(1024 * 1024)
             if not chunk:
@@ -164,7 +167,9 @@ def _iter_jsonl_gz(path: Path) -> Iterable[dict[str, Any]]:
 
 def _write_jsonl(path: Path, rows: Iterable[dict[str, Any]], *, force: bool) -> None:
     if path.exists() and not force:
-        raise FileExistsError(f"Refusing to overwrite existing file: {path} (use --force-write)")
+        raise FileExistsError(
+            f"Refusing to overwrite existing file: {path} (use --force-write)"
+        )
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
         for obj in rows:
@@ -174,7 +179,9 @@ def _write_jsonl(path: Path, rows: Iterable[dict[str, Any]], *, force: bool) -> 
 
 def _write_json(path: Path, obj: Any, *, force: bool) -> None:
     if path.exists() and not force:
-        raise FileExistsError(f"Refusing to overwrite existing file: {path} (use --force-write)")
+        raise FileExistsError(
+            f"Refusing to overwrite existing file: {path} (use --force-write)"
+        )
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
         json.dump(obj, f, indent=2, sort_keys=True)
@@ -184,7 +191,9 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description="Fetch and sample Italy ANAC OCDS JSONL (.gz) into repo test fixtures."
     )
-    p.add_argument("--url", type=str, default=DEFAULT_URL, help="URL to a .jsonl.gz OCDS download.")
+    p.add_argument(
+        "--url", type=str, default=DEFAULT_URL, help="URL to a .jsonl.gz OCDS download."
+    )
     p.add_argument(
         "--cache-dir",
         type=str,
@@ -232,10 +241,14 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Sampling rate: include release if hash(ocid) mod 10000 < threshold. 25 ~= 0.25%.",
     )
     p.add_argument(
-        "--force-download", action="store_true", help="Redownload even if cached file exists."
+        "--force-download",
+        action="store_true",
+        help="Redownload even if cached file exists.",
     )
     p.add_argument(
-        "--force-write", action="store_true", help="Overwrite sample/meta outputs if they exist."
+        "--force-write",
+        action="store_true",
+        help="Overwrite sample/meta outputs if they exist.",
     )
     return p.parse_args(argv)
 
@@ -253,8 +266,10 @@ def main(argv: list[str] | None = None) -> int:
     gz_path = cache_dir / f"anac_ocds_{url_hash}.jsonl.gz"
 
     try:
-        gz_sha256, gz_bytes = _download_file(args.url, gz_path, force=bool(args.force_download))
-    except Exception as e:
+        gz_sha256, gz_bytes = _download_file(
+            args.url, gz_path, force=bool(args.force_download)
+        )
+    except (OSError, ValueError) as e:
         print(f"ERROR: download failed: {e}", file=sys.stderr)
         return 1
 
@@ -272,7 +287,7 @@ def main(argv: list[str] | None = None) -> int:
             if len(picked) >= int(args.max_items):
                 break
 
-    except Exception as e:
+    except (OSError, ValueError) as e:
         print(f"ERROR: failed to parse gz JSONL: {e}", file=sys.stderr)
         return 1
 
@@ -283,7 +298,10 @@ def main(argv: list[str] | None = None) -> int:
         _write_jsonl(out_sample, picked, force=bool(args.force_write))
         meta = {
             "source_url": args.url,
-            "fetched_at_utc": dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
+            "fetched_at_utc": dt.datetime.now(tz=dt.UTC)
+            .replace(microsecond=0)
+            .isoformat()
+            + "Z",
             "cached_gz_path": str(gz_path.relative_to(root)),
             "cached_gz_sha256": gz_sha256,
             "cached_gz_bytes": gz_bytes,
@@ -294,13 +312,17 @@ def main(argv: list[str] | None = None) -> int:
             "notes": "Sample selection is deterministic by hash(ocid).",
         }
         _write_json(out_meta, meta, force=bool(args.force_write))
-    except Exception as e:
+    except (OSError, TypeError, ValueError) as e:
         print(f"ERROR: failed to write outputs: {e}", file=sys.stderr)
         return 1
 
     print(
         json.dumps(
-            {"ok": True, "sample_items_written": len(picked), "out_sample": str(out_sample)},
+            {
+                "ok": True,
+                "sample_items_written": len(picked),
+                "out_sample": str(out_sample),
+            },
             indent=2,
         )
     )

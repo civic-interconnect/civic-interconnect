@@ -161,7 +161,9 @@ def _build_envelope_field_constants(envelope_schema: dict) -> list[FieldConstant
 
     # Nested groups inside $defs
     defs = (
-        envelope_schema.get("$defs", {}) if isinstance(envelope_schema.get("$defs"), dict) else {}
+        envelope_schema.get("$defs", {})
+        if isinstance(envelope_schema.get("$defs"), dict)
+        else {}
     )
 
     add_props("STATUS", defs.get("status", {}).get("properties"))

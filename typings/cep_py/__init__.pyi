@@ -65,23 +65,23 @@ def normalize_registration_date(value: str) -> str | None: ...
 # Keep it in sync with the stable FFI surface above.
 
 __all__: Final[list[str]] = [
+    "apply_localization_name_detailed_json_py",
+    "apply_localization_name_detailed_py",
+    # localization
+    "apply_localization_name_py",
+    "build_ctag_json",
     # builders
     "build_entity_json",
     "build_exchange_json",
     "build_relationship_json",
-    "build_ctag_json",
-    # localization
-    "apply_localization_name_py",
-    "apply_localization_name_detailed_py",
-    "apply_localization_name_detailed_json_py",
-    # normalizers
-    "normalize_legal_name",
-    "normalize_address",
-    "normalize_registration_date",
     # snfei
     "generate_snfei",
     "generate_snfei_detailed",
     "generate_snfei_detailed_json",
+    "normalize_address",
+    # normalizers
+    "normalize_legal_name",
+    "normalize_registration_date",
 ]
 
 __doc__: str

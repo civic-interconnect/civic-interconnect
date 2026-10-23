@@ -62,7 +62,9 @@ def tender_build_request(
             "value": _maybe_dict(tender, "value"),
             "tenderPeriod": _maybe_dict(tender, "tender_period"),
             # Keep items/lots as raw evidence; a later adapter can map them to CEP types.
-            "items": tender.get("items") if isinstance(tender.get("items"), list) else [],
+            "items": tender.get("items")
+            if isinstance(tender.get("items"), list)
+            else [],
             "lots": tender.get("lots") if isinstance(tender.get("lots"), list) else [],
         },
         "source": {

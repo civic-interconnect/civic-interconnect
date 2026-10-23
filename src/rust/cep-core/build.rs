@@ -21,19 +21,11 @@ use std::io::Write;
 use std::path::{Path, PathBuf};
 
 fn is_repo_root(dir: &Path) -> bool {
-    // Primary sentinel
-    if !dir.join("docs").is_dir() {
-        return false;
-    }
-
-    if !dir.join("mkdocs.yml").is_file() {
-        return false;
-    }
-    if !dir.join(".git").exists() {
-        return false;
-    }
-
-    true
+    dir.join("pyproject.toml").is_file()
+        && dir.join("Cargo.toml").is_file()
+        && ["schemas", "vocabulary", "localization", "test_vectors"]
+            .iter()
+            .all(|folder| dir.join(folder).is_dir())
 }
 
 fn find_repo_root(start: &Path) -> Option<PathBuf> {
@@ -102,13 +94,7 @@ fn main() {
     generate_schemas_group(&repo_root, &out_dir, &mut out);
 
     // vocabulary -> VOCABULARY (relative path without .json)
-    generate_simple_group(
-        &repo_root,
-        &out_dir,
-        &mut out,
-        "vocabulary",
-        "VOCABULARY",
-    );
+    generate_simple_group(&repo_root, &out_dir, &mut out, "vocabulary", "VOCABULARY");
 
     // localization -> LOCALIZATION_YAMLS (jurisdiction keys)
     generate_yaml_group(

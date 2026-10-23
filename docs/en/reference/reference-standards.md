@@ -14,4 +14,3 @@
 
 - Official U.S UEI: The U.S. government already uses a Unique Entity Identifier (UEI), a 12-character alphanumeric ID assigned by SAM.gov, for all entities receiving federal financial assistance or doing business with the federal government (Source 3.1, 3.2). Often does not appear on state/local campaign finance reports or local school district consultant contracts unless federal funds are directly involved.
 - Open-Source Data Cleaning Tools: Tools like Splink, OpenRefine, and Python/Pandas to manually clean and standardize messy names ("Acme Consulting, LLC" vs. "Acme Consulting") (Source 2.1, 2.3).
-

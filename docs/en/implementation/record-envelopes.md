@@ -15,4 +15,3 @@ A shared CEP record envelope is reused for all domains:
 - entity-type, relationship-type, exchange-type, ctag-type, etc.
 - timestamps are shared so all records can be compared on the same axes.
 - attestations are identical in shape across domains.
-  
