@@ -1,7 +1,7 @@
 # ============================================================
 # .github/workflows/deploy-zensical.yml (ALL-PY-REPOS)
 # ============================================================
-# Updated: 2026-10-11
+# Updated: 2026-10-23
 #
 # WHAT: A GitHub Actions workflow that automatically publishes project documentation.
 #       GitHub Actions is GitHub's built-in project automation service.
@@ -65,6 +65,11 @@ jobs:
     name: Deploy Documentation site
     runs-on: ubuntu-latest
     timeout-minutes: 30 # WHY: Fail fast if a step hangs unexpectedly.
+
+    environment:
+      name: github-pages
+      # WHY: Identify the required GitHub Pages deployment environment.
+      # OBS: A warning that the value is not valid is fine. It's a VS Code thing.
 
     steps:
       # ============================================================
