@@ -1,6 +1,7 @@
 # Adapter Template
 
 A conforming adapter defines:
+
 - Input contract
 - Output payload shape
 - Supported options

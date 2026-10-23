@@ -17,12 +17,12 @@ domains (canonicalization, adapters, fingerprints, provenance, graph merging,
 and hashing). Global Integrity Constraints (GIC) define the _cross-cutting
 rules_ that govern all CEP data and transformations. They ensure that:
 
--   identities remain stable and non-ambiguous
--   relationships are consistent and well-formed
--   provenance is coherent and auditable
--   graph normalization yields deterministic results
--   CTags and fingerprints remain trustworthy
--   versioning is explicit and reproducible
+- identities remain stable and non-ambiguous
+- relationships are consistent and well-formed
+- provenance is coherent and auditable
+- graph normalization yields deterministic results
+- CTags and fingerprints remain trustworthy
+- versioning is explicit and reproducible
 
 These constraints are mandatory. Any violation indicates an invalid record,
 invalid adapter output, or corrupted graph.
@@ -46,11 +46,11 @@ Every entity MUST have exactly one `verifiableId`, produced via:
 
 An entity's `verifiableId` MUST remain unchanged if:
 
--   addresses change
--   phone/email change
--   officers or membership change
--   descriptive fields change
--   statuses change (ACTIVE → INACTIVE)
+- addresses change
+- phone/email change
+- officers or membership change
+- descriptive fields change
+- statuses change (ACTIVE → INACTIVE)
 
 Only **identity-defining attributes** may influence the fingerprint.
 
@@ -70,9 +70,9 @@ All relationships MUST reference existing entities using _their canonical
 verifiableId_.  
 No relationship may point to a:
 
--   blank/empty ID
--   temporary/local ID
--   non-existent entity
+- blank/empty ID
+- temporary/local ID
+- non-existent entity
 
 ## 3.2 Type Consistency
 
@@ -92,9 +92,9 @@ Type compatibility follows domain vocabulary definitions.
 
 Each relationship type MUST specify its cardinality:
 
--   one-to-one
--   one-to-many
--   many-to-many
+- one-to-one
+- one-to-many
+- many-to-many
 
 Adapters MUST enforce these constraints.
 
@@ -102,10 +102,10 @@ Adapters MUST enforce these constraints.
 
 If a relationship vocabulary declares:
 
--   symmetric
--   antisymmetric
--   directional
--   inverse-of
+- symmetric
+- antisymmetric
+- directional
+- inverse-of
 
 then every instance MUST satisfy that constraint.
 
@@ -138,11 +138,11 @@ bytes for hashing.
 
 Each hash MUST commit to:
 
--   `cecVersion`
--   `schemaVersion`
--   `vocabularyVersion`
--   `adapterVersion`
--   `fingerprintVersion`
+- `cecVersion`
+- `schemaVersion`
+- `vocabularyVersion`
+- `adapterVersion`
+- `fingerprintVersion`
 
 If any of these change, fingerprints may change or be non-interoperable.
 
@@ -158,10 +158,10 @@ No field outside the fingerprint structure may influence the hash.
 
 Every entity and relationship MUST retain provenance sufficient to answer:
 
--   Who created this record?
--   Which adapter(s) produced it?
--   When was the transformation performed?
--   What version of the schema/vocab was used?
+- Who created this record?
+- Which adapter(s) produced it?
+- When was the transformation performed?
+- What version of the schema/vocab was used?
 
 ## 5.2 Temporal Monotonicity
 
@@ -188,10 +188,10 @@ that performed it.
 
 A graph is valid if:
 
--   all nodes have canonical IDs
--   all edges connect existing nodes
--   all payloads satisfy schema
--   the graph normalizes correctly under GNS
+- all nodes have canonical IDs
+- all edges connect existing nodes
+- all payloads satisfy schema
+- the graph normalizes correctly under GNS
 
 ## 6.2 No Dangling Edges
 
@@ -215,8 +215,8 @@ Normalizing an already normalized graph MUST yield identical bytes.
 
 All adapters MUST emit:
 
--   `adapterId`
--   `adapterVersion`
+- `adapterId`
+- `adapterVersion`
 
 ## 7.2 Total Determinism for Valid Inputs
 
@@ -242,19 +242,19 @@ Adapter pipelines MUST respect adapter algebra composition and version-compatibi
 
 Every CEP record MUST declare:
 
--   `schemaVersion`
--   `vocabularyVersion`
--   `adapterVersion`
--   `cecVersion`
--   `fingerprintVersion`
--   `gnsVersion` (if graph-level)
+- `schemaVersion`
+- `vocabularyVersion`
+- `adapterVersion`
+- `cecVersion`
+- `fingerprintVersion`
+- `gnsVersion` (if graph-level)
 
 ## 8.2 Monotonic Version Evolution
 
 Adapters MAY target:
 
--   the same version
--   or a compatible future version
+- the same version
+- or a compatible future version
 
 They MUST NOT mix incompatible versions without a defined version-bridge adapter.
 
@@ -264,9 +264,9 @@ Updating a schema or vocabulary MUST NOT retroactively break previously valid
 records.  
 Backwards-compatible evolution requires:
 
--   versioned vocabularies
--   explicit deprecation
--   backwards-compatible adapters
+- versioned vocabularies
+- explicit deprecation
+- backwards-compatible adapters
 
 ---
 
@@ -274,12 +274,12 @@ Backwards-compatible evolution requires:
 
 These Global Integrity Constraints define the invariants required for CEP to be:
 
--   deterministic
--   interoperable
--   identity-stable
--   graph-stable
--   hash-verifiable
--   provenance-complete
+- deterministic
+- interoperable
+- identity-stable
+- graph-stable
+- hash-verifiable
+- provenance-complete
 
 Any valid CEP dataset, entity, graph, or exchange MUST satisfy these
 constraints.

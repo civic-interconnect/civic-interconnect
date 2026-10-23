@@ -37,6 +37,7 @@ layer is designed to be *modular* and *composable*.
 ## Specification Index (Alphabetical After CEC)
 
 ### Canonical Encoding & Canonicalization
+
 - **CEC v1**  
   Core deterministic encoding and canonicalization rules.  
   Required by all other CEP standards.

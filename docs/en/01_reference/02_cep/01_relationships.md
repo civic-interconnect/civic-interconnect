@@ -13,10 +13,10 @@ CEP treats relationships as first-class records.
 
 A relationship consists of:
 
--   One or more endpoints
--   A relationship type
--   Optional contextual attributes
--   Source references
+- One or more endpoints
+- A relationship type
+- Optional contextual attributes
+- Source references
 
 Endpoints refer to entities but do not redefine them.
 

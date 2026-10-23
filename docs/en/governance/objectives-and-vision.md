@@ -14,6 +14,7 @@ At its core, CEP ensures that **the same payload always yields the same canonica
 ## 1. Objectives
 
 ### **1.1 Lower the Cost of Adoption**
+
 Most public-sector technology initiatives fail due to the cost and complexity of onboarding.  
 CEP minimizes this by:
 
@@ -23,6 +24,7 @@ CEP minimizes this by:
 - Transparency by default: schemas and vocabularies are openly published.
 
 ### **1.2 Decentralized Provenance Without Blockchain**
+
 Unlike blockchain-based solutions, CEP:
 
 - Requires no consensus algorithm.
@@ -32,6 +34,7 @@ Unlike blockchain-based solutions, CEP:
 This provides a cryptographic audit trail suitable for public-sector systems where full decentralization is either unnecessary or impractical.
 
 ### **1.3 Cost-Effective Regulatory Compliance**
+
 CEP is designed to satisfy emerging demands in:
 
 - Transparency and anti-corruption policy  

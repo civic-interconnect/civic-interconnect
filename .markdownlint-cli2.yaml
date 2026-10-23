@@ -1,0 +1,65 @@
+# ============================================================
+# .markdownlint-cli2.yaml (ALL-REPOS)
+# ============================================================
+# Updated: 2026-06-10
+#
+# WHY: Check authored Markdown while ignoring generated output,
+# dependency directories, virtual environments, caches, and build artifacts.
+# REQ: Markdown lint should check source documentation, not generated docs,
+# dependency trees, coverage output, or runtime artifacts.
+#
+# Run with:
+# npx markdownlint-cli2 --fix
+
+globs:
+  - "**/*.md"
+
+ignores:
+  - "**/.mypy_cache/**"
+  - "**/.nox/**"
+  - "**/.pytest_cache/**"
+  - "**/.pyright/**"
+  - "**/.ruff_cache/**"
+  - "**/.tox/**"
+  - "**/.uv-cache/**"
+  - "**/.venv/**"
+  - "**/build/**"
+  - "**/dist/**"
+  - "**/htmlcov/**"
+  - "**/node_modules/**"
+  - "**/site/**"
+  - ".github/CODEOWNERS"
+  - ".mypy_cache/**"
+  - ".nox/**"
+  - ".pytest_cache/**"
+  - ".pyright/**"
+  - ".ruff_cache/**"
+  - ".tox/**"
+  - ".uv-cache/**"
+  - ".venv/**"
+  - "build/**"
+  - "dist/**"
+  - "htmlcov/**"
+  - "LICENSE"
+  - "node_modules/**"
+  - "site/**"
+
+config:
+  default: true # WHY: Enable default Markdown rules as the project baseline.
+
+  MD013:
+    line_length: 100 # WHY: Keep authored prose readable in source and diffs.
+    headings: false # WHY: Long headings may be needed for clarity.
+    tables: false # WHY: Long table cells may be needed for readability.
+    code_blocks: false # WHY: Long code lines should not be wrapped by Markdown lint.
+
+  MD025: false # WHY: Allow multiple top-level headings in README/docs/index style files.
+
+  MD033:
+    allowed_elements:
+      - details # WHY: Details elements support collapsible documentation sections.
+      - img # WHY: Image elements are needed for visual documentation.
+      - link # WHY: Link elements are sometimes needed for metadata or styling.
+      - mark # WHY: Mark elements support intentional highlighting.
+      - meta # WHY: Metadata elements may be needed in generated/static docs.
+      - summary # WHY: Summary elements support collapsible documentation sections.

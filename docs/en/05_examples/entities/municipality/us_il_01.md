@@ -1,7 +1,7 @@
 # Example: Municipality Entity (US-IL 01)
 
-This example demonstrates a basic CEP EntityRecord for a municipality in Illinois.  
-It uses the standard four-stage CEP example pipeline described in  
+This example demonstrates a basic CEP EntityRecord for a municipality in Illinois.
+It uses the standard four-stage CEP example pipeline described in
 [**How CEP Examples Work**](../../README.md).
 
 Directory:
@@ -25,14 +25,14 @@ Files:
 
 **What is unique about this particular example:**
 
-- Demonstrates a *minimal viable municipality* record.
+- Demonstrates a _minimal viable municipality_ record.
 - Uses **SNFEI** as the sole identifier input for constructing the `verifiableId`.
 - Shows normalization of a plain-text municipal name into a canonical form.
 - Displays the default entity type mapping for municipalities.
 - Includes a single revision (no prior history).
 
-For all pipeline details (normalization → canonicalization → identifier construction → record building),  
-see the master page:  
+For all pipeline details (normalization → canonicalization → identifier construction → record building),
+see the master page:
 [How CEP Examples Work](../../README.md).
 
 ---
@@ -54,10 +54,10 @@ Nothing unusual is required for this example — Illinois municipalities follow 
 
 The canonical representation includes:
 
-- normalized name  
-- jurisdiction code  
-- entity type  
-- deterministic field ordering  
+- normalized name
+- jurisdiction code
+- entity type
+- deterministic field ordering
 
 This example canonicalizes cleanly with no special transformations.
 
@@ -65,7 +65,7 @@ This example canonicalizes cleanly with no special transformations.
 
 SNFEI is computed via:
 
-```
+```text
 SHA256( canonical.to_hash_string() )
 ```
 
@@ -74,16 +74,16 @@ The resulting value populates:
 - `verifiableId = "cep-entity:snfei:<hash>"`
 - an entry in `identifiers[]` using the SNFEI identifier scheme.
 
-*(Example SNFEI value is shown inside the final record.)*
+(Example SNFEI value is shown inside the final record.)
 
 ### Final EntityRecord (04)
 
 The Rust builder (`build_entity_json`) produces:
 
-- envelope metadata (status, timestamps)  
-- `recordHash` and `previousRecordHash` (none for first revision)  
-- cryptographic attestation  
-- canonical `entityTypeUri` and identifier scheme references  
+- envelope metadata (status, timestamps)
+- `recordHash` and `previousRecordHash` (none for first revision)
+- cryptographic attestation
+- canonical `entityTypeUri` and identifier scheme references
 
 ---
 
@@ -107,8 +107,8 @@ entity_record = build_entity_json(normalized_json)
 
 ## Related Documentation
 
-- [Identifier Schemes](../../../reference/identifier-schemes.md)  
-- [Entity Specification](../../../reference/entity.md)  
+- [Identifier Schemes](../../../reference/identifier-schemes.md)
+- [Entity Specification](../../../reference/entity.md)
 - [Normalization & SNFEI](../../../concepts/normalization.md)
 
 ---

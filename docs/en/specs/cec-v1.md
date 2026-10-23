@@ -22,13 +22,13 @@ CEC is versioned independently of CEP schemas and vocabularies.
 
 ## 2. Goals
 
--   Deterministic across programming languages
--   Deteministic across CEP versions
--   Hash-stable
--   Independent of in-memory ordering
--   Immune to whitespace or pretty-printing differences
--   Explicit about versioning
--   Backwards compatible via declared CEC version
+- Deterministic across programming languages
+- Deteministic across CEP versions
+- Hash-stable
+- Independent of in-memory ordering
+- Immune to whitespace or pretty-printing differences
+- Explicit about versioning
+- Backwards compatible via declared CEC version
 
 ---
 
@@ -40,9 +40,8 @@ CEP.Normalization → CEC.Serialization → hash()
 
 Where:
 
--   CEP.Normalization = rewrite pipeline (canonical names, vocabulary terms, identifiers, units, etc.)
--   CEC.Serialization = deterministic JSON encoding defined in this document
-
+- CEP.Normalization = rewrite pipeline (canonical names, vocabulary terms, identifiers, units, etc.)
+- CEC.Serialization = deterministic JSON encoding defined in this document
 
 ---
 
@@ -50,9 +49,9 @@ Where:
 
 ### 4.1 Key Ordering (Deterministic Lexicographic Order)
 
--   All JSON object keys must be sorted lexicographically by Unicode code point, ascending.
--   Sorting is stable.
--   No domain-specific exceptions.
+- All JSON object keys must be sorted lexicographically by Unicode code point, ascending.
+- Sorting is stable.
+- No domain-specific exceptions.
 
 Example:
 `{"b":1, "a":2}` becomes:
@@ -61,10 +60,10 @@ Example:
 
 ### 4.2 Whitespace
 
--   No whitespace except where required by JSON string literals.
--   No pretty printing.
--   No indentation.
--   No newline required at end of file.
+- No whitespace except where required by JSON string literals.
+- No pretty printing.
+- No indentation.
+- No newline required at end of file.
 
 CEC is optimized for hashing, not for readability.
 
@@ -72,9 +71,9 @@ CEC is optimized for hashing, not for readability.
 
 To avoid non-determinism:
 
--   Fields with value null MUST be omitted entirely.
--   Empty arrays MUST be encoded as [] (not omitted).
--   Empty objects MUST be encoded as {} (not omitted).
+- Fields with value null MUST be omitted entirely.
+- Empty arrays MUST be encoded as [] (not omitted).
+- Empty objects MUST be encoded as {} (not omitted).
 
 Reason: presence/absence of an empty list has semantic meaning; null does not.
 
@@ -98,9 +97,9 @@ Examples:
 
 ### 4.5 String Normalization
 
--   All strings must be Unicode NFC after canonicalization.
--   Escaping rules follow RFC8259 strictly.
--   No control characters except via escape sequences.
+- All strings must be Unicode NFC after canonicalization.
+- Escaping rules follow RFC8259 strictly.
+- No control characters except via escape sequences.
 
 ### 4.6 Boolean Normalization
 
@@ -117,9 +116,9 @@ false
 
 Lists may be:
 
--   order-preserving if the schema defines semantic order
--   sorted lexicographically if order is not semantically meaningful
--   CEC requires each schema field to declare:
+- order-preserving if the schema defines semantic order
+- sorted lexicographically if order is not semantically meaningful
+- CEC requires each schema field to declare:
 
 ```text
 "ordering": "preserved" | "sorted"
@@ -131,20 +130,18 @@ Default = `"preserved"`.
 
 All rules apply recursively.
 
-
 ---
 
 ## 5. Canonical Envelope Structure (Required Metadata)
 
 Every CEP object that participates in hashing MUST include:
 
--   "cecVersion" — version string (e.g., "1.0.0").
--   "schemaVersion" — version of the CEP schema used.
--   "vocabularyVersion" — list or mapping of vocab versions used.
--   "adapterVersion" — version of the adapter that produced the record.
+- "cecVersion" — version string (e.g., "1.0.0").
+- "schemaVersion" — version of the CEP schema used.
+- "vocabularyVersion" — list or mapping of vocab versions used.
+- "adapterVersion" — version of the adapter that produced the record.
 
 This ensures hashes remain interpretable even as schemas change.
-
 
 ---
 
@@ -152,23 +149,22 @@ This ensures hashes remain interpretable even as schemas change.
 
 CEC itself must be versioned using SemVer:
 
--   MAJOR: breaking changes
--   MINOR: behavior additions that preserve determinism
--   PATCH: clarifications or typo fixes
+- MAJOR: breaking changes
+- MINOR: behavior additions that preserve determinism
+- PATCH: clarifications or typo fixes
 
 Every CEP structure hashed MUST include:
 
--   "cecVersion" — the version used to transform it into bytes
--   "schemaVersion" — because schemas change
--   "vocabularyVersion" — because vocabularies evolve
--   "adapterVersion" — because adapter logic changes
+- "cecVersion" — the version used to transform it into bytes
+- "schemaVersion" — because schemas change
+- "vocabularyVersion" — because vocabularies evolve
+- "adapterVersion" — because adapter logic changes
 
 Guaranteed Property:
 
 For any fixed {cecVersion, schemaVersion, vocabularyVersion, adapterVersion}, the hash of a CEP structure is deterministic across all implementations.
 
 This is the backbone of verifiable civic data.
-
 
 ---
 
@@ -200,7 +196,7 @@ After CEP canonicalization → CEC v1 serialization:
 
 Observe:
 
--   keys sorted
--   null field removed
--   minimal whitespace
--   no formatting differences
+- keys sorted
+- null field removed
+- minimal whitespace
+- no formatting differences

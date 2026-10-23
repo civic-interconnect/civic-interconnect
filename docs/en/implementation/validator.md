@@ -9,16 +9,16 @@ against one of the official schemas.
 
 The validator checks your JSON against one of the official Civic Exchange Protocol schemas:
 
--   **Entity Schema**  
+- **Entity Schema**  
     [https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.schema.json)
 
--   **Relationship Schema**  
+- **Relationship Schema**  
     [https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.relationship.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.relationship.schema.json)
 
--   **Exchange Schema**  
+- **Exchange Schema**  
     [https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.exchange.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.exchange.schema.json)
 
--   **Identifier Scheme vocabularies**  
+- **Identifier Scheme vocabularies**  
     [https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.identifier-scheme.schema.json](https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/schemas/core/cep.entity.identifier-scheme.schema.json)
 
 ---

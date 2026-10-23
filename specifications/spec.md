@@ -74,12 +74,14 @@ This 64-character hash is the Validation Hash used for Node Certification.
 Example Canonical String Construction
 
 Given a payload where cfdaNumber is present but relatedUei and regionalCode are null:
-```
+
+```text
 transactionId|sourceUei|recipientUei|...|dataCustodianUei|cfdaNumber|stateLegislativeDistrict
 TX-1234|1A2B3C4D5E6F|7G8H9I0J1K2L|...|1A2B3C4D5E6F|84.002|LD-22
 ```
+
 The resulting C-String would look like this (abbreviated):
 
-```
+```text
 TX-1234|1A2B3C4D5E6F|7G8H9I0J1K2L|SOURCE|125000.00|2025-11-27T17:52:30.123456Z|...|84.002|LD-22
 ```

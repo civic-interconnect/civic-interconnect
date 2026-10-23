@@ -249,9 +249,6 @@ From PowerShell at the repository root:
 ```pwsh
 # See CONTRIBUTING.md for one-time Rust setup
 
-# In a new terminal, set up or update Python environment
-.\sit.ps1
-
 # Update GitHub Actions and pin all action references to immutable SHAs.
 uvx gha-tools autoupdate --pin=all --write .github/workflows
 
@@ -262,15 +259,7 @@ uvx zizmor@latest .github/
 # Validate.
 uvx cffconvert --validate
 
-# partial check (rel.ps1 must pass)
-uv build
-uvx twine check dist/*
-```
-
-When Python version changes, validate as follows:
-
-```shell
-# Verify the Python tests under Python 3.14.
+# Run checks
 .\rel.ps1
 ```
 

@@ -1,6 +1,5 @@
 # Python Implementation
 
-
 ## Monetary Data Type
 
 We use decimal.Decimal for financial values to prevent floating-point inaccuracies, and rely on f-string formatting (f"{value:.2f}") to strictly enforce the two-decimal-place rule.

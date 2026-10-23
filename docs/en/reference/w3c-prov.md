@@ -21,7 +21,6 @@ There are three fundamental relation types:
 
  Agent -> performed  -> Activity -> generated -> Entity
 
-
 ## Interface to Civic Interconnect Civic Exchange Protocol
 
 Civic Interconnect mirrors core PROV concepts:

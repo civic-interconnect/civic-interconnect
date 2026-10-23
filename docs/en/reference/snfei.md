@@ -1,16 +1,16 @@
 # What is SNFEI?
 
-**SNFEI** stands for **Structured Non-Fungible Entity Identifier**.  
+**SNFEI** stands for **Structured Non-Fungible Entity Identifier**.
 It is a deterministic, recomputable identifier designed for civic, educational, nonprofit, and other public-interest entities that **lack a national or global registry identifier** such as LEI or SAM-UEI.
 
-SNFEI is *not* a proprietary ID and does not rely on any external registry.  
+SNFEI is *not* a proprietary ID and does not rely on any external registry.
 Instead, it provides an **open, stable, cross-dataset linking key** that any system can compute locally.
 
 ---
 
 ## Why SNFEI Exists
 
-Many organizations—school districts, conservation districts, townships, cooperatives, special districts, community nonprofits—do not have a canonical global identifier.  
+Many organizations—school districts, conservation districts, townships, cooperatives, special districts, community nonprofits—do not have a canonical global identifier.
 As a result:
 
 - datasets frequently cannot be joined,
@@ -46,24 +46,24 @@ Because the process is deterministic, *any* system can recompute SNFEI and confi
 
 For an entity with:
 
-- legal name = `Example School District 123`  
+- legal name = `Example School District 123`
 - jurisdiction = `US-MN`
 
 The SNFEI is the SHA-256 hash of:
 
-```
+```text
 example school district 123||US|
 ```
 
 Example output:
 
-```
+```text
 34486b382c620747883952d6fb4c0ccdbf25388dfb0bb99231f33a93ad5ca5b3
 ```
 
 This value becomes the entity's SNFEI and forms part of its **CEP verifiableId**:
 
-```
+```text
 cep-entity:snfei:<hash>
 ```
 
@@ -78,7 +78,7 @@ Use SNFEI when:
 - building entity registries for transparency, civic data, or public-interest analytics,
 - ensuring reproducible, provenance-aware entity referencing.
 
-SNFEI complements, and does NOT replace, official identifiers.  
+SNFEI complements, and does NOT replace, official identifiers.
 If a primary ID exists, CEP includes it; if not, SNFEI provides a consistent fallback.
 
 ---
@@ -87,13 +87,13 @@ If a primary ID exists, CEP includes it; if not, SNFEI provides a consistent fal
 
 The SNFEI scheme is defined in the **CEP Identifier Scheme Vocabulary**:
 
-```
+```text
 https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-identifier-scheme.v1.0.0.json#snfei
 ```
 
 This URI is the canonical value used in CEP records under:
 
-```
+```text
 identifiers[].schemeUri
 ```
 

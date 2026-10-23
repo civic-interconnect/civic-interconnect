@@ -5,6 +5,7 @@ the Civic Exchange Protocol (CEP) to function as a deterministic, compositional,
 and verifiable system across diverse civic domains.
 
 ## 1. Canonical Serialization (CEC)
+
 CEP requires a stable, deterministic canonical encoding for all entities,
 relationships, and exchanges. This includes:
 
@@ -18,6 +19,7 @@ relationships, and exchanges. This includes:
 CEC is mandatory for hashing, deduplication, and cross-system verification.
 
 ## 2. Cross-Domain Entity Identity
+
 All domains must support a common identity model grounded in:
 
 - minimal identity-defining attributes
@@ -29,6 +31,7 @@ Identity must be consistent across campaigns, environment, education,
 municipalities, nonprofits, etc.
 
 ## 3. Graph-Level Normalization
+
 Provenance, merges, and entity graphs must have:
 
 - canonical ordering of edges
@@ -39,6 +42,7 @@ Provenance, merges, and entity graphs must have:
 This ensures stable cross-domain provenance and reproducible entity histories.
 
 ## 4. Vocabulary and Schema Versioning
+
 CEP vocabularies evolve. Therefore:
 
 - each vocabulary entry MUST define a stable URI
@@ -49,6 +53,7 @@ CEP vocabularies evolve. Therefore:
 Versioning is part of the trust model.
 
 ## 5. Adapter Algebra
+
 Adapters form a category of typed rewriting morphisms:
 
 - each adapter has a domain and codomain schema
@@ -59,6 +64,7 @@ Adapters form a category of typed rewriting morphisms:
 CEP interoperability relies on predictable adapter composition.
 
 ## 6. Global Integrity Constraints
+
 All domains must adhere to:
 
 - unique verifiable IDs
@@ -69,6 +75,7 @@ All domains must adhere to:
 These constraints prevent inconsistent or unverifiable data.
 
 ## 7. Security and Attestation
+
 Every CTag (cryptographic tag) must:
 
 - commit to a canonical serialization (CEC)
@@ -80,6 +87,7 @@ Every CTag (cryptographic tag) must:
 Security is inseparable from canonicalization.
 
 ## 8. Minimal Feature Set for Unique Identification
+
 Across all domains CEP defines:
 
 - minimal identity-defining attributes
@@ -91,6 +99,7 @@ Identity must be explicit and separable from metadata.
 ---
 
 ## Summary
+
 These eight principles are the architectural backbone of CEP. They define the
 minimal mathematical and engineering structure necessary for CEP to function as
 a unified, multi-domain rewriting system supporting canonicalization, hashing,

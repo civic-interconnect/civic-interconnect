@@ -11,10 +11,10 @@ Envelopes separate _content_ from _context_.
 
 The envelope provides:
 
--   Version information
--   Schema references
--   Source metadata
--   Optional integrity material
+- Version information
+- Schema references
+- Source metadata
+- Optional integrity material
 
 The enclosed record remains unchanged across envelopes.
 

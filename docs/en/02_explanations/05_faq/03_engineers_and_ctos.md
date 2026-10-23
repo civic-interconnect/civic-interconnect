@@ -1,6 +1,6 @@
 # FAQ for Engineers and CTOs
 
-This framework is designed to make disagreement explicit rather than to resolve it.  
+This framework is designed to make disagreement explicit rather than to resolve it.
 It separates structure, interpretation, and assurance so that different actors can
 share data without being forced into consensus on meaning, values, or conclusions.
 The intent is not to produce a single authoritative view, but to preserve provenance,
@@ -11,11 +11,6 @@ to remain usable even as laws change, evidence evolves, or interpretations diver
 
 Schemas are necessary but insufficient. This framework defines how schemas evolve,
 how they relate, and how their outputs are compared over time.
-
-## Why introduce category-theoretic ideas at all?
-
-They are used internally to ensure composability and correctness. Users are not
-required to understand or apply category theory directly.
 
 ## Is this too heavy for production systems?
 

@@ -3,6 +3,7 @@
 Text normalization is deterministic and reversible only through provenance.
 
 Normalization may include:
+
 - Case folding
 - Whitespace normalization
 - Punctuation handling

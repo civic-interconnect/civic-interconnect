@@ -43,12 +43,12 @@ class CanonicalInput(TypedDict, total=False):
 
 def normalize_legal_name(value: str) -> str:
     """Normalize a legal name using the Rust core."""
-    return _core.normalize_legal_name_py(value)
+    return _core.normalize_legal_name(value)
 
 
 def normalize_address(value: str) -> str:
     """Normalize an address using the Rust core."""
-    return _core.normalize_address_py(value)
+    return _core.normalize_address(value)
 
 
 def normalize_registration_date(value: str) -> str | None:
@@ -58,7 +58,7 @@ def normalize_registration_date(value: str) -> str | None:
         ISO date string (e.g. "2020-01-31") or None if the date
         cannot be normalized.
     """
-    return _core.normalize_registration_date_py(value)
+    return _core.normalize_registration_date(value)
 
 
 def build_canonical_input(

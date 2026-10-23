@@ -46,19 +46,19 @@ CTags are distinct from both PTags and PROV:
 
 - **PTags** (Privacy Tags for social content)
 
-    - Describe how a post behaves in a privacy-preserving way (account age bucket, automation flag, client family, etc.).
-    - Designed for social media research and platform transparency.
-    - Domain: behavior and privacy, attached to posts.
+  - Describe how a post behaves in a privacy-preserving way (account age bucket, automation flag, client family, etc.).
+  - Designed for social media research and platform transparency.
+  - Domain: behavior and privacy, attached to posts.
 
 - **CTags** (Context Tags for CEP records)
 
-    - Describe interpretive facts about civic records: risk, analysis, narrative, quality.
-    - Domain: provenance narrative and analytic interpretation.
-    - Attached to Entities, Relationships, Exchanges, or aggregates.
+  - Describe interpretive facts about civic records: risk, analysis, narrative, quality.
+  - Domain: provenance narrative and analytic interpretation.
+  - Attached to Entities, Relationships, Exchanges, or aggregates.
 
 - **W3C PROV**
-    - Describes how things came to be: Entities, Activities, Agents, and their causal links.
-    - CTags can reference PROV activities via `provActivityUri`, but they are simpler, operational labels for day-to-day analysis.
+  - Describes how things came to be: Entities, Activities, Agents, and their causal links.
+  - CTags can reference PROV activities via `provActivityUri`, but they are simpler, operational labels for day-to-day analysis.
 
 That is:
 
@@ -199,22 +199,22 @@ Some common patterns where CTags are useful:
 
 - Risk analysis
 
-    - Flags for potential shell entities, pass-through entities, high-risk flows.
+  - Flags for potential shell entities, pass-through entities, high-risk flows.
 
 - Data quality
 
-    - Indicators of incomplete address, inconsistent identifiers, or duplicate candidates.
+  - Indicators of incomplete address, inconsistent identifiers, or duplicate candidates.
 
 - Narrative and investigation
 
-    - Marking key actors, focal relationships, or important funding chains in cases or reports.
+  - Marking key actors, focal relationships, or important funding chains in cases or reports.
 
 - Model outputs
 
-    - ML or heuristic model classifications attached as tags, including confidence scores.
+  - ML or heuristic model classifications attached as tags, including confidence scores.
 
 - Aggregation and rollup
-    - Indicators that a record participates in an aggregate (for example, rollup-by-grant-program or funding stream).
+  - Indicators that a record participates in an aggregate (for example, rollup-by-grant-program or funding stream).
 
 ---
 

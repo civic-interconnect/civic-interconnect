@@ -12,7 +12,7 @@ This document describes the adapter model, required invariants, implementation s
 
 A **CEP adapter** is a deterministic mapping:
 
-```
+```text
 SourceRecord → CEPRecord
 ```
 
@@ -36,13 +36,13 @@ Adapters do **not** compute SNFEI hashes directly.
 
 ## 2. Determinism and Strategy Control
 
-Adapters use **ordered, stratified rewriting**, not free application of rules.  
+Adapters use **ordered, stratified rewriting**, not free application of rules.
 This guarantees:
 
--   deterministic output
--   no rule commutation
--   predictable interpretation of source records
--   reproducible hash inputs
+- deterministic output
+- no rule commutation
+- predictable interpretation of source records
+- reproducible hash inputs
 
 Evaluation order:
 
@@ -60,17 +60,17 @@ Only the full pipeline defines semantic meaning.
 
 ### Input
 
-Any structured representation of source data  
+Any structured representation of source data
 (e.g., CSV row → dict, API JSON → dict).
 
 ### Output
 
 A dict that validates under a CEP JSON Schema:
 
--   `cep.entity.schema.json`
--   `cep.relationship.schema.json`
--   `cep.exchange.schema.json`
--   domain-specific schemas in `schemas/domains/…`
+- `cep.entity.schema.json`
+- `cep.relationship.schema.json`
+- `cep.exchange.schema.json`
+- domain-specific schemas in `schemas/domains/…`
 
 This payload is then wrapped in a CEP record envelope.
 
@@ -82,19 +82,19 @@ Every adapter must implement:
 
 ### 4.1 Structural Mapping
 
--   Select target CEP record type.
--   Map source fields → CEP fields.
--   Remove non-CEP source fields.
+- Select target CEP record type.
+- Map source fields → CEP fields.
+- Remove non-CEP source fields.
 
 ### 4.2 Name Canonicalization
 
 Use the global canonicalization module:
 
--   ASCII folding
--   Unicode NFKC
--   corporate suffix normalization
--   jurisdictional abbreviation expansion
--   strict whitespace/punctuation rules
+- ASCII folding
+- Unicode NFKC
+- corporate suffix normalization
+- jurisdictional abbreviation expansion
+- strict whitespace/punctuation rules
 
 Never implement local name hacks.
 
@@ -102,23 +102,23 @@ Never implement local name hacks.
 
 Controlled vocabularies require the adapter to produce URIs such as:
 
-```
+```text
 "committeeTypeUri": "cep:committeeType:cf:principalCampaignCommittee"
 ```
 
 Rules:
 
--   must use valid, versioned URIs
--   must not invent terms
--   must not use deprecated codes
+- must use valid, versioned URIs
+- must not invent terms
+- must not use deprecated codes
 
 ### 4.4 Identifier Handling
 
 Adapters:
 
--   **may** parse external identifiers (OCD, LEI, SAM-UEI, etc.)
--   **must not** compute CEP SNFEI
--   **must** expose cleaned identity-relevant fields
+- **may** parse external identifiers (OCD, LEI, SAM-UEI, etc.)
+- **must not** compute CEP SNFEI
+- **must** expose cleaned identity-relevant fields
 
 Identity invariants must be preserved.
 
@@ -126,9 +126,9 @@ Identity invariants must be preserved.
 
 Include minimal provenance:
 
--   adapterVersion
--   sourceUri or metadata
--   attestation seed data
+- adapterVersion
+- sourceUri or metadata
+- attestation seed data
 
 Downstream pipelines may enrich provenance.
 
@@ -138,7 +138,7 @@ Downstream pipelines may enrich provenance.
 
 Adapters compose into the following chain:
 
-```
+```text
 raw_source
    → lexical canonicalizer
    → domain adapter
@@ -149,15 +149,15 @@ raw_source
 
 Properties:
 
--   associative (up to strategy)
--   not commutative
--   fully deterministic
+- associative (up to strategy)
+- not commutative
+- fully deterministic
 
 Each adapter must declare:
 
--   required upstream adapters
--   required vocabularies
--   canonicalization version dependency
+- required upstream adapters
+- required vocabularies
+- canonicalization version dependency
 
 ---
 
@@ -167,26 +167,26 @@ Each adapter must declare:
 
 Define the meaning of data within a domain:
 
--   campaign finance
--   environmental permits
--   education
--   procurement
--   elections
+- campaign finance
+- environmental permits
+- education
+- procurement
+- elections
 
 Domain adapters perform:
 
--   code → vocabulary mapping
--   high-level structural alignment
--   domain canonicalization rules
+- code → vocabulary mapping
+- high-level structural alignment
+- domain canonicalization rules
 
 ### Jurisdiction Adapters
 
 Handle differences across states, counties, authorities:
 
--   state-specific IDs
--   local naming conventions
--   differing code definitions
--   special cases or omissions
+- state-specific IDs
+- local naming conventions
+- differing code definitions
+- special cases or omissions
 
 A domain can have many jurisdiction adapters.
 
@@ -215,9 +215,9 @@ Both languages must implement equivalent rewriting semantics.
 
 Adapters consume generated constants for:
 
--   schema URIs
--   vocabulary URIs
--   record kinds
+- schema URIs
+- vocabulary URIs
+- record kinds
 
 Avoid hand-typed camelCase; always use generated constants.
 
@@ -227,13 +227,13 @@ Avoid hand-typed camelCase; always use generated constants.
 
 Every adapter must include:
 
--   **Round-trip tests** - Sample → canonical → schema-validated.
+- **Round-trip tests** - Sample → canonical → schema-validated.
 
--   **Identity stability tests** - SNFEI must be stable under irrelevant reordering.
+- **Identity stability tests** - SNFEI must be stable under irrelevant reordering.
 
--   **Vocabulary resolution tests** - URIs must correspond to actual vocab terms.
+- **Vocabulary resolution tests** - URIs must correspond to actual vocab terms.
 
--   **Provenance tests** - Envelope structure must match expectations.
+- **Provenance tests** - Envelope structure must match expectations.
 
 If any test fails, the adapter cannot be merged.
 
@@ -243,14 +243,14 @@ If any test fails, the adapter cannot be merged.
 
 Create a new adapter when:
 
--   a new domain is added
--   a new state or jurisdiction is introduced
--   a new agency format appears
--   a source version changes
+- a new domain is added
+- a new state or jurisdiction is introduced
+- a new agency format appears
+- a source version changes
 
 Document each adapter under:
 
-```
+```text
 docs/en/implementation/adapters/
 ```
 
@@ -260,20 +260,20 @@ docs/en/implementation/adapters/
 
 ### Required
 
--   [ ] Identify the source format
--   [ ] Build input parser
--   [ ] Apply canonicalization
--   [ ] Map domain categories to vocabularies
--   [ ] Map jurisdiction identifiers
--   [ ] Construct CEP payload
--   [ ] Run canonicalization to compute SNFEI input
--   [ ] Construct envelope
--   [ ] Add attestation seed
--   [ ] Add sample input/output records
--   [ ] Add test suite (round-trip, vocab, identity)
+- [ ] Identify the source format
+- [ ] Build input parser
+- [ ] Apply canonicalization
+- [ ] Map domain categories to vocabularies
+- [ ] Map jurisdiction identifiers
+- [ ] Construct CEP payload
+- [ ] Run canonicalization to compute SNFEI input
+- [ ] Construct envelope
+- [ ] Add attestation seed
+- [ ] Add sample input/output records
+- [ ] Add test suite (round-trip, vocab, identity)
 
 ### Optional
 
--   [ ] Add debug logging for rewrite steps
--   [ ] Document edge cases
--   [ ] Add CTag suggestions for low-quality data
+- [ ] Add debug logging for rewrite steps
+- [ ] Document edge cases
+- [ ] Add CTag suggestions for low-quality data

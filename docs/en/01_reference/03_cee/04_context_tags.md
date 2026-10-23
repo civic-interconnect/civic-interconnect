@@ -10,10 +10,10 @@ They constrain interpretation without altering underlying data.
 
 Context tags express:
 
--   Jurisdictional scope
--   Temporal applicability
--   Methodological assumptions
--   Normative framing
+- Jurisdictional scope
+- Temporal applicability
+- Methodological assumptions
+- Normative framing
 
 They make implicit assumptions explicit.
 
@@ -23,9 +23,9 @@ They make implicit assumptions explicit.
 
 Context tags may be attached to:
 
--   Observations
--   Explanations
--   Models
+- Observations
+- Explanations
+- Models
 
 They do not attach to raw records.
 

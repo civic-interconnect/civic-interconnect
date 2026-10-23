@@ -18,9 +18,9 @@ Outcomes belong to governance, policy, or operational layers outside CEE.
 
 This separation:
 
--   Preserves analytical neutrality
--   Enables reuse across contexts
--   Supports plural decision frameworks
+- Preserves analytical neutrality
+- Enables reuse across contexts
+- Supports plural decision frameworks
 
 ---
 

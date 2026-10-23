@@ -2,7 +2,7 @@
 
 CEP (Civic Exchange Protocol) is built on the idea that civic data integration
 can be understood as a **family of rewriting systems** glued together by a
-shared category-theoretic backbone. Instead of treating canonicalization,
+shared backbone. Instead of treating canonicalization,
 adapters, graphs, and identity resolution as separate ad-hoc mechanisms, CEP
 treats them as layers of **typed, strategy-governed rewrites**.
 
@@ -15,35 +15,35 @@ unified rewriting framework.
 
 CEP operates at several semantic layers:
 
-1. **String-level rewriting**  
-   - Normalizing names, codes, abbreviations, and text fields.  
+1. **String-level rewriting**
+   - Normalizing names, codes, abbreviations, and text fields.
    - Handled by the canonicalization pipeline in conjunction with vocabularies.
 
-2. **Record-level rewriting (adapters)**  
-   - Mapping source-specific records into CEP domain schemas and core entities.  
+2. **Record-level rewriting (adapters)**
+   - Mapping source-specific records into CEP domain schemas and core entities.
    - Handled by the Adapter Algebra Specification (AAS).
 
-3. **Identity-level rewriting (fingerprints)**  
+3. **Identity-level rewriting (fingerprints)**
    - Selecting minimal identity-defining features and constructing stable
-     fingerprints and verifiable IDs.  
+     fingerprints and verifiable IDs.
    - Handled by the Entity Fingerprint Specification (EFS).
 
-4. **Graph-level rewriting (normalization and merges)**  
-   - Normalizing provenance and entity graphs into canonical forms.  
+4. **Graph-level rewriting (normalization and merges)**
+   - Normalizing provenance and entity graphs into canonical forms.
    - Handled by the Graph Normalization Specification (GNS).
 
-5. **Cluster-level rewriting (identity resolution)**  
+5. **Cluster-level rewriting (identity resolution)**
    - Merging entities into cross-domain identity clusters based on rule-based
-     evidence.  
+     evidence.
    - Handled by the Cross-Domain Identity Resolution Algorithm (CDIRA).
 
 Each layer is a rewriting system with its own objects, morphisms, and
 strategies, but all share the same design principles:
 
-- determinism  
-- explicit strategy (not implicit commutativity)  
-- clear versioning  
-- explicit provenance  
+- determinism
+- explicit strategy (not implicit commutativity)
+- clear versioning
+- explicit provenance
 
 ---
 
@@ -79,11 +79,11 @@ The unified framework is realized through a small set of core specifications:
 
 CEC defines a **deterministic JSON-level encoding**:
 
-- lexicographic key ordering  
-- null omission rules  
-- numeric normalization  
-- Unicode NFC  
-- stable list handling  
+- lexicographic key ordering
+- null omission rules
+- numeric normalization
+- Unicode NFC
+- stable list handling
 
 CEC is the last step before hashing and ensures that semantically identical
 structures produce identical byte sequences.
@@ -92,9 +92,9 @@ structures produce identical byte sequences.
 
 EFS defines **minimal identity**:
 
-- canonical identifiers (e.g., SNFEI, registry IDs)  
-- canonical names  
-- optional jurisdiction context  
+- canonical identifiers (e.g., SNFEI, registry IDs)
+- canonical names
+- optional jurisdiction context
 
 Fingerprints **exclude** descriptive attributes such as address or status.
 They are serialized via CEC and hashed to produce `verifiableId`.
@@ -103,9 +103,9 @@ They are serialized via CEC and hashed to produce `verifiableId`.
 
 Adapters are **typed rewriting morphisms** between schemas:
 
-- objects: `(schemaId, schemaVersion)`  
-- morphisms: deterministic (possibly partial) adapters  
-- composition: associative function composition  
+- objects: `(schemaId, schemaVersion)`
+- morphisms: deterministic (possibly partial) adapters
+- composition: associative function composition
 - identities: validation-only adapters `id_S : S → S`
 
 Adapters form the backbone of CEP pipelines from raw sources to core entities
@@ -115,10 +115,10 @@ and envelopes.
 
 GNS treats CEP graphs as objects to be normalized:
 
-- entity nodes use `verifiableId` as canonical IDs  
+- entity nodes use `verifiableId` as canonical IDs
 - non-entity nodes receive canonical local IDs derived from their payload and
-  incident edges  
-- nodes and edges are sorted deterministically  
+  incident edges
+- nodes and edges are sorted deterministically
 - the result is serialized with CEC and can be hashed for graph-level tags
 
 This ensures that equivalent provenance or entity graphs collapse to the same
@@ -128,11 +128,11 @@ canonical form.
 
 GIC defines **system-wide invariants**:
 
-- unique and stable `verifiableId` per entity  
-- referential integrity for relationships  
-- DAG structure for provenance  
-- idempotent normalization  
-- completeness and temporal coherence of provenance  
+- unique and stable `verifiableId` per entity
+- referential integrity for relationships
+- DAG structure for provenance
+- idempotent normalization
+- completeness and temporal coherence of provenance
 
 These constraints prevent silent corruption and non-deterministic behavior.
 
@@ -140,12 +140,12 @@ These constraints prevent silent corruption and non-deterministic behavior.
 
 VGS defines independent semantic versioning for:
 
-- CEC  
-- EFS  
-- GNS  
-- Schemas  
-- Vocabularies  
-- Adapters  
+- CEC
+- EFS
+- GNS
+- Schemas
+- Vocabularies
+- Adapters
 
 Every record carries a **version tuple**, ensuring that any hashed object can be
 reinterpreted and revalidated in the future.
@@ -154,10 +154,10 @@ reinterpreted and revalidated in the future.
 
 CDIRA defines a deterministic clustering algorithm:
 
-- strong, moderate, and weak evidence  
-- rule-based merge decisions  
-- conflict records when evidence disagrees  
-- cluster identifiers derived from member IDs and versions  
+- strong, moderate, and weak evidence
+- rule-based merge decisions
+- conflict records when evidence disagrees
+- cluster identifiers derived from member IDs and versions
 
 This extends the rewriting perspective to cross-domain identity graphs.
 
@@ -169,19 +169,19 @@ At a high level, CEP can be viewed as a category (or family of categories)
 where:
 
 - **Objects** are:
-  - schemas and schema versions  
-  - graphs (entity/provenance)  
-  - identity clusters  
+  - schemas and schema versions
+  - graphs (entity/provenance)
+  - identity clusters
 
 - **Morphisms** are:
-  - adapters (record-level rewrites)  
-  - normalization functions (string-level, graph-level)  
+  - adapters (record-level rewrites)
+  - normalization functions (string-level, graph-level)
   - cluster merges (identity-level rewrites)
 
 Rewriting systems at each layer are connected via functor-like mappings:
 
-- string rewriting feeds into record schemas,  
-- record rewriting feeds into graph construction,  
+- string rewriting feeds into record schemas,
+- record rewriting feeds into graph construction,
 - graph-normalized entities feed into identity resolution.
 
 The important point is not the specific categorical formalism, but the fact
@@ -195,28 +195,28 @@ strategies**, rather than unrelated ad-hoc scripts.
 When CEP is extended to a new domain (e.g., campaign finance, environmental
 regulation, education), that domain is integrated by defining:
 
-1. **Domain vocabularies**  
+1. **Domain vocabularies**
    - entity types, relationship types, codes, statuses.
 
-2. **Canonicalization rules for domain-specific strings**  
+2. **Canonicalization rules for domain-specific strings**
    - names, codes, abbreviations, units.
 
-3. **Domain schemas**  
+3. **Domain schemas**
    - entity and relationship records, with required fields and types.
 
-4. **Adapters**  
-   - source-specific → domain schema  
+4. **Adapters**
+   - source-specific → domain schema
    - domain schema → core CEP entities/relationships
 
-5. **Graph patterns and provenance requirements**  
+5. **Graph patterns and provenance requirements**
    - how filings, permits, inspections, or programs connect to entities.
 
 The unified rewriting framework guarantees that:
 
-- canonicalization behaves consistently,  
-- fingerprints and verifiable IDs behave consistently,  
-- graphs normalize consistently,  
-- identity resolution works the same way across domains,  
+- canonicalization behaves consistently,
+- fingerprints and verifiable IDs behave consistently,
+- graphs normalize consistently,
+- identity resolution works the same way across domains,
 - hashes are stable and interpretable over time.
 
 Domains differ in their vocabularies and schemas, **not** in the foundational

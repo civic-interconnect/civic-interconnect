@@ -15,17 +15,17 @@ facts are structured so that such work can occur elsewhere.
 
 CEP specifies:
 
--   Entity records
--   Relationships between entities
--   Exchanges of records
--   Record envelopes for transport and validation
+- Entity records
+- Relationships between entities
+- Exchanges of records
+- Record envelopes for transport and validation
 
 CEP does not specify:
 
--   Identity resolution strategies
--   Explanatory or evaluative models
--   Domain-specific semantics beyond structure
--   User interfaces or workflows
+- Identity resolution strategies
+- Explanatory or evaluative models
+- Domain-specific semantics beyond structure
+- User interfaces or workflows
 
 ---
 

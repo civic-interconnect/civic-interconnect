@@ -3,6 +3,7 @@
 Localization applies jurisdiction-specific rules.
 
 Rules are:
+
 - Explicit
 - Versioned
 - Auditable

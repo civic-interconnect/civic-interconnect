@@ -7,10 +7,10 @@ It defines concepts, structures, and responsibilities that other parts of the sy
 
 The reference is organized into layered parts:
 
--   Civic Accountable Entities (CAE)
--   Civic Exchange Protocol (CEP)
--   Contextual Evidence and Explanations (CEE)
--   Assurance
+- Civic Accountable Entities (CAE)
+- Civic Exchange Protocol (CEP)
+- Contextual Evidence and Explanations (CEE)
+- Assurance
 
 Each part can be read independently.
 Later layers may build on earlier ones, but earlier layers do not assume the existence of later layers.

@@ -7,13 +7,13 @@ verticals and implementations.
 
 This guide applies to all external data used for:
 
-- adapter development  
-- canonicalization (EFS v1) testing  
-- SNFEI identity evaluation  
-- example input records  
-- vertical demonstrations  
-- validation pipelines  
-- CEE evidence construction  
+- adapter development
+- canonicalization (EFS v1) testing
+- SNFEI identity evaluation
+- example input records
+- vertical demonstrations
+- validation pipelines
+- CEE evidence construction
 
 ---
 
@@ -21,29 +21,29 @@ This guide applies to all external data used for:
 
 All datasets must be listed in the global catalog at:
 
-```
+```text
 docs/en/reference/DATA_SOURCES.md
 ```
 
 Each dataset entry must include:
 
-- dataset title  
-- publisher  
-- URL  
-- license  
-- retrieval date  
-- short description of how CEP uses it  
-- a link to its PROV-YAML provenance file  
+- dataset title
+- publisher
+- URL
+- license
+- retrieval date
+- short description of how CEP uses it
+- a link to its PROV-YAML provenance file
 - embedded JSON citation block (see below)
 
 Example block:
 
 ```markdown
 ### City of Chicago – Contracts Dataset
-- URL: https://data.cityofchicago.org/Administration-Finance/Contracts/rsxa-ify5  
-- Publisher: City of Chicago  
-- License: Public Domain  
-- Used for: canonicalization tests, adapter validation, SNFEI clustering  
+- URL: https://data.cityofchicago.org/Administration-Finance/Contracts/rsxa-ify5
+- Publisher: City of Chicago
+- License: Public Domain
+- Used for: canonicalization tests, adapter validation, SNFEI clustering
 - Provenance: [chicago_contracts.prov.yaml](../provenance/chicago_contracts.prov.yaml)
 ```
 
@@ -54,15 +54,15 @@ Example block:
 Each dataset must have a machine-readable provenance description following
 **W3C PROV-DM**. Place this file in:
 
-```
+```text
 docs/en/provenance/<dataset_name>.prov.yaml
 ```
 
 This file must contain:
 
-- `prov:Entity` (the dataset)  
-- `prov:Agent` (publisher or maintainer)  
-- `prov:Activity` (retrieval/download event)  
+- `prov:Entity` (the dataset)
+- `prov:Agent` (publisher or maintainer)
+- `prov:Activity` (retrieval/download event)
 
 Example:
 
@@ -95,7 +95,7 @@ activity:
 Whenever sample data or test fixtures depend on this dataset, place a minimal
 citation/provenance descriptor **in the same folder** as the example files:
 
-```
+```text
 examples/<domain>/<entity>/SOURCE.json
 ```
 
@@ -148,8 +148,8 @@ This supports reproducible research and automated citation tools.
 
 If the dataset feeds a new adapter:
 
-- describe any quirks  
-- list which fields map to CEP entity properties  
+- describe any quirks
+- list which fields map to CEP entity properties
 - include normalization notes relevant to:
   - `legalName`
   - `legalNameNormalized`
@@ -159,13 +159,13 @@ If the dataset feeds a new adapter:
 
 Add this to:
 
-```
+```text
 docs/en/implementation/adapters.md
 ```
 
 or create a short README in:
 
-```
+```text
 examples/<domain>/<entity>/README.md
 ```
 
@@ -175,13 +175,13 @@ examples/<domain>/<entity>/README.md
 
 If the dataset is used for testing:
 
-- ensure test fixtures reference the correct `SOURCE.json`  
-- ensure example entity records contain embedded provenance  
+- ensure test fixtures reference the correct `SOURCE.json`
+- ensure example entity records contain embedded provenance
 - optionally add SNFEI clustering tests to validate normalization behavior
 
 Typical file locations:
 
-```
+```text
 src/python/tests/adapters/
 src/python/tests/identity/
 examples/<domain>/<entity>/tests/
@@ -193,23 +193,23 @@ examples/<domain>/<entity>/tests/
 
 Always verify:
 
-- dataset license allows reuse, or  
-- only sanitized examples are stored locally if redistribution is restricted  
+- dataset license allows reuse, or
+- only sanitized examples are stored locally if redistribution is restricted
 
-Chicago Open Data → **Public Domain**, safe.  
+Chicago Open Data → **Public Domain**, safe.
 Some state datasets → restrictive, only store small samples + manifests.
 
 ---
 
 ## Quick Checklist
 
-- [ ] Add entry to `DATA_SOURCES.md`  
-- [ ] Create PROV-YAML file under `docs/en/provenance/`  
-- [ ] Add local `SOURCE.json` next to example data  
-- [ ] Add dataset to `CITATION.cff` → `references:`  
-- [ ] Document adapter rules or notes (if relevant)  
-- [ ] Ensure tests reference the dataset correctly  
-- [ ] Confirm licensing and sample handling  
+- [ ] Add entry to `DATA_SOURCES.md`
+- [ ] Create PROV-YAML file under `docs/en/provenance/`
+- [ ] Add local `SOURCE.json` next to example data
+- [ ] Add dataset to `CITATION.cff` → `references:`
+- [ ] Document adapter rules or notes (if relevant)
+- [ ] Ensure tests reference the dataset correctly
+- [ ] Confirm licensing and sample handling
 
 ---
 

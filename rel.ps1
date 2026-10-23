@@ -15,7 +15,12 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 # Set up Python 3.14.
-uv sync --python 3.14
+# uvx pup-clean --delete
+# uv self update
+# uv python install
+uv lock --upgrade
+uv sync
+uv audit
 if ($LASTEXITCODE -ne 0) { throw "uv sync failed" }
 
 # Build and install the Rust Python extension.
@@ -61,5 +66,43 @@ finally {
     if (Test-Path $verifyDir) { Remove-Item $verifyDir -Recurse -Force }
 }
 
+# Set up and run git hooks.
+uvx prek install --force
+if ($LASTEXITCODE -ne 0) { throw "prek installation failed" }
+
+uvx prek update
+if ($LASTEXITCODE -ne 0) { throw "prek update failed" }
+
+git add -A
+if ($LASTEXITCODE -ne 0) { throw "git add failed" }
+
+# First pass may modify files.
+uvx prek run --all-files
+
+# Second pass must pass without modifications.
+uvx prek run --all-files
+if ($LASTEXITCODE -ne 0) { throw "prek checks failed" }
+
+# Format Python code.
+uv run ruff format .
+if ($LASTEXITCODE -ne 0) { throw "Ruff formatting failed" }
+
+# Lint Python code and apply fixes.
+uv run ruff check . --fix
+if ($LASTEXITCODE -ne 0) { throw "Ruff linting failed" }
+
+# Type-check Python code.
+uv run ty check
+if ($LASTEXITCODE -ne 0) { throw "ty check failed" }
+
+# Run Python tests with coverage, excluding the CSV-writing test.
+uv run python -m pytest --deselect src/python/tests/identity/test_us_il_vendor_snfei.py::test_snfei_chicago_vendors_subset
+if ($LASTEXITCODE -ne 0) { throw "Python tests failed" }
+
+# Build documentation.
+uv run python -m zensical build --strict
+if ($LASTEXITCODE -ne 0) { throw "Zensical build failed" }
+
 # Show any tracked-file changes.
 git status --short
+if ($LASTEXITCODE -ne 0) { throw "git status failed" }

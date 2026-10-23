@@ -4,7 +4,7 @@ This is provided for implementers of CEP-compliant systems and pipelines.
 
 ---
 
-# 1. Purpose
+## 1. Purpose
 
 Context Tags (**CTags**) are lightweight annotations that attach to a **record envelope**, not to the internal entity, relationship, or exchange payload.
 
@@ -13,27 +13,27 @@ They do **not** affect canonical identity, SNFEI, schema validity, or the meanin
 
 CTags are:
 
-- optional  
-- vocabulary-governed  
-- non-destructive  
-- independent of canonicalization  
-- safe to add, modify, or remove without altering the record's semantics  
+- optional
+- vocabulary-governed
+- non-destructive
+- independent of canonicalization
+- safe to add, modify, or remove without altering the record's semantics
 
 This document defines how CTags integrate with CEP record envelopes.
 
 ---
 
-# 2. Record Envelope Overview
+## 2. Record Envelope Overview
 
 All CEP records (entities, relationships, exchanges, p3tags, etc.) share the same envelope structure.
 The envelope contains:
 
-- identity and type information  
-- schema version  
-- lifecycle status  
-- timestamps  
-- attestations  
-- optional **ctags**  
+- identity and type information
+- schema version
+- lifecycle status
+- timestamps
+- attestations
+- optional **ctags**
 
 The CTags appear at the envelope level:
 
@@ -63,7 +63,7 @@ The **payload** (e.g., entity fields, relationship fields, exchange content) sit
 
 ---
 
-# 3. Why CTags Live in the Envelope
+## 3. Why CTags Live in the Envelope
 
 ### 3.1 Separation of Meaning vs Interpretation
 
@@ -81,9 +81,9 @@ This separation prevents accidental semantic modification of the underlying civi
 
 CTags **do not participate** in:
 
-- normalization  
-- canonical input building  
-- SNFEI hashing or ID derivation  
+- normalization
+- canonical input building
+- SNFEI hashing or ID derivation
 
 A record with or without CTags must have the **same SNFEI** and the same canonical identity.
 
@@ -95,18 +95,18 @@ Deterministic pipelines must treat CTags as optional, removable accessories.
 
 Envelope-level CTags support:
 
-- risk flags  
-- data quality indicators  
-- clustering or classification results  
-- editorial highlights  
-- narrative tags used in reports  
-- AI-assisted annotations  
+- risk flags
+- data quality indicators
+- clustering or classification results
+- editorial highlights
+- narrative tags used in reports
+- AI-assisted annotations
 
 All without polluting the core civic data model.
 
 ---
 
-# 4. CTag Object Structure
+## 4. CTag Object Structure
 
 Each tag references a controlled vocabulary term:
 
@@ -130,14 +130,15 @@ Implementations may extend with additional optional fields as long as the vocabu
 
 ---
 
-# 5. How Systems Should Use CTags
+## 5. How Systems Should Use CTags
 
 ### 5.1 Ingestion Pipelines
+
 Adapters may add tags such as:
 
-- incomplete fields  
-- inconsistent identifiers  
-- address quality issues  
+- incomplete fields
+- inconsistent identifiers
+- address quality issues
 
 Example:
 
@@ -158,11 +159,11 @@ Example:
 
 Analytic systems may add tags like:
 
-- cluster membership  
-- risk classification  
-- anomaly scores  
-- narrative highlights  
-- AI summary categories  
+- cluster membership
+- risk classification
+- anomaly scores
+- narrative highlights
+- AI summary categories
 
 These do not change the core record; they only annotate it.
 
@@ -189,34 +190,34 @@ Example:
 
 When a workflow involves document packets, filings, or automated transformations, CTags may indicate:
 
-- processing status  
-- triage flags  
-- routing categories  
-- confidence levels from AI models  
+- processing status
+- triage flags
+- routing categories
+- confidence levels from AI models
 
 Because CTags are non-semantic, they can be applied uniformly across record types.
 
 ---
 
-# 6. Validation Rules
+## 6. Validation Rules
 
 A conformant implementation MUST ensure:
 
-1. `typeUri` is a valid URI and maps to a vocabulary term.  
-2. CTags do **not** modify `verifiableId`, canonical identity, or payload semantics.  
-3. `value` is valid JSON if present.  
-4. Adding or removing a CTag must leave the core record unchanged.  
+1. `typeUri` is a valid URI and maps to a vocabulary term.
+2. CTags do **not** modify `verifiableId`, canonical identity, or payload semantics.
+3. `value` is valid JSON if present.
+4. Adding or removing a CTag must leave the core record unchanged.
 5. CTags must not interfere with schema-required fields.
 
 Best practices:
 
-- flag deprecated CTag terms  
-- treat unknown terms as warnings, not fatal errors  
-- keep CTags small and additive  
+- flag deprecated CTag terms
+- treat unknown terms as warnings, not fatal errors
+- keep CTags small and additive
 
 ---
 
-# 7. Example: Entity Record Envelope with CTags
+## 7. Example: Entity Record Envelope with CTags
 
 ```json
 {
@@ -245,10 +246,10 @@ Best practices:
 
 ---
 
-# 8. Summary
+## 8. Summary
 
-- CTags live exclusively in the **record envelope**, not in core payload structures.  
-- CTags provide non-destructive, optional, vocabulary-driven annotations.  
-- Adding, removing, or modifying CTags does not affect canonicalization or identity.  
-- CTags support analytics, data quality, workflows, and narrative reporting.  
+- CTags live exclusively in the **record envelope**, not in core payload structures.
+- CTags provide non-destructive, optional, vocabulary-driven annotations.
+- Adding, removing, or modifying CTags does not affect canonicalization or identity.
+- CTags support analytics, data quality, workflows, and narrative reporting.
 - CTag infrastructure unifies annotation across all CEP record families.

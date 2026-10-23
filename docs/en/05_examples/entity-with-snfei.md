@@ -1,6 +1,6 @@
 # Example: CEP EntityRecord with SNFEI
 
-This example demonstrates how a CEP `EntityRecord` includes a **Structured Non-Fungible Entity Identifier (SNFEI)** when an entity does not have a national or global registry ID (such as LEI or SAM-UEI).  
+This example demonstrates how a CEP `EntityRecord` includes a **Structured Non-Fungible Entity Identifier (SNFEI)** when an entity does not have a national or global registry ID (such as LEI or SAM-UEI).
 SNFEI provides a deterministic, recomputable identifier for joining datasets across civic, nonprofit, educational, and local-government domains.
 
 ---
@@ -32,7 +32,6 @@ Example (no address, no registration date):
 Example (with address, no registration date):
 
 `new york school district 01|200 learning street|US|`
-
 
 ---
 
@@ -92,7 +91,7 @@ After running this normalized input through the CEP builder, the resulting `Enti
 
 The `verifiableId` incorporates the SNFEI value to create a stable, recomputable entity identifier:
 
-```
+```text
 cep-entity:snfei:<hash>
 ```
 
@@ -100,7 +99,7 @@ cep-entity:snfei:<hash>
 
 The SNFEI entry references the official vocabulary term:
 
-```
+```text
 https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/entity-identifier-scheme.v1.0.0.json#snfei
 ```
 
@@ -110,10 +109,10 @@ This ensures consistent identifier semantics across systems.
 
 Even in a minimal example, CEP includes:
 
--   envelope metadata (`recordKind`, `schemaVersion`)
--   timestamps
--   an attestation block
--   status envelope
+- envelope metadata (`recordKind`, `schemaVersion`)
+- timestamps
+- an attestation block
+- status envelope
 
 ---
 
@@ -121,9 +120,9 @@ Even in a minimal example, CEP includes:
 
 Use SNFEI when:
 
--   an entity lacks LEI, SAM-UEI, or other authoritative identifiers,
--   datasets need a stable join key,
--   building civic registries,
--   integrating multiple heterogeneous data sources.
+- an entity lacks LEI, SAM-UEI, or other authoritative identifiers,
+- datasets need a stable join key,
+- building civic registries,
+- integrating multiple heterogeneous data sources.
 
 SNFEI is a deterministic, transparent identifier that enables **cross-dataset linkage without a central registry**.

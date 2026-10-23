@@ -3,6 +3,7 @@
 The adapter pipeline is the primary ingestion path.
 
 It typically includes:
+
 - Source parsing
 - Field alignment
 - Structural validation

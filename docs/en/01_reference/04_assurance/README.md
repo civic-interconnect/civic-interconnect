@@ -12,15 +12,15 @@ which conditions_, and _with what evidence_.
 
 Assurance specifies:
 
--   Attestations about data, processes, or interpretations
--   The structure of claims and supporting evidence
--   Provenance of verification activities
+- Attestations about data, processes, or interpretations
+- The structure of claims and supporting evidence
+- Provenance of verification activities
 
 Assurance does not specify:
 
--   How data is collected
--   How interpretations are produced
--   Whether a claim should be trusted
+- How data is collected
+- How interpretations are produced
+- Whether a claim should be trusted
 
 ---
 

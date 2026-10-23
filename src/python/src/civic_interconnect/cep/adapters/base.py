@@ -123,7 +123,7 @@ class Adapter(ABC):
     @staticmethod
     def _require_cep_py() -> Any:
         try:
-            import cep_py  # type: ignore
+            import cep_py
         except Exception as e:
             raise RuntimeError(
                 "cep_py is required for localization (Rust FFI). "

@@ -7,9 +7,9 @@ As a result, it may appear more verbose or formal than systems optimized for rap
 
 Alternative approaches often collapse layers:
 
--   embedding interpretation into ingestion,
--   encoding policy assumptions directly into schemas,
--   or conflating evidence with outcomes.
+- embedding interpretation into ingestion,
+- encoding policy assumptions directly into schemas,
+- or conflating evidence with outcomes.
 
 Those approaches can be effective in closed systems.
 They tend to break down when data must be shared across institutions, time horizons, or value systems.

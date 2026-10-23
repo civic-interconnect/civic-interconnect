@@ -10,9 +10,9 @@ A model is a tool applied to data to generate observations or explanations.
 
 Models are:
 
--   Purpose-specific
--   Limited in scope
--   Replaceable
+- Purpose-specific
+- Limited in scope
+- Replaceable
 
 No model is considered universally valid.
 

@@ -4,10 +4,10 @@ The **Civic Exchange Protocol (CEP)** is an open, standards-driven framework for
 
 This guide shows how to:
 
-1. Install CEP tools  
-2. Validate schemas  
-3. Generate example records  
-4. Build entities programmatically  
+1. Install CEP tools
+2. Validate schemas
+3. Generate example records
+4. Build entities programmatically
 
 ---
 
@@ -15,19 +15,19 @@ This guide shows how to:
 
 Install the CLI and Python API from PyPI:
 
-```
+```shell
 uv pip install civic-interconnect
 ```
 
 Or add to an existing environment:
 
-```
+```shell
 pip install civic-interconnect
 ```
 
 Confirm installation:
 
-```
+```shell
 cx --help
 ```
 
@@ -37,13 +37,13 @@ cx --help
 
 CEP ships with a JSON Schema validator:
 
-```
+```shell
 cx validate path/to/my-entity.json
 ```
 
 You may validate any record family:
 
-```
+```shell
 cx validate --schema entity path/to/my-entity.json
 cx validate --schema relationship path/to/my-relationship.json
 cx validate --schema exchange path/to/my-exchange.json
@@ -51,10 +51,10 @@ cx validate --schema exchange path/to/my-exchange.json
 
 Successful validation confirms:
 
-- Schema compliance  
-- Vocabulary references  
-- Canonical field types  
-- Envelope integrity  
+- Schema compliance
+- Vocabulary references
+- Canonical field types
+- Envelope integrity
 
 ---
 
@@ -62,16 +62,16 @@ Successful validation confirms:
 
 The CLI can generate examples for any directory under `examples/`:
 
-```
+```shell
 cx generate-example examples/entity --overwrite
 ```
 
 This produces three files per slice:
 
-- **01_raw_source.json** – raw adapter input  
-- **02_normalized.json** – normalized fields  
-- **03_canonical.json** – canonical hash inputs  
-- **04_entity_record.json** – final CEP EntityRecord  
+- **01_raw_source.json** – raw adapter input
+- **02_normalized.json** – normalized fields
+- **03_canonical.json** – canonical hash inputs
+- **04_entity_record.json** – final CEP EntityRecord
 
 This is the best way to understand the transformation pipeline.
 

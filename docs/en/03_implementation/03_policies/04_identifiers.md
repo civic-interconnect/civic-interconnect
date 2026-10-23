@@ -3,6 +3,7 @@
 Identifiers are classified by scope and authority.
 
 Rules:
+
 - Identifiers must declare their scheme
 - Multiple identifiers may coexist
 - No identifier is assumed authoritative by default

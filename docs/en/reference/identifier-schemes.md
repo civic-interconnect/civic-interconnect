@@ -9,17 +9,17 @@ Identifier schemes define how these IDs are interpreted, validated, and transfor
 
 Scheme URI:
 
-```
+```text
 .../vocabulary/entity-identifier-scheme.v1.0.0.json#snfei
 ```
 
 Characteristics:
 
--   Deterministic
--   Canonicalization-based
--   Cryptographic (SHA-256)
--   Stable across datasets and time
--   Designed to bridge to LEI, UEI, and EIN
+- Deterministic
+- Canonicalization-based
+- Cryptographic (SHA-256)
+- Stable across datasets and time
+- Designed to bridge to LEI, UEI, and EIN
 
 Usage:
 
@@ -59,11 +59,11 @@ Each scheme is represented via:
 
 Identifier schemes enable:
 
--   Cross-dataset linking
--   Disambiguation
--   Provenance tracking
--   Confidence scoring
--   Multi-jurisdiction integration
+- Cross-dataset linking
+- Disambiguation
+- Provenance tracking
+- Confidence scoring
+- Multi-jurisdiction integration
 
 SNFEI is the **Tier 3 fallback** when LEI/UEI/EIN is missing or ambiguous.
 
@@ -73,9 +73,9 @@ SNFEI is the **Tier 3 fallback** when LEI/UEI/EIN is missing or ambiguous.
 
 See `/en/reference/identity-tiers.md` for:
 
--   Tier 1 - Global IDs (LEI, UEI)
--   Tier 2 - National IDs
--   Tier 3 - SNFEI (canonical fallback)
+- Tier 1 - Global IDs (LEI, UEI)
+- Tier 2 - National IDs
+- Tier 3 - SNFEI (canonical fallback)
 
 Identifier schemes provide a common framing for linking these layers.
 
@@ -85,8 +85,8 @@ Identifier schemes provide a common framing for linking these layers.
 
 Identifier scheme vocabularies are governed through:
 
--   Versioned JSON vocabularies
--   Change control via ISB governance
--   Mapping types: exactMatch, broadMatch, narrowMatch, relatedMatch
+- Versioned JSON vocabularies
+- Change control via ISB governance
+- Mapping types: exactMatch, broadMatch, narrowMatch, relatedMatch
 
 This ensures that identifier interactions remain stable and interpretable over time.

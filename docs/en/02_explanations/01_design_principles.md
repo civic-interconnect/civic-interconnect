@@ -9,8 +9,8 @@ All meaningful transformations are intended to be inspectable, attributable, and
 
 The system separates concerns across layers so that:
 
--   data producers are not required to agree on interpretation,
--   data consumers are not forced into a single analytical model,
--   and governance decisions remain visible rather than embedded in code paths.
+- data producers are not required to agree on interpretation,
+- data consumers are not forced into a single analytical model,
+- and governance decisions remain visible rather than embedded in code paths.
 
 Where tradeoffs exist, the framework prefers correctness and clarity over minimality or performance optimizations.

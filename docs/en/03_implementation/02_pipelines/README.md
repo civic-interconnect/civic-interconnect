@@ -3,6 +3,7 @@
 Pipelines define ordered sequences of transformations.
 
 A pipeline:
+
 - Consumes structured inputs
 - Applies deterministic steps
 - Produces auditable outputs

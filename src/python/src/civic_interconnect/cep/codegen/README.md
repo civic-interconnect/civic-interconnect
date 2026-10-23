@@ -21,6 +21,7 @@ Shared envelope types:
 Example 1
 
 1. Detect the presence of:
+
 ```json
 "status": {
   "properties": {
@@ -35,7 +36,7 @@ Example 1
 - ExchangeStatus struct
 - Map exchangeStatus to ExchangeStatus
 
-3. Insert into special_types:
+1. Insert into special_types:
 
 ```rust
 special_types["exchangeStatus"] = "ExchangeStatus"
@@ -67,7 +68,6 @@ So:
 | RecipientEntity    | ✅            | schema object → struct |
 | ExchangeValue      | ✅            | schema object → struct |
 | ValueType          | ❌ on purpose | Option<String>         |
-
 
 ## Value Type Enums
 

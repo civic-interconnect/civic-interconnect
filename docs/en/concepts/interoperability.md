@@ -13,8 +13,6 @@ Legislation, VoteAction and enables interoperability with Google datasets, machi
 - Open Referral Human Services Data Specification (HSDS) - has Organization, Location, Service, Funding - enables connecting public funding to outcomes
 - Financial Industry Business Ontology (FIBO) - map to loan-agreement, grant-award (loosely), subsidiary.
 
-
-
 ## CEP Concept Mapping Table
 
 | CEP Concept    | CEP Term / Field     | CEP Vocabulary / Schema    | External Standard | External Concept / Class / Field   | Mapping Type | Notes      |
@@ -82,7 +80,6 @@ Legislation, VoteAction and enables interoperability with Google datasets, machi
 | IDs (OCDS)      | `identifiers.additionalSchemes` on Entity/Relationship  | `cep.entity/relationship`      | OCDS   | `Parties`, `Award.id`, `Contract.id` | relatedMatch | Tie CEP entities/relationships back to OCDS releases. |
 | IDs (Popolo)    | `identifiers.additionalSchemes`  | `cep.entity.schema.json`  | Popolo       | `Person.id`, `Organization.id`       | relatedMatch | Where Popolo IDs exist separately from OCD IDs.   |
 
-
 ## CEP Concept Mapping Table (by Schema)
 
 | CEP Concept / Field   | External Standard | External Concept / ID / Class   | Mapping Type | Suggested `externalUri` / `schemeUri` example     | Notes   |
@@ -142,28 +139,28 @@ Legislation, VoteAction and enables interoperability with Google datasets, machi
 
 prime-contract
 
--   USAspending contract is a close conceptual match.
--   OCDS contract is the canonical public procurement concept, so exactMatch.
+- USAspending contract is a close conceptual match.
+- OCDS contract is the canonical public procurement concept, so exactMatch.
 
 subcontract
 
--   OCDS does not have a first-class subcontract object, but it is conceptually a specialized contract under a main award, so narrowMatch.
+- OCDS does not have a first-class subcontract object, but it is conceptually a specialized contract under a main award, so narrowMatch.
 
 grant-award
 
--   USAspending grant is a direct match to federal grants.
--   OCDS award is broader (covers procurements and grants), so relatedMatch.
--   Schema.org MonetaryGrant is almost exactly, so exactMatch.
+- USAspending grant is a direct match to federal grants.
+- OCDS award is broader (covers procurements and grants), so relatedMatch.
+- Schema.org MonetaryGrant is almost exactly, so exactMatch.
 
 loan-agreement
 
--   FIBO Contracts and Loans ontologies give similar semantic neighborhood but more general, so relatedMatch.
+- FIBO Contracts and Loans ontologies give similar semantic neighborhood but more general, so relatedMatch.
 
 subsidiary
 
--   Schema.org subOrganization is close but not strictly legal-definition match, so relatedMatch.
--   FIBO Subsidiary is semantically close but in financial-industry framing; so relatedMatch.
+- Schema.org subOrganization is close but not strictly legal-definition match, so relatedMatch.
+- FIBO Subsidiary is semantically close but in financial-industry framing; so relatedMatch.
 
 board-membership and employment
 
--   Both are specializations of Popolo Membership (person–organization relationship with roles and time-bounds), so narrowMatch.
+- Both are specializations of Popolo Membership (person–organization relationship with roles and time-bounds), so narrowMatch.

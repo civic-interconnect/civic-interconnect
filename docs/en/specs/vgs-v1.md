@@ -10,7 +10,7 @@ Purpose: Provide a coherent and formal approach to versioning in CEP, ensuring s
 
 ---
 
-# 1. Overview
+## 1. Overview
 
 CEP consists of several interacting specifications:
 
@@ -24,11 +24,11 @@ CEP consists of several interacting specifications:
 
 Each of these evolves over time. Versioning Governance Specification (VGS) defines:
 
-- how each component is versioned  
-- what kinds of changes are allowed in each version class  
-- how components reference one another  
-- how backward compatibility is maintained  
-- how verifiable IDs remain interpretable over time  
+- how each component is versioned
+- what kinds of changes are allowed in each version class
+- how components reference one another
+- how backward compatibility is maintained
+- how verifiable IDs remain interpretable over time
 
 This is essential for the long-term stability of CEP data, hashes, and interoperability.
 
@@ -43,10 +43,9 @@ Each CEP vocabulary is a JSON document identified by its `$id` field.
 
 Tools MAY assert that `$id` is unique within a CEP deployment and SHOULD treat the `$id` value as the stable identifier for versioning, governance, and dependency resolution.
 
-
 ---
 
-# 2. Versioning Design Principles
+## 2. Versioning Design Principles
 
 CEP versioning follows five principles:
 
@@ -58,47 +57,50 @@ CEP versioning follows five principles:
 
 ---
 
-# 3. Semantic Versioning Model
+## 3. Semantic Versioning Model
 
 CEP uses Semantic Versioning (SemVer):
 
 MAJOR.MINOR.PATCH
 
-## MAJOR
+### MAJOR
+
 Breaking changes:
 
-- identity rules change (fingerprint rules)  
-- canonicalization strategy changes in a way that affects output  
-- renaming or removing vocabulary terms  
-- schema structural changes  
-- canonical encoding (CEC) incompatibility  
-- graph normalization rule changes  
-- adapter output semantics change  
+- identity rules change (fingerprint rules)
+- canonicalization strategy changes in a way that affects output
+- renaming or removing vocabulary terms
+- schema structural changes
+- canonical encoding (CEC) incompatibility
+- graph normalization rule changes
+- adapter output semantics change
 
 MAJOR versions should be rare.
 
-## MINOR
+### MINOR
+
 Backward-compatible changes:
 
-- new optional fields  
-- new vocabulary terms (non-breaking)  
-- new adapters or extended adapter behavior that preserves old semantics  
-- new relationship types  
-- clarifications that do not change meaning  
+- new optional fields
+- new vocabulary terms (non-breaking)
+- new adapters or extended adapter behavior that preserves old semantics
+- new relationship types
+- clarifications that do not change meaning
 
-## PATCH
+### PATCH
+
 Non-semantic fixes:
 
-- typos  
-- documentation clarifications  
-- test coverage changes  
-- reformatting of examples  
+- typos
+- documentation clarifications
+- test coverage changes
+- reformatting of examples
 
 Hashes must not change across patches.
 
 ---
 
-# 4. Versioned Components
+## 4. Versioned Components
 
 | Component               | Version Field        | Independent? | Notes                                 |
 |------------------------|----------------------|--------------|---------------------------------------|
@@ -113,7 +115,7 @@ Every CEP record, fingerprint, and graph must carry all applicable version tags.
 
 ---
 
-# 5. Version Tuples in Records
+## 5. Version Tuples in Records
 
 Each CEP object (entity, relationship, envelope, graph) must embed:
 
@@ -132,75 +134,80 @@ Each CEP object (entity, relationship, envelope, graph) must embed:
 
 This version tuple makes it possible for a verifier to:
 
-- reconstruct canonicalization  
-- rebuild the fingerprint  
-- normalize the graph  
-- verify relationships  
-- recreate the hash  
+- reconstruct canonicalization
+- rebuild the fingerprint
+- normalize the graph
+- verify relationships
+- recreate the hash
 
 for any record at any time in history.
 
 ---
 
-# 6. Version Compatibility Rules
+## 6. Version Compatibility Rules
 
-## 6.1 Schema Compatibility
-A schema version may accept records from earlier MINOR/PATCH versions.  
-MAJOR schema changes must include a migration adapter.  
+### 6.1 Schema Compatibility
+
+A schema version may accept records from earlier MINOR/PATCH versions.
+MAJOR schema changes must include a migration adapter.
 Backfilling or reinterpretation is forbidden — migration must be explicit.
 
-## 6.2 Vocabulary Compatibility
-New vocabulary terms must not break existing records.  
-Deprecated terms must not be reused.  
+### 6.2 Vocabulary Compatibility
+
+New vocabulary terms must not break existing records.
+Deprecated terms must not be reused.
 Vocabulary upgrades must specify:
 
-- mappings for deprecated terms  
-- migration semantics if necessary  
+- mappings for deprecated terms
+- migration semantics if necessary
 
-## 6.3 Adapter Compatibility
-Composition remains valid only if target and source schema versions are compatible.  
-Adapter upgrades may alter output formats only in MINOR or MAJOR versions.  
+### 6.3 Adapter Compatibility
+
+Composition remains valid only if target and source schema versions are compatible.
+Adapter upgrades may alter output formats only in MINOR or MAJOR versions.
 No adapter may silently target a new schema version without declaring it.
 
 ---
 
-# 7. Versioned Provenance
+## 7. Versioned Provenance
 
 Each adapter activity must record:
 
-- adapterId  
-- adapterVersion  
-- schemaVersions  
-- vocabularyVersions  
-- timestamp  
-- optional inputFingerprint  
+- adapterId
+- adapterVersion
+- schemaVersions
+- vocabularyVersions
+- timestamp
+- optional inputFingerprint
 
 Provenance must be version-stable: the same pipeline version tuple must always reconstruct the same output from the same input.
 
 ---
 
-# 8. Effects on Hashes and Identity
+## 8. Effects on Hashes and Identity
 
-## 8.1 Hash Interpretation
-A hash is valid only in the context of the version tuple used to generate it.  
+### 8.1 Hash Interpretation
+
+A hash is valid only in the context of the version tuple used to generate it.
 A verifier must use:
 
-- cecVersion  
-- fingerprintVersion  
-- schemaVersion  
-- vocabularyVersion  
-- adapterVersion  
-- gnsVersion  
+- cecVersion
+- fingerprintVersion
+- schemaVersion
+- vocabularyVersion
+- adapterVersion
+- gnsVersion
 
 to re-derive the canonical bytes.
 
-## 8.2 Identity Stability
+### 8.2 Identity Stability
+
 A change to:
 
-- vocabulary labels  
-- schema descriptive fields  
-- adapter metadata  
-- optional attributes  
+- vocabulary labels
+- schema descriptive fields
+- adapter metadata
+- optional attributes
 
 must not affect fingerprints or verifiable IDs.
 
@@ -208,45 +215,45 @@ Only MAJOR fingerprint changes may alter identities.
 
 ---
 
-# 9. Version Migration Requirements
+## 9. Version Migration Requirements
 
 Whenever a MAJOR version increases, VGS requires:
 
-- migration adapters  
-- mapping tables (old vocabulary → new vocabulary)  
-- canonicalization compatibility notes  
-- hash interpretation notes  
+- migration adapters
+- mapping tables (old vocabulary → new vocabulary)
+- canonicalization compatibility notes
+- hash interpretation notes
 
 Records must be convertible through deterministic, auditable, versioned adapters.
 
 Backward compatibility is achieved through:
 
-- version-bridge adapters  
-- provenance annotations  
+- version-bridge adapters
+- provenance annotations
 - dual-version compatibility modes (optional)
 
 ---
 
-# 10. Long-Term Guarantees
+## 10. Long-Term Guarantees
 
 VGS ensures that:
 
-- A CEP record from 2030 can still be verified in 2050.  
-- A hash published today remains interpretable forever.  
-- New domains (campaign finance, environmental, education) remain interoperable.  
-- Schema/vocabulary evolution does not undermine reproducibility.  
-- Fingerprints and graph-level hashes remain stable under descriptive changes.  
+- A CEP record from 2030 can still be verified in 2050.
+- A hash published today remains interpretable forever.
+- New domains (campaign finance, environmental, education) remain interoperable.
+- Schema/vocabulary evolution does not undermine reproducibility.
+- Fingerprints and graph-level hashes remain stable under descriptive changes.
 
 ---
 
-# 11. Summary
+## 11. Summary
 
 VGS v1 defines:
 
-- independent versioning of major CEP components  
-- explicit version tuples in records  
-- semantic rules for MAJOR/MINOR/PATCH  
-- backward-compatibility constraints  
-- migration paths for incompatible updates  
+- independent versioning of major CEP components
+- explicit version tuples in records
+- semantic rules for MAJOR/MINOR/PATCH
+- backward-compatibility constraints
+- migration paths for incompatible updates
 
 This versioning framework ensures CEP remains a reproducible, extensible, and audit-ready civic data infrastructure.

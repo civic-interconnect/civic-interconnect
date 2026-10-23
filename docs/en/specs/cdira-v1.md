@@ -14,9 +14,9 @@ Purpose: Define a deterministic algorithm for resolving when multiple CEP entiti
 
 CEP treats identity as a minimal, canonical fingerprint (EFS v1) plus a rewriting-based normalization strategy. Cross-domain identity resolution is the process of:
 
--   detecting when multiple CEP entities refer to the same real entity,
--   assigning them to a shared identity cluster, and
--   ensuring that this process is deterministic, auditable, and versioned.
+- detecting when multiple CEP entities refer to the same real entity,
+- assigning them to a shared identity cluster, and
+- ensuring that this process is deterministic, auditable, and versioned.
 
 The Cross-Domain Identity Resolution Algorithm (CDIRA) defines:
 
@@ -33,19 +33,19 @@ CDIRA is a rewriting system over entity graphs: it rewrites sets of entity nodes
 
 CDIRA operates on CEP entities that already satisfy:
 
--   canonicalization (names, identifiers, vocabularies),
--   fingerprint specification (EFS v1),
--   canonical encoding (CEC v1),
--   graph normalization (GNS v1) where applicable.
+- canonicalization (names, identifiers, vocabularies),
+- fingerprint specification (EFS v1),
+- canonical encoding (CEC v1),
+- graph normalization (GNS v1) where applicable.
 
 ## 2.1 Identity Units
 
 An Identity Unit is a single CEP entity with:
 
--   verifiableId
--   fingerprint (EFS object)
--   domain-specific payload
--   provenance
+- verifiableId
+- fingerprint (EFS object)
+- domain-specific payload
+- provenance
 
 ## 2.2 Identity Cluster
 
@@ -53,11 +53,11 @@ An Identity Cluster is a non-empty set of Identity Units believed to refer to th
 
 Each cluster has:
 
--   clusterId (stable identifier, see Section 7)
--   members: list of verifiableIds
--   clusterFingerprint: optional aggregated fingerprint summary
--   cdiraVersion: version of the resolution algorithm used
--   provenance for how and when it was formed
+- clusterId (stable identifier, see Section 7)
+- members: list of verifiableIds
+- clusterFingerprint: optional aggregated fingerprint summary
+- cdiraVersion: version of the resolution algorithm used
+- provenance for how and when it was formed
 
 ---
 
@@ -67,17 +67,17 @@ CDIRA uses deterministic, rule-based evidence classes. No probabilistic black-bo
 
 Evidence is grouped into:
 
--   Strong evidence
--   Moderate evidence
--   Weak evidence
+- Strong evidence
+- Moderate evidence
+- Weak evidence
 
 ## 3.1 Strong Evidence
 
 Strong evidence is sufficient to treat two entities as identical:
 
--   Exact fingerprint match (same EFS fingerprint, same verifiableId).
--   Shared authoritative identifier under a globally trusted scheme:
-    -   same SNFEI, LEI, FEC ID, EPA Facility ID, IPEDS ID, national corporate registry ID, etc., after canonicalization.
+- Exact fingerprint match (same EFS fingerprint, same verifiableId).
+- Shared authoritative identifier under a globally trusted scheme:
+  - same SNFEI, LEI, FEC ID, EPA Facility ID, IPEDS ID, national corporate registry ID, etc., after canonicalization.
 
 If strong evidence is present, entities must be placed in the same cluster.
 
@@ -85,9 +85,9 @@ If strong evidence is present, entities must be placed in the same cluster.
 
 Moderate evidence suggests likely identity but is not self-sufficient:
 
--   Same canonical name + same jurisdictionUri + same entityTypeUri.
--   Same canonical name + shared external identifier from a mid-confidence registry.
--   Name equivalence plus matching normalized attributes that are relatively stable.
+- Same canonical name + same jurisdictionUri + same entityTypeUri.
+- Same canonical name + shared external identifier from a mid-confidence registry.
+- Name equivalence plus matching normalized attributes that are relatively stable.
 
 Moderate evidence may trigger clustering if no conflicting evidence exists.
 
@@ -95,10 +95,10 @@ Moderate evidence may trigger clustering if no conflicting evidence exists.
 
 Weak evidence by itself must not cause a merge:
 
--   co-occurrence patterns (same officers, same addresses),
--   shared phone or email,
--   similar but not identical names,
--   proximity in graph structure.
+- co-occurrence patterns (same officers, same addresses),
+- shared phone or email,
+- similar but not identical names,
+- proximity in graph structure.
 
 Weak evidence is only used to support moderate evidence or break ties.
 
@@ -118,9 +118,9 @@ Candidate generation finds potential matches but does not decide identity.
 
 Blocking keys (deterministic):
 
--   Identifier-based blocks: entities sharing a canonical value under any identifier scheme.
--   Name + jurisdiction blocks: same legalNameNormalized AND same jurisdictionUri.
--   Domain-specific blocks: e.g., same IPEDS ID, same EPA Registry ID, same FEC ID.
+- Identifier-based blocks: entities sharing a canonical value under any identifier scheme.
+- Name + jurisdiction blocks: same legalNameNormalized AND same jurisdictionUri.
+- Domain-specific blocks: e.g., same IPEDS ID, same EPA Registry ID, same FEC ID.
 
 Within each block, consider all unordered pairs as candidates.
 
@@ -143,9 +143,9 @@ If they share an authoritative identifier and no explicit conflict exists, they 
 
 If:
 
--   names, jurisdiction, and entity type match,
--   no contradictory identifier evidence exists,
--   one or more moderate evidence conditions hold,
+- names, jurisdiction, and entity type match,
+- no contradictory identifier evidence exists,
+- one or more moderate evidence conditions hold,
 
 then A and B should be clustered.
 
@@ -165,9 +165,9 @@ If A merges with B, and B merges with C, then all three belong to the same clust
 
 Cluster construction is deterministic given:
 
--   same input entities,
--   same version tuple,
--   same configuration.
+- same input entities,
+- same version tuple,
+- same configuration.
 
 ---
 
@@ -175,15 +175,15 @@ Cluster construction is deterministic given:
 
 Conceptually, CDIRA:
 
--   Starts from singleton clusters `{A}, {B}, {C}, ...`
--   Applies merge rewrites based on evidence rules:
-    -   `{A}, {B} → {A,B}`
--   Produces a partition of the entity set.
+- Starts from singleton clusters `{A}, {B}, {C}, ...`
+- Applies merge rewrites based on evidence rules:
+  - `{A}, {B} → {A,B}`
+- Produces a partition of the entity set.
 
 The merge operation is:
 
--   associative,
--   idempotent (re-running CDIRA on identical clusters produces no changes).
+- associative,
+- idempotent (re-running CDIRA on identical clusters produces no changes).
 
 The internal merge process need not be commutative; the resulting partition must be independent of evaluation order.
 
@@ -193,9 +193,9 @@ The internal merge process need not be commutative; the resulting partition must
 
 CDIRA must produce explicit artifacts for:
 
--   conflicting strong identifiers,
--   inconsistent identity-defining attributes,
--   ambiguous clusters with insufficient evidence.
+- conflicting strong identifiers,
+- inconsistent identity-defining attributes,
+- ambiguous clusters with insufficient evidence.
 
 Conflicts are recorded as:
 
@@ -226,14 +226,14 @@ Two allowed strategies:
 
 1. Derived clusterId (hash-based):
 
--   Deterministic hash of:
+- Deterministic hash of:
 
-    -   sorted member verifiableIds
-    -   version tuple
+  - sorted member verifiableIds
+  - version tuple
 
-2. Externally assigned clusterId:
+1. Externally assigned clusterId:
 
--   Used when authoritative registries assign persistent IDs.
+- Used when authoritative registries assign persistent IDs.
 
 In both cases:
 
@@ -241,9 +241,9 @@ In both cases:
 
 Where clusterSummary is a CEC-serialized object including:
 
--   sorted member IDs
--   version tuple
--   optional clusterFingerprint
+- sorted member IDs
+- version tuple
+- optional clusterFingerprint
 
 ---
 
@@ -271,11 +271,11 @@ Every cluster and conflict record must include:
 
 Identity resolution is a provenance activity:
 
--   identityResolverId
--   identityResolverVersion
--   timestamp
--   input sets (entity IDs)
--   output clusters and conflicts
+- identityResolverId
+- identityResolverVersion
+- timestamp
+- input sets (entity IDs)
+- output clusters and conflicts
 
 This ensures auditability and reproducibility.
 
@@ -289,8 +289,8 @@ Given the same inputs, versions, and configuration, the resulting clusters and c
 
 Any use of probabilistic or heuristic methods must:
 
--   produce deterministic outputs (e.g., fixed seeds), or
--   be advisory only, not part of final merge decisions.
+- produce deterministic outputs (e.g., fixed seeds), or
+- be advisory only, not part of final merge decisions.
 
 ---
 
@@ -298,11 +298,11 @@ Any use of probabilistic or heuristic methods must:
 
 CDIRA v1 defines:
 
--   a rule-based deterministic approach to cross-domain identity resolution
--   an evidence model (strong, moderate, weak)
--   a rewrite system forming clusters via merge operations
--   explicit conflict handling
--   stable cluster identifiers
--   full versioning and provenance for identity decisions
+- a rule-based deterministic approach to cross-domain identity resolution
+- an evidence model (strong, moderate, weak)
+- a rewrite system forming clusters via merge operations
+- explicit conflict handling
+- stable cluster identifiers
+- full versioning and provenance for identity decisions
 
 This specification ties together canonicalization (CEC), fingerprints (EFS), graph normalization (GNS), and adapter semantics (AAS) into a coherent, cross-domain identity resolution framework for CEP.

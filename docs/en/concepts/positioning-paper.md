@@ -3,6 +3,7 @@
 > CEP and CTags as Interoperability Layer for Civic Data Ecosystems
 
 ## 1. Introduction
+
 Modern civic systems rely on multiple established standards: Open Civic Data (OCD) for political geography, Popolo for people and organizations, the Open Contracting Data Standard (OCDS) for procurement, and numerous state or federal schemas for grants, budgets, elections, disclosures, and public records.
 
 Each standard addresses its own domain well.  
@@ -20,6 +21,7 @@ It enables them to interoperate.
 ---
 
 ## 2. Role of CEP
+
 CEP provides neutral, JSON-first constructs that describe:
 
 - **Entities** - people, organizations, agencies, programs, vendors  
@@ -34,6 +36,7 @@ Its value is structural consistency and cross-domain interoperability.
 ---
 
 ## 3. Role of CTags
+
 CTags provide per-artifact context:
 
 - what the content is  
@@ -56,6 +59,7 @@ CTags can be used independently but become dramatically more powerful when linke
 ---
 
 ## 4. Alignment with Existing Standards
+
 Civic Interconnect is intentionally **non-competitive** with existing civic standards:
 
 - CEP entities may reference **OCD Division IDs** for jurisdictions.  
@@ -69,6 +73,7 @@ CEP and CTags provide the missing glue.
 ---
 
 ## 5. Why This Matters
+
 The civic ecosystem is facing three converging pressures:
 
 1. **AI integration** - automated agents increasingly summarize, classify, route, and transform civic information.  
@@ -80,6 +85,7 @@ CEP and CTags offer a minimal, intuitive, and extensible way to satisfy these pr
 ---
 
 ## 6. Conclusion
+
 The Civic Interconnect framework is a small set of primitives designed to connect everything else:
 
 - CEP: the cross-domain record structure  

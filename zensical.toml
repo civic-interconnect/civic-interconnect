@@ -251,7 +251,6 @@ nav = [
 
   { "Concepts" = [
     { "Normalization" = "en/concepts/normalization.md" },
-    { "Category Theory Foundation" = "en/concepts/category-theory-foundation.md" },
     { "Related Domains" = "en/concepts/related-domains.md" },
     { "Interoperability" = "en/concepts/interoperability.md" },
     { "Research and Adoption" = "en/concepts/research-adoption.md" },

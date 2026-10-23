@@ -7,10 +7,10 @@ It means that values are expressed explicitly, not implicitly encoded into data 
 
 The system distinguishes between:
 
--   factual records,
--   contextual evidence,
--   explanatory models,
--   and evaluative judgments.
+- factual records,
+- contextual evidence,
+- explanatory models,
+- and evaluative judgments.
 
 This separation allows multiple value systems to coexist over shared data without forcing consensus.
 It also allows disagreements to be articulated and examined rather than hidden.

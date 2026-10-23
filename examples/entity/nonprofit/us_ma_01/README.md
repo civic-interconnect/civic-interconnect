@@ -2,7 +2,7 @@
 
 This directory provides a **vertical slice** of the CEP Entity pipeline:
 
-```
+```text
 01_raw_source.json        = original source record
 02_normalized.json        = adapter-normalized form
 03_canonical.json         = fully normalized canonical form
@@ -11,7 +11,7 @@ This directory provides a **vertical slice** of the CEP Entity pipeline:
 
 ## 1. Raw Source (`01_raw_source.json`)
 
-The raw input is what an ETL adapter would receive from a state, federal, or third-party system.  
+The raw input is what an ETL adapter would receive from a state, federal, or third-party system.
 No assumptions are made about casing, naming, or data quality.
 
 ## 2. Normalized Input (`02_normalized.json`)
@@ -34,10 +34,10 @@ This step is domain-specific and may include local business rules.
 
 The canonical input is produced by the **Normalizing Functor**, ensuring:
 
--   whitespace normalization
--   Unicode stability
--   deterministic hashing input
--   consistent international treatment
+- whitespace normalization
+- Unicode stability
+- deterministic hashing input
+- consistent international treatment
 
 This file is used for SNFEI computation.
 
@@ -45,18 +45,18 @@ This file is used for SNFEI computation.
 
 This is the full **EntityRecord** produced by:
 
-```
+```text
 build_entity_json(normalized_json)
 ```
 
 It includes:
 
--   envelope metadata
--   timestamps
--   attestation block
--   SNFEI-based `verifiableId`
--   identifier array (SNFEI termUri)
--   domain attributes
+- envelope metadata
+- timestamps
+- attestation block
+- SNFEI-based `verifiableId`
+- identifier array (SNFEI termUri)
+- domain attributes
 
 ## How to Regenerate
 
@@ -72,6 +72,6 @@ uv run cx generate-example --path examples/entity/nonprofit/us_ma_01
 
 For questions about the fields or process, see:
 
--   [`docs/en/reference/identifier-schemes.md`](../../../../docs/en/reference/identifier-schemes.md)
--   [`docs/en/reference/entity.md`](../../../../docs/en/reference/entity.md)
--   [`docs/en/concepts/normalization.md`](../../../../docs/en/concepts/normalization.md)
+- [`docs/en/reference/identifier-schemes.md`](../../../../docs/en/reference/identifier-schemes.md)
+- [`docs/en/reference/entity.md`](../../../../docs/en/reference/entity.md)
+- [`docs/en/concepts/normalization.md`](../../../../docs/en/concepts/normalization.md)

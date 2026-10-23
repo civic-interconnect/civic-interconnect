@@ -11,9 +11,9 @@ for analysis or interpretation.
 
 Observations are:
 
--   Derived, not raw
--   Context-dependent
--   Reproducible given the same inputs and rules
+- Derived, not raw
+- Context-dependent
+- Reproducible given the same inputs and rules
 
 An observation does not assert meaning or intent.
 

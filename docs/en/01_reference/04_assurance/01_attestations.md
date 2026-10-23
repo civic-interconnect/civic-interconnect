@@ -11,9 +11,9 @@ some object, process, or statement.
 
 Attestations are:
 
--   Explicit claims
--   Attributable to an issuer
--   Bounded by scope and time
+- Explicit claims
+- Attributable to an issuer
+- Bounded by scope and time
 
 They do not assert universal truth.
 
@@ -23,10 +23,10 @@ They do not assert universal truth.
 
 An attestation may concern:
 
--   Data integrity
--   Process execution
--   Methodological adherence
--   Review or audit completion
+- Data integrity
+- Process execution
+- Methodological adherence
+- Review or audit completion
 
 The subject of an attestation is always explicit.
 

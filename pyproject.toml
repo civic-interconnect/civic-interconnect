@@ -99,6 +99,13 @@ cx = "civic_interconnect.cli.cli:app"
 # === SECTION: TOOL CONFIGURATION ===
 # ============================================================
 
+# === TY (PYTHON TYPE CHECKING) ===
+
+[tool.ty.environment]
+extra-paths = ["typings"]
+# CUSTOM: We have typings/cep_py/__init__.pyi.
+# WHY: Ty is not finding that stub when resolving the compiled Rust extension.
+
 # === UV (PYTHON ENVIRONMENT AND DEPENDENCY MANAGEMENT) ===
 
 [tool.uv]

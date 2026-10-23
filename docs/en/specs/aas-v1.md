@@ -126,7 +126,6 @@ We can form a composite adapter:
 
 `B ∘ A : S → U`
 
-
 defined by:
 
 ```text
@@ -142,7 +141,6 @@ Composition of adapters is associative:
 
 `C ∘ (B ∘ A) = (C ∘ B) ∘ A`
 
-
 at the level of the underlying functions, provided they all share compatible
 schemas and error semantics.
 
@@ -157,13 +155,11 @@ For every schema (S, v), there MUST exist an identity adapter:
 
 `id_S : S → S`
 
-
 such that for all adapters `A: S → T` and `B: U → S`:
 
 `A ∘ id_S = A`
 
 `id_S ∘ B = B`
-
 
 The identity adapter performs validation but no transformation:
 
@@ -259,7 +255,6 @@ Two adapters `A, B: S → T` are extensionally equivalent if for all valid
 inputs `x`:
 
 `A(x) = B(x)`
-
 
 CEP may treat extensionally equivalent adapters as interchangeable, but they may
 still differ in:

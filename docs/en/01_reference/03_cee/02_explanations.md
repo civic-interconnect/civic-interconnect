@@ -11,9 +11,9 @@ meaningful within a given context.
 
 Explanations are:
 
--   Contextual
--   Contestable
--   Explicit about assumptions
+- Contextual
+- Contestable
+- Explicit about assumptions
 
 CEE allows multiple explanations for the same observation.
 

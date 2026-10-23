@@ -13,16 +13,16 @@ decision-making.
 
 CEE specifies:
 
--   Observations derived from civic records
--   Explanations that connect observations to interpretations
--   Models treated as instruments rather than truth claims
--   Context tags that scope meaning and applicability
+- Observations derived from civic records
+- Explanations that connect observations to interpretations
+- Models treated as instruments rather than truth claims
+- Context tags that scope meaning and applicability
 
 CEE does not specify:
 
--   Data schemas or record formats
--   Identity resolution mechanisms
--   Policy outcomes or normative judgments
+- Data schemas or record formats
+- Identity resolution mechanisms
+- Policy outcomes or normative judgments
 
 ---
 

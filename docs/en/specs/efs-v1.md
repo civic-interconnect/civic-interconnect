@@ -15,10 +15,10 @@ Purpose: Define a deterministic, minimal, cross-domain identity model for civic 
 The Entity Fingerprint Specification (EFS) defines the minimal set of canonical features that uniquely identify an entity within CEP.
 The fingerprint:
 
--   is derived after canonicalization (rewriting),
--   is serialized using CEC v1,
--   is hashed to produce the verifiableId,
--   remains stable across domains, sources, adapters, and time.
+- is derived after canonicalization (rewriting),
+- is serialized using CEC v1,
+- is hashed to produce the verifiableId,
+- remains stable across domains, sources, adapters, and time.
 
 The fingerprint is domain-agnostic, strategy-governed, and minimal — no descriptive or non-identity metadata is included.
 
@@ -28,12 +28,12 @@ The fingerprint is domain-agnostic, strategy-governed, and minimal — no descri
 
 The fingerprint must:
 
--   produce identical results across all implementations
--   be stable across adapter versions (unless identity rules change)
--   be independent of source formatting
--   be invariant under non-identity attribute changes (e.g., address, status, phone number)
--   support cross-domain deduplication and linking
--   encode only essential identity-defining attributes
+- produce identical results across all implementations
+- be stable across adapter versions (unless identity rules change)
+- be independent of source formatting
+- be invariant under non-identity attribute changes (e.g., address, status, phone number)
+- support cross-domain deduplication and linking
+- encode only essential identity-defining attributes
 
 The fingerprint is not a record; it is an identity contract.
 
@@ -72,16 +72,16 @@ Rules:
 1. Each entityType defines a list of primary identifier schemes
    (e.g.,
 
--   SNFEI (CEP universal entity ID),
--   FEC committee ID,
--   EPA facility ID,
--   IPEDS institution ID,
--   LEI for legal entities,
--   National corporate registry IDs).
+- SNFEI (CEP universal entity ID),
+- FEC committee ID,
+- EPA facility ID,
+- IPEDS institution ID,
+- LEI for legal entities,
+- National corporate registry IDs).
 
-2. The fingerprint MUST include all canonical identifiers available, after rewriting.
+1. The fingerprint MUST include all canonical identifiers available, after rewriting.
 
-3. Identifiers MUST be represented as:
+2. Identifiers MUST be represented as:
 
 ```json
 {
@@ -91,7 +91,7 @@ Rules:
 
 4.Identifiers are sorted by key lexicographically (CEC rule).
 
-5. Absent identifiers are omitted, not null.
+1. Absent identifiers are omitted, not null.
 
 Example:
 
@@ -108,15 +108,15 @@ Example:
 
 Names are rewritten using the full CEP canonicalization pipeline:
 
--   lowercase,
+- lowercase,
 
--   uniform spacing,
+- uniform spacing,
 
--   punctuation removal (post abbreviation expansion),
+- punctuation removal (post abbreviation expansion),
 
--   locale-aware handling of accronyms / corporate forms,
+- locale-aware handling of accronyms / corporate forms,
 
--   Unicode NFC.
+- Unicode NFC.
 
 The fingerprint includes:
 
@@ -161,17 +161,17 @@ If jurisdiction is not applicable, then omit.
 
 Fingerprint must exclude:
 
--   addresses
--   dates
--   statuses
--   revision numbers
--   descriptions
--   contact information
--   provenance
--   relationships
--   email, phone, geo
--   filing history
--   members / officers / associates
+- addresses
+- dates
+- statuses
+- revision numbers
+- descriptions
+- contact information
+- provenance
+- relationships
+- email, phone, geo
+- filing history
+- members / officers / associates
 
 These are attributes, not identity.
 
@@ -183,12 +183,12 @@ This strict minimalism is what prevents identity drift over time.
 
 The fingerprint MUST be:
 
--   constructed after canonicalization
--   stable across all platforms
--   CEC-serialized
--   independent of representation or ordering
--   stable across descriptive changes
--   variant only if identity-defining attributes change
+- constructed after canonicalization
+- stable across all platforms
+- CEC-serialized
+- independent of representation or ordering
+- stable across descriptive changes
+- variant only if identity-defining attributes change
 
 Example:
 
@@ -208,16 +208,16 @@ Each fingerprint includes:
 
 Semantic versioning rules:
 
--   MAJOR: changes to identity rules (breaking identity linkage)
--   MINOR: addition of optional fingerprint components
--   PATCH: clarifications or bugfixes
+- MAJOR: changes to identity rules (breaking identity linkage)
+- MINOR: addition of optional fingerprint components
+- PATCH: clarifications or bugfixes
 
 Every hashed verifiableId implicitly commits to:
 
--   CEC version
--   Schema version
--   Vocabulary version(s)
--   Fingerprint version
+- CEC version
+- Schema version
+- Vocabulary version(s)
+- Fingerprint version
 
 This ensures verifiers can always interpret a fingerprint from any year.
 
@@ -249,9 +249,9 @@ CEC → hash → CTag → verifiableId.
 
 ## Multiple Domains, One Fingerprint System
 
--   Campaign finance → donors, committees
--   Environmental → facilities, permits
--   Education → institutions, programs
+- Campaign finance → donors, committees
+- Environmental → facilities, permits
+- Education → institutions, programs
 
 All of them use the exact same fingerprint structure.
 

@@ -3,6 +3,7 @@
 Verticals define domain-specific applications of the framework.
 
 A vertical selects:
+
 - relevant entities, relationships, and exchanges,
 - applicable vocabularies,
 - and domain-appropriate explanations and outcomes.

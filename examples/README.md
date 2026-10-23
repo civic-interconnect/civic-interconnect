@@ -2,26 +2,28 @@
 
 This directory provides small, self-contained example files for:
 
--   **Entity** records
--   **Exchange** (grant/contract) records
--   **Relationship** records
--   **SNFEI test corpus** (canonical inputs and expected hashes)
+- **Entity** records
+- **Exchange** (grant/contract) records
+- **Relationship** records
+- **SNFEI test corpus** (canonical inputs and expected hashes)
 
 These examples serve four purposes:
 
 1. **Demonstration** - show what valid CEP records look like.
 2. **Testing** - provide cross-language test fixtures for validating canonicalization, normalization, and SNFEI generation.
 3. **Validation** - e.g., used to test the CLI command
+
     ```bash
     uv run cx generate-example examples/entity --overwrite
     ```
+
 4. **Reference Implementation** - ensure all language SDKs generate identical canonical strings and SNFEI hashes.
 
 ---
 
 ## Directory Layout
 
-```
+```text
 examples/
   entity/        # Entity-level examples (municipalities, agencies, orgs, etc.)
   exchange/      # Grant, contract, or transaction-type records
@@ -32,10 +34,10 @@ examples/
 
 Each subfolder contains multiple minimal, schema-valid examples that demonstrate the correct use of:
 
--   `recordKind`
--   `recordSchemaUri`
--   `entityTypeUri` (for entities)
--   Fully populated `identifiers`, `timestamps`, `attestations`, and `status` blocks
+- `recordKind`
+- `recordSchemaUri`
+- `entityTypeUri` (for entities)
+- Fully populated `identifiers`, `timestamps`, `attestations`, and `status` blocks
 
 These files should be treated as canonical examples for contributors building new adapters, validators, or SDKs.
 
@@ -45,9 +47,9 @@ These files should be treated as canonical examples for contributors building ne
 
 The Structured Non-Fungible Entity Identifier (SNFEI) test corpus is structured into three parts:
 
--   **inputs.jsonl** containing messy real-world inputs
--   **canonical_expected.jsonl** containing the expected canonical strings
--   **snfei_expected.jsonl** containing the calculated final hash output
+- **inputs.jsonl** containing messy real-world inputs
+- **canonical_expected.jsonl** containing the expected canonical strings
+- **snfei_expected.jsonl** containing the calculated final hash output
 
 These can be used by language SDKs to ensure correctness:
 
@@ -85,13 +87,13 @@ This ensures:
 
 When adding examples:
 
--   Keep them small and narrowly scoped
--   Use realistic civic entities (municipalities, nonprofits, committees, agencies, etc.)
--   Ensure they validate against the appropriate CEP schema
--   Avoid embedding large narrative text or editorial comments
--   Update SNFEI expected hashes if canonicalization rules change
--   Maintain consistent naming (camelCase externally, snake_case in SDKs)
--   Include the full envelope structure (`timestamps`, `status`, `attestations`, etc.)
+- Keep them small and narrowly scoped
+- Use realistic civic entities (municipalities, nonprofits, committees, agencies, etc.)
+- Ensure they validate against the appropriate CEP schema
+- Avoid embedding large narrative text or editorial comments
+- Update SNFEI expected hashes if canonicalization rules change
+- Maintain consistent naming (camelCase externally, snake_case in SDKs)
+- Include the full envelope structure (`timestamps`, `status`, `attestations`, etc.)
 
 When adding a new domain or adapter, include at least:
 
@@ -99,8 +101,6 @@ When adding a new domain or adapter, include at least:
 - 1 exchange example (if applicable)
 - 1 relationship example
 - A corresponding SNFEI entry in the corpus if identity logic is impacted
-
-
 
 ---
 

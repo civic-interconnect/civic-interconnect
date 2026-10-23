@@ -17,7 +17,6 @@ Each record is a single contract between the state and an outside vendor for goo
 
 Source URL: https://publicaccountability.org/datasets/446/mn-contracts/
 
-
 ## Resource: Data Cleaning Guide
 
 <[guides/data_check_guide.md](https://github.com/irworkshop/accountability_datacleaning/blob/master/guides/data_check_guide.md)>

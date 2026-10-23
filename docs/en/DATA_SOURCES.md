@@ -22,12 +22,14 @@ Public Domain (Chicago Open Data Portal)
 
 **Usage in CEP:**  
 This dataset is used for testing:
+
 - name normalization (EFS v1)
 - SNFEI cross-source entity identity resolution
 - adapter behavior for real-world procurement verticals
 - canonicalization stress tests
 
 **Embedded JSON Citation Block:**
+
 ```json
 {
   "type": "dataset",
@@ -40,6 +42,7 @@ This dataset is used for testing:
 ```
 
 **PROV (YAML):**
+
 ```yaml
 entity:
   chicago_contracts_dataset:
@@ -67,6 +70,7 @@ activity:
 ## Future Datasets
 
 Add additional datasets used for CEP/CEE validation here with their:
+
 - citation information  
 - license  
 - provenance  

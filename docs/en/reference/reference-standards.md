@@ -9,7 +9,6 @@
 | W3C PROV (Provenance)   | The World Wide Web Consortium standard for recording the historical lifecycle and data quality of a piece of information.  | Our core value is Provenance. We adopt the principles of W3C PROV to formally define how data history, revisions, and sources are timestamped and logged.|
 | GTAS (Government-wide Treasury Account Symbol) | The framework used by the Treasury for standardized federal financial reporting. | Transactional data (e.g., amounts, categories) must be translatable into GTAS fields for seamless reporting up to the Treasury level. |
 
-
 ## Bridge
 
 - Official U.S UEI: The U.S. government already uses a Unique Entity Identifier (UEI), a 12-character alphanumeric ID assigned by SAM.gov, for all entities receiving federal financial assistance or doing business with the federal government (Source 3.1, 3.2). Often does not appear on state/local campaign finance reports or local school district consultant contracts unless federal funds are directly involved.

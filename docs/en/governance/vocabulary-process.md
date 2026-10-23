@@ -20,13 +20,13 @@ These vocabularies provide the stable semantic backbone for CEP interoperability
 
 CEP vocabularies serve three critical functions:
 
-1. **Interoperability:**  
+1. **Interoperability:**
    Terms map to external standards (Popolo, Open Civic Data, OCDS, HSDS, Schema.org, XBRL, W3C PROV).
 
-2. **Semantic Stability:**  
+2. **Semantic Stability:**
    Terms provide canonical meaning for entity types, role types, relationship types, exchange types, etc.
 
-3. **Verifiable Behavior:**  
+3. **Verifiable Behavior:**
    Terms are referenced in canonical URI form inside attested CEP records, affecting hash parity and revision integrity.
 
 ---
@@ -37,9 +37,9 @@ Vocabulary files follow **independent semantic versioning**:
 
 `<name>.vMAJOR.MINOR.PATCH.json`
 
-Examples:  
+Examples:
 
-```
+```text
 entity-type.v1.0.0.json
 identifier-scheme.v1.0.0.json
 ```
@@ -47,7 +47,9 @@ identifier-scheme.v1.0.0.json
 ---
 
 ### 2.1 MAJOR
+
 Changes that break compatibility or reinterpret existing terms:
+
 - renaming or removing terms
 - redefining meanings
 - altering term URIs
@@ -56,7 +58,9 @@ Changes that break compatibility or reinterpret existing terms:
 Requires **unanimous ISB approval** + 6-month deprecation period.
 
 ### 2.2 MINOR
+
 Backward-compatible enhancements:
+
 - adding new terms
 - adding new mappings
 - adding optional properties
@@ -64,7 +68,9 @@ Backward-compatible enhancements:
 Requires **simple majority vote**.
 
 ### 2.3 PATCH
+
 No semantic change:
+
 - fixing typos
 - adding external references in `seeAlso`
 - clarifying descriptions
@@ -78,14 +84,18 @@ May be approved by ISB Chair alone.
 All vocabulary modifications follow this structured workflow:
 
 ### Step 1 — Proposal Submission
+
 A contributor submits a PR that includes:
+
 - updated vocabulary file
 - accompanying rationale
 - impact assessment on interoperability
 - references to external standards (if relevant)
 
 ### Step 2 — Technical Review
+
 The Interconnect Standards Board (ISB) reviews:
+
 - term clarity and definition
 - hierarchy (`parentTermUri`)
 - mappings to external standards (SKOS-style)
@@ -94,10 +104,13 @@ The Interconnect Standards Board (ISB) reviews:
 - hash-parity implications
 
 ### Step 3 — Vote
+
 Version bump category determines voting requirements (Section 2).
 
 ### Step 4 — Merge & Release
+
 Upon approval:
+
 - CI validates JSON format, unique URIs, and mapping integrity
 - The vocabulary is merged into `main`
 - A new tag is created:
@@ -105,7 +118,9 @@ Upon approval:
   `vocab/<name>/vMAJOR.MINOR.PATCH`
 
 ### Step 5 — Deprecation Notices
+
 If a term becomes deprecated:
+
 - it is retained with `"status": "deprecated"`
 - `"deprecationNote"` must point to its replacement
 - canonical JSON schemas continue accepting it unless a MAJOR bump occurs
@@ -114,23 +129,30 @@ If a term becomes deprecated:
 
 ## 4. Design Principles for Vocabulary Terms
 
-### 4.1 Term URIs MUST be globally stable  
+### 4.1 Term URIs MUST be globally stable
+
 URIs never change after publication.
 
-### 4.2 Labels are human-friendly; codes are machine-friendly  
+### 4.2 Labels are human-friendly; codes are machine-friendly
+
 Examples:
+
 - code: `prime-contract`
 - label: `Prime Contract`
 
-### 4.3 Definitions MUST be unambiguous  
+### 4.3 Definitions MUST be unambiguous
+
 Definitions MUST avoid jurisdiction-specific assumptions unless explicitly scoped.
 
-### 4.4 Hierarchies SHOULD be used where meaningful  
+### 4.4 Hierarchies SHOULD be used where meaningful
+
 Example:
+
 - `subgrant` → parent: `grant-award`
 - `subcontract` → parent: `prime-contract`
 
-### 4.5 External mappings SHOULD be included  
+### 4.5 External mappings SHOULD be included
+
 Supported mapping types: `exactMatch`, `broadMatch`, `narrowMatch`, `relatedMatch`.
 
 ---
@@ -138,8 +160,6 @@ Supported mapping types: `exactMatch`, `broadMatch`, `narrowMatch`, `relatedMatc
 ## 5. File Placement and Structure
 
 All vocabulary files live under `vocabulary/`.
-
-
 
 Each file follows the canonical `cep.vocabulary.schema.json`.
 

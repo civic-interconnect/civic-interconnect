@@ -3,6 +3,7 @@
 The framework is implemented as a set of loosely coupled components.
 
 Each component has:
+
 - A clear responsibility
 - Explicit inputs and outputs
 - No hidden side effects

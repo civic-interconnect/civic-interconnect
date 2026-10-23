@@ -2,34 +2,34 @@
 
 ## Core entities
 
--   CampaignCommittee
--   Candidate
--   Donor (individual or organization)
--   Filing (report)
--   Contribution (transaction)
--   Expenditure
+- CampaignCommittee
+- Candidate
+- Donor (individual or organization)
+- Filing (report)
+- Contribution (transaction)
+- Expenditure
 
 ## Relationships
 
--   committeeRepresentsCandidate(Committee, Candidate)
--   contributesTo(Donor, Committee)
--   filesReport(Committee, Filing)
--   reportedIn(Contribution, Filing)
--   paysTo(Committee, Payee)
+- committeeRepresentsCandidate(Committee, Candidate)
+- contributesTo(Donor, Committee)
+- filesReport(Committee, Filing)
+- reportedIn(Contribution, Filing)
+- paysTo(Committee, Payee)
 
 ## Vocabulary seed (codes / types)
 
 Example controlled vocabulary campaign-finance-entity-type.json:
 
--   CF_COMMITTEE_CANDIDATE – Candidate committee
--   CF_COMMITTEE_PAC – Political action committee
--   CF_COMMITTEE_PARTY – Party committee
--   CF_DONOR_INDIVIDUAL
--   CF_DONOR_ORGANIZATION
--   CF_FILING_QUARTERLY
--   CF_FILING_ANNUAL
--   CF_CONTRIBUTION_MONETARY
--   CF_CONTRIBUTION_IN_KIND
+- CF_COMMITTEE_CANDIDATE – Candidate committee
+- CF_COMMITTEE_PAC – Political action committee
+- CF_COMMITTEE_PARTY – Party committee
+- CF_DONOR_INDIVIDUAL
+- CF_DONOR_ORGANIZATION
+- CF_FILING_QUARTERLY
+- CF_FILING_ANNUAL
+- CF_CONTRIBUTION_MONETARY
+- CF_CONTRIBUTION_IN_KIND
 
 ## Rewrite Problems
 

@@ -13,10 +13,10 @@ This page exists only to explain how they align when used together.
 
 The system is organized as layered concerns:
 
--   What civic things are
--   How civic data is structured
--   How meaning is derived
--   How confidence is asserted
+- What civic things are
+- How civic data is structured
+- How meaning is derived
+- How confidence is asserted
 
 Each layer answers a different question.
 
@@ -80,9 +80,9 @@ Each layer can disagree with the others.
 
 A system may have:
 
--   Correct structure but contested interpretation
--   Strong explanations but weak assurance
--   High assurance over incomplete data
+- Correct structure but contested interpretation
+- Strong explanations but weak assurance
+- High assurance over incomplete data
 
 These conditions are preserved, not resolved.
 
@@ -94,9 +94,9 @@ The goal is not agreement.
 
 The goal is traceability:
 
--   of structure
--   of interpretation
--   of confidence
+- of structure
+- of interpretation
+- of confidence
 
 This allows disagreement to be explicit, inspectable, and durable.
 

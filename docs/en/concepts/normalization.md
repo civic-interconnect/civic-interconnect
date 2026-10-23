@@ -1,6 +1,6 @@
 # Normalization
 
-Normalization is the **first transformation step** in the CEP pipeline.  
+Normalization is the **first transformation step** in the CEP pipeline.
 Its purpose is to convert raw, heterogeneous civic data into a consistent structure before canonicalization and hashing.
 
 In practice there are two layers:
@@ -13,7 +13,6 @@ This separation ensures:
 - Adapters can reflect local domain knowledge and messy source quirks
 - Core normalization remains stable and global across all jurisdictions
 - Normalization rules can evolve without breaking the hash function, as long as the core contract is respected
-
 
 ---
 
@@ -45,10 +44,10 @@ Adapters may do extra work, but they must not contradict this core behavior.
 
 At a high level, core normalization does:
 
-1. Unicode normalization and case folding  
-2. Punctuation and spacing cleanup  
-3. Safe abbreviation expansion  
-4. Optional stop-word removal (language-aware)  
+1. Unicode normalization and case folding
+2. Punctuation and spacing cleanup
+3. Safe abbreviation expansion
+4. Optional stop-word removal (language-aware)
 5. Address cleanup for hashing
 
 ### 2.1 Unicode Normalization and Case Folding
@@ -57,15 +56,14 @@ Core normalization applies Unicode normalization and converts text to a stable l
 
 We use Normalization Form Compatibility Decomposition (NFKD) for the SNFEI canonicalization path.
 
-**Understanding NFD vs. NFKD**
+#### Understanding NFD vs. NFKD
 
-| Form | Full Name | Effect on Characters | Why We Use NFKD |
-| ---- | --------- | -------------------- | --------------- |
-| NFD | Normalization Form Decomposition | Separates base characters from combining marks/diacritics. | Preserves too much semantic variation. For example, it would treat compatibility characters differently from their base equivalents.
-| NFKD | Normalization Form Compatibility Decomposition | Separates base characters,  and replaces compatibility characters (e.g.,  ligatures, Roman numerals) with their best plain text equivalent. | Addresses Entity Resolution. Compatibility characters often arise from rendering/typography and should be treated as equivalent for identity hashing (e.g., the KC in NFKC is too strict, but the KD in NFKD is perfect for eliminating visual noise). |
+| Form | Full Name                                      | Effect on Characters                                                                                                                      | Why We Use NFKD                                                                                                                                                                                                                                        |
+| ---- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| NFD  | Normalization Form Decomposition               | Separates base characters from combining marks/diacritics.                                                                                | Preserves too much semantic variation. For example, it would treat compatibility characters differently from their base equivalents.                                                                                                                   |
+| NFKD | Normalization Form Compatibility Decomposition | Separates base characters, and replaces compatibility characters (e.g., ligatures, Roman numerals) with their best plain text equivalent. | Addresses Entity Resolution. Compatibility characters often arise from rendering/typography and should be treated as equivalent for identity hashing (e.g., the KC in NFKC is too strict, but the KD in NFKD is perfect for eliminating visual noise). |
 
-
-**The Core Process**
+#### The Core Process
 
 - Apply NFKD: The input string is converted to NFKD. This replaces ligatures and compatibility characters with their basic constituent letters.
 - Strip **combining marks** where safe (é → e, ñ → n, ö → o) for Latin-based scripts.
@@ -74,10 +72,10 @@ We use Normalization Form Compatibility Decomposition (NFKD) for the SNFEI canon
 
 Examples:
 
-- `"Société Générale"` → `"societe generale"`  
+- `"Société Générale"` → `"societe generale"`
 - `"Ελληνική Εταιρεία Δεδομένων"` → a lowercased Greek string with accents normalized, but **still in Greek**, not dropped or transliterated to ASCII.
 
-**Key property:**  
+**Key property:**
 Core normalization uses NFKD because it is the most aggressive form of decomposition that remains script-preserving (i.e., it doesn't try to turn Arabic into ASCII) while ensuring maximum equivalency for hashing identifiers, making two visually distinct inputs (due to font/encoding issues) hash to the same canonical ID.
 
 ### 2.2 Punctuation & Whitespace
@@ -91,7 +89,7 @@ All scripts share a common punctuation/whitespace policy:
 
 Examples:
 
-- `"City of Springfield, Inc."` → `"city of springfield inc"`  
+- `"City of Springfield, Inc."` → `"city of springfield inc"`
 - `"123 N. Main St., Suite 400"` (before abbreviation expansion) → `"123 n main st suite 400"`
 
 ### 2.3 Abbreviation Expansion (Language- & Region-Aware)
@@ -119,7 +117,6 @@ Address expansions (core US examples):
 
 For scripts outside that vocabulary, no attempt is made to transliterate or guess expansions; the text is left as cleaned lowercased Unicode.
 
-
 ### 2.4 Stop-Word Removal
 
 Stop words are used cautiously and are **language-aware**:
@@ -134,7 +131,6 @@ Example (English):
 
 For non-English scripts, stop-word lists must be defined explicitly; otherwise, core does **not** silently drop tokens.
 
-
 ### 2.5 Address Cleanup for Hashing
 
 For SNFEI hashing, addresses are normalized into a minimal, stable form:
@@ -147,7 +143,7 @@ For SNFEI hashing, addresses are normalized into a minimal, stable form:
 
 Example (US):
 
-- Raw: `"123 N. Main St., Suite 400"`  
+- Raw: `"123 N. Main St., Suite 400"`
 - Normalized: `"123 north main street"`
 
 ---
@@ -176,6 +172,7 @@ Empty/unknown fields are represented as empty strings in the hash preimage, but 
 ## 4. Example: From Raw to Normalized
 
 Raw:
+
 ```json
 {
   "legalName": "City of Springfield Unified Sch. Dist., Inc.",
@@ -229,18 +226,16 @@ International example (Greek):
 to: a lowercased Greek string with punctuation removed and whitespace collapsed;
 the script remains Greek, not transliterated or dropped.
 
-
-
 ## 5. Normalization vs Canonicalization
 
-| Stage            | Purpose    | Uses  |
-| ---------------- | ---------- | ------|
-| Adapter Normalization | Clean and map raw records into CEP-friendly fields   | Adapters / ETL code  |
-| Core Normalization | Unicode-safe, script-preserving string cleanup | CEP Rust core |
-| Canonicalization | Assemble final hash string and compute SNFEI | CEP Rust core (SNFEI) |
-
+| Stage                 | Purpose                                            | Uses                  |
+| --------------------- | -------------------------------------------------- | --------------------- |
+| Adapter Normalization | Clean and map raw records into CEP-friendly fields | Adapters / ETL code   |
+| Core Normalization    | Unicode-safe, script-preserving string cleanup     | CEP Rust core         |
+| Canonicalization      | Assemble final hash string and compute SNFEI       | CEP Rust core (SNFEI) |
 
 Notes:
+
 - Adapter normalization may be jurisdiction-specific and can evolve quickly.
 - Core normalization is global and stable; all implementations must match it.
 - Canonicalization is purely structural: build the hash pre-image in the agreed order, then hash.

@@ -20,9 +20,9 @@ embedding those concerns into entity or relationship records.
 
 An exchange may contain:
 
--   Entity records
--   Relationship records
--   Metadata describing the exchange itself
+- Entity records
+- Relationship records
+- Metadata describing the exchange itself
 
 CEP does not require that exchanges be complete or authoritative.
 

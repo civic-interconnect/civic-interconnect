@@ -3,6 +3,7 @@
 Missing and null values are treated explicitly.
 
 Rules:
+
 - Absence is not inferred
 - Null is not equivalent to empty
 - Defaults must be declared, not assumed

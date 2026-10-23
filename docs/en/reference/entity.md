@@ -57,7 +57,7 @@ The SNFEI identity appears twice:
 }
 ```
 
-2. In verifiableId:
+1. In verifiableId:
 
 ```json
 "verifiableId": "cep-entity:snfei:3448..."
@@ -65,9 +65,9 @@ The SNFEI identity appears twice:
 
 This ensures:
 
-- Cross-schema consistency  
-- Reproducible identity derivation  
-- Compatibility with external ID systems  
+- Cross-schema consistency
+- Reproducible identity derivation
+- Compatibility with external ID systems
 
 ---
 
@@ -75,7 +75,7 @@ This ensures:
 
 Entity type is resolved via the entity-type vocabulary:
 
-```
+```text
 https://raw.githubusercontent.com/civic-interconnect/civic-interconnect/main/vocabulary/core/entity-type.v1.0.0.json#municipality
 ```
 
@@ -115,10 +115,10 @@ Adapters provide simple labels (`"municipality"`), and the builder expands them 
 
 ## 5. How EntityRecords Are Produced
 
-1. Adapter Normalizes Input  
-2. Canonicalization builds hash string  
-3. SNFEI computed (Rust or Python)  
-4. Entity builder constructs full envelope  
+1. Adapter Normalizes Input
+2. Canonicalization builds hash string
+3. SNFEI computed (Rust or Python)
+4. Entity builder constructs full envelope
 5. Record emitted as JSON
 
 ---
@@ -127,9 +127,9 @@ Adapters provide simple labels (`"municipality"`), and the builder expands them 
 
 EntityRecords are used for:
 
-- Linking datasets (campaign finance -> contracts -> lobbying)  
-- Regulatory and financial reporting  
-- Auditable data pipelines  
-- Provenance-aware knowledge graphs  
+- Linking datasets (campaign finance -> contracts -> lobbying)
+- Regulatory and financial reporting
+- Auditable data pipelines
+- Provenance-aware knowledge graphs
 
 Entity identity is the backbone of the CI/CEP ecosystem.

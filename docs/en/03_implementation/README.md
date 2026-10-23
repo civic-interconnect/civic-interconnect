@@ -18,6 +18,7 @@ The implementation layer covers:
 - How provenance and validation requirements are enforced
 
 It does **not** define:
+
 - Business logic or policy decisions
 - Domain-specific analytics
 - User interfaces or storage systems

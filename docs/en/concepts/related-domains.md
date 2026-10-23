@@ -1,6 +1,7 @@
 # Related Research Domains
 
 This standard operates at the intersection of three major, yet often separate, academic research domains:
+
 - Formal Entity Resolution (CS),
 - Campaign Finance/Policy Analysis (Political Science), and
 - Global Data Standards (Information Systems).
@@ -10,6 +11,7 @@ This standard operates at the intersection of three major, yet often separate, a
 This standard advances the state-of-the-art by bridging the gap between three distinct bodies of work: high-fidelity entity resolution, policy-driven data harmonization, and the development of open standards for public accountability.
 
 ### 1. Entity Resolution and Data Quality Methodology
+
 Research in Entity Resolution (ER), also known as record linkage or deduplication, has been a cornerstone of computer science and database theory.
 
 Carnegie Mellon University (CMU) has contributed foundational work in formalizing the ER problem, such as the ENRES framework, which provides a semantic model to represent and relate various ER research models.
@@ -20,6 +22,7 @@ The computational methodology behind our implementation relies heavily on advanc
 The use of the open-source Splink library (pioneered outside academia and rigorously validated) represents a pragmatic, scalable implementation of these probabilistic principles.
 
 ### 2. Campaign Finance and Policy Data Standardization
+
 A parallel track of research has focused on the application of computational methods to clean and analyze fragmented political data.
 
 Stanford University's DIME (Database on Ideology, Money in Politics, and Elections) Project exemplifies the effort to centralize and standardize complex political contributions data.
@@ -31,6 +34,7 @@ These programs underscore the academic recognition that robust data infrastructu
 While these efforts successfully resolve entities within their domain (e.g., within campaign finance), they often use internal, proprietary identifiers that do not readily link to entities in the public procurement or grant domains, creating siloed transparency.
 
 ### 3. Open Data, Interoperability, and Global Standards
+
 The third body of work defines the principles of modern data governance and standardization.
 
 Massachusetts Institute of Technology (MIT), through its Research Data Principles, champions the need for researchers to manage data actively and avoid acquiring or generating data that restricts future use and sharing.
@@ -41,6 +45,7 @@ This reflects the global demand for cross-sectoral standards.
 The existing Legal Entity Identifier (LEI) standard provides the template for a globally harmonized system in the financial sector.
 
 ### Novelty and Contribution of this Standard
+
 This project is novel in three key ways:
 
 - Compositional Rigor: We model the civic exchange system as a Category, using Category Theory to formally prove that the SNFEI acts as the Universal Property (Limit) that unifies all messy civic records, helping to guarantee the standard's structural integrity and extensibility.

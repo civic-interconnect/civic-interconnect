@@ -91,7 +91,6 @@ These refine CEP's core relationships (e.g., `CONTROL`, `GOVERNED_BY`, `OBSERVAT
 
 Adapters should produce environmental graphs using these relationship types.
 
-
 ## Usage in Adapters and Schemas
 
 These vocabularies support:
